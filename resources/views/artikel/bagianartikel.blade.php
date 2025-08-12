@@ -49,12 +49,11 @@
         .main-article-image {
             width: 100%;
             height: 100%;
-            background-color: #d0d0d0;
-            border: 2px dashed #999;
+            background-color: #f0f0f0;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
+            color: #999;
             font-family: 'Montserrat', sans-serif;
             font-size: 16px;
             position: relative;
@@ -141,7 +140,7 @@
         }
 
         .main-action-btn {
-            background-color: #90EE90;
+            background-color: #B4D678;
             color: white;
             border: none;
             padding: 12px 24px;
@@ -153,13 +152,13 @@
             transition: all 0.3s ease;
             z-index: 10;
             position: relative;
-            box-shadow: 0 2px 10px rgba(144, 238, 144, 0.3);
+            box-shadow: 0 2px 10px rgba(180, 214, 120, 0.3);
         }
 
         .main-action-btn:hover {
-            background-color: #7FDD7F;
+            background-color: #A5C866;
             transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(144, 238, 144, 0.4);
+            box-shadow: 0 4px 15px rgba(180, 214, 120, 0.4);
         }
 
         .main-bookmark-btn {
@@ -193,7 +192,7 @@
         .sidebar-articles {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 6px;
             height: 500px;
         }
 
@@ -206,6 +205,7 @@
             flex: 1;
             display: flex;
             flex-direction: row;
+            min-height: 162px;
         }
 
         .sidebar-article:hover {
@@ -215,17 +215,14 @@
 
         .sidebar-article-image {
             width: 120px;
-            height: 100%;
-            min-height: 140px;
-            background-color: #e5e5e5;
-            border: 2px dashed #ccc;
+            flex-shrink: 0;
+            background-color: #f0f0f0;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #777;
+            color: #999;
             font-family: 'Montserrat', sans-serif;
             font-size: 10px;
-            flex-shrink: 0;
             text-align: center;
             padding: 5px;
             position: relative;
@@ -239,16 +236,16 @@
         }
 
         .sidebar-article-content {
-            padding: 14px;
+            padding: 10px 12px 10px 12px;
             display: flex;
             flex-direction: column;
             flex: 1;
             justify-content: space-between;
-            min-height: 140px;
         }
 
         .sidebar-content-top {
-            flex: 1;
+            flex-grow: 1;
+            margin-bottom: 4px;
         }
 
         .sidebar-category-tag {
@@ -261,7 +258,7 @@
             font-family: 'Poppins', sans-serif;
             font-size: 10px;
             font-weight: 500;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             width: fit-content;
         }
 
@@ -289,266 +286,98 @@
             font-size: 11px;
             color: #666;
             line-height: 1.3;
-            margin-bottom: 10px;
-            flex: 1;
+            margin-bottom: 2px;
             display: -webkit-box;
-            -webkit-line-clamp: 3;
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
         .sidebar-article-footer {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 9px;
-            color: #999;
             margin-top: auto;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            min-height: 36px;
+            padding-top: 2px;
         }
 
         .sidebar-author-info {
+            font-family: 'Montserrat', sans-serif;
             font-size: 9px;
+            color: #999;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar-author-info .author {
+            font-weight: 600;
+            color: #666;
         }
 
         .sidebar-article-actions {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 6px;
-        }
-
-        .sidebar-article-footer .author {
-            font-weight: 600;
+            gap: 8px;
+            flex-shrink: 0;
         }
 
         .sidebar-action-btn {
-            background-color: #90EE90;
+            background: linear-gradient(135deg, #B4D678 0%, #A5C866 100%);
             color: white;
             border: none;
-            padding: 4px 8px;
-            border-radius: 12px;
+            padding: 10px 16px;
+            border-radius: 20px;
             font-family: 'Poppins', sans-serif;
-            font-size: 9px;
-            font-weight: 500;
+            font-size: 11px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
-            z-index: 10;
-            position: relative;
+            box-shadow: 0 3px 12px rgba(180, 214, 120, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            min-height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .sidebar-action-btn:hover {
-            background-color: #7FDD7F;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(144, 238, 144, 0.3);
+            background: linear-gradient(135deg, #A5C866 0%, #96BA54 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(180, 214, 120, 0.6);
         }
 
         .sidebar-bookmark-btn {
-            background: none;
-            border: 1px solid #ddd;
-            padding: 3px 4px;
-            border-radius: 4px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #dee2e6;
+            padding: 7px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            width: 20px;
-            height: 20px;
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
 
         .sidebar-bookmark-btn img {
-            width: 10px;
-            height: 10px;
+            width: 14px;
+            height: 14px;
         }
 
         .sidebar-bookmark-btn:hover {
-            border-color: #90EE90;
-            background-color: rgba(144, 238, 144, 0.1);
-        }
-
-        /* Banner Section Styles */
-        .banner-section {
-            margin-top: 50px;
-        }
-
-        .banner-container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .banner-slides {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .banner-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
-        }
-
-        .banner-slide.active {
-            opacity: 1;
-        }
-
-        .banner-image {
-            width: 100%;
-            height: 100%;
-            background-color: #e0e0e0;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            border: 2px dashed #bbb;
-            position: relative;
-        }
-
-        .banner-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .banner-slide:nth-child(2) .banner-image {
-            background-color: #e0e0e0;
-        }
-
-        .banner-slide:nth-child(3) .banner-image {
-            background-color: #e0e0e0;
-        }
-
-        .banner-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7));
-            padding: 80px 40px 40px;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-        }
-
-        .banner-content h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-
-        .banner-content p {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            opacity: 0.95;
-        }
-
-        .banner-btn {
-            background-color: #90EE90;
-            color: white;
-            border: none;
-            padding: 10px 24px;
-            border-radius: 25px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(144, 238, 144, 0.3);
-            width: fit-content;
-            margin-left: 80px;
-        }
-
-        .banner-btn:hover {
-            background-color: #7FDD7F;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(144, 238, 144, 0.4);
-        }
-
-        .banner-navigation {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 20px;
-            pointer-events: none;
-        }
-
-        .nav-prev,
-        .nav-next {
-            background: rgba(255,255,255,0.2);
-            border: 1px solid rgba(255,255,255,0.3);
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            pointer-events: all;
-        }
-
-        .nav-prev:hover,
-        .nav-next:hover {
-            background: rgba(255,255,255,0.3);
-            border-color: rgba(255,255,255,0.5);
-            transform: scale(1.1);
-        }
-
-        .banner-indicators {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-
-        .indicator {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .indicator.active {
-            background: white;
-            transform: scale(1.2);
-        }
-
-        .indicator:hover {
-            background: rgba(255,255,255,0.7);
+            border-color: #B4D678;
+            background: linear-gradient(135deg, rgba(180, 214, 120, 0.1) 0%, rgba(180, 214, 120, 0.2) 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(180, 214, 120, 0.3);
         }
 
         @media (max-width: 1024px) {
@@ -573,22 +402,13 @@
                 min-height: 200px;
             }
 
-            .banner-container {
-                height: 320px;
+            .sidebar-articles {
+                height: auto;
+                gap: 15px;
             }
 
-            .banner-content h3 {
-                font-size: 24px;
-                font-weight: 700;
-            }
-
-            .banner-content p {
-                font-size: 14px;
-                font-weight: 500;
-            }
-
-            .banner-overlay {
-                padding: 60px 30px 30px;
+            .sidebar-article {
+                min-height: 130px;
             }
         }
 
@@ -626,38 +446,18 @@
                 justify-content: space-between;
             }
 
-            .banner-container {
-                height: 280px;
+            .sidebar-article {
+                flex-direction: column;
+                min-height: auto;
             }
 
-            .banner-content h3 {
-                font-size: 20px;
+            .sidebar-article-image {
+                width: 100%;
+                height: 120px;
             }
 
-            .banner-content p {
-                font-size: 14px;
-                margin-bottom: 20px;
-            }
-
-            .banner-overlay {
-                padding: 50px 20px 20px;
-            }
-
-            .banner-btn {
-                padding: 8px 20px;
-                font-size: 12px;
-                margin-left: 60px;
-            }
-
-            .nav-prev,
-            .nav-next {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-
-            .banner-navigation {
-                padding: 0 15px;
+            .sidebar-article-content {
+                padding: 12px;
             }
         }
     </style>
@@ -778,123 +578,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Banner Section -->
-        <div class="banner-section">
-            <div class="banner-container">
-                <div class="banner-slides">
-                    <div class="banner-slide active">
-                        <div class="banner-image">
-                            <img src="image/Rectangle 136.png" alt="Tips Sehat Setiap Hari">
-                        </div>
-                        <div class="banner-overlay">
-                            <div class="banner-content">
-                                <h3>Tips Sehat Setiap Hari</h3>
-                                <p>Kebiasaan kecil bisa berdampak besar untuk kesehatanmu. Yuk mulai hari ini dengan tips sederhana yang bisa langsung kamu praktikkan!</p>
-                                <button class="banner-btn">Baca Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="banner-slide">
-                        <div class="banner-image">
-                            <img src="" alt="Resep Makanan Bergizi">
-                        </div>
-                        <div class="banner-overlay">
-                            <div class="banner-content">
-                                <h3>Resep Makanan Bergizi</h3>
-                                <p>Temukan berbagai resep makanan sehat yang mudah dibuat dan kaya nutrisi. Cocok untuk menu harian keluarga Indonesia.</p>
-                                <button class="banner-btn">Baca Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="banner-slide">
-                        <div class="banner-image">
-                            <img src="" alt="Olahraga di Rumah">
-                        </div>
-                        <div class="banner-overlay">
-                            <div class="banner-content">
-                                <h3>Olahraga di Rumah</h3>
-                                <p>Tidak perlu ke gym untuk tetap sehat! Ikuti panduan olahraga mudah yang bisa dilakukan di rumah dengan peralatan sederhana.</p>
-                                <button class="banner-btn">Baca Selengkapnya</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="banner-navigation">
-                    <button class="nav-prev" onclick="prevSlide()">‹</button>
-                    <button class="nav-next" onclick="nextSlide()">›</button>
-                </div>
-                
-                <div class="banner-indicators">
-                    <span class="indicator active" onclick="currentSlide(1)"></span>
-                    <span class="indicator" onclick="currentSlide(2)"></span>
-                    <span class="indicator" onclick="currentSlide(3)"></span>
-                </div>
-            </div>
-        </div>
     </div>
-
-    <script>
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.banner-slide');
-        const indicators = document.querySelectorAll('.indicator');
-        let autoSlideInterval;
-
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            indicators.forEach(indicator => indicator.classList.remove('active'));
-            
-            slides[index].classList.add('active');
-            indicators[index].classList.add('active');
-        }
-
-        function nextSlide() {
-            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-            showSlide(currentSlideIndex);
-            resetAutoSlide();
-        }
-
-        function prevSlide() {
-            currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
-            showSlide(currentSlideIndex);
-            resetAutoSlide();
-        }
-
-        function currentSlide(index) {
-            currentSlideIndex = index - 1;
-            showSlide(currentSlideIndex);
-            resetAutoSlide();
-        }
-
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(() => {
-                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-                showSlide(currentSlideIndex);
-            }, 5000);
-        }
-
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
-        }
-
-        // Start auto-slide when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            startAutoSlide();
-        });
-
-        // Pause auto-slide when hovering over banner
-        const bannerContainer = document.querySelector('.banner-container');
-        bannerContainer.addEventListener('mouseenter', () => {
-            clearInterval(autoSlideInterval);
-        });
-
-        bannerContainer.addEventListener('mouseleave', () => {
-            startAutoSlide();
-        });
-    </script>
 </body>
 </html>

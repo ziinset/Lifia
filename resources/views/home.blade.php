@@ -10,7 +10,7 @@
 </head>
 <body class="bg-white">
     <!-- Header akan di-include di sini -->
-    {{-- @include('components.header') --}}
+   @include('components.hero1')
 
     <!-- Hero Section -->
     {{-- <section class="hero-section bg-gradient-green px-4 py-20">

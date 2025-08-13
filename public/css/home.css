@@ -14,7 +14,7 @@ body {
     background: linear-gradient(135deg, #F0F8E8 0%, #E8F5E0 100%);
 }
 /*
-/* Hero Section Styling */
+Hero Section Styling
 /* .hero-section {
     position: relative;
     overflow: hidden;
@@ -28,7 +28,7 @@ body {
 .hero-content p {
     font-weight: 400;
     line-height: 1.7;
-}  */
+} 
 
 /* Search bar styling yang lebih rounded */
 .search-container {

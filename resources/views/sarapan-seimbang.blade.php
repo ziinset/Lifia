@@ -3,241 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mulai Hari Dengan Sarapan Seimbang - Lifia</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <title>Mulai Hari Dengan Sarapan Seimbang</title>
+    <link rel="stylesheet" href="{{ asset('css/sarapan-seimbang.css') }}">
 </head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    <header class="bg-white shadow-sm border-b">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex items-center">
-                    <h1 class="text-2xl font-bold text-green-600">Lifia</h1>
+<body>
+    <x-navbar />
+    <div class="container article">
+        <div class="category">🍃 Pola Makan Sehat</div>
+        <div class="author-info" style="margin-top:8px;">
+            <div class="author-avatar">FM</div>
+            <span class="author-name">Fitri Melliani Darisna</span>
+        </div>
+
+        <h1>Mulai Hari Dengan Sarapan Seimbang</h1>
+        <p class="intro-text">Apakah kamu sering melewatkan sarapan? Ternyata kebiasaan ini bisa memengaruhi produktivitasmu sepanjang hari!</p>
+
+        <div class="image-row">
+            <img src="{{ asset('img/food1.png') }}" alt="Menu sarapan 1">
+            <img src="{{ asset('img/food2.png') }}" alt="Menu sarapan 2">
+            <img src="{{ asset('img/food3.png') }}" alt="Menu sarapan 3">
+        </div>
+
+        <div class="section">
+            <h2>Apa Itu Sarapan?</h2>
+            <p>Sarapan adalah makan pertama yang kamu konsumsi setelah tidur malam. Setelah tubuh berjam‑jam tidak mendapat asupan, sarapan berfungsi sebagai “bahan bakar” awal untuk memulai aktivitas.</p>
+            <p>Waktu terbaik sarapan adalah 1–2 jam setelah bangun. Pilih menu yang seimbang: karbohidrat kompleks, protein, lemak sehat, serta sayur dan buah agar energi lebih stabil.</p>
+        </div>
+
+        <div class="section">
+            <h2>Apa Sih Manfaat Sarapan?</h2>
+            <p>Sarapan itu ibarat tombol “start” buat tubuh kamu. Begitu kamu makan, tubuh langsung nyala dan siap ngebut! Yuk, simak manfaatnya:</p>
+            <div class="benefits">
+                <div class="left-image">
+                    <img src="{{ asset('img/manfaat.png') }}" alt="Sarapan sehat">
                 </div>
-
-                <!-- Navigation -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#" class="text-gray-600 hover:text-green-600 transition-colors">Beranda</a>
-                    <a href="#" class="text-green-600 font-medium">Artikel</a>
-                    <a href="#" class="text-gray-600 hover:text-green-600 transition-colors">Cek Sehat</a>
-                    <a href="#" class="text-gray-600 hover:text-green-600 transition-colors">Tentang Kami</a>
-                    <a href="#" class="text-gray-600 hover:text-green-600 transition-colors">Login</a>
-                </nav>
-
-                <!-- Search Icon -->
-                <div class="flex items-center">
-                    <button class="p-2 text-gray-400 hover:text-gray-600">
-                        <i class="fas fa-search text-lg"></i>
-                    </button>
+                <div class="benefit-list">
+                    <div class="benefit-item">
+                        <div class="kicker">a. Energi Full Seharian</div>
+                        <p>Bayangin tubuh kamu kayak HP. Kalau nggak dicas, bisa low‑batt kan? Nah, sarapan itu charger kamu. Karbohidrat kompleks kasih energi cepat, protein bikin tahan lama.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="kicker">b. Otak Jadi Super Fokus</div>
+                        <p>Glukosa stabil dari sarapan bantu otak berpikir jernih. Meeting pagi nggak gampang blank dan belajar jadi lebih efektif.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="kicker">c. Perut Aman, Nafsu Makan Terkontrol</div>
+                        <p>Perut kosong bikin kamu gampang lapar berlebihan. Sarapan bantu cegah jajan sembarangan dan bikin pilihan makan siang lebih sehat.</p>
+                    </div>
+                    <div class="benefit-item">
+                        <div class="kicker">d. Boost Kesehatan Jangka Panjang</div>
+                        <p>Kebiasaan sarapan + pola makan seimbang terkait risiko diabetes, obesitas, dan penyakit metabolik yang lebih rendah.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-4 py-8">
-        <!-- Breadcrumb -->
-        <div class="flex items-center text-sm text-gray-500 mb-6">
-            <i class="fas fa-home mr-2"></i>
-            <span>Pola Makan Sehat</span>
+        <div class="warning-section section">
+            <h2>Akibat Melewatkan Sarapan (Siap - Siap Ini Terjadi Kalau Kamu Skip!)</h2>
+            <div class="hero-image">
+                <img src="{{ asset('img/sakitperut.png') }}" alt="Sakit perut">
+            </div>
+            <p>Melewatkan sarapan memang sering dianggap sepele. “Cuma satu kali makan, kan?” pikir banyak orang. Tapi kenyataannya, efeknya bisa seperti domino yang pelan‑pelan menjatuhkan produktivitas kamu.</p>
+            <p>Bayangkan pagi hari: kamu keluar rumah tanpa energi dengan perut kosong. Awalnya terasa biasa saja, tapi sekitar jam 10 pagi mulai lemas, sulit fokus, dan mudah emosi. Energi yang naik‑turun ini bikin kamu cenderung memilih makanan manis berlebihan saat siang.</p>
+            <p>Dari sini mulailah rantai masalah: gula darah yang naik drastis, perut nggak nyaman, hingga ngantuk berat di siang hari. Kebiasaan ini kalau dibiarkan juga membuat kamu lebih mudah ngemil dan susah mengatur porsi makan. Hasilnya? Berat badan perlahan naik tanpa kamu sadari.</p>
         </div>
 
-        <!-- Article Header -->
-        <article class="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div class="p-8">
-                <h1 class="text-3xl font-bold text-gray-900 mb-4">
-                    Mulai Hari Dengan Sarapan Seimbang
-                </h1>
-
-                <p class="text-gray-600 text-lg mb-8 leading-relaxed">
-                    Sarapan harus seimbang mengandung komponen lengkap berikut seimbantasa sehat tubuh menginginkan dan pasangan menggunakan tempat bekerja kamu dari jamal semakin lama-aman kebeh.
-                </p>
-
-                <!-- Article Images -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                    <div class="rounded-lg overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1551782450-17144efb9c50?w=400&h=300&fit=crop" alt="Sarapan Sehat 1" class="w-full h-48 object-cover">
-                    </div>
-                    <div class="rounded-lg overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop" alt="Sarapan Sehat 2" class="w-full h-48 object-cover">
-                    </div>
-                    <div class="rounded-lg overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&h=300&fit=crop" alt="Sarapan Sehat 3" class="w-full h-48 object-cover">
-                    </div>
-                </div>
-
-                <!-- Article Content Sections -->
-                <div class="space-y-8">
-                    <!-- Section 1 -->
-                    <section>
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Apa Itu Sarapan?</h2>
-                        <div class="prose prose-lg text-gray-700 leading-relaxed space-y-4">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                        </div>
-                    </section>
-
-                    <!-- Section 2 -->
-                    <section>
-                        <h2 class="text-2xl font-bold text-gray-900 mb-4">Apa Sih Manfaat Sarapan?</h2>
-                        <div class="prose prose-lg text-gray-700 leading-relaxed space-y-4">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna lorem molestie, rutilat, vulputate lacus elit arcu ligula! Vel enim debitis molestarum.</p>
-
-                            <div class="bg-green-50 p-6 rounded-lg my-6">
-                                <h3 class="font-bold text-gray-900 mb-4">5 Energi Full Sebarian</h3>
-                                <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna lorem molestie, rutilat, vulputate lacus elit arcu ligula! Non, suspices no charges karma, faciliatatis ipsum energia cursus, porem ipsum lorem tintum. tempor ipsum tellus tortor ligula qui vehicula nibh.</p>
-                            </div>
-
-                            <div class="bg-blue-50 p-6 rounded-lg my-6">
-                                <h3 class="font-bold text-gray-900 mb-4">b. Otak Jadi Super Fokus</h3>
-                                <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna lorem molestie, rutilat, vulputate lacus elit arcu ligula! Non, suspices no charges karma, faciliatatis ipsum energia cursus, porem ipsum lorem tintum. tempor ipsum tellus tortor ligula qui vehicula nibh.</p>
-                            </div>
-
-                            <div class="bg-yellow-50 p-6 rounded-lg my-6">
-                                <h3 class="font-bold text-gray-900 mb-4">c. Perut Aman, Nafas Makan Terkontrol</h3>
-                                <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Magna lorem molestie, rutilat, vulputate lacus elit arcu ligula! Non, suspices no charges karma, faciliatatis ipsum energia cursus, porem ipsum lorem tintum. tempor ipsum tellus tortor ligula qui vehicula nibh.</p>
-                            </div>
-
-                            <div class="bg-purple-50 p-6 rounded-lg my-6">
-                                <h3 class="font-bold text-gray-900 mb-4">d. Boost Kesehatan Jangka Panjang</h3>
-                                <p class="text-gray-700">Dengan teratur, metabolisme sehat - nutrii, melawan & obesitas.</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Section 3 -->
-                    <section>
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Akibat Melewatkan Sarapan (Siap-Siap In! Terjadi Kalau Kamu Skip!)</h2>
-
-                        <div class="flex flex-col md:flex-row gap-8 items-center mb-8">
-                            <div class="md:w-1/3">
-                                <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=500&fit=crop" alt="Akibat Skip Sarapan" class="w-full rounded-lg shadow-md">
-                            </div>
-                            <div class="md:w-2/3 prose prose-lg text-gray-700 leading-relaxed">
-                                <p>Melewatkan sarapan memang sering dianggap sepele. "Cuma skip satu jam makan, kan?" pikir banyak dari kita. Tapi ternyatanya, akibatnya bisa seperti domino yang panjang tidak terdukanya, produktivitas kerja.</p>
-                                <p>Bayangkan pagi hari tanpa tahun kajual turnah himpeg dengan segelaz air putih. Awalnya terasa baikan, tapi kemudian tubuh mulai rasa lemah mulai datang. Kepala ringan, perut berbagayal pedih, dan konsentrasi mulai menghilang. Apa yang biasanya mudah, sekarang terasa berat.</p>
-                                <p>Lalu, ketika siang datang, kamu jadi lebih lapar makanan berat memang, bahkan juga yang memungkinkan tidak sehat seperti fast food atau camilan manis. Tanpa disadari, tubuh juga mulai rebutan energi kamu akan habis dua kasus optimal.</p>
-                            </div>
-                        </div>
-
-                        <div class="prose prose-lg text-gray-700 leading-relaxed space-y-4">
-                            <p>Dalam jangka panjang, melewatkan sarapan secara konsisten bisa mengacaukan geroang-ja tubuh atau tubuh. Metabolisme melambat karena tubuh masuk "mode kelaparan" — mencoba menghemat energi. Padahal, sebenarnya kita ingin metabolisme kamu tetap aktif supaya berat badan terpelihara dan energi tetap tersedia sepanjang hari.</p>
-                            <p>Tanpa yang paling parah, tidak begitu banya bahak bahan bakar untuk belajar optimal. Untuk itu pun tidak saja gknya balik jilah membentarakan kamu terlalu banyak minum mengantukan karena energi. Jadi, ketika kamu tidak skip sarapan adalah cara sepes menunjukan berat badan, juga lagi.</p>
-                        </div>
-                    </section>
-
-                    <!-- Section 4 -->
-                    <section class="bg-gradient-to-r from-green-50 to-blue-50 p-8 rounded-lg">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Tips Membuat Sarapan Seimbang (Anti Ribet, Anti Lama!)</h2>
-
-                        <div class="text-center mb-8">
-                            <h3 class="text-4xl font-bold text-gray-800 mb-2">Placeholder</h3>
-                        </div>
-
-                        <div class="space-y-6 text-gray-700">
-                            <div>
-                                <h4 class="font-bold text-lg mb-2">Sarapan sehat itu nggas harus ribet, mahal, atau bikin kamu telat.</h4>
-                                <p>Dengan sedikit trick, kamu bisa tetap makan sehat, Bergizi, dan cepat.</p>
-                            </div>
-
-                            <div>
-                                <h4 class="font-bold text-lg mb-2">1. Karbohidrat yang Bikin Kenyang Lama</h4>
-                                <p>Ganti nasi putih dengan nasi ganduum, atau osha oatmeal. Karbohidrat kompleks ini bikin gula darah stabil dan energi tahan lama.</p>
-                            </div>
-
-                            <div>
-                                <h4 class="font-bold text-lg mb-2">Tambahkan Protein dan Lemak Sehat</h4>
-                                <p>Mau energi stabil selama bekerja? Pilihan protein yang bisa disajualkan dengan nori atau sayut telur, kacang-kacangan, dan greek yogurt.</p>
-                            </div>
-
-                            <div>
-                                <h4 class="font-bold text-lg mb-2">Jangan Lupa Buah dan Sayur</h4>
-                                <p>Buah sayur atau smoothie bikin sarapan sesh lengkap. Plus, vitaminnya bikin mood naik!</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Section 5 -->
-                    <section>
-                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Nggas Punya Waktu Masak? Ini Solusinya!</h2>
-
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                            <div class="rounded-lg overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop" alt="Breakfast 1" class="w-full h-48 object-cover">
-                            </div>
-                            <div class="rounded-lg overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1551782450-17144efb9c50?w=400&h=300&fit=crop" alt="Breakfast 2" class="w-full h-48 object-cover">
-                            </div>
-                            <div class="rounded-lg overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=400&h=300&fit=crop" alt="Breakfast 3" class="w-full h-48 object-cover">
-                            </div>
-                        </div>
-
-                        <div class="prose prose-lg text-gray-700 leading-relaxed space-y-4">
-                            <p>Kalau kamu persiapan sarapan sehat tapi nggas sempapat ribet, cek <a href="#" class="text-green-600 underline">@healthyaja</a>. Mereka menyediakan menu sarapan sehat siap saji yang praktis. Tapi juga bernutrisi.</p>
-
-                            <h4 class="font-bold text-lg">Apa yang bikin healthyaja_id berbeda?</h4>
-                            <p>✓ Menu Bervarasi dan Bergizi Seimbang. Setiap paket sudah dikuratori dengan kombinasi karbohidrat kompleks, protein berkualitas, lemak sehat tanpa nambah kalorie berlebih yang bebas buat.</p>
-                            <p>✓ Alsan: Tanpa Pengawet dan MSG. — Mereka fokuskan pada bahan natural fresh, kamu yang ingin jaga berat badan, tapi juga mau sempurna cari rasa.</p>
-                            <p>✓ Hemat Waktu dan Tenaga — Dengan paket full meal yang siap hangatkan. Mulai sebulan, kamu, Fruktal, hermin, selada, dan pastilnya bikim tidak kamu anti-processed.</p>
-                            <p>✓ Rasa sekarang dan rasakan berntuknya!</p>
-                        </div>
-                    </section>
-                </div>
+        <div class="section">
+            <h2>Tips Membuat Sarapan Seimbang (Anti Ribet, Anti Lama!)</h2>
+            <div class="placeholder-box">Placeholder</div>
+            <p>Sarapan sehat itu nggak harus ribet, mahal, atau bikin kamu telat. Dengan sedikit trik, kamu bisa tetap makan enak, bergizi, dan cepat.</p>
+            <div class="tips-subsection">
+                <h3>Pilih Karbohidrat yang Bikin Kenyang Lama</h3>
+                <p>Ganti roti putih dengan roti gandum, atau coba oatmeal. Karbohidrat kompleks ini bikin gula darah stabil dan energi tahan lama.</p>
             </div>
-        </article>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-green-800 text-white mt-16">
-        <div class="max-w-7xl mx-auto px-4 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-2xl font-bold mb-4">LIFIA</h3>
-                    <p class="text-green-200 text-sm leading-relaxed">
-                        Kami hadir untuk menyediakan informasi kesehatan dan pola hidup sehat yang dapat membantu Anda mencapai hidup yang lebih baik.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Tentang</h4>
-                    <!-- Add footer links here -->
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Jelajahi</h4>
-                    <!-- Add footer links here -->
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Kontak</h4>
-                    <div class="space-y-2 text-sm">
-                        <div class="flex items-center">
-                            <i class="fas fa-phone w-4 h-4 mr-2"></i>
-                            <span>+62 xxx xxxx xxxx</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-envelope w-4 h-4 mr-2"></i>
-                            <span>info@lifia.com</span>
-                        </div>
-                    </div>
-                    <div class="flex space-x-3 mt-4">
-                        <a href="#" class="w-8 h-8 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
-                            <i class="fab fa-facebook-f text-sm"></i>
-                        </a>
-                        <a href="#" class="w-8 h-8 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
-                            <i class="fab fa-twitter text-sm"></i>
-                        </a>
-                        <a href="#" class="w-8 h-8 bg-green-700 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors">
-                            <i class="fab fa-instagram text-sm"></i>
-                        </a>
-                    </div>
-                </div>
+            <div class="tips-subsection">
+                <h3>Tambahkan Protein dan Lemak Sehat</h3>
+                <p>Telur, yogurt, atau alpukat adalah pilihan praktis yang bisa dipadukan dengan roti atau salad. Protein bikin kenyang, lemak sehat bantu tetap bertenaga.</p>
             </div>
-            <div class="border-t border-green-700 mt-8 pt-8 text-center text-green-200 text-sm">
-                © 2024 Dema Kafult, dendam hak cipta dilindungi.
+            <div class="tips-subsection">
+                <h3>Jangan Lupa Buah dan Serat</h3>
+                <p>Buah segar atau smoothie bikin sarapan lebih lengkap. Plus, warnanya bikin mood naik!</p>
             </div>
         </div>
-    </footer>
+
+        <div class="section">
+            <h2>Nggak Punya Waktu Masak? Ini Solusinya!</h2>
+            <div class="quick-images">
+                <img src="{{ asset('img/foodbrand1.png') }}" alt="Paket sarapan 1">
+                <img src="{{ asset('img/foodbrand2.png') }}" alt="Paket sarapan 2">
+                <img src="{{ asset('img/foodbrand3.png') }}" alt="Paket sarapan 3">
+            </div>
+            <p>Kalau kamu pengen sarapan sehat tapi nggak sempat ribet, cek <span class="highlight">@healthygo.id</span>. Mereka menyediakan menu sarapan sehat siap santap yang nggak cuma praktis, tapi juga bernutrisi lengkap.</p>
+            <p class="muted">Apa yang bikin HealthyGo_id berbeda?</p>
+            <ul class="checklist">
+                <li><span class="check">✔</span><span><b>Menu Bervariasi dan Bergizi Seimbang</b> – Setiap paket sudah diatur dengan kombinasi karbohidrat kompleks, protein berkualitas, dan lemak sehat.</span></li>
+                <li><span class="check">✔</span><span><b>Bahan Segar dan Aman</b> – Tanpa pengawet berlebihan, lebih sehat buat tubuh.</span></li>
+                <li><span class="check">✔</span><span><b>Rasa Lezat, Tepat Ramah Diet</b> – Cocok untuk kamu yang mau jaga berat badan, tapi nggak mau kompromi soal rasa.</span></li>
+            </ul>
+            <p>Dengan HealthyGo_id, kamu nggak perlu repot belanja, masak, atau cuci piring. Cukup pesan via DM, sarapan sehat langsung datang ke pintu rumah kamu. Praktis, hemat waktu, dan pastinya bikin hari kamu lebih produktif!</p>
+            <p><strong>Pesan sekarang dan rasakan bedanya!</strong></p>
+        </div>
+    </div>
+
+    @include('components.footer')
 </body>
 </html>

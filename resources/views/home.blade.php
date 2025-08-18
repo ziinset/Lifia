@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="id">
 <head>
     <meta charset="UTF-8">

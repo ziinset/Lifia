@@ -13,7 +13,6 @@
             background-color: #f5f5f5;
             font-family: 'Montserrat', sans-serif;
         }
-
         .main-content {
             height: 70vh;
             display: flex;
@@ -22,6 +21,7 @@
             background-color: white;
             margin-bottom: -1px;
         }
+
 
         .main-content h1 {
             font-family: 'Poppins', sans-serif;
@@ -177,7 +177,6 @@
         .copyright {
             animation: fadeInUp 1s ease-out 1s both;
         }
-
         /* Responsive design */
         @media (max-width: 768px) {
             .footer-content {
@@ -185,17 +184,14 @@
                 gap: 40px !important;
                 text-align: left;
             }
-
             .footer-curve {
                 height: 100px !important;
                 top: -60px !important;
             }
-
             .footer-container {
                 padding: 60px 20px 30px 20px !important;
             }
         }
-
         @media (max-width: 480px) {
             .main-content h1 {
                 font-size: 2rem;
@@ -208,6 +204,11 @@
     </style>
 </head>
 <body>
+    <!-- Konten utama untuk demo -->
+    <div class="main-content">
+        <h1>Selamat datang!</h1>
+    </div>
+
     <!-- Footer dengan lekukan -->
     <footer style="background-color: #3B5C3F; color: white; padding: 0; margin: 0; position: relative; overflow: hidden;">
         <!-- Lekukan melengkung di bagian atas -->
@@ -226,6 +227,7 @@
         <!-- Konten footer -->
         <div class="footer-container" style="position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 100px 20px 30px 20px;">
             <div class="footer-content" style="display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr; gap: 30px; margin-bottom: 40px; align-items: start;">
+
 
                 <!-- LIFIA Section -->
                 <div style="padding-right: 20px; position: relative;">

@@ -1,0 +1,242 @@
+/* Fonts */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    color: #1f2937;
+    background: #ffffff;
+    line-height: 1.7;
+}
+
+.container {
+    max-width: 1050px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+/* Meta/Categories */
+.category {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #16a34a;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 24px;
+}
+
+.article {
+    padding: 28px 0 64px;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 32px;
+    line-height: 1.25;
+    margin: 14px 0 10px;
+    color: #111827;
+}
+
+h2 {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    margin: 32px 0 12px;
+    color: #111827;
+}
+
+h3 {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 12px 0 8px;
+    color: #111827;
+}
+
+.intro-text {
+    color: #4b5563;
+    margin-bottom: 12px;
+}
+
+/* Image rows */
+.image-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 14px 0 22px;
+}
+
+.image-row img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Sections */
+.section {
+    margin: 8px 0 24px;
+}
+
+.section p {
+    color: #4b5563;
+    margin-bottom: 12px;
+}
+
+/* Benefits two-column */
+.benefits {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 20px;
+    align-items: start;
+    margin-top: 12px;
+}
+
+.benefits .left-image img {
+    width: 100%;
+    height: 494px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.benefit-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.benefit-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px;
+    background: #ffffff;
+}
+
+.benefit-item .kicker {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 6px;
+}
+
+.benefit-item p {
+    margin: 0;
+    color: #4b5563;
+}
+
+/* Warning/Skip breakfast */
+.warning-section .hero-image {
+    margin: 10px 0 14px;
+}
+
+.warning-section img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Placeholder block */
+.placeholder-box {
+    background: #e5e7eb;
+    border-radius: 10px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111827;
+    font-weight: 700;
+    margin: 10px 0 12px;
+}
+
+.tips-subsection {
+    margin-bottom: 10px;
+}
+
+/* Quick solutions section */
+.quick-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 8px 0 10px;
+}
+
+.quick-images img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.checklist {
+    margin: 8px 0 0 0;
+    padding-left: 0;
+    list-style: none;
+    color: #4b5563;
+}
+
+.checklist li {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.checklist li .check {
+    color: #16a34a;
+    margin-top: 2px;
+}
+
+.muted {
+    color: #6b7280;
+}
+
+.highlight { color: #16a34a; font-weight: 600; }
+
+@media (max-width: 920px) {
+    .image-row { grid-template-columns: 1fr; }
+    .benefits { grid-template-columns: 1fr; }
+    .benefit-list { grid-template-columns: 1fr; }
+    .quick-images { grid-template-columns: 1fr; }
+}
+
+

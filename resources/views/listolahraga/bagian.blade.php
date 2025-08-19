@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artikel Terbaru</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -85,7 +84,7 @@
         .main-category-icon {
             width: 20px;
             height: 20px;
-            background-image: url('image/fluent_food-fish-20-filled.png');
+            background-image: url('image/streamline-plump_dumbell-remix.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -121,19 +120,6 @@
         .main-article-meta .author {
             font-weight: 600;
             color: #666;
-        }
-
-        .time-info {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .clock-icon {
-            width: 14px;
-            height: 14px;
-            color: #999;
-            font-size: 12px;
         }
 
         .main-article-actions {
@@ -247,7 +233,7 @@
         .sidebar-category-icon {
             width: 18px;
             height: 18px;
-            background-image: url('image/fluent_food-fish-20-filled.png');
+            background-image: url('image/streamline-plump_dumbell-remix.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -407,19 +393,17 @@
             <!-- Left Side - Main Article -->
             <div class="main-article-container">
                 <div class="main-article-image">
-                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80" alt="Mulai Hari dengan Sarapan Seimbang">
+                    <img src="image/Rectangle 171.png" alt="Senam Ringan di Rumah untuk Pemula">
                 </div>
                 <div class="main-article-content">
                     <div class="main-category-tag">
                         <div class="main-category-icon"></div>
-                        Pola Makan Sehat
+                        Olahraga & Aktivitas Fisik
                     </div>
-                    <h2>Mulai Hari dengan Sarapan Seimbang</h2>
-                    <p class="main-article-desc">Sarapan bukan cuma soal kenyang. Artikel ini membahas kombinasi karbohidrat kompleks, protein, dan serat untuk energi maksimal seharian.</p>
+                    <h2>Senam Ringan di Rumah untuk Pemula</h2>
+                    <p class="main-article-desc">Ingin mulai olahraga tapi nggak punya banyak waktu atau alat? Artikel ini pandu kamu melakukan senam sederhana selama 15 menit di rumah.</p>
                     <div class="main-article-meta">
-                        <span>Ditinjau: <span class="author">Graciella Yeriza Natalie</span> <span class="time-info">
-                            <i class="fas fa-clock clock-icon"></i>
-                            12 jam lalu</span></span>
+                        <span>Ditinjau: <span class="author">Graciella Yeriza Natalie</span> • 12 jam lalu</span>
                         <div class="main-article-actions">
                             <button class="main-action-btn">Selengkapnya</button>
                             <button class="main-bookmark-btn">
@@ -437,16 +421,16 @@
                 <!-- Article 1 -->
                 <div class="sidebar-article">
                     <div class="sidebar-article-image">
-                        <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Buah Lokal, Gizi Maksimal">
+                        <img src="image/Rectangle 172.png" alt="Manfaat Jalan Kaki 30 Menit Setiap Hari">
                     </div>
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
                                 <div class="sidebar-category-icon"></div>
-                                Pola Makan Sehat
+                                Olahraga & Aktivitas Fisik
                             </div>
-                            <h3>Buah Lokal, Gizi Maksimal</h3>
-                            <p class="sidebar-article-desc">Mengapa apel malang atau pisang kepok lebih baik dari buah impor? Kenali manfaat buah lokal yang sering diremehan.</p>
+                            <h3>Manfaat Jalan Kaki 30 Menit Setiap Hari</h3>
+                            <p class="sidebar-article-desc">Jalan kaki setiap hari bisa bantu turunkan berat badan, kurangi stres, dan jaga kesehatan jantung. Cocok untuk semua usia.</p>
                         </div>
                         <div class="sidebar-article-footer">
                             <div class="sidebar-author-info">
@@ -467,16 +451,16 @@
                 <!-- Article 2 -->
                 <div class="sidebar-article">
                     <div class="sidebar-article-image">
-                        <img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Sayuran Hijau: Sumber Serat dan Antioksidan">
+                        <img src="image/Rectangle 173.png" alt="Stretching Wajib dalam Olahraga">
                     </div>
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
                                 <div class="sidebar-category-icon"></div>
-                                Pola Makan Sehat
+                                Olahraga & Aktivitas Fisik
                             </div>
-                            <h3>Sayuran Hijau: Sumber Serat dan Antioksidan</h3>
-                            <p class="sidebar-article-desc">Tak suka sayur? Coba trik mudah ini agar sayuran jadi lebih nikmat dan tetap kaya nutrisi.</p>
+                            <h3>Stretching Wajib dalam Olahraga</h3>
+                            <p class="sidebar-article-desc">Peregangan membantu otot tetap lentur dan menghindari cedera saat latihan. Artikel ini berisi 5 gerakan stretching yang mudah diikuti.</p>
                         </div>
                         <div class="sidebar-article-footer">
                             <div class="sidebar-author-info">
@@ -497,16 +481,16 @@
                 <!-- Article 3 -->
                 <div class="sidebar-article">
                     <div class="sidebar-article-image">
-                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Hidrasi: Minum Air dengan Cara yang Benar">
+                        <img src="image/Rectangle 174.png" alt="5 Rekomendasi Aplikasi Olahraga Gratis">
                     </div>
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
                                 <div class="sidebar-category-icon"></div>
-                                Pola Makan Sehat
+                                Olahraga & Aktivitas Fisik
                             </div>
-                            <h3>Hidrasi: Minum Air dengan Cara yang Benar</h3>
-                            <p class="sidebar-article-desc">Ternyata minum air terlalu cepat juga bisa berdampak kurang baik. Simak tips minum air dengan benar di sini.</p>
+                            <h3>5 Rekomendasi Aplikasi Olahraga Gratis</h3>
+                            <p class="sidebar-article-desc">Nggak sempat ke gym? Coba pakai aplikasi olahraga gratis yang bisa bantu kamu tetap aktif dan rutin.</p>
                         </div>
                         <div class="sidebar-article-footer">
                             <div class="sidebar-author-info">

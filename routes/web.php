@@ -9,3 +9,7 @@ Route::get('/home', function () {
 Route::get('/artikel', function () {
     return view('artikel.artikel');
 });
+
+Route::get('/list-olahraga', function () {
+    return view('listolahraga.listolahraga');
+});

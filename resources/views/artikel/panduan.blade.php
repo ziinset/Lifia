@@ -66,6 +66,17 @@
             flex-shrink: 0;
         }
 
+        .article-item {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+        }
+
+        .article-item:last-of-type {
+            margin-bottom: 20px;
+        }
+
         .article-content {
             flex: 1;
             display: flex;
@@ -388,187 +399,152 @@
         <div class="content-wrapper">
             <main class="main-content">
             <!-- Article 1 -->
-            <article class="article-card">
+            <article class="article-item">
                 <img src="https://images.unsplash.com/photo-1559740336-2fde5982ec0d?w=200&h=150&fit=crop" alt="Pregnant woman" class="article-image">
                 <div class="article-content">
-                    <div class="article-tag">
-                        <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
-                        <span class="tag-text">Pola Makan Sehat</span>
-                    </div>
-                    <h2 class="article-title">Panduan Pola Makan Sehat untuk Ibu Hamil</h2>
-                    <p class="article-description">Tips memilih makanan bergizi seimbang selama kehamilan, lengkap dengan daftar nutrisi penting.</p>
-                    <div class="article-meta">
-                        <div class="meta-top">
-                            <div class="author-info">
-                                <svg class="author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m14.5 9.5-5 5"/>
-                                    <path d="m9.5 9.5 5 5"/>
-                                    <circle cx="12" cy="12" r="2"/>
-                                    <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
-                                    <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
-                                </svg>
-                                <span>Ditinjau: Graciella Yeriza Natalie</span>
-                            </div>
-                            <div class="time-info">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polyline points="12,6 12,12 16,14"/>
-                                </svg>
-                                <span>2 jam lalu</span>
-                            </div>
+                <div class="article-tag">
+                    <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
+                    <span class="tag-text">Pola Makan Sehat</span>
+                </div>
+                <h2 class="article-title">Panduan Pola Makan Sehat untuk Ibu Hamil</h2>
+                <p class="article-description">Tips memilih makanan bergizi seimbang selama kehamilan, lengkap dengan daftar nutrisi penting.</p>
+                <div class="article-meta">
+                    <div class="meta-top">
+                        <div class="author-info">
+                            <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                            <span>Ditinjau: Graciella Yeriza Natalie</span>
                         </div>
-                        <div class="bookmark-section">
-                            <span>Simpan Artikel</span>
-                            <svg class="bookmark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                        <div class="time-info">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
                             </svg>
+                            <span>2 jam lalu</span>
                         </div>
+                    </div>
+                    <div class="bookmark-section">
+                        <span>Simpan Artikel</span>
+                        <svg class="bookmark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                        </svg>
                     </div>
                 </div>
             </article>
 
             <!-- Article 2 -->
-            <article class="article-card">
+            <article class="article-item">
                 <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=150&fit=crop" alt="Lemon water" class="article-image">
                 <div class="article-content">
-                    <div class="article-tag">
-                        <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
-                        <span class="tag-text">Pola Makan Sehat</span>
-                    </div>
-                    <h2 class="article-title">Apakah Minum Air Lemon di Pagi Hari Efektif?</h2>
-                    <p class="article-description">Fakta ilmiah tentang manfaat dan mitos dari kebiasaan minum air lemon untuk detoks dan kesehatan.</p>
-                    <div class="article-meta">
-                        <div class="meta-top">
-                            <div class="author-info">
-                                <svg class="author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m14.5 9.5-5 5"/>
-                                    <path d="m9.5 9.5 5 5"/>
-                                    <circle cx="12" cy="12" r="2"/>
-                                    <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
-                                    <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
-                                </svg>
-                                <span>Ditinjau: Graciella Yeriza Natalie</span>
-                            </div>
-                            <div class="time-info">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polyline points="12,6 12,12 16,14"/>
-                                </svg>
-                                <span>5 hari lalu</span>
-                            </div>
+                <div class="article-tag">
+                    <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
+                    <span class="tag-text">Pola Makan Sehat</span>
+                </div>
+                <h2 class="article-title">Apakah Minum Air Lemon di Pagi Hari Efektif?</h2>
+                <p class="article-description">Fakta ilmiah tentang manfaat dan mitos dari kebiasaan minum air lemon untuk detoks dan kesehatan.</p>
+                <div class="article-meta">
+                    <div class="meta-top">
+                        <div class="author-info">
+                            <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                            <span>Ditinjau: Graciella Yeriza Natalie</span>
                         </div>
-                        <div class="bookmark-section">
-                            <span>Simpan Artikel</span>
-                            <svg class="bookmark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                        <div class="time-info">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
                             </svg>
+                            <span>5 hari lalu</span>
                         </div>
+                    </div>
+                    <div class="bookmark-section">
+                        <span>Simpan Artikel</span>
+                        <svg class="bookmark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                        </svg>
                     </div>
                 </div>
             </article>
 
             <!-- Article 3 -->
-            <article class="article-card">
+            <article class="article-item">
                 <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=200&h=150&fit=crop" alt="Woman eating" class="article-image">
                 <div class="article-content">
-                    <div class="article-tag">
-                        <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
-                        <span class="tag-text">Pola Makan Sehat</span>
-                    </div>
-                    <h2 class="article-title">Cara Mengenali Sinyal Lapar dan Kenyang dari Tubuh</h2>
-                    <p class="article-description">Latihan mindful eating: membedakan lapar fisik vs lapar emosional agar tidak makan berlebihan.</p>
-                    <div class="article-meta">
-                        <div class="meta-top">
-                            <div class="author-info">
-                                <svg class="author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m14.5 9.5-5 5"/>
-                                    <path d="m9.5 9.5 5 5"/>
-                                    <circle cx="12" cy="12" r="2"/>
-                                    <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
-                                    <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
-                                </svg>
-                                <span>Ditinjau: Graciella Yeriza Natalie</span>
-                            </div>
-                            <div class="time-info">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polyline points="12,6 12,12 16,14"/>
-                                </svg>
-                                <span>10 jam lalu</span>
-                            </div>
+                <div class="article-tag">
+                    <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
+                    <span class="tag-text">Pola Makan Sehat</span>
+                </div>
+                <h2 class="article-title">Cara Mengenali Sinyal Lapar dan Kenyang dari Tubuh</h2>
+                <p class="article-description">Latihan mindful eating: membedakan lapar fisik vs lapar emosional agar tidak makan berlebihan.</p>
+                <div class="article-meta">
+                    <div class="meta-top">
+                        <div class="author-info">
+                            <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                            <span>Ditinjau: Graciella Yeriza Natalie</span>
                         </div>
-                        <div class="bookmark-section">
-                            <span>Simpan Artikel</span>
-                            <svg class="bookmark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                        <div class="time-info">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12,6 12,12 16,14"/>
                             </svg>
+                            <span>10 jam lalu</span>
                         </div>
+                    </div>
+                    <div class="bookmark-section">
+                        <span>Simpan Artikel</span>
+                        <svg class="bookmark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                        </svg>
                     </div>
                 </div>
             </article>
 
             <!-- Article 4 -->
-            <article class="article-card">
+            <article class="article-item">
                 <img src="https://images.unsplash.com/photo-1559840244-8a6ec64be3e3?w=200&h=150&fit=crop" alt="Pregnant woman eating" class="article-image">
                 <div class="article-content">
-                    <div class="article-tag">
-                        <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
-                        <span class="tag-text">Pola Makan Sehat</span>
+                <div class="article-tag">
+                    <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
+                    <span class="tag-text">Pola Makan Sehat</span>
+                </div>
+                <h2 class="article-title">Makanan yang Harus Dihindari Saat Hamil</h2>
+                <p class="article-description">Daftar makanan berisiko tinggi untuk janin, lengkap dengan alasannya.</p>
+                <div class="article-meta">
+                    <div class="meta-top">
+                        <div class="author-info">
+                            <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                            <span>Ditinjau: Graciella Yeriza Natalie</span>
+                        </div>
                     </div>
-                    <h2 class="article-title">Makanan yang Harus Dihindari Saat Hamil</h2>
-                    <p class="article-description">Daftar makanan berisiko tinggi untuk janin, lengkap dengan alasannya.</p>
-                    <div class="article-meta">
-                        <div class="meta-top">
-                            <div class="author-info">
-                                <svg class="author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m14.5 9.5-5 5"/>
-                                    <path d="m9.5 9.5 5 5"/>
-                                    <circle cx="12" cy="12" r="2"/>
-                                    <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
-                                    <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
-                                </svg>
-                                <span>Ditinjau: Graciella Yeriza Natalie</span>
-                            </div>
-                        </div>
-                        <div class="bookmark-section">
-                            <span>Simpan Artikel</span>
-                            <svg class="bookmark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
-                            </svg>
-                        </div>
+                    <div class="bookmark-section">
+                        <span>Simpan Artikel</span>
+                        <svg class="bookmark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                        </svg>
                     </div>
                 </div>
             </article>
 
             <!-- Article 5 -->
-            <article class="article-card">
+            <article class="article-item">
                 <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=200&h=150&fit=crop" alt="Diet food" class="article-image">
                 <div class="article-content">
-                    <div class="article-tag">
-                        <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
-                        <span class="tag-text">Pola Makan Sehat</span>
+                <div class="article-tag">
+                    <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
+                    <span class="tag-text">Pola Makan Sehat</span>
+                </div>
+                <h2 class="article-title">Mitos vs Fakta Tentang Makanan Diet</h2>
+                <p class="article-description">Meluruskan mitos seputar roti gandum, buah malam hari, karbohidrat, dan diet tanpa nasi.</p>
+                <div class="article-meta">
+                    <div class="meta-top">
+                        <div class="author-info">
+                            <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                            <span>Ditinjau: Penulis Graciella Yeriza Natalie</span>
+                        </div>
                     </div>
-                    <h2 class="article-title">Mitos vs Fakta Tentang Makanan Diet</h2>
-                    <p class="article-description">Meluruskan mitos seputar roti gandum, buah malam hari, karbohidrat, dan diet tanpa nasi.</p>
-                    <div class="article-meta">
-                        <div class="meta-top">
-                            <div class="author-info">
-                                <svg class="author-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m14.5 9.5-5 5"/>
-                                    <path d="m9.5 9.5 5 5"/>
-                                    <circle cx="12" cy="12" r="2"/>
-                                    <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"/>
-                                    <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"/>
-                                </svg>
-                                <span>Ditinjau: Penulis Graciella Yeriza Natalie</span>
-                            </div>
-                        </div>
-                        <div class="bookmark-section">
-                            <span>Simpan Artikel</span>
-                            <svg class="bookmark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
-                            </svg>
-                        </div>
+                    <div class="bookmark-section">
+                        <span>Simpan Artikel</span>
+                        <svg class="bookmark-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                        </svg>
                     </div>
                 </div>
             </article>

@@ -1,10 +1,10 @@
 {{-- Halaman Artikel --}}
-<div style="margin-bottom: 40px;">
+<div style="margin-bottom: 10px;">
     @include('artikel.bagianartikel')
 </div>
 
 {{-- Halaman Banner --}}
-<div style="margin-top: 40px; margin-bottom: 60px;">
+<div style="margin-top: 10px; margin-bottom: 60px;">
     @include('artikel.banner')
 </div>
 

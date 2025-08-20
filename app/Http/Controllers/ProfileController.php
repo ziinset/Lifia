@@ -2,59 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): View
+    public function index()
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
-    }
+        // contoh data user dummy
+        $user = [
+            'nama' => 'Maki Zenin Sukochi',
+            'username' => 'makimakizenin',
+            'email' => 'makimakizenin@gmail.com',
+            'nohp' => '082133334444',
+            'gender' => 'Perempuan',
+            'lahir' => '12-10-2000',
+            'bio' => 'Pecinta hidup sehat dan...',
+            'hobi' => 'Yoga, Jogging',
+            'lokasi' => 'Malang, Jawa Timur',
+            'status' => 'Pengguna Premium',
+        ];
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
-
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+        return view('user.profil', compact('user'));
     }
 }

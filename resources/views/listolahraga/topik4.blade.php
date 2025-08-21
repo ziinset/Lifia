@@ -488,7 +488,7 @@
             <div class="featured-grid">
                 <article class="featured-item">
                     <div class="featured-image-container">
-                        <img src="image/Rectangle 147.png" alt="Healthy Grilled Chicken Salad" class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Manfaat Tidur Berkualitas" class="featured-image">
                         <div class="heart-icon">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -496,22 +496,22 @@
                         </div>
                     </div>
                     <div class="featured-content">
-                        <span class="category-tag">HEALTHY GRILLED CHICKEN SALAD RECIPE (Greek Style)</span>
-                        <h2 class="featured-title">Makanan Sehat untuk Pemula: Panduan 7 Hari Awal</h2>
-                        <p class="featured-description">Tips dan menu sederhana untuk mulai hidup sehat tanpa ribet. Cocok buat kamu yang baru mulai jaga pola makan.</p>
+                        <span class="category-tag">KUALITAS TIDUR</span>
+                        <h2 class="featured-title">Manfaat Tidur Berkualitas: Kunci Kesehatan Optimal</h2>
+                        <p class="featured-description">Tidur yang cukup dan berkualitas adalah investasi terbaik untuk kesehatan fisik dan mental. Pelajari cara meningkatkan kualitas tidurmu.</p>
                         <div class="rating">
                             <span class="star">★</span>
                             <span class="star">★</span>
                             <span class="star">★</span>
                             <span class="star">★</span>
-                            <span class="star empty">☆</span>
+                            <span class="star">★</span>
                         </div>
                     </div>
                 </article>
 
                 <article class="featured-item">
                     <div class="featured-image-container">
-                        <img src="image/Rectangle 148.png" alt="Plant-Based Power Bowl" class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Olahraga Cardio di Rumah" class="featured-image">
                         <div class="heart-icon">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -519,9 +519,9 @@
                         </div>
                     </div>
                     <div class="featured-content">
-                        <span class="category-tag">PLANT - BASED POWER BOWL</span>
-                        <h2 class="featured-title">Sarapan Sehat: Pilihan Cepat dan Bergizi untuk Setiap Hari</h2>
-                        <p class="featured-description">Ide sarapan anti-bosan dan praktis yang bantu kamu tetap semangat sepanjang hari.</p>
+                        <span class="category-tag">OLAHRAGA RUMAHAN</span>
+                        <h2 class="featured-title">Cardio Efektif di Rumah: 15 Menit untuk Jantung Sehat</h2>
+                        <p class="featured-description">Latihan kardio sederhana yang bisa dilakukan tanpa alat gym. Cocok untuk pemula yang ingin jantung lebih sehat.</p>
                         <div class="rating">
                             <span class="star">★</span>
                             <span class="star">★</span>
@@ -539,7 +539,7 @@
             <div class="articles-grid">
                 <article class="article-item">
                     <div class="article-image-container">
-                        <img src="image/Rectangle 151.png" alt="Mengatur Porsi Makan" class="article-image">
+                        <img src="https://images.unsplash.com/photo-1547496502-affa22d38842?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Vitamin dan Mineral" class="article-image">
                         <div class="small-heart">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -548,25 +548,25 @@
                     </div>
                     <div class="article-content">
                         <div>
-                            <h3 class="article-title">Cara Mengatur Porsi Makan Agar Tetap Kenyang Tanpa Kalori Berlebih</h3>
-                            <p class="article-description">Panduan visual & trik makan agar tetap puas tapi tidak berlebihan kalori.</p>
+                            <h3 class="article-title">Vitamin dan Mineral Penting: Panduan Lengkap Kebutuhan Harian</h3>
+                            <p class="article-description">Kenali jenis vitamin dan mineral yang dibutuhkan tubuh setiap hari serta sumber makanannya.</p>
                         </div>
                         <div class="article-meta">
                             <div class="article-rating">
                                 <span class="star">★</span>
                                 <span class="star">★</span>
                                 <span class="star">★</span>
-                                <span class="star empty">★</span>
+                                <span class="star">★</span>
                                 <span class="star empty">★</span>
                             </div>
-                            <div class="article-author">Ditulis: Graciella Yeriza Natalie</div>
+                            <div class="article-author">Penulis: Dr. Sari Nutrisi</div>
                         </div>
                     </div>
                 </article>
 
                 <article class="article-item">
                     <div class="article-image-container">
-                        <img src="image/Rectangle 155.png" alt="Makan Tengah Malam" class="article-image">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Manajemen Stres Kerja" class="article-image">
                         <div class="small-heart">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -575,25 +575,25 @@
                     </div>
                     <div class="article-content">
                         <div>
-                            <h3 class="article-title">Bahaya Makan Tengah Malam & Tips Menghindarinya</h3>
-                            <p class="article-description">Panduan visual & trik makan agar tetap puas tapi tidak berlebihan kalori.</p>
+                            <h3 class="article-title">Manajemen Stres di Tempat Kerja: Strategi Praktis untuk Work-Life Balance</h3>
+                            <p class="article-description">Teknik mengelola stres kerja agar tetap produktif dan bahagia dalam karir profesional.</p>
                         </div>
                         <div class="article-meta">
                             <div class="article-rating">
                                 <span class="star">★</span>
                                 <span class="star">★</span>
                                 <span class="star">★</span>
-                                <span class="star empty">★</span>
-                                <span class="star empty">★</span>
+                                <span class="star">★</span>
+                                <span class="star">★</span>
                             </div>
-                            <div class="article-author">Penulis: Graciella Yeriza Natalie</div>
+                            <div class="article-author">Penulis: Psikolog Ahmad Rahman</div>
                         </div>
                     </div>
                 </article>
 
                 <article class="article-item">
                     <div class="article-image-container">
-                        <img src="image/Rectangle 152 (1).png" alt="Snack Sehat" class="article-image">
+                        <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hidrasi Optimal" class="article-image">
                         <div class="small-heart">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -602,25 +602,25 @@
                     </div>
                     <div class="article-content">
                         <div>
-                            <h3 class="article-title">Snack Sehat: Camilan Enak yang Nggak Bikin Berat Badan Naik</h3>
-                            <p class="article-description">Ganti keripik dan gorengan dengan camilan sehat yang tetap lezat dan mudah dibuat.</p>
+                            <h3 class="article-title">Hidrasi Optimal: Berapa Banyak Air yang Benar-benar Dibutuhkan Tubuh?</h3>
+                            <p class="article-description">Mitos dan fakta tentang kebutuhan air harian, plus cara kreatif agar tidak bosan minum air putih.</p>
                         </div>
                         <div class="article-meta">
                             <div class="article-rating">
                                 <span class="star">★</span>
                                 <span class="star">★</span>
                                 <span class="star">★</span>
-                                <span class="star empty">★</span>
+                                <span class="star">★</span>
                                 <span class="star empty">★</span>
                             </div>
-                            <div class="article-author">Penulis: Graciella Yeriza Natalie</div>
+                            <div class="article-author">Penulis: Ahli Gizi Lisa Permata</div>
                         </div>
                     </div>
                 </article>
 
                 <article class="article-item">
                     <div class="article-image-container">
-                        <img src="image/Rectangle 158.png" alt="Minuman Sehat" class="article-image">
+                        <img src="https://images.unsplash.com/photo-1559818409-4b1b4f7b4344?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Postur Tubuh Sehat" class="article-image">
                         <div class="small-heart">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -629,18 +629,18 @@
                     </div>
                     <div class="article-content">
                         <div>
-                            <h3 class="article-title">Minum yang Bikin Sehat: Pilihan Minuman Rendah Kalori yang Menyegarkan</h3>
-                            <p class="article-description">Ganti minuman manis dengan pilihan sehat yang tetap segar dan nikmat sepanjang hari.</p>
+                            <h3 class="article-title">Postur Tubuh Sehat: Cara Duduk dan Berdiri yang Benar di Era Digital</h3>
+                            <p class="article-description">Cegah sakit punggung dan leher dengan postur yang tepat saat bekerja di depan komputer.</p>
                         </div>
                         <div class="article-meta">
                             <div class="article-rating">
                                 <span class="star">★</span>
                                 <span class="star">★</span>
                                 <span class="star">★</span>
-                                <span class="star empty">★</span>
+                                <span class="star">★</span>
                                 <span class="star empty">★</span>
                             </div>
-                            <div class="article-author">Penulis: Graciella Yeriza Natalie</div>
+                            <div class="article-author">Penulis: Fisioterapis Maya Sari</div>
                         </div>
                     </div>
                 </article>

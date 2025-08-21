@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artikel Terbaru</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,19 +16,6 @@
             background-color: #f8f9fa;
             padding: 40px 20px;
             font-family: 'Poppins', sans-serif;
-            opacity: 0;
-            animation: fadeInBody 1s ease-out 0.2s forwards;
-        }
-
-        @keyframes fadeInBody {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .container {
@@ -41,21 +27,8 @@
             color: #4E342E;
             font-family: 'Poppins', sans-serif;
             font-size: 32px;
-            font-weight: 700;
+            font-weight: 600;
             margin-bottom: 30px;
-            opacity: 0;
-            animation: slideInFromLeft 0.8s ease-out 0.3s forwards;
-        }
-
-        @keyframes slideInFromLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
         }
 
         .articles-layout {
@@ -70,19 +43,6 @@
             display: flex;
             flex-direction: column;
             height: auto;
-            opacity: 0;
-            animation: slideInFromBottom 0.8s ease-out 0.5s forwards;
-        }
-
-        @keyframes slideInFromBottom {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .main-article-image {
@@ -93,23 +53,12 @@
             margin-bottom: 16px;
             position: relative;
             flex-shrink: 0;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .main-article-image:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         .main-article-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .main-article-image:hover img {
-            transform: scale(1.05);
         }
 
         .main-article-content {
@@ -122,27 +71,20 @@
             display: inline-flex;
             align-items: center;
             background-color: #e8f5e8;
-            color: #8BAC65;
+            color: #4a7c59;
             padding: 6px 14px;
             border-radius: 20px;
             font-family: 'Poppins', sans-serif;
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 500;
             margin-bottom: 12px;
             width: fit-content;
-            transition: all 0.3s ease;
-        }
-
-        .main-category-tag:hover {
-            background-color: #8BAC65;
-            color: white;
-            transform: translateY(-2px);
         }
 
         .main-category-icon {
             width: 20px;
             height: 20px;
-            background-image: url('image/fluent_food-fish-20-filled.png');
+            background-image: url('image/streamline-plump_dumbell-remix.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -152,23 +94,17 @@
         .main-article-content h2 {
             font-family: 'Poppins', sans-serif;
             font-size: 22px;
-            font-weight: 700;
+            font-weight: 600;
             line-height: 1.3;
             margin-bottom: 12px;
-            color: #4E342E;
-            transition: color 0.3s ease;
-        }
-
-        .main-article-content h2:hover {
-            color: #8BAC65;
+            color: #333;
         }
 
         .main-article-desc {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 15px;
             line-height: 1.5;
-            color: #4E342E;
-            font-weight: 500;
+            color: #666;
             margin-bottom: 20px;
         }
 
@@ -176,28 +112,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 12px;
             color: #999;
-            font-weight: 600;
         }
 
         .main-article-meta .author {
             font-weight: 600;
             color: #666;
-        }
-
-        .time-info {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .clock-icon {
-            width: 14px;
-            height: 14px;
-            color: #999;
-            font-size: 12px;
         }
 
         .main-article-actions {
@@ -217,29 +139,11 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .main-action-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .main-action-btn:hover::before {
-            left: 100%;
         }
 
         .main-action-btn:hover {
             background-color: #A5C866;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(180, 214, 120, 0.4);
+            transform: translateY(-1px);
         }
 
         .main-bookmark-btn {
@@ -261,7 +165,6 @@
         .main-bookmark-btn:hover {
             background: rgba(180, 214, 120, 0.1);
             color: #B4D678;
-            transform: scale(1.1);
         }
 
         .main-bookmark-btn svg {
@@ -283,35 +186,6 @@
             align-items: flex-start;
             height: 158px;
             flex-shrink: 0;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-article:nth-child(1) {
-            animation: slideInFromRight 0.8s ease-out 0.7s forwards;
-        }
-
-        .sidebar-article:nth-child(2) {
-            animation: slideInFromRight 0.8s ease-out 0.9s forwards;
-        }
-
-        .sidebar-article:nth-child(3) {
-            animation: slideInFromRight 0.8s ease-out 1.1s forwards;
-        }
-
-        @keyframes slideInFromRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .sidebar-article:hover {
-            transform: translateX(10px);
         }
 
         .sidebar-article-image {
@@ -322,22 +196,12 @@
             overflow: hidden;
             background-color: #f0f0f0;
             margin-top: 2px;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar-article:hover .sidebar-article-image {
-            transform: scale(1.05);
         }
 
         .sidebar-article-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar-article:hover .sidebar-article-image img {
-            transform: scale(1.1);
         }
 
         .sidebar-article-content {
@@ -357,24 +221,19 @@
             display: inline-flex;
             align-items: center;
             background-color: transparent;
-            color: #8BAC65;
+            color: #4a7c59;
             padding: 0;
             font-family: 'Poppins', sans-serif;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 500;
             margin-bottom: 8px;
             width: fit-content;
-            transition: color 0.3s ease;
-        }
-
-        .sidebar-category-tag:hover {
-            color: #4E342E;
         }
 
         .sidebar-category-icon {
             width: 18px;
             height: 18px;
-            background-image: url('image/fluent_food-fish-20-filled.png');
+            background-image: url('image/streamline-plump_dumbell-remix.png');
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -384,22 +243,16 @@
         .sidebar-article h3 {
             font-family: 'Poppins', sans-serif;
             font-size: 15px;
-            font-weight: 700;
-            color: #4E342E;
+            font-weight: 600;
+            color: #333;
             line-height: 1.2;
             margin-bottom: 6px;
-            transition: color 0.3s ease;
-        }
-
-        .sidebar-article:hover h3 {
-            color: #8BAC65;
         }
 
         .sidebar-article-desc {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 12px;
-            color: #4E342E;
-            font-weight: 500;
+            color: #666;
             line-height: 1.3;
             margin-bottom: 6px;
             flex-grow: 1;
@@ -418,10 +271,9 @@
         }
 
         .sidebar-author-info {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 12px;
             color: #999;
-            font-weight: 600;
             flex: 1;
         }
 
@@ -447,29 +299,11 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sidebar-action-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .sidebar-action-btn:hover::before {
-            left: 100%;
         }
 
         .sidebar-action-btn:hover {
             background-color: #A5C866;
             transform: translateY(-1px);
-            box-shadow: 0 5px 15px rgba(180, 214, 120, 0.4);
         }
 
         .sidebar-bookmark-btn {
@@ -495,7 +329,6 @@
         .sidebar-bookmark-btn:hover {
             background: rgba(180, 214, 120, 0.1);
             color: #B4D678;
-            transform: scale(1.1);
         }
 
         @media (max-width: 768px) {
@@ -560,19 +393,17 @@
             <!-- Left Side - Main Article -->
             <div class="main-article-container">
                 <div class="main-article-image">
-                    <img src="image/Rectangle 127.png" alt="Mulai Hari dengan Sarapan Seimbang">
+                    <img src="image/Rectangle 171.png" alt="Senam Ringan di Rumah untuk Pemula">
                 </div>
                 <div class="main-article-content">
                     <div class="main-category-tag">
                         <div class="main-category-icon"></div>
-                        Pola Makan Sehat
+                        Olahraga & Aktivitas Fisik
                     </div>
-                    <h2>Mulai Hari dengan Sarapan Seimbang</h2>
-                    <p class="main-article-desc">Sarapan bukan cuma soal kenyang. Artikel ini membahas kombinasi karbohidrat kompleks, protein, dan serat untuk energi maksimal seharian.</p>
+                    <h2>Senam Ringan di Rumah untuk Pemula</h2>
+                    <p class="main-article-desc">Ingin mulai olahraga tapi nggak punya banyak waktu atau alat? Artikel ini pandu kamu melakukan senam sederhana selama 15 menit di rumah.</p>
                     <div class="main-article-meta">
-                        <span>Ditinjau: <span class="author">Graciella Yeriza Natalie</span> <span class="time-info">
-                            <i class="fas fa-clock clock-icon"></i>
-                            12 jam lalu</span></span>
+                        <span>Ditinjau: <span class="author">Graciella Yeriza Natalie</span> • 12 jam lalu</span>
                         <div class="main-article-actions">
                             <button class="main-action-btn">Selengkapnya</button>
                             <button class="main-bookmark-btn">
@@ -590,16 +421,16 @@
                 <!-- Article 1 -->
                 <div class="sidebar-article">
                     <div class="sidebar-article-image">
-                        <img src="image/Rectangle 128.png" alt="Buah Lokal, Gizi Maksimal">
+                        <img src="image/Rectangle 172.png" alt="Manfaat Jalan Kaki 30 Menit Setiap Hari">
                     </div>
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
                                 <div class="sidebar-category-icon"></div>
-                                Pola Makan Sehat
+                                Olahraga & Aktivitas Fisik
                             </div>
-                            <h3>Buah Lokal, Gizi Maksimal</h3>
-                            <p class="sidebar-article-desc">Mengapa apel malang atau pisang kepok lebih baik dari buah impor? Kenali manfaat buah lokal yang sering diremehan.</p>
+                            <h3>Manfaat Jalan Kaki 30 Menit Setiap Hari</h3>
+                            <p class="sidebar-article-desc">Jalan kaki setiap hari bisa bantu turunkan berat badan, kurangi stres, dan jaga kesehatan jantung. Cocok untuk semua usia.</p>
                         </div>
                         <div class="sidebar-article-footer">
                             <div class="sidebar-author-info">
@@ -620,16 +451,16 @@
                 <!-- Article 2 -->
                 <div class="sidebar-article">
                     <div class="sidebar-article-image">
-                        <img src="image/Rectangle 129.png" alt="Sayuran Hijau: Sumber Serat dan Antioksidan">
+                        <img src="image/Rectangle 173.png" alt="Stretching Wajib dalam Olahraga">
                     </div>
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
                                 <div class="sidebar-category-icon"></div>
-                                Pola Makan Sehat
+                                Olahraga & Aktivitas Fisik
                             </div>
-                            <h3>Sayuran Hijau: Sumber Serat dan Antioksidan</h3>
-                            <p class="sidebar-article-desc">Tak suka sayur? Coba trik mudah ini agar sayuran jadi lebih nikmat dan tetap kaya nutrisi.</p>
+                            <h3>Stretching Wajib dalam Olahraga</h3>
+                            <p class="sidebar-article-desc">Peregangan membantu otot tetap lentur dan menghindari cedera saat latihan. Artikel ini berisi 5 gerakan stretching yang mudah diikuti.</p>
                         </div>
                         <div class="sidebar-article-footer">
                             <div class="sidebar-author-info">
@@ -650,16 +481,16 @@
                 <!-- Article 3 -->
                 <div class="sidebar-article">
                     <div class="sidebar-article-image">
-                        <img src="image/Rectangle 134.png" alt="Hidrasi: Minum Air dengan Cara yang Benar">
+                        <img src="image/Rectangle 174.png" alt="5 Rekomendasi Aplikasi Olahraga Gratis">
                     </div>
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
                                 <div class="sidebar-category-icon"></div>
-                                Pola Makan Sehat
+                                Olahraga & Aktivitas Fisik
                             </div>
-                            <h3>Hidrasi: Minum Air dengan Cara yang Benar</h3>
-                            <p class="sidebar-article-desc">Ternyata minum air terlalu cepat juga bisa berdampak kurang baik. Simak tips minum air dengan benar di sini.</p>
+                            <h3>5 Rekomendasi Aplikasi Olahraga Gratis</h3>
+                            <p class="sidebar-article-desc">Nggak sempat ke gym? Coba pakai aplikasi olahraga gratis yang bisa bantu kamu tetap aktif dan rutin.</p>
                         </div>
                         <div class="sidebar-article-footer">
                             <div class="sidebar-author-info">

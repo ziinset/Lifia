@@ -4,211 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIFIA Footer</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            font-family: 'Montserrat', sans-serif;
-        }
-        .main-content {
-            height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: white;
-            margin-bottom: -1px;
-        }
-
-
-        .main-content h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3rem;
-            color: #333;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        /* Animasi keyframes */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes wave {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            25% {
-                transform: translateX(-3px);
-            }
-            75% {
-                transform: translateX(3px);
-            }
-        }
-
-        /* Animasi untuk footer curve */
-        .footer-curve {
-            animation: slideInUp 1.2s ease-out;
-        }
-
-        /* Animasi untuk konten footer */
-        .footer-content > div:nth-child(1) {
-            animation: slideInLeft 1s ease-out 0.2s both;
-        }
-
-        .footer-content > div:nth-child(2) {
-            animation: slideInUp 1s ease-out 0.4s both;
-        }
-
-        .footer-content > div:nth-child(3) {
-            animation: slideInUp 1s ease-out 0.6s both;
-        }
-
-        .footer-content > div:nth-child(4) {
-            animation: slideInRight 1s ease-out 0.8s both;
-        }
-
-        /* Animasi untuk simbol > */
-        .arrow-symbol {
-            animation: wave 2s ease-in-out infinite;
-        }
-
-        /* Animasi hover untuk social media icons */
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            transform: translateY(-3px) scale(1.1);
-            background-color: rgba(255,255,255,0.2) !important;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            border-color: rgba(255,255,255,0.4) !important;
-        }
-
-        /* Animasi untuk contact icons */
-        .contact-icon {
-            transition: all 0.3s ease;
-        }
-
-        .contact-icon:hover {
-            transform: scale(1.1);
-            background-color: #7cb342 !important;
-        }
-
-        /* Animasi untuk links */
-        .footer-link {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .footer-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #8bc34a;
-            transition: width 0.3s ease;
-        }
-
-        .footer-link:hover::after {
-            width: 100%;
-        }
-
-        .footer-link:hover {
-            color: white !important;
-            transform: translateX(5px);
-        }
-
-        /* Hover untuk deskripsi LIFIA */
-        .lifia-description {
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .lifia-description:hover {
-            color: white !important;
-            transform: translateX(5px);
-        }
-
-        /* Animasi untuk copyright */
-        .copyright {
-            animation: fadeInUp 1s ease-out 1s both;
-        }
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .footer-content {
-                grid-template-columns: 1fr !important;
-                gap: 40px !important;
-                text-align: left;
-            }
-            .footer-curve {
-                height: 100px !important;
-                top: -60px !important;
-            }
-            .footer-container {
-                padding: 60px 20px 30px 20px !important;
-            }
-        }
-        @media (max-width: 480px) {
-            .main-content h1 {
-                font-size: 2rem;
-            }
-
-            .footer-content {
-                gap: 35px !important;
-            }
-        }
+        body { margin: 0; padding: 0; background-color: #f5f5f5; font-family: 'Montserrat', sans-serif; }
+        .main-content { height: 70vh; display: flex; align-items: center; justify-content: center; background-color: white; margin-bottom: -1px; }
+        .main-content h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; color: #333; animation: fadeInUp 1s ease-out; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes wave { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
+        .footer-curve { animation: slideInUp 1.2s ease-out; }
+        .footer-content > div:nth-child(1) { animation: slideInLeft 1s ease-out 0.2s both; }
+        .footer-content > div:nth-child(2) { animation: slideInUp 1s ease-out 0.4s both; }
+        .footer-content > div:nth-child(3) { animation: slideInUp 1s ease-out 0.6s both; }
+        .footer-content > div:nth-child(4) { animation: slideInRight 1s ease-out 0.8s both; }
+        .arrow-symbol { animation: wave 2s ease-in-out infinite; }
+        .social-icon { transition: all 0.3s ease; }
+        .social-icon:hover { transform: translateY(-3px) scale(1.1); background-color: rgba(255,255,255,0.2) !important; box-shadow: 0 5px 15px rgba(0,0,0,0.2); border-color: rgba(255,255,255,0.4) !important; }
+        .contact-icon { transition: all 0.3s ease; }
+        .contact-icon:hover { transform: scale(1.1); background-color: #7cb342 !important; }
+        .footer-link { position: relative; transition: all 0.3s ease; }
+        .footer-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0; background-color: #8bc34a; transition: width 0.3s ease; }
+        .footer-link:hover::after { width: 100%; }
+        .footer-link:hover { color: white !important; transform: translateX(5px); }
+        .lifia-description { transition: all 0.3s ease; cursor: default; }
+        .lifia-description:hover { color: white !important; transform: translateX(5px); }
+        .copyright { animation: fadeInUp 1s ease-out 1s both; }
+        @media (max-width: 768px) { .footer-content { grid-template-columns: 1fr !important; gap: 40px !important; text-align: left; } .footer-curve { height: 100px !important; top: -60px !important; } .footer-container { padding: 60px 20px 30px 20px !important; } }
+        @media (max-width: 480px) { .main-content h1 { font-size: 2rem; } .footer-content { gap: 35px !important; } }
     </style>
 </head>
 <body>
-    <!-- Konten utama untuk demo -->
-    <div class="main-content">
-        <h1>Selamat datang!</h1>
-    </div>
-
     <!-- Footer dengan lekukan -->
     <footer style="background-color: #3B5C3F; color: white; padding: 0; margin: 0; position: relative; overflow: hidden;">
         <!-- Lekukan melengkung di bagian atas -->
@@ -227,8 +54,6 @@
         <!-- Konten footer -->
         <div class="footer-container" style="position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 100px 20px 30px 20px;">
             <div class="footer-content" style="display: grid; grid-template-columns: 2fr 1fr 1.5fr 1fr; gap: 30px; margin-bottom: 40px; align-items: start;">
-
-
                 <!-- LIFIA Section -->
                 <div style="padding-right: 20px; position: relative;">
                     <!-- Simbol > -->

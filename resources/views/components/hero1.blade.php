@@ -21,19 +21,26 @@
                     <img src="{{asset('images/logo-lifia.svg')}}" alt="Lifia Logo">
                 </div>
 
-                <div class="hero-nav-links">
+                <!-- Mobile Menu Toggle -->
+                <div class="hero-menu-toggle" id="heroMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="hero-nav-links" id="heroNavLinks">
                     <a href="#" class="hero-active">
                         Beranda
                     </a>
 
                     <!-- Artikel with dropdown -->
                     <div class="hero-dropdown">
-                        <a href="{{asset('images/logo-lifia.svg')}}" class="hero-artikel" id="heroArtikelToggle">
+                        <a href="#" class="hero-artikel" id="heroArtikelToggle">
                             Artikel
                             <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
                         </a>
                         <div class="hero-dropdown-menu" id="heroArtikelMenu">
-                            <a href="#">Pola Makan Sehat</a>
+                            <a href="{{ route('artikel') }}">Pola Makan Sehat</a>
                             <a href="#">Aktivitas Fisik</a>
                             <a href="#">Kesehatan Mental</a>
                             <a href="#">Perawatan Diri</a>
@@ -65,10 +72,10 @@
                 <div class="hero-text">
                     <h1>Tips & Trik <span>Gaya Hidup</span><br>Terbaik untuk Kamu</h1>
                     <p>
-                        Temukan berbagai inspirasi, panduan, 
-                        dan solusi sederhana untuk menjalani 
-                        hidup yang lebih sehat mulai dari 
-                        pola makan, olahraga, skincare, 
+                        Temukan berbagai inspirasi, panduan,
+                        dan solusi sederhana untuk menjalani
+                        hidup yang lebih sehat mulai dari
+                        pola makan, olahraga, skincare,
                         hingga kesehatan mental.
                     </p>
                     <div class="hero-search-container">
@@ -82,7 +89,7 @@
                 <div class="hero-image">
                     <div class="hero-image-container">
                         <!-- Gambar model tanpa background shape -->
-                        <img src="{{asset('images/model.svg')}}" 
+                        <img src="{{asset('images/model.svg')}}"
                              alt="Happy couple exercising - Model Sehat"
                              style="background: transparent; border-radius: 0;">
                     </div>
@@ -95,16 +102,41 @@
         document.addEventListener("DOMContentLoaded", function() {
             const artikelToggle = document.getElementById("heroArtikelToggle");
             const dropdown = artikelToggle.closest(".hero-dropdown");
+            const menuToggle = document.getElementById("heroMenuToggle");
+            const navLinks = document.getElementById("heroNavLinks");
 
+            // Artikel dropdown toggle
             artikelToggle.addEventListener("click", function(e) {
                 e.preventDefault();
                 dropdown.classList.toggle("hero-show");
+            });
+
+            // Mobile menu toggle
+            menuToggle.addEventListener("click", function() {
+                menuToggle.classList.toggle("hero-active");
+                navLinks.classList.toggle("hero-active");
             });
 
             // Close dropdown if clicked outside
             document.addEventListener("click", function(e) {
                 if (!dropdown.contains(e.target)) {
                     dropdown.classList.remove("hero-show");
+                }
+            });
+
+            // Close mobile menu when clicking on a link
+            navLinks.addEventListener("click", function(e) {
+                if (e.target.tagName === "A" && !e.target.classList.contains("hero-artikel")) {
+                    menuToggle.classList.remove("hero-active");
+                    navLinks.classList.remove("hero-active");
+                }
+            });
+
+            // Close mobile menu when clicking outside
+            document.addEventListener("click", function(e) {
+                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                    menuToggle.classList.remove("hero-active");
+                    navLinks.classList.remove("hero-active");
                 }
             });
         });

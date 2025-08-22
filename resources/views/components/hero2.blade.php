@@ -208,8 +208,7 @@
 
     .hero2-float {
         position: absolute;
-        left: -30px;
-        top: 140px;
+        top: 220px;
         background: rgba(234,244,226,.95);
         border: 1px solid #d6e8c9;
         padding: 12px 16px;
@@ -297,6 +296,7 @@
     @media (max-width: 1200px) {
         .hero2-title { font-size: 44px; }
         .hero2-circle { width: 520px; height: 520px; }
+        .hero2-float { top: 200px; }
     }
 
     @media (max-width: 1024px) {
@@ -304,6 +304,7 @@
         .hero2-img-wrap { order: -1; }
         .hero2-circle { width: 460px; height: 460px; margin: 0 auto; }
         .hero2-vegetables { display: none; }
+        .hero2-float { top: 160px; }
     }
 
     @media (max-width: 640px) {
@@ -313,6 +314,7 @@
         .hero2-menu { gap: 8px; }
         .hero2-link { padding: 6px 12px; font-size: 14px; }
         .hero2-circle { width: 380px; height: 380px; }
+        .hero2-float { top: 120px; }
     }
 </style>
 

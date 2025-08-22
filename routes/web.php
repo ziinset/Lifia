@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\aboutController;
-// use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -13,12 +14,14 @@ Route::get('/test', function () {
     return view('test');
 })->name('test');
 Route::get('/aktifitas-fisik', function () {
-    return view('user.listolahraga.listolahraga');
+    return view('user.artikel-fisik.listolahraga');
 });
-Route::get('/artikel/olahraga-aman-bumil', [ArticleController::class, 'olahragaAmanBumil'])->name('artikel.olahraga-aman-bumil');
+Route::get('/artikel/olahraga-aman-bumil',
+[ArticleController::class, 'olahragaAmanBumil'])->name('artikel.olahraga-aman-bumil');
+Route::get('/profil', [ProfileController::class, 'index'])->name('profil.index');
 // Route::get('/about', [aboutController::class, 'index'])->name('about');
 // Route::get('/cek-sehat', [CekSehatController::class, 'index'])->name('cek-sehat');
 // Route::get('/tentang-kami', [TentangKamiController::class, 'index'])->name('tentang-kami');
 // Route::get('/fitplan', [FitPlanController::class, 'index'])->name('fitplan');
-// Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');

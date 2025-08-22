@@ -28,6 +28,17 @@
         .main-content {
             min-height: 100vh;
         }
+
+        /* Hide scrollbars globally */
+        html, body {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+            width: 0;
+            height: 0;
+        }
     </style>
 
     @yield('styles')

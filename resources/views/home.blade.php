@@ -1,55 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lifia</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-</head>
-<body class="bg-white">
-    <!-- Header akan di-include di sini -->
-   @include('components.hero1')
+@extends('layouts.app')
 
-    <!-- Hero Section -->
-    {{-- <section class="hero-section bg-gradient-green px-4 py-20">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col lg:flex-row items-center justify-between">
-                <div class="lg:w-1/2 text-white mb-8 lg:mb-0 hero-content">
-                    <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight">
-                        Tips & Trik Gaya Hidup<br>
-                        Terbaik untuk Kamu
-                    </h1>
-                    <p class="text-lg lg:text-xl mb-10 opacity-95 leading-relaxed">
-                        Temukan berbagai inspirasi, panduan,<br>
-                        dan solusi sederhana untuk menjalani<br>
-                        hidup yang lebih sehat mulai dari<br>
-                        pola makan, olahraga hingga<br>
-                        kesehatan mental.
-                    </p>
-                    <div class="search-container">
-                        <input type="text"
-                               placeholder="Telusuri..."
-                               class="search-input w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-300">
-                        <button class="search-button hover:bg-green-600">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                <div class="lg:w-1/2 relative hero-image-container">
-                    <img src="/images/hero-couple.jpg"
-                        alt="Happy couple exercising"
-                        class="hero-image w-full mx-auto">
-                    <div class="circle-decoration-1"></div>
-                    <div class="circle-decoration-2"></div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
+@section('content')
+    @include('components.header1')
+    
     <!-- Categories Section -->
     <section class="py-20 px-4 bg-gray-50">
         <div class="max-w-6xl mx-auto">
@@ -177,7 +130,7 @@
                 </p>
             </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <!-- Step 1 -->
                 <div class="text-center">
                     <div class="step-icon step-icon-1">
@@ -213,8 +166,4 @@
              </div>
         </div>
     </section>
-
-    <!-- Footer akan di-include di sini -->
-    @include('components.footer')
-</body>
-</html>
+@endsection

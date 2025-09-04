@@ -1,27 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banner Section</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #f8f9fa;
-            padding: 40px 20px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+{{-- Banner Section --}}
+<style>
+    .banner-section {
+        margin-top: 50px;
+    }
 
         /* Banner Section Styles */
         .banner-section {
@@ -299,8 +280,7 @@
             }
         }
     </style>
-</head>
-<body>
+
     <div class="container">
         <!-- Banner Section -->
         <div class="banner-section">
@@ -318,7 +298,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="banner-slide">
                         <div class="banner-image">
                             <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Resep Makanan Bergizi">
@@ -331,7 +311,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="banner-slide">
                         <div class="banner-image">
                             <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Olahraga di Rumah">
@@ -345,12 +325,12 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="banner-navigation">
                     <button class="nav-prev" onclick="prevSlide()">‹</button>
                     <button class="nav-next" onclick="nextSlide()">›</button>
                 </div>
-                
+
                 <div class="banner-indicators">
                     <span class="indicator active" onclick="currentSlide(1)"></span>
                     <span class="indicator" onclick="currentSlide(2)"></span>
@@ -369,7 +349,7 @@
         function showSlide(index) {
             slides.forEach(slide => slide.classList.remove('active'));
             indicators.forEach(indicator => indicator.classList.remove('active'));
-            
+
             slides[index].classList.add('active');
             indicators[index].classList.add('active');
         }
@@ -445,5 +425,3 @@
             }
         }
     </script>
-</body>
-</html>

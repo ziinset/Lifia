@@ -316,6 +316,64 @@
         .hero2-circle { width: 380px; height: 380px; }
         .hero2-float { top: 120px; }
     }
+
+    /* Dropdown Styles */
+    .hero2-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .hero2-dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: white;
+        border: 1px solid #d8e4d0;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(44,85,48,.12);
+        min-width: 200px;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
+        margin-top: 8px;
+    }
+
+    .hero2-dropdown.hero2-show .hero2-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .hero2-dropdown-menu a {
+        display: block;
+        padding: 12px 16px;
+        color: #2c5530;
+        text-decoration: none;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        border-radius: 0;
+        background: transparent;
+        border: none;
+        transition: all 0.2s ease;
+    }
+
+    .hero2-dropdown-menu a:first-child {
+        border-radius: 12px 12px 0 0;
+    }
+
+    .hero2-dropdown-menu a:last-child {
+        border-radius: 0 0 12px 12px;
+    }
+
+    .hero2-dropdown-menu a:hover {
+        background: linear-gradient(135deg, #7ea861, #8BAC65);
+        color: white;
+        transform: translateX(6px);
+        box-shadow: 0 4px 12px rgba(126, 168, 97, 0.3);
+    }
 </style>
 
 <div class="hero2-wrapper">
@@ -366,12 +424,25 @@
             </div>
             <div class="hero2-menu">
                 <a class="hero2-link" href="{{ route('home') }}">Beranda</a>
-                <a class="hero2-link active" href="{{ route('artikel') }}">
-                    Artikel
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                        <polyline points="6 9 12 15 18 9"/>
-                    </svg>
-                </a>
+                
+                <!-- Artikel with dropdown -->
+                <div class="hero2-dropdown">
+                    <a class="hero2-link active" href="{{ route('artikel') }}" id="hero2ArtikelToggle">
+                        Artikel
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </a>
+                    <div class="hero2-dropdown-menu" id="hero2ArtikelMenu">
+                        <a href="{{ route('artikel') }}">Pola Makan Sehat</a>
+                        <a href="#">Aktivitas Fisik</a>
+                        <a href="#">Kesehatan Mental</a>
+                        <a href="#">Perawatan Diri</a>
+                        <a href="#">Vegan</a>
+                        <a href="#">Eco Living</a>
+                    </div>
+                </div>
+                
                 <a class="hero2-link" href="#">Cek Sehat</a>
                 <a class="hero2-link" href="#">Tentang Kami</a>
                 <a class="hero2-login" href="#">Login</a>
@@ -427,3 +498,23 @@
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const artikelToggle = document.getElementById("hero2ArtikelToggle");
+        const dropdown = artikelToggle.closest(".hero2-dropdown");
+
+        // Artikel dropdown toggle
+        artikelToggle.addEventListener("click", function(e) {
+            e.preventDefault();
+            dropdown.classList.toggle("hero2-show");
+        });
+
+        // Close dropdown if clicked outside
+        document.addEventListener("click", function(e) {
+            if (!dropdown.contains(e.target)) {
+                dropdown.classList.remove("hero2-show");
+            }
+        });
+    });
+</script>

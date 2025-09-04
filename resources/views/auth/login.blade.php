@@ -36,7 +36,7 @@
             padding: 2rem;
         }
 
-        .login-container {
+        .register-container {
             background: transparent;
             border-radius: 20px;
             padding: 3rem;
@@ -154,7 +154,7 @@
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <div class="register-container">
         <h1 class="login-title">Login</h1>
 
         <form>

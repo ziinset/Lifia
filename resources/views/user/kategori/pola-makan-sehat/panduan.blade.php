@@ -1,33 +1,15 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pola Makan Sehat Blog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f5f5f5;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px 20px;
-        }
+{{-- Panduan Section --}}
+<style>
+    .panduan-section {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f5f5f5;
+        line-height: 1.6;
+    }
 
         .content-wrapper {
             display: flex;
             gap: 40px;
-            align-items: flex-start;
+            align-items: stretch;
         }
 
         .main-content {
@@ -36,6 +18,7 @@
 
         .sidebar {
             flex: 1;
+            align-self: stretch;
             display: flex;
             flex-direction: column;
         }
@@ -64,40 +47,14 @@
             object-fit: cover;
             flex-shrink: 0;
             align-self: flex-start;
-            transition: all 0.3s ease;
         }
 
-        .article-item:hover .article-image {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .main-content .article-item {
+        .article-item {
             display: flex;
             gap: 24px;
             margin-bottom: 40px;
-            padding-bottom: 32px;
+            padding-bottom: 30px;
             align-items: flex-start;
-            animation: fadeInUp 0.6s ease-out;
-            animation-fill-mode: both;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .main-content .article-item:nth-child(1) { animation-delay: 0.1s; }
-        .main-content .article-item:nth-child(2) { animation-delay: 0.2s; }
-        .main-content .article-item:nth-child(3) { animation-delay: 0.3s; }
-        .main-content .article-item:nth-child(4) { animation-delay: 0.4s; }
-        .main-content .article-item:nth-child(5) { animation-delay: 0.5s; }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .article-item:last-of-type {
@@ -121,30 +78,24 @@
         }
 
         .tag-fish-icon {
-            width: 24px;
-            height: 24px;
-            transition: all 0.3s ease;
+            width: 18px;
+            height: 18px;
         }
 
         .tag-text {
             color: #8BAC65;
             font-size: 13px;
-            font-weight: 700;
-            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-family: 'Montserrat', sans-serif;
         }
 
         .article-title {
             font-family: 'Poppins', sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 20px;
             color: #4E342E;
             line-height: 1.3;
             margin-bottom: 4px;
-            transition: color 0.3s ease;
-        }
-
-        .article-item:hover .article-title {
-            color: #8BAC65;
         }
 
         .article-description {
@@ -175,8 +126,6 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
         }
 
         .author-icon {
@@ -189,8 +138,6 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
         }
 
         .bookmark-section {
@@ -210,8 +157,8 @@
             transition: stroke 0.2s ease;
         }
 
-        .article-item:hover .tag-fish-icon {
-            transform: scale(1.1);
+        .bookmark-section:hover .bookmark-icon {
+            stroke: #7a9b5a;
         }
 
         .sidebar-section {
@@ -222,13 +169,8 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
-        .sidebar-section.categories-section {
-            background: linear-gradient(135deg, rgba(122, 159, 126, 0.6), rgba(138, 175, 142, 0.7));
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
         .sidebar-section:last-child {
+            flex-grow: 1;
             margin-bottom: 0;
             display: flex;
             flex-direction: column;
@@ -250,7 +192,7 @@
 
         .granola-image {
             width: 100%;
-            height: 400px;
+            height: 480px;
             border-radius: 16px;
             object-fit: cover;
             object-position: center;
@@ -258,9 +200,9 @@
 
         .categories-title {
             font-family: 'Poppins', sans-serif;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 18px;
-            color: white;
+            color: #4E342E;
             margin-bottom: 24px;
             position: relative;
             padding-bottom: 12px;
@@ -273,43 +215,21 @@
             left: 0;
             width: 40px;
             height: 3px;
-            background: linear-gradient(135deg, #6b9640, #7ba955);
+            background: linear-gradient(135deg, #8BAC65, #a4c470);
             border-radius: 2px;
         }
 
         .category-item {
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 16px;
-            margin-bottom: 12px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            gap: 20px;
+            padding: 20px 12px;
+            border-bottom: 1px solid #f0f0f0;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            animation: slideInRight 0.5s ease-out;
-            animation-fill-mode: both;
-        }
-
-        .category-item:nth-child(1) { animation-delay: 0.1s; }
-        .category-item:nth-child(2) { animation-delay: 0.2s; }
-        .category-item:nth-child(3) { animation-delay: 0.3s; }
-        .category-item:nth-child(4) { animation-delay: 0.4s; }
-        .category-item:nth-child(5) { animation-delay: 0.5s; }
-        .category-item:nth-child(6) { animation-delay: 0.6s; }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
         }
 
         .category-item::before {
@@ -327,8 +247,9 @@
 
         .category-item:hover {
             background: linear-gradient(135deg, #f8fbf4, #f0f7e8);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(139, 172, 101, 0.15);
+            border-color: transparent;
         }
 
         .category-item:hover::before {
@@ -336,34 +257,35 @@
         }
 
         .category-item:active {
-            transform: translateY(-1px) scale(0.98);
+            transform: translateX(6px) scale(0.98);
         }
 
         .category-item:last-child {
-            margin-bottom: 0;
+            border-bottom: none;
         }
 
         .category-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
             object-fit: cover;
             flex-shrink: 0;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             background: linear-gradient(135deg, #f0f7e8, #e8f5dc);
-            padding: 6px;
+            padding: 8px;
         }
 
         .category-item:hover .category-icon {
-            transform: scale(1.05);
-            box-shadow: 0 4px 16px rgba(139, 172, 101, 0.2);
+            transform: rotate(5deg) scale(1.1);
+            box-shadow: 0 6px 24px rgba(139, 172, 101, 0.3);
+            background: linear-gradient(135deg, #e8f5dc, #daf0c7);
         }
 
         .category-text {
             font-family: 'Montserrat', sans-serif;
             font-weight: 500;
-            font-size: 13px;
+            font-size: 14px;
             color: #4E342E;
             line-height: 1.4;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -372,36 +294,30 @@
         .category-item:hover .category-text {
             color: #2c5530;
             font-weight: 600;
-        }
-
-        .bookmark-section:hover .bookmark-icon {
-            stroke: #7a9b5a;
+            transform: translateX(4px);
         }
 
         .pagination {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             margin-top: 40px;
-            padding: 16px 24px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-            animation: fadeInUp 0.8s ease-out 0.6s;
-            animation-fill-mode: both;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         .page-btn, .nav-btn {
-            min-width: 50px;
-            height: 50px;
-            border: none;
-            border-radius: 50%;
-            background: transparent;
-            color: #4E342E;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
+            min-width: 44px;
+            height: 44px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            background: white;
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -410,35 +326,26 @@
         }
 
         .page-btn:hover, .nav-btn:hover {
-            background: #f0f0f0;
-            color: #4E342E;
+            border-color: #8BAC65;
+            background: #f8fbf4;
+            color: #8BAC65;
         }
 
         .page-btn.active {
             background: #8BAC65;
+            border-color: #8BAC65;
             color: white;
-            font-weight: 700;
         }
 
         .page-btn.active:hover {
             background: #7a9b5a;
-        }
-
-        .nav-btn {
-            padding: 0;
-        }
-
-        .nav-btn svg {
-            width: 20px;
-            height: 20px;
+            border-color: #7a9b5a;
         }
 
         .pagination-dots {
-            color: #4E342E;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            padding: 0 6px;
-            font-size: 16px;
+            color: #999;
+            font-weight: 500;
+            padding: 0 8px;
         }
 
         @media (max-width: 768px) {
@@ -470,30 +377,20 @@
             }
 
             .page-btn, .nav-btn {
-                min-width: 44px;
-                height: 44px;
-                font-size: 15px;
-                font-weight: 700;
-            }
-
-            .nav-btn svg {
-                width: 18px;
-                height: 18px;
-            }
-
-            .granola-image {
-                height: 200px;
+                min-width: 40px;
+                height: 40px;
+                font-size: 14px;
             }
         }
     </style>
-</head>
-<body>
-    <div class="container">
+
+    <div class="panduan-section">
+        <div class="container">
         <div class="content-wrapper">
             <main class="main-content">
                 <!-- Article 1 -->
                 <article class="article-item">
-                    <img src="image/Rectangle 165.png" alt="Pregnant woman" class="article-image">
+                    <img src="{{ asset('img/bumil-nyemil.png') }}" alt="Pregnant woman" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
                             <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
@@ -527,7 +424,7 @@
 
                 <!-- Article 2 -->
                 <article class="article-item">
-                    <img src="image/Rectangle 160.png" alt="Lemon water" class="article-image">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=150&fit=crop" alt="Lemon water" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
                             <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
@@ -561,7 +458,7 @@
 
                 <!-- Article 3 -->
                 <article class="article-item">
-                    <img src="image/Rectangle 161.png" alt="Woman eating" class="article-image">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=200&h=150&fit=crop" alt="Woman eating" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
                             <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
@@ -595,7 +492,7 @@
 
                 <!-- Article 4 -->
                 <article class="article-item">
-                    <img src="image/Rectangle 163.png" alt="Pregnant woman eating" class="article-image">
+                    <img src="https://images.unsplash.com/photo-1559840244-8a6ec64be3e3?w=200&h=150&fit=crop" alt="Pregnant woman eating" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
                             <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
@@ -608,13 +505,6 @@
                                 <div class="author-info">
                                     <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
                                     <span>Ditinjau: Graciella Yeriza Natalie</span>
-                                </div>
-                                <div class="time-info">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"/>
-                                        <polyline points="12,6 12,12 16,14"/>
-                                    </svg>
-                                    <span>1 hari lalu</span>
                                 </div>
                             </div>
                             <div class="bookmark-section">
@@ -629,7 +519,7 @@
 
                 <!-- Article 5 -->
                 <article class="article-item">
-                    <img src="image/Rectangle 164.png" alt="Diet food" class="article-image">
+                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=200&h=150&fit=crop" alt="Diet food" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
                             <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
@@ -679,47 +569,46 @@
             <aside class="sidebar">
                 <!-- Burger Banner -->
                 <div class="sidebar-section granola-banner">
-                    <img src="image/Rectangle 167.png" alt="Delicious Burger" class="granola-image">
+                    <img src="{{ asset('img/granola.png') }}" alt="Delicious Burger" class="granola-image">
                 </div>
 
                 <!-- Categories -->
-                <div class="sidebar-section categories-section">
+                <div class="sidebar-section">
                     <h3 class="categories-title">Jelajahi Kategori Lain</h3>
-                    
+
                     <div class="categories-content">
                         <div class="category-item">
-                            <img src="image/Rectangle 220.png" alt="Pola Makan Sehat" class="category-icon">
+                            <img src="{{ asset('img/makan-aksicepat.svg') }}" alt="Pola Makan Sehat" class="category-icon">
                             <span class="category-text">Pola Makan Sehat</span>
                         </div>
 
                         <div class="category-item">
-                            <img src="image/Rectangle 222.png" alt="Aktivitas Fisik" class="category-icon">
+                            <img src="{{ asset('img/fisik-aksicepat.svg') }}" alt="Aktivitas Fisik" class="category-icon">
                             <span class="category-text">Olahraga dan<br>Aktivitas Fisik</span>
                         </div>
 
                         <div class="category-item">
-                            <img src="image/Rectangle 224.png" alt="Kesehatan Mental" class="category-icon">
+                            <img src="{{ asset('img/mental-aksicepat.svg') }}" alt="Kesehatan Mental" class="category-icon">
                             <span class="category-text">Kesehatan Mental</span>
                         </div>
 
                         <div class="category-item">
-                            <img src="image/Rectangle 226.png" alt="Perawatan Diri" class="category-icon">
+                            <img src="{{ asset('img/selfcare-aksicepat.svg') }}" alt="Perawatan Diri" class="category-icon">
                             <span class="category-text">Perawatan Diri<br>Self-Care</span>
                         </div>
 
                         <div class="category-item">
-                            <img src="image/Rectangle 228.png" alt="Gaya Hidup Vegan" class="category-icon">
+                            <img src="{{ asset('img/vegan-aksicepat.png') }}" alt="Gaya Hidup Vegan" class="category-icon">
                             <span class="category-text">Gaya Hidup Vegan/<br>Vegetarian</span>
                         </div>
 
                         <div class="category-item">
-                            <img src="image/Rectangle 230.png" alt="Lingkungan" class="category-icon">
+                            <img src="{{ asset('img/ecoliving-aksicepat.svg') }}" alt="Lingkungan" class="category-icon">
                             <span class="category-text">Lingkungan<br>Lingkungan & Eco Living</span>
                         </div>
                     </div>
                 </div>
             </aside>
         </div>
+        </div>
     </div>
-</body>
-</html>

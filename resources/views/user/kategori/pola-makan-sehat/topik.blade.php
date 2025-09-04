@@ -1,108 +1,24 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Topik Populer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f8f9fa;
-            line-height: 1.5;
-            color: #333;
-            padding: 30px 20px;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
+{{-- Topik Populer Section --}}
+<style>
+    .topik-section {
+        font-family: 'Inter', sans-serif;
+        background: #f8f9fa;
+        line-height: 1.5;
+        color: #333;
+        padding: 30px 20px;
+    }
 
         .main-title {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            font-size: 40px;
+            font-size: 32px;
             color: #4E342E;
-            margin-bottom: 40px;
-            animation: slideInLeft 0.8s ease 0.2s both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .main-title::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: shimmer 2s ease-in-out 1s;
+            margin-bottom: 30px;
         }
 
         /* Featured Section */
         .featured-section {
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .featured-grid {
@@ -113,72 +29,40 @@
 
         .featured-item {
             position: relative;
-            animation: scaleIn 0.6s ease forwards;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .featured-item:nth-child(1) {
-            animation-delay: 0.3s;
-        }
-
-        .featured-item:nth-child(2) {
-            animation-delay: 0.4s;
-        }
-
-        .featured-item:hover {
-            transform: translateY(-8px);
-            filter: brightness(1.05);
         }
 
         .featured-image-container {
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            margin-bottom: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .featured-item:hover .featured-image-container {
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
         }
 
         .featured-image {
             width: 100%;
-            height: 220px;
+            height: 200px;
             object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .featured-item:hover .featured-image {
-            transform: scale(1.05);
         }
 
         .heart-icon {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 10px;
+            right: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            opacity: 0.8;
         }
 
         .heart-icon:hover {
-            transform: scale(1.2);
-            opacity: 1;
-        }
-
-        .heart-icon:active {
-            transform: scale(0.9);
+            transform: scale(1.1);
         }
 
         .heart-icon svg {
-            width: 28px;
-            height: 28px;
+            width: 24px;
+            height: 24px;
             fill: none;
             stroke: #fff;
             stroke-width: 2;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
         .category-tag {
@@ -186,117 +70,80 @@
             background: #e8f5e8;
             color: #4A7C59;
             font-family: 'Montserrat', sans-serif;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
-            padding: 6px 12px;
-            border-radius: 15px;
+            padding: 4px 8px;
+            border-radius: 12px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            margin-bottom: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .featured-item:hover .category-tag {
-            transform: translateX(5px);
-            background: #d4f1d4;
+            margin-bottom: 8px;
         }
 
         .featured-title {
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
-            font-size: 26px;
+            font-size: 22px;
             color: #4E342E;
             line-height: 1.3;
-            margin-bottom: 12px;
-            transition: color 0.3s ease;
-        }
-
-        .featured-item:hover .featured-title {
-            color: #3d261f;
+            margin-bottom: 8px;
         }
 
         .featured-description {
             font-family: 'Montserrat', sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 500;
             color: #4E342E;
-            line-height: 1.5;
-            margin-bottom: 15px;
+            line-height: 1.4;
+            margin-bottom: 12px;
         }
 
         .rating {
             display: flex;
             align-items: center;
-            gap: 3px;
+            gap: 2px;
         }
 
         .star {
             color: #ffd700;
-            font-size: 22px;
-            transition: all 0.2s ease;
+            font-size: 18px;
         }
 
         .star.empty {
             color: #ddd;
         }
 
-        .featured-item:hover .star {
-            transform: scale(1.1);
-        }
-
         /* Articles Section */
         .articles-section {
-            margin-top: 50px;
+            margin-top: 40px;
         }
 
         .articles-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 25px;
+            gap: 20px;
         }
 
         .article-item {
             display: flex;
-            gap: 18px;
+            gap: 15px;
             position: relative;
-            transition: all 0.3s ease;
-            padding: 10px;
-            border-radius: 12px;
-            opacity: 0;
-            animation: slideInRight 0.6s ease forwards;
+            transition: transform 0.2s ease;
         }
 
-        .article-item:nth-child(1) { animation-delay: 0.5s; }
-        .article-item:nth-child(2) { animation-delay: 0.6s; }
-        .article-item:nth-child(3) { animation-delay: 0.7s; }
-        .article-item:nth-child(4) { animation-delay: 0.8s; }
-
         .article-item:hover {
-            transform: translateX(8px);
+            transform: translateX(5px);
         }
 
         .article-image-container {
             position: relative;
             flex-shrink: 0;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .article-item:hover .article-image-container {
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .article-image {
-            width: 90px;
-            height: 140px;
+            width: 80px;
+            height: 135px;
             object-fit: cover;
             border-radius: 12px;
-            transition: transform 0.3s ease;
-        }
-
-        .article-item:hover .article-image {
-            transform: scale(1.03);
         }
 
         .article-content {
@@ -309,28 +156,23 @@
         .articles-section .article-title {
             font-family: 'Poppins', sans-serif !important;
             font-weight: 600 !important;
-            font-size: 16px !important;
+            font-size: 14px !important;
             color: #4E342E !important;
-            line-height: 1.4 !important;
-            margin-bottom: 8px;
+            line-height: 1.3 !important;
+            margin-bottom: 6px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            transition: color 0.3s ease;
-        }
-
-        .article-item:hover .article-title {
-            color: #3d261f;
         }
 
         .articles-section .article-description {
             font-family: 'Montserrat', sans-serif !important;
-            font-size: 14px !important;
+            font-size: 12px !important;
             font-weight: 500 !important;
             color: #4E342E !important;
-            line-height: 1.4 !important;
-            margin-bottom: 12px;
+            line-height: 1.3 !important;
+            margin-bottom: 10px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -340,57 +182,40 @@
         .article-rating {
             display: flex;
             align-items: center;
-            gap: 2px;
-            margin-bottom: 8px;
+            gap: 1px;
+            margin-bottom: 6px;
         }
 
         .article-rating .star {
-            font-size: 18px;
-            transition: all 0.2s ease;
-        }
-
-        .article-item:hover .article-rating .star {
-            transform: scale(1.05);
+            font-size: 16px;
         }
 
         .article-author {
             font-family: 'Montserrat', sans-serif;
-            font-size: 11px;
+            font-size: 10px;
             color: #888;
             font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        /* Fixed hover selector for article author */
-        .article-item:hover .article-author {
-            color: #666;
         }
 
         .small-heart {
             position: absolute;
-            top: 8px;
-            right: 8px;
+            top: 5px;
+            right: 5px;
             cursor: pointer;
             transition: all 0.3s ease;
-            opacity: 0.9;
         }
 
         .small-heart:hover {
-            transform: scale(1.15);
-            opacity: 1;
-        }
-
-        .small-heart:active {
-            transform: scale(0.85);
+            transform: scale(1.1);
         }
 
         .small-heart svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             fill: none;
             stroke: #fff;
             stroke-width: 2;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
         /* Responsive Design */
@@ -400,59 +225,31 @@
             }
 
             .main-title {
-                font-size: 32px;
-                margin-bottom: 30px;
+                font-size: 28px;
+                margin-bottom: 20px;
             }
 
             .featured-grid {
                 grid-template-columns: 1fr;
-                gap: 25px;
-            }
-
-            .featured-title {
-                font-size: 22px;
-            }
-
-            .featured-description {
-                font-size: 16px;
+                gap: 20px;
             }
 
             .articles-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 15px;
             }
 
             .article-item {
-                padding: 8px;
+                padding: 0;
             }
 
             .article-image {
-                width: 80px;
+                width: 70px;
                 height: 120px;
-            }
-
-            .articles-section .article-title {
-                font-size: 15px !important;
-            }
-
-            .articles-section .article-description {
-                font-size: 13px !important;
             }
         }
 
         @media (max-width: 480px) {
-            .main-title {
-                font-size: 28px;
-            }
-
-            .featured-title {
-                font-size: 20px;
-            }
-
-            .featured-description {
-                font-size: 15px;
-            }
-
             .article-item {
                 flex-direction: column;
             }
@@ -461,34 +258,19 @@
                 width: 100%;
                 height: 120px;
             }
-
-            .articles-section .article-title {
-                font-size: 14px !important;
-            }
-        }
-
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Loading state for images */
-        .featured-image, .article-image {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-            background-size: 200% 100%;
         }
     </style>
-</head>
-<body>
-    <div class="container">
+
+    <div class="topik-section">
+        <div class="container">
         <h1 class="main-title">Topik Populer</h1>
-        
+
         <!-- Featured Articles -->
         <section class="featured-section">
             <div class="featured-grid">
                 <article class="featured-item">
                     <div class="featured-image-container">
-                        <img src="image/Rectangle 147.png" alt="Healthy Grilled Chicken Salad" class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop&crop=center" alt="Healthy Grilled Chicken Salad" class="featured-image">
                         <div class="heart-icon">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -511,7 +293,7 @@
 
                 <article class="featured-item">
                     <div class="featured-image-container">
-                        <img src="image/Rectangle 148.png" alt="Plant-Based Power Bowl" class="featured-image">
+                        <img src="https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?w=600&h=400&fit=crop&crop=center" alt="Plant-Based Power Bowl" class="featured-image">
                         <div class="heart-icon">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -539,7 +321,7 @@
             <div class="articles-grid">
                 <article class="article-item">
                     <div class="article-image-container">
-                        <img src="image/Rectangle 151.png" alt="Mengatur Porsi Makan" class="article-image">
+                        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=300&fit=crop&crop=center" alt="Mengatur Porsi Makan" class="article-image">
                         <div class="small-heart">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -566,7 +348,7 @@
 
                 <article class="article-item">
                     <div class="article-image-container">
-                        <img src="image/Rectangle 155.png" alt="Makan Tengah Malam" class="article-image">
+                        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=300&h=300&fit=crop&crop=center" alt="Makan Tengah Malam" class="article-image">
                         <div class="small-heart">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -593,7 +375,7 @@
 
                 <article class="article-item">
                     <div class="article-image-container">
-                        <img src="image/Rectangle 152 (1).png" alt="Snack Sehat" class="article-image">
+                        <img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?w=300&h=300&fit=crop&crop=center" alt="Snack Sehat" class="article-image">
                         <div class="small-heart">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -620,7 +402,7 @@
 
                 <article class="article-item">
                     <div class="article-image-container">
-                        <img src="image/Rectangle 158.png" alt="Minuman Sehat" class="article-image">
+                        <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&h=300&fit=crop&crop=center" alt="Minuman Sehat" class="article-image">
                         <div class="small-heart">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
@@ -646,6 +428,5 @@
                 </article>
             </div>
         </section>
+        </div>
     </div>
-</body>
-</html>

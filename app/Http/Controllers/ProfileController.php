@@ -30,6 +30,29 @@ class ProfileController extends Controller
             'status' => 'Pengguna Premium',
         ];
 
-        return view('user.profil', compact('user'));
+        return view('user.profil-user.profil', compact('user'));
+    }
+
+    /**
+     * Update the user's profile information.
+     */
+    public function update(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'nama' => 'required|string|max:255',
+            'username' => 'required|string|max:255',
+            'email' => 'required|email',
+            'nohp' => 'required|string|max:15',
+            'gender' => 'required|in:Laki-laki,Perempuan',
+            'lahir' => 'required|date',
+            'bio' => 'nullable|string|max:500',
+            'hobi' => 'nullable|string|max:255',
+            'lokasi' => 'nullable|string|max:255',
+        ]);
+
+        // Update user data (dummy implementation)
+        // In real application, you would update the actual user model
+
+        return redirect()->route('profil.index')->with('success', 'Profil berhasil diperbarui!');
     }
 }

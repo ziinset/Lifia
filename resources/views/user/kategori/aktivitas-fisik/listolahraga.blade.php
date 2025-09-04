@@ -2,15 +2,15 @@
 
 {{-- bagian --}}
 <div style="margin-bottom: 40px;">
-    @include('user.artikel-fisik.bagian')
+    @include('user.kategori.aktivitas-fisik.bagian')
 </div>
 
 {{-- banner --}}
 <div style="margin-bottom: 40px;">
-    @include('user.artikel-fisik.banner4')
+    @include('user.kategori.aktivitas-fisik.banner')
 </div>
 
-{{-- topik4 --}}
+{{-- topik --}}
 <div style="margin-bottom: 40px;">
-    @include('user.artikel-fisik.topik4')
+    @include('user.kategori.aktivitas-fisik.topik4')
 </div>

@@ -34,3 +34,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
+Route::get('/hero-olga', function() { return view('components.hero-olga'); }); 
+Route::get('/hero-mental', function() { return view('components.hero-mental'); }); 
+Route::get('/hero-skin', function() { return view('components.hero-skin'); }); 
+Route::get('/hero-vegan', function() { return view('components.hero-vegan'); }); 
+Route::get('/hero-eco', function() { return view('components.hero-eco'); }); 

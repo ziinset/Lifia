@@ -16,28 +16,28 @@
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f5f5f5;
+            overflow-x: hidden;
         }
 
         .profil-container {
             display: flex;
-            min-height: 100vh;
+            height: 100vh;
         }
-
-        /* Sidebar Styles - Remove since using component */
         
-        /* Main Content */
+        /* Main Content - Same spacing as dashboard */
         .main {
-            margin-left: 260px;
             flex: 1;
-            display: flex;
-            flex-direction: column;
+            margin-left: 16rem;
+            padding: 0;
+            overflow-y: auto;
+            background: #FCFAF6;
+            position: relative;
+            height: 100vh;
         }
 
-        /* Header Styles - Remove since using component */
-        
         /* Content Area */
         .content {
-            padding: 30px;
+            padding: 1.5rem;
             flex: 1;
         }
 
@@ -294,23 +294,21 @@
             transform: scale(1.2);
         }
 
-        /* Responsive untuk tablet */
+        /* Responsive Design - Same as dashboard */
         @media (max-width: 1024px) {
+            .main { margin-left: 14rem; }
             .articles-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        /* Responsive untuk mobile */
         @media (max-width: 768px) {
+            .main { margin-left: 0; }
             .articles-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .main {
-                margin-left: 0;
-            }
         }
+
         .article-1 { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180"><rect width="300" height="180" fill="%23e8f4f8"/><text x="150" y="90" text-anchor="middle" dy=".3em" fill="%23666" font-family="Arial" font-size="14">Woman with phone</text></svg>'); }
         .article-2 { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180"><rect width="300" height="180" fill="%2385c1cc"/><text x="150" y="90" text-anchor="middle" dy=".3em" fill="%23fff" font-family="Arial" font-size="14">Pregnant woman</text></svg>'); }
         .article-3 { background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180"><rect width="300" height="180" fill="%23f0f0f0"/><text x="150" y="90" text-anchor="middle" dy=".3em" fill="%23666" font-family="Arial" font-size="14">Woman exercising</text></svg>'); }

@@ -4,23 +4,39 @@
         <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">
             <i class="fas fa-bars"></i>
         </button>
+
+        <!-- Search -->
         <div class="search-container">
             <div class="search-box">
                 <input type="text" placeholder="Cari resep, artikel, atau tips kesehatan...">
                 <button class="search-btn"><i class="fas fa-search"></i></button>
             </div>
         </div>
+
+        <!-- User Section -->
         <div class="user-section">
             <button class="notification-btn">
                 <i class="fas fa-bell"></i>
             </button>
-            <div class="user-info">
-                <img src="https://placehold.co/40x40/8BAC65/white?text=M" alt="User">
-                <div class="user-details">
-                    <h4>{{ $userName ?? 'Maki Zenin' }}</h4>
-                    <p>{{ $userHandle ?? 'makimakizen' }}</p>
+
+            @auth
+                <div class="user-info">
+                    <img src="https://placehold.co/40x40/8BAC65/white?text={{ strtoupper(substr(Auth::user()->nama_lengkap, 0, 1)) }}" 
+                         alt="{{ Auth::user()->nama_lengkap }}">
+                    <div class="user-details">
+                        <h4>{{ Auth::user()->nama_lengkap }}</h4>
+                        <p>{{ Auth::user()->email }}</p>
+                    </div>
                 </div>
-            </div>
+            @else
+                <div class="user-info">
+                    <img src="https://placehold.co/40x40/8BAC65/white?text=?" alt="Guest">
+                    <div class="user-details">
+                        <h4>Tamu</h4>
+                        <p>Belum login</p>
+                    </div>
+                </div>
+            @endauth
         </div>
     </div>
 </div>

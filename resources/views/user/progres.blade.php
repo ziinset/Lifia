@@ -54,14 +54,7 @@
             }
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
+        /* Removed float animation */
 
         @keyframes pulse {
             0%, 100% {
@@ -69,6 +62,13 @@
             }
             50% {
                 transform: scale(1.02);
+            }
+        }
+
+        /* New animation for progress bars starting from 0 */
+        @keyframes progressLoad {
+            from {
+                width: 0%;
             }
         }
 
@@ -132,7 +132,7 @@
         }
 
         .progress-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-8px) scale(1.05);
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
@@ -235,7 +235,7 @@
             width: 250px;
             height: 220px;
             z-index: 3;
-            animation: float 3s ease-in-out infinite;
+            /* Removed float animation and hover zoom from image */
         }
 
         .welcome-icon img {
@@ -345,7 +345,8 @@
         .progress-fill {
             height: 100%;
             border-radius: 5px;
-            transition: width 1.5s ease-out;
+            width: 0%; /* Start from 0 */
+            transition: width 2s ease-out;
         }
 
         .progress-fill[data-width="85%"] {
@@ -763,6 +764,7 @@
     <main class="main">
         <!-- Include Header Component -->
         @include('components.header')
+        
         <div class="main-content">
             <!-- Welcome Header -->
             <div class="welcome-header">
@@ -913,14 +915,14 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Animate progress bars
+        // Animate progress bars from 0 to target width
         setTimeout(() => {
             const progressBars = document.querySelectorAll('.progress-fill');
             progressBars.forEach(bar => {
                 const width = bar.getAttribute('data-width');
                 bar.style.width = width;
             });
-        }, 500);
+        }, 1000); // Start animation after 1 second
 
         // Activity buttons interaction
         const activityBtns = document.querySelectorAll('.activity-btn');
@@ -929,11 +931,13 @@
                 const originalText = this.innerHTML;
                 this.innerHTML = '<i class="fas fa-check"></i> Dimulai';
                 this.style.background = '#3E4D21';
+                this.style.color = 'white';
                 this.style.cursor = 'default';
                 
                 setTimeout(() => {
                     this.innerHTML = originalText;
-                    this.style.background = '#556B2F';
+                    this.style.background = 'white';
+                    this.style.color = '#4E342E';
                     this.style.cursor = 'pointer';
                 }, 3000);
             });

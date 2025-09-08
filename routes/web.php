@@ -1,36 +1,54 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
 
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/artikel', function () {
-    return view('artikel.artikel');
-})->name('artikel');
+// ==========================
+// Halaman umum (tanpa login)
+// ==========================
+Route::get('/home', fn() => view('home'))->name('home');
+Route::get('/artikel', fn() => view('artikel.artikel'))->name('artikel');
+Route::get('/list-olahraga', fn() => view('listolahraga.listolahraga'))->name('list-olahraga');
 
-Route::get('/list-olahraga', function () {
-    return view('listolahraga.listolahraga');
-})->name('list-olahraga');
+// ==========================
+// Auth Routes
+// ==========================
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/profil', function () {
-    return view('user.profil');
-})->name('profil');
+Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/aktivitas', function () {
-    return view('user.aktivitas');
-})->name('aktivitas');
+// Logout harus pakai POST
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Tambahan route untuk Koleksi, Progres, Premium
-Route::get('/koleksi', function () {
-    return view('user.koleksi');
-})->name('koleksi');
+// ==========================
+// User Routes (hanya untuk user login)
+// ==========================
+Route::middleware('auth')->group(function () {
+    // Profil (tampil + update)
+    Route::get('/profil', [ProfileController::class, 'show'])->name('profil');
+    Route::post('/profil', [ProfileController::class, 'update'])->name('profil.update');
 
-Route::get('/progres', function () {
-    return view('user.progres');
-})->name('progres');
+    // Halaman user lain
+    Route::get('/aktivitas', fn() => view('user.aktivitas'))->name('aktivitas');
+    Route::get('/koleksi', fn() => view('user.koleksi'))->name('koleksi');
+    Route::get('/progres', fn() => view('user.progres'))->name('progres');
+    Route::get('/premium', fn() => view('user.premium'))->name('premium');
+    Route::get('/nonpremium', fn() => view('user.nonpremium'))->name('nonpremium');
+});
 
-Route::get('/premium', function () {
-    return view('user.premium');
-})->name('premium');
+// ==========================
+// Admin Routes (hanya untuk admin login)
+// ==========================
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+});

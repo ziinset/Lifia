@@ -30,30 +30,44 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            'nomor' => 'nullable|string|max:20',
+            'lokasi'        => 'nullable|string|max:255',
+            'foto'          => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'nomor'         => 'nullable|string|max:20',
             'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
             'tanggal_lahir' => 'nullable|date',
-            'hobi' => 'nullable|string|max:255',
-            'bio' => 'nullable|string',
-            'instagram' => 'nullable|string|max:255',
-            'tiktok' => 'nullable|string|max:255',
-            'facebook' => 'nullable|string|max:255',
+            'hobi'          => 'nullable|string|max:255',
+            'bio'           => 'nullable|string',
+            'instagram'     => 'nullable|string|max:255',
+            'tiktok'        => 'nullable|string|max:255',
+            'facebook'      => 'nullable|string|max:255',
         ]);
 
+        // ========== Update ke tabel users ==========
+        $user->lokasi = $request->lokasi ?? $user->lokasi;
+
+        // Upload foto profil
+        if ($request->hasFile('foto')) {
+            $path = $request->file('foto')->store('foto_profil', 'public');
+            $user->foto = $path;
+        }
+
+        $user->save();
+
+        // ========== Update ke tabel profiles ==========
         $profile = $user->profile;
         if (!$profile) {
             $profile = new Profile();
             $profile->user_id = $user->id;
         }
 
-        $profile->nomor = $request->nomor;
+        $profile->nomor         = $request->nomor;
         $profile->jenis_kelamin = $request->jenis_kelamin;
         $profile->tanggal_lahir = $request->tanggal_lahir;
-        $profile->hobi = $request->hobi;
-        $profile->bio = $request->bio;
-        $profile->instagram = $request->instagram;
-        $profile->tiktok = $request->tiktok;
-        $profile->facebook = $request->facebook;
+        $profile->hobi          = $request->hobi;
+        $profile->bio           = $request->bio;
+        $profile->instagram     = $request->instagram;
+        $profile->tiktok        = $request->tiktok;
+        $profile->facebook      = $request->facebook;
 
         $profile->save();
 

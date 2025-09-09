@@ -12,7 +12,7 @@ class AuthController extends Controller
     // ======================
     // TAMPILAN FORM
     // ======================
-    public function showLogin()
+    public function showLogin(Request $request)
     {
         return view('user.login'); 
     }
@@ -64,7 +64,14 @@ class AuthController extends Controller
                 return redirect()->route('admin.dashboard')->with('success', 'Selamat datang Admin!');
             }
 
-            return redirect()->route('profil')->with('success', 'Login berhasil!');
+            // Tentukan redirect dinamis berdasarkan asal
+            $redirect = $request->input('redirect_to');
+            $allowed = ['/', '/home'];
+            if ($redirect && in_array($redirect, $allowed, true)) {
+                return redirect()->to($redirect)->with('success', 'Login berhasil!');
+            }
+
+            return redirect()->route('landing')->with('success', 'Login berhasil!');
         }
 
         return back()->withErrors([
@@ -82,6 +89,11 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success', 'Anda berhasil logout.');
+        $redirect = $request->input('redirect_to');
+        $allowed = ['/', '/home'];
+        if ($redirect && in_array($redirect, $allowed, true)) {
+            return redirect()->to($redirect)->with('success', 'Anda berhasil logout.');
+        }
+        return redirect()->route('landing')->with('success', 'Anda berhasil logout.');
     }
 }

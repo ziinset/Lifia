@@ -21,7 +21,11 @@
 
             @auth
                 <div class="user-info">
-                    <img src="https://placehold.co/40x40/8BAC65/white?text={{ strtoupper(substr(Auth::user()->nama_lengkap, 0, 1)) }}" 
+                    @php
+                        $foto = Auth::user()->foto ?? null;
+                        $initial = strtoupper(substr(Auth::user()->nama_lengkap ?? 'U', 0, 1));
+                    @endphp
+                    <img src="{{ $foto ? asset('storage/' . $foto) : 'https://placehold.co/40x40/8BAC65/white?text=' . $initial }}" 
                          alt="{{ Auth::user()->nama_lengkap }}">
                     <div class="user-details">
                         <h4>{{ Auth::user()->nama_lengkap }}</h4>

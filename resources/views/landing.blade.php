@@ -1,11 +1,15 @@
+{{-- resources/views/home.blade.php --}}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
 </head>
 <body>
-    {{-- Navbar2 --}}
-    @include('components.navbar2')
+
+    {{-- Navbar --}}
+    @include('components.navbar')
 
     {{-- Banner Contoh --}}
     <section style="position:relative; overflow:hidden; background:linear-gradient(135deg, #0ea5e9 0%, #22c55e 100%);">

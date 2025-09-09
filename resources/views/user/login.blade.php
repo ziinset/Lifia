@@ -24,6 +24,7 @@
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
+        <input type="hidden" name="redirect_to" value="{{ request('redirect_to') }}">
         <label>Email</label><br>
         <input type="email" name="email" required><br><br>
 

@@ -14,6 +14,7 @@ use App\Http\Controllers\ProfileController;
 // ==========================
 // Halaman umum (tanpa login)
 // ==========================
+Route::get('/', fn() => view('landing'))->name('landing');
 Route::get('/home', fn() => view('home'))->name('home');
 Route::get('/artikel', fn() => view('artikel.artikel'))->name('artikel');
 Route::get('/list-olahraga', fn() => view('listolahraga.listolahraga'))->name('list-olahraga');
@@ -47,8 +48,9 @@ Route::middleware('auth')->group(function () {
 });
 
 // ==========================
-// Admin Routes (hanya untuk admin login)
+// Admin Routes (aksesnya sama dengan user login biasa)
 // ==========================
-Route::middleware(['auth', 'is_admin'])->group(function () {
-    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
+        ->name('admin.dashboard');
 });

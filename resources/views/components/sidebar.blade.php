@@ -86,6 +86,13 @@
         <!-- Logout pakai POST tapi styled seperti link -->
         <form action="{{ route('logout') }}" method="POST" style="margin:0; padding:0;">
             @csrf
+            @php
+                $redirectTo = request('redirect_to');
+            @endphp
+            @if($redirectTo)
+                <input type="hidden" name="redirect_to" value="{{ $redirectTo }}">
+            @endif
+            
             <button type="submit" class="{{ request()->routeIs('logout') ? 'active' : '' }}">
                 <i class="fas fa-door-open"></i> <span>Logout</span>
             </button>

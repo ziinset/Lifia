@@ -28,6 +28,17 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
+// Forgot Password Routes
+Route::get('/forgot-password', [AuthController::class, 'showForgotPassword'])->name('password.request');
+Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])->name('password.email');
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetPassword'])->name('password.reset');
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
+
+// Reset Password dengan Kode Verifikasi
+Route::post('/send-verification-code', [AuthController::class, 'sendVerificationCode'])->name('password.send-code');
+Route::get('/verify-code', [AuthController::class, 'showVerifyCode'])->name('password.verify-code');
+Route::post('/verify-code', [AuthController::class, 'verifyCodeAndReset'])->name('password.verify-code');
+
 // Logout harus pakai POST
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 

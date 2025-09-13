@@ -326,6 +326,91 @@
         .social-icon.instagram { color: #e91e63; }
         .social-icon.tiktok { color: #000; }
         .social-icon.facebook { color: #1877f2; }
+
+        /* Radio Button Styles */
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .radio-option:hover {
+            background-color: #f8f9fa;
+            border-color: #e5e7eb;
+        }
+
+        .radio-option input[type="radio"] {
+            display: none;
+        }
+
+        .radio-custom {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+
+        .radio-option input[type="radio"]:checked + .radio-custom {
+            border-color: #8BAC65;
+            background-color: #8BAC65;
+        }
+
+        .radio-option input[type="radio"]:checked + .radio-custom::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: white;
+        }
+
+        .radio-option input[type="radio"]:disabled + .radio-custom {
+            background-color: #f9fafb;
+            border-color: #e5e7eb;
+            cursor: not-allowed;
+        }
+
+        .radio-option input[type="radio"]:disabled:checked + .radio-custom {
+            background-color: #d1d5db;
+            border-color: #9ca3af;
+        }
+
+        .radio-option input[type="radio"]:disabled:checked + .radio-custom::after {
+            background-color: #6b7280;
+        }
+
+        .radio-label {
+            font-weight: 500;
+            color: #374151;
+            transition: color 0.3s ease;
+        }
+
+        .radio-option input[type="radio"]:disabled ~ .radio-label {
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .radio-option input[type="radio"]:checked ~ .radio-label {
+            color: #8BAC65;
+            font-weight: 600;
+        }
         
         .actions {
             display: flex;
@@ -440,7 +525,7 @@
                 <div class="profile-info">
                     <h2>{{ $user->nama_lengkap ?? 'Nama Pengguna' }}</h2>
                     <div class="profile-meta">
-                        <span>{{ $profile->alamat ?? 'Lokasi tidak diatur' }}</span>
+                        <span>{{ $user->lokasi ?? 'Lokasi tidak diatur' }}</span>
                         <div class="dot"></div>
                         <span class="premium">
                             <i class="fas fa-crown"></i> Pengguna Premium
@@ -474,31 +559,42 @@
                             <input type="email" class="field-input" value="{{ $user->email }}" disabled>
                         </div>
                         <div class="field-group">
+                            <label class="field-label">Lokasi</label>
+                            <input type="text" class="field-input toggle-edit" name="lokasi" value="{{ $user->lokasi ?? '' }}" placeholder="Masukkan lokasi/alamat" disabled>
+                        </div>
+                        <div class="field-group">
                             <label class="field-label">Nomor Telepon</label>
-                            <input type="text" class="field-input toggle-edit" name="nomor" value="{{ $profile->nomor ?? '' }}" placeholder="Masukkan nomor telepon" disabled>
+                            <input type="text" class="field-input toggle-edit" name="nomor" value="{{ $user->nomor ?? '' }}" placeholder="Masukkan nomor telepon" disabled>
                         </div>
                         <div class="field-group">
                             <label class="field-label">Jenis Kelamin</label>
-                            <select name="jenis_kelamin" class="field-select toggle-edit" disabled>
-                                <option value="">-- Pilih Jenis Kelamin --</option>
-                                <option value="Laki-laki" {{ ($profile->jenis_kelamin ?? '') == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                <option value="Perempuan" {{ ($profile->jenis_kelamin ?? '') == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                            </select>
+                            <div class="radio-group toggle-edit" style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                                <label class="radio-option">
+                                    <input type="radio" name="jenis_kelamin" value="Laki-laki" {{ ($user->jenis_kelamin ?? '') == 'Laki-laki' ? 'checked' : '' }} disabled>
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-label">Laki-laki</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="jenis_kelamin" value="Perempuan" {{ ($user->jenis_kelamin ?? '') == 'Perempuan' ? 'checked' : '' }} disabled>
+                                    <span class="radio-custom"></span>
+                                    <span class="radio-label">Perempuan</span>
+                                </label>
+                            </div>
                         </div>
                         <div class="field-group">
                             <label class="field-label">Tanggal Lahir</label>
-                            <input type="date" class="field-input toggle-edit" name="tanggal_lahir" value="{{ $profile->tanggal_lahir ?? '' }}" disabled>
+                            <input type="date" class="field-input toggle-edit" name="tanggal_lahir" value="{{ $user->tanggal_lahir ?? '' }}" disabled>
                         </div>
                         <div class="field-group">
                             <label class="field-label">Hobi & Minat</label>
-                            <input type="text" class="field-input toggle-edit" name="hobi" value="{{ $profile->hobi ?? '' }}" placeholder="Misal: Yoga, Jogging, Membaca" disabled>
+                            <input type="text" class="field-input toggle-edit" name="hobi" value="{{ $user->hobi ?? '' }}" placeholder="Misal: Yoga, Jogging, Membaca" disabled>
                         </div>
                     </div>
 
                     <div class="form-grid full-width">
                         <div class="field-group">
                             <label class="field-label">Bio</label>
-                            <textarea name="bio" class="field-textarea toggle-edit" placeholder="Ceritakan sedikit tentang diri Anda..." disabled>{{ $profile->bio ?? '' }}</textarea>
+                            <textarea name="bio" class="field-textarea toggle-edit" placeholder="Ceritakan sedikit tentang diri Anda..." disabled>{{ $user->bio ?? '' }}</textarea>
                         </div>
                     </div>
 
@@ -513,21 +609,21 @@
                                 <label class="field-label">Instagram</label>
                                 <div class="social-field">
                                     <i class="fab fa-instagram social-icon instagram"></i>
-                                    <input type="text" class="field-input toggle-edit" name="instagram" value="{{ $profile->instagram ?? '' }}" placeholder="@username" disabled>
+                                    <input type="text" class="field-input toggle-edit" name="instagram" value="{{ $user->instagram ?? '' }}" placeholder="@username" disabled>
                                 </div>
                             </div>
                             <div class="field-group">
                                 <label class="field-label">TikTok</label>
                                 <div class="social-field">
                                     <i class="fab fa-tiktok social-icon tiktok"></i>
-                                    <input type="text" class="field-input toggle-edit" name="tiktok" value="{{ $profile->tiktok ?? '' }}" placeholder="@username" disabled>
+                                    <input type="text" class="field-input toggle-edit" name="tiktok" value="{{ $user->tiktok ?? '' }}" placeholder="@username" disabled>
                                 </div>
                             </div>
                             <div class="field-group">
                                 <label class="field-label">Facebook</label>
                                 <div class="social-field">
                                     <i class="fab fa-facebook social-icon facebook"></i>
-                                    <input type="text" class="field-input toggle-edit" name="facebook" value="{{ $profile->facebook ?? '' }}" placeholder="Nama Lengkap" disabled>
+                                    <input type="text" class="field-input toggle-edit" name="facebook" value="{{ $user->facebook ?? '' }}" placeholder="Nama Lengkap" disabled>
                                 </div>
                             </div>
                         </div>
@@ -620,13 +716,22 @@
         // Toggle edit mode for profile fields
         const editToggleBtn = document.getElementById('editToggleBtn');
         const toggleFields = document.querySelectorAll('.toggle-edit');
+        const radioButtons = document.querySelectorAll('input[name="jenis_kelamin"]');
         let isEditing = false;
 
         function setEditing(state) {
             isEditing = state;
+            
+            // Toggle input fields
             toggleFields.forEach(el => {
                 el.disabled = !isEditing;
             });
+            
+            // Toggle radio buttons
+            radioButtons.forEach(radio => {
+                radio.disabled = !isEditing;
+            });
+            
             if (editToggleBtn) {
                 if (isEditing) {
                     editToggleBtn.innerHTML = '<i class="fas fa-save"></i> Simpan Perubahan';

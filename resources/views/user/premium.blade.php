@@ -543,7 +543,7 @@
         <div class="main-content">
             <!-- Welcome Header -->
             <div class="welcome-header">
-                <h1 class="welcome-title">Halo, Maki Zenin!</h1>
+                <h1 class="welcome-title">Halo, {{ Auth::user()->nama_lengkap ?? 'User' }}!</h1>
                 <p class="premium-subtitle">Premium Anda Aktif 🎉</p>
                 
                 <!-- Premium Status Card -->

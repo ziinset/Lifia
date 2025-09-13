@@ -16,6 +16,14 @@ class User extends Authenticatable
         'role',
         'lokasi',
         'foto',
+        'nomor',
+        'jenis_kelamin',
+        'tanggal_lahir',
+        'hobi',
+        'bio',
+        'instagram',
+        'tiktok',
+        'facebook',
     ];
 
     protected $hidden = [

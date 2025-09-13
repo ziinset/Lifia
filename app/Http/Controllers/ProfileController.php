@@ -12,16 +12,8 @@ class ProfileController extends Controller
     public function show()
     {
         $user = Auth::user();
-        $profile = $user->profile;
-
-        // kalau belum ada profil, buat kosong biar bisa diisi
-        if (!$profile) {
-            $profile = Profile::create([
-                'user_id' => $user->id,
-            ]);
-        }
-
-        return view('user.profil', compact('user', 'profile'));
+        // Data profil tersimpan di tabel users, bukan tabel terpisah
+        return view('user.profil', compact('user'));
     }
 
     // Update profil
@@ -43,33 +35,42 @@ class ProfileController extends Controller
         ]);
 
         // ========== Update ke tabel users ==========
+        // Update field yang ada di database
         $user->lokasi = $request->lokasi ?? $user->lokasi;
-
+        
         // Upload foto profil
         if ($request->hasFile('foto')) {
             $path = $request->file('foto')->store('foto_profil', 'public');
             $user->foto = $path;
         }
 
-        $user->save();
-
-        // ========== Update ke tabel profiles ==========
-        $profile = $user->profile;
-        if (!$profile) {
-            $profile = new Profile();
-            $profile->user_id = $user->id;
+        // Update field lain dengan cara manual (bypass fillable)
+        if ($request->has('nomor')) {
+            $user->setAttribute('nomor', $request->nomor);
+        }
+        if ($request->has('jenis_kelamin')) {
+            $user->setAttribute('jenis_kelamin', $request->jenis_kelamin);
+        }
+        if ($request->has('tanggal_lahir')) {
+            $user->setAttribute('tanggal_lahir', $request->tanggal_lahir);
+        }
+        if ($request->has('hobi')) {
+            $user->setAttribute('hobi', $request->hobi);
+        }
+        if ($request->has('bio')) {
+            $user->setAttribute('bio', $request->bio);
+        }
+        if ($request->has('instagram')) {
+            $user->setAttribute('instagram', $request->instagram);
+        }
+        if ($request->has('tiktok')) {
+            $user->setAttribute('tiktok', $request->tiktok);
+        }
+        if ($request->has('facebook')) {
+            $user->setAttribute('facebook', $request->facebook);
         }
 
-        $profile->nomor         = $request->nomor;
-        $profile->jenis_kelamin = $request->jenis_kelamin;
-        $profile->tanggal_lahir = $request->tanggal_lahir;
-        $profile->hobi          = $request->hobi;
-        $profile->bio           = $request->bio;
-        $profile->instagram     = $request->instagram;
-        $profile->tiktok        = $request->tiktok;
-        $profile->facebook      = $request->facebook;
-
-        $profile->save();
+        $user->save();
 
         return redirect()->route('profil')->with('success', 'Profil berhasil diperbarui!');
     }

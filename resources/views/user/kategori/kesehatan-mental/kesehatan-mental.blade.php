@@ -3,6 +3,11 @@
 @section('title', 'Kesehatan Mental')
 
 @section('content')
+
+{{-- header/hero --}}
+<div style="margin-bottom: 40px;">
+    @include('components.hero-mental')
+</div>
 <style>
     .kesehatan-mental-page {
         font-family: 'Poppins', sans-serif;

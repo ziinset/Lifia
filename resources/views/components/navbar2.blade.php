@@ -1,4 +1,4 @@
-<style>
+<style scoped>
     .navbar * {
         margin: 0;
         padding: 0;
@@ -287,9 +287,6 @@
         }
     }
 </style>
-
-</head>
-<body>
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
@@ -349,17 +346,17 @@
             const dropdown = artikelToggle.closest(".navbar-dropdown");
             const menuToggle = document.getElementById("navbarMenuToggle");
             const navLinks = document.querySelector(".navbar-links");
-            
+
             // State management dengan switch case
             let currentNavState = "beranda";
-            
+
             // Fungsi untuk mengubah status navbar menggunakan switch case
             function setNavbarState(state) {
                 // Hapus kelas aktif dari semua link
                 document.querySelectorAll('.navbar-links a').forEach(link => {
                     link.classList.remove('navbar-active');
                 });
-                
+
                 // Gunakan switch case untuk mengatur status navbar
                 switch(state) {
                     case 'beranda':
@@ -410,16 +407,16 @@
                         document.querySelector('[data-nav="beranda"]').classList.add('navbar-active');
                         console.log("Status navigasi: Default (Beranda)");
                 }
-                
+
                 currentNavState = state;
-                
+
                 // Tutup menu mobile jika terbuka
                 if (navLinks.classList.contains('navbar-active')) {
                     menuToggle.classList.remove('navbar-active');
                     navLinks.classList.remove('navbar-active');
                 }
             }
-            
+
             // Event listeners untuk link navbar
             document.querySelectorAll('.navbar-links a').forEach(link => {
                 link.addEventListener('click', function(e) {
@@ -453,9 +450,50 @@
                     menuToggle.classList.toggle("navbar-active");
                     navLinks.classList.toggle("navbar-active");
                 });
+
+            // Tutup menu mobile jika terbuka
+            if (navLinks.classList.contains('navbar-active')) {
+                menuToggle.classList.remove('navbar-active');
+                navLinks.classList.remove('navbar-active');
             }
-            
-            // Inisialisasi status awal
-            setNavbarState('beranda');
+        }
+
+        // Event listeners untuk link navbar
+        document.querySelectorAll('.navbar-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const navItem = this.getAttribute('data-nav');
+                if (navItem) {
+                    setNavbarState(navItem);
+                }
+            });
         });
-    </script>
+
+        // Dropdown functionality
+        if (artikelToggle) {
+            artikelToggle.addEventListener("click", function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                dropdown.classList.toggle("navbar-show");
+            });
+
+            // Close dropdown if clicked outside
+            document.addEventListener("click", function(e) {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove("navbar-show");
+                }
+            });
+        }
+
+        // Mobile menu toggle
+        if (menuToggle) {
+            menuToggle.addEventListener("click", function() {
+                menuToggle.classList.toggle("navbar-active");
+                navLinks.classList.toggle("navbar-active");
+            });
+        }
+
+        // Inisialisasi status awal
+        setNavbarState('beranda');
+    });
+</script>

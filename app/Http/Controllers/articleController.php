@@ -98,4 +98,97 @@ class ArticleController extends Controller
     {
         return view('user.kategori.aktivitas-fisik.bagian');
     }
+
+    // Eco/Gaya Hidup Ramah Lingkungan Methods
+    public function eco()
+    {
+        return view('user.kategori.eco.artikel-eco');
+    }
+
+    public function ecoPanduan()
+    {
+        return view('user.kategori.eco.panduan');
+    }
+
+    public function ecoTopik()
+    {
+        return view('user.kategori.eco.topik');
+    }
+
+    public function ecoBanner()
+    {
+        return view('user.kategori.eco.banner');
+    }
+
+    public function ecoBagianArtikel()
+    {
+        return view('user.kategori.eco.bagianartikel');
+    }
+
+    public function ecoMengurangiSampah()
+    {
+        return view('user.kategori.eco.mengurangi-sampah');
+    }
+
+    // Perawatan Diri/Self-care Methods
+    public function perawatanDiri()
+    {
+        return view('user.kategori.perawatan-diri.artikel-perawatan');
+    }
+
+    public function perawatanDiriPanduan()
+    {
+        return view('user.kategori.perawatan-diri.panduan');
+    }
+
+    public function perawatanDiriTopik()
+    {
+        return view('user.kategori.perawatan-diri.topik');
+    }
+
+    public function perawatanDiriBanner()
+    {
+        return view('user.kategori.perawatan-diri.banner');
+    }
+
+    public function perawatanDiriBagianArtikel()
+    {
+        return view('user.kategori.perawatan-diri.bagianartikel');
+    }
+
+    public function perawatanDiriKulitMalam()
+    {
+        return view('user.kategori.perawatan-diri.kulit-malam');
+    }
+
+    // Vegan/Vegetarian Methods
+    public function vegan()
+    {
+        return view('user.kategori.vegan.artikel-vegan');
+    }
+
+    public function veganPanduan()
+    {
+        return view('user.kategori.vegan.panduan');
+    }
+
+    public function veganTopik()
+    {
+        return view('user.kategori.vegan.topik');
+    }
+
+    public function veganBanner()
+    {
+        return view('user.kategori.vegan.banner');
+    }
+
+    public function veganBagianArtikel()
+    {
+        return view('user.kategori.vegan.bagianartikel');
+    }
+
+    public function veganTipsPemula()
+    {
+        return view('user.kategori.vegan.tips-pemula');
+    }
 }

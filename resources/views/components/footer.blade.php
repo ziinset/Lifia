@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIFIA Footer</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-    <style>
+<style scoped>
         body {
             margin: 0;
             padding: 0;
@@ -206,8 +198,6 @@
             }
         }
     </style>
-</head>
-<body>
     <!-- Footer dengan lekukan -->
     <footer style="background-color: #3B5C3F; color: white; padding: 0; margin: 0; position: relative; overflow: hidden;">
         <!-- Lekukan melengkung di bagian atas -->
@@ -342,5 +332,3 @@
             </div>
         </div>
     </footer>
-</body>
-</html>

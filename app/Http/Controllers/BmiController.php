@@ -15,3 +15,18 @@ class BmiController extends Controller
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

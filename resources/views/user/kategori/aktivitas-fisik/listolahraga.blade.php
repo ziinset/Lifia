@@ -1,5 +1,9 @@
 {{-- Halaman Artikel --}}
 
+{{-- header/hero --}}
+    @include('components.hero-olga')
+
+
 {{-- bagian --}}
 <div style="margin-bottom: 40px;">
     @include('user.kategori.aktivitas-fisik.bagian')

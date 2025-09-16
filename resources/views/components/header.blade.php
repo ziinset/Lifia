@@ -1,9 +1,16 @@
 <!-- Header Component -->
 <div class="topbar-wrapper">
     <div class="topbar">
-        <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">
-            <i class="fas fa-bars"></i>
-        </button>
+        <div class="left-section">
+            <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <!-- Back Button -->
+            <button class="back-btn" onclick="goBack()" title="Kembali ke beranda">
+                <i class="fas fa-home"></i>
+            </button>
+        </div>
 
         <!-- Search -->
         <div class="search-container">
@@ -232,6 +239,12 @@
     color: #799549;
 }
 
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
 .mobile-menu-btn {
     display: none;
     background: #fff;
@@ -241,12 +254,35 @@
     cursor: pointer;
     color: #6b7280;
     font-size: 1.1rem;
-    margin-right: 1rem;
 }
 
 .mobile-menu-btn:hover {
     background: #f9fafb;
     color: #799549;
+}
+
+.back-btn {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 2px solid transparent;
+    color: #6b7280;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #799549 0%, #8BAC65 100%);
+    color: white;
+    transform: translateY(-1px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(121, 149, 73, 0.25);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Responsive Design */
@@ -282,5 +318,10 @@ function toggleMobileSidebar() {
     if (sidebar) {
         sidebar.classList.toggle('mobile-open');
     }
+}
+
+function goBack() {
+    // Always redirect to landing page
+    window.location.href = '/';
 }
 </script>

@@ -203,6 +203,7 @@
             flex-basis: 100%;
         }
 
+
         /* Form Card */
         .form-card {
             background: #fff;
@@ -220,6 +221,86 @@
             margin-bottom: 2rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid #f3f4f6;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Social Media in Header */
+        .social-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin-left: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-link-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: #f9fafb;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb;
+            min-width: 140px;
+            height: 40px;
+        }
+
+        .social-link-header .social-icon {
+            font-size: 1.1rem;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border-radius: 4px;
+            padding: 2px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-link-header .social-icon.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+
+        .social-link-header .social-icon.tiktok {
+            background: #000;
+            color: white;
+        }
+
+        .social-link-header .social-icon.facebook {
+            background: #1877f2;
+            color: white;
+        }
+
+        .social-link-header span {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .social-link-header .social-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            width: 100%;
+            padding: 0;
+        }
+
+        .social-link-header .social-input:focus {
+            background: #fff;
+            border: 1px solid #8BAC65;
+            border-radius: 0.375rem;
+            padding: 0.25rem 0.5rem;
         }
         
         .form-card h3 {
@@ -279,8 +360,25 @@
         }
 
         .field-textarea {
-            min-height: 4rem;
-            resize: vertical;
+            min-height: 6rem;
+            resize: none;
+            line-height: 1.6;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .field-textarea:focus {
+            min-height: 8rem;
+            box-shadow: 0 0 0 3px rgba(139, 172, 101, 0.15);
+            border-color: #8BAC65;
+        }
+
+        .field-textarea::placeholder {
+            color: #9ca3af;
+            font-style: italic;
         }
 
         /* Social Media Section */
@@ -314,19 +412,7 @@
             padding-left: 2.5rem;
         }
 
-        .social-icon {
-            position: absolute;
-            left: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1rem;
-            z-index: 5;
-        }
-
-        .social-icon.instagram { color: #e91e63; }
-        .social-icon.tiktok { color: #000; }
-        .social-icon.facebook { color: #1877f2; }
-
+        
         /* Radio Button Styles */
         .radio-group {
             display: flex;
@@ -472,13 +558,43 @@
             .form-grid { 
                 grid-template-columns: 1fr; 
             }
-            .social-grid {
-                grid-template-columns: 1fr;
-            }
             .form-header { 
                 flex-direction: column; 
                 gap: 1rem; 
                 align-items: flex-start; 
+            }
+            .social-header {
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+            .social-link-header {
+                min-width: 120px;
+                height: 36px;
+                padding: 0.5rem 0.75rem;
+            }
+            .social-link-header .social-icon {
+                width: 20px;
+                height: 20px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .social-header {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.5rem;
+            }
+            .social-link-header {
+                width: 100%;
+                justify-content: center;
+                height: 40px;
+                min-width: auto;
+            }
+            .social-link-header .social-icon {
+                width: 22px;
+                height: 22px;
+                font-size: 1.1rem;
             }
         }
     </style>
@@ -509,9 +625,6 @@
                     <i class="fas fa-pen"></i> 
                 </button>
                 
-                <div class="decorative-circle circle-1"></div>
-                <div class="decorative-circle circle-2"></div>
-                <div class="decorative-circle circle-3"></div>
             </div>
 
             <!-- Profile Content -->
@@ -526,10 +639,12 @@
                     <h2>{{ $user->nama_lengkap ?? 'Nama Pengguna' }}</h2>
                     <div class="profile-meta">
                         <span>{{ $user->lokasi ?? 'Lokasi tidak diatur' }}</span>
+                        @if($user->is_premium)
                         <div class="dot"></div>
                         <span class="premium">
                             <i class="fas fa-crown"></i> Pengguna Premium
                         </span>
+                        @endif
         
                         <span class="profile-email">
                             <i class="fas fa-envelope"></i> {{ $user->email ?? 'email@example.com' }}
@@ -540,11 +655,28 @@
 
             <!-- Profile Form -->
             <div class="form-card">
-                <div class="form-header">
-                    <h3>Edit Profil</h3>
-                </div>
-                
                 <form id="profilForm" action="{{ route('profil.update') }}" method="POST" enctype="multipart/form-data">
+                    <div class="form-header">
+                        <h3>Detail Lainnya</h3>
+                        <!-- Social Media in Header -->
+                        <div class="social-header">
+                            <div class="social-link-header">
+                                <i class="fab fa-instagram social-icon instagram"></i>
+                                <span class="social-display">{{ $user->instagram ?? '@username' }}</span>
+                                <input type="text" class="social-input toggle-edit" name="instagram" value="{{ $user->instagram ?? '' }}" placeholder="@username" disabled style="display: none;">
+                            </div>
+                            <div class="social-link-header">
+                                <i class="fab fa-tiktok social-icon tiktok"></i>
+                                <span class="social-display">{{ $user->tiktok ?? '@username' }}</span>
+                                <input type="text" class="social-input toggle-edit" name="tiktok" value="{{ $user->tiktok ?? '' }}" placeholder="@username" disabled style="display: none;">
+                            </div>
+                            <div class="social-link-header">
+                                <i class="fab fa-facebook social-icon facebook"></i>
+                                <span class="social-display">{{ $user->facebook ?? 'Nama Lengkap' }}</span>
+                                <input type="text" class="social-input toggle-edit" name="facebook" value="{{ $user->facebook ?? '' }}" placeholder="Nama Lengkap" disabled style="display: none;">
+                            </div>
+                        </div>
+                    </div>
                     @csrf
                     @method('POST')
                     <input type="file" id="fotoInput" name="foto" accept="image/*" style="display:none">
@@ -598,36 +730,6 @@
                         </div>
                     </div>
 
-                    <!-- Social Media Section -->
-                    <div class="social-section">
-                        <h4>
-                            <i class="fas fa-share-alt"></i>
-                            Media Sosial
-                        </h4>
-                        <div class="social-grid">
-                            <div class="field-group">
-                                <label class="field-label">Instagram</label>
-                                <div class="social-field">
-                                    <i class="fab fa-instagram social-icon instagram"></i>
-                                    <input type="text" class="field-input toggle-edit" name="instagram" value="{{ $user->instagram ?? '' }}" placeholder="@username" disabled>
-                                </div>
-                            </div>
-                            <div class="field-group">
-                                <label class="field-label">TikTok</label>
-                                <div class="social-field">
-                                    <i class="fab fa-tiktok social-icon tiktok"></i>
-                                    <input type="text" class="field-input toggle-edit" name="tiktok" value="{{ $user->tiktok ?? '' }}" placeholder="@username" disabled>
-                                </div>
-                            </div>
-                            <div class="field-group">
-                                <label class="field-label">Facebook</label>
-                                <div class="social-field">
-                                    <i class="fab fa-facebook social-icon facebook"></i>
-                                    <input type="text" class="field-input toggle-edit" name="facebook" value="{{ $user->facebook ?? '' }}" placeholder="Nama Lengkap" disabled>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     
                     <div class="actions">
                         <button type="button" id="editToggleBtn" class="save-btn">
@@ -732,6 +834,19 @@
                 radio.disabled = !isEditing;
             });
             
+            // Toggle social media display/input in header
+            const socialDisplays = document.querySelectorAll('.social-display');
+            const socialInputs = document.querySelectorAll('.social-input');
+            
+            socialDisplays.forEach(display => {
+                display.style.display = isEditing ? 'none' : 'block';
+            });
+            
+            socialInputs.forEach(input => {
+                input.style.display = isEditing ? 'block' : 'none';
+                input.disabled = !isEditing;
+            });
+            
             if (editToggleBtn) {
                 if (isEditing) {
                     editToggleBtn.innerHTML = '<i class="fas fa-save"></i> Simpan Perubahan';
@@ -752,6 +867,18 @@
                 // if editing=true, button is submit and form will post
             });
         }
+
+        // Update social media display when input changes
+        const socialInputs = document.querySelectorAll('.social-input');
+        const socialDisplays = document.querySelectorAll('.social-display');
+        
+        socialInputs.forEach((input, index) => {
+            input.addEventListener('input', function() {
+                if (socialDisplays[index]) {
+                    socialDisplays[index].textContent = this.value || this.placeholder;
+                }
+            });
+        });
 
         // start in view mode
         setEditing(false);

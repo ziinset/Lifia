@@ -28,6 +28,7 @@
             font-weight: 500; font-size: 0.9rem; transition: all 0.4s;
             position: relative; overflow: hidden; backdrop-filter: blur(10px);
             border: 1px solid transparent; background: none; cursor: pointer; width: 100%; text-align: left;
+            font-family: 'Poppins', sans-serif;
         }
 
         .sidebar nav a::before, .sidebar nav button::before {
@@ -77,11 +78,17 @@
             <i class="fas fa-heart"></i> <span>Koleksi Favorit</span>
         </a>
         <a href="{{ route('progres') }}" class="{{ request()->routeIs('progres') ? 'active' : '' }}">
-            <i class="fas fa-skull"></i> <span>Progres Kesehatan</span>
+            <i class="fas fa-trophy"></i> <span>Progres</span>
         </a>
-        <a href="{{ route('premium') }}" class="{{ request()->routeIs('premium') ? 'active' : '' }}">
-            <i class="fas fa-crown"></i> <span>Premium</span>
-        </a>
+        @if(Auth::user()->is_premium)
+            <a href="{{ route('premium') }}" class="{{ request()->routeIs('premium') ? 'active' : '' }}">
+                <i class="fas fa-crown"></i> <span>Premium</span>
+            </a>
+        @else
+            <a href="{{ route('nonpremium') }}" class="{{ request()->routeIs('nonpremium') ? 'active' : '' }}">
+                <i class="fas fa-crown"></i> <span>Premium</span>
+            </a>
+        @endif
 
         <!-- Logout pakai POST tapi styled seperti link -->
         <form action="{{ route('logout') }}" method="POST" style="margin:0; padding:0;">

@@ -318,12 +318,12 @@
                         <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
                     </a>
                     <div class="navbar-dropdown-menu" id="navbarArtikelMenu">
-                        <a href="#" data-nav="pola-makan">Pola Makan Sehat</a>
-                        <a href="#" data-nav="aktivitas-fisik">Aktivitas Fisik</a>
-                        <a href="#" data-nav="kesehatan-mental">Kesehatan Mental</a>
-                        <a href="#" data-nav="perawatan-diri">Perawatan Diri</a>
-                        <a href="#" data-nav="vegan">Vegan</a>
-                        <a href="#" data-nav="eco-living">Eco Living</a>
+                        <a href="{{ route('artikel.show', ['category' => 'pola-makan-sehat', 'article' => 'artikel-makanan']) }}" data-nav="pola-makan">Pola Makan Sehat</a>
+                        <a href="{{ route('artikel.show', ['category' => 'aktivitas-fisik', 'article' => 'listolahraga']) }}" data-nav="aktivitas-fisik">Aktivitas Fisik</a>
+                        <a href="{{ route('artikel.show', ['category' => 'kesehatan-mental', 'article' => 'artikel-mental']) }}" data-nav="kesehatan-mental">Kesehatan Mental</a>
+                        <a href="{{ route('artikel.show', ['category' => 'perawatan-diri', 'article' => 'artikel-perawatan']) }}" data-nav="perawatan-diri">Perawatan Diri</a>
+                        <a href="{{ route('artikel.show', ['category' => 'vegan', 'article' => 'artikel-vegan']) }}" data-nav="vegan">Vegan</a>
+                        <a href="{{ route('artikel.show', ['category' => 'eco-living', 'article' => 'artikel-eco']) }}" data-nav="eco-living">Eco Living</a>
                     </div>
                 </div>
 

@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PremiumController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +19,10 @@ use App\Http\Controllers\ProfileController;
 // ==========================
 Route::get('/', fn() => view('landing'))->name('landing');
 Route::get('/home', fn() => view('home'))->name('home');
-Route::get('/artikel', fn() => view('artikel.artikel'))->name('artikel');
+Route::get('/artikel', [ArticleController::class, 'index'])->name('artikel');
+Route::get('/kategori/{category}', [ArticleController::class, 'showCategory'])->name('kategori');
+Route::get('/kategori/{category}/{article}', [ArticleController::class, 'showArticle'])->name('artikel.show');
+Route::get('/artikel/sarapan-seimbang', [ArticleController::class, 'sarapanSeimbang'])->name('artikel.sarapan-seimbang');
 Route::get('/list-olahraga', fn() => view('listolahraga.listolahraga'))->name('list-olahraga');
 
 // ==========================
@@ -52,10 +58,17 @@ Route::middleware('auth')->group(function () {
 
     // Halaman user lain
     Route::get('/aktivitas', fn() => view('user.aktivitas'))->name('aktivitas');
-    Route::get('/koleksi', fn() => view('user.koleksi'))->name('koleksi');
+    Route::get('/koleksi', [FavoriteController::class, 'showCollection'])->name('koleksi');
     Route::get('/progres', fn() => view('user.progres'))->name('progres');
-    Route::get('/premium', fn() => view('user.premium'))->name('premium');
-    Route::get('/nonpremium', fn() => view('user.nonpremium'))->name('nonpremium');
+    // Premium routes with controller
+    Route::get('/premium', [PremiumController::class, 'premium'])->name('premium');
+    Route::get('/nonpremium', [PremiumController::class, 'nonpremium'])->name('nonpremium');
+    
+    // Favorite routes
+    Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
+    Route::delete('/favorites', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
+    Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+    Route::get('/favorites/check', [FavoriteController::class, 'check'])->name('favorites.check');
 });
 
 // ==========================

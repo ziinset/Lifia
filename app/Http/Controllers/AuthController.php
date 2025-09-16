@@ -37,11 +37,23 @@ class AuthController extends Controller
             'password'     => 'required|min:6|confirmed',
         ]);
 
+        // Determine premium status based on email or random
+        $isPremium = false;
+        if ($request->email === 'jonathanarya79@gmail.com') {
+            $isPremium = true;
+        } elseif ($request->email === 'goldi@gmail.com') {
+            $isPremium = false;
+        } else {
+            // Random premium status for other users
+            $isPremium = rand(0, 1) == 1;
+        }
+
         User::create([
             'nama_lengkap' => $request->nama_lengkap,
             'email'        => $request->email,
             'password'     => Hash::make($request->password),
             'role'         => 'user', // default user
+            'is_premium'   => $isPremium,
         ]);
 
         // Setelah register langsung arahkan ke login

@@ -444,8 +444,8 @@
                             </div>
                         </div>
                         
-                        <button class="plan-btn">
-                            Mulai Gratis
+                        <button class="plan-btn" disabled style="background: white; color: #666; cursor: not-allowed; border: 1px solid #ddd;">
+                            Sedang Aktif
                         </button>
                     </div>
 

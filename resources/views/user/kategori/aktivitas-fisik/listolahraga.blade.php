@@ -1,7 +1,7 @@
 {{-- Halaman Artikel --}}
 
 {{-- header/hero --}}
-    @include('components.hero-olga')
+@include('components.hero-olga')
 
 
 {{-- bagian --}}

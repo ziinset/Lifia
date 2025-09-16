@@ -8,8 +8,6 @@
 </div>
 
 @section('content')
-{{-- Halaman Artikel --}}
-@includeIf('components.hero2')
 
 <div style="margin-bottom: 40px;">
     @includeIf('user.kategori.pola-makan-sehat.bagianartikel')

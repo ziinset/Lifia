@@ -2,12 +2,12 @@
 
 @section('title', 'Pola Makan Sehat')
 
-@section('content')
-
 {{-- header/hero --}}
 <div style="margin-bottom: 40px;">
-    @include('components.hero-vegan')
+    @include('components.hero-mental')
 </div>
+
+@section('content')
 
 <div style="margin-bottom: 40px;">
     @includeIf('user.kategori.pola-makan-sehat.bagianartikel')

@@ -663,7 +663,7 @@
                 </div>
 
                 <div class="hero-nav-links" id="heroNavLinks">
-                    <a href="#" class="hero-active">
+                    <a href="{{ route('home') }}" class="hero-active">
                         Beranda
                     </a>
 
@@ -674,28 +674,28 @@
                             <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
                         </a>
                         <div class="hero-dropdown-menu" id="heroArtikelMenu">
-                            <a href="{{ route('artikel') }}">Pola Makan Sehat</a>
-                            <a href="#">Aktivitas Fisik</a>
-                            <a href="#">Kesehatan Mental</a>
-                            <a href="#">Perawatan Diri</a>
-                            <a href="#">Vegan</a>
-                            <a href="#">Eco Living</a>
+                            <a href="{{ route('kategori.pola-makan-sehat') }}">Pola Makan Sehat</a>
+                            <a href="{{ route('kategori.aktivitas-fisik') }}">Aktivitas Fisik</a>
+                            <a href="{{ route('kategori.kesehatan-mental') }}">Kesehatan Mental</a>
+                            <a href="{{ route('kategori.perawatan-diri') }}">Perawatan Diri</a>
+                            <a href="{{ route('kategori.vegan') }}">Vegan</a>
+                            <a href="{{ route('kategori.eco') }}">Eco Living</a>
                         </div>
                     </div>
 
-                    <a href="#">
+                    <a href="{{ route('cek-bmi') }}">
                         Cek Sehat
                     </a>
 
-                    <a href="#">
+                    <a href="{{ route('tentang-kami') }}">
                         Tentang Kami
                     </a>
 
-                    <a href="#" class="hero-fitplan">
+                    <a href="{{ route('fitplan') }}" class="hero-fitplan">
                         FitPlan
                     </a>
 
-                    <a href="#" class="hero-login">
+                    <a href="{{ route('login') }}" class="hero-login">
                         Login
                     </a>
                 </div>

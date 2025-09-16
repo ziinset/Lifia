@@ -110,7 +110,7 @@
             margin-top: 8px;
             opacity: 0;
             visibility: hidden;
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15), 
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15),
                         inset 0 1px 0 rgba(255, 255, 255, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
@@ -238,11 +238,11 @@
             .navbar-container {
                 padding: 15px 20px;
             }
-            
+
             .navbar-menu-toggle {
                 display: flex;
             }
-            
+
             .navbar-links {
                 position: fixed;
                 top: 0;
@@ -259,18 +259,18 @@
                 z-index: 99;
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
             }
-            
+
             .navbar-links.navbar-active {
                 right: 0;
             }
-            
+
             .navbar-links a {
                 width: 80%;
                 padding: 12px;
                 font-size: 16px;
                 border: 1.4px solid rgba(255, 255, 255, 0.5);
             }
-            
+
             .navbar-dropdown-menu {
                 position: static;
                 transform: none;
@@ -278,7 +278,7 @@
                 margin: 10px auto;
                 background: rgba(255, 255, 255, 0.9);
             }
-            
+
             .navbar-dropdown-menu::before {
                 display: none;
             }
@@ -305,7 +305,7 @@
             </div>
 
             <div class="navbar-links" id="navbarLinks">
-                <a href="#" data-nav="beranda">
+                <a href="{{ route('home') }}" data-nav="beranda">
                     Beranda
                 </a>
 
@@ -316,28 +316,28 @@
                         <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
                     </a>
                     <div class="navbar-dropdown-menu" id="navbarArtikelMenu">
-                        <a href="#" data-nav="pola-makan">Pola Makan Sehat</a>
-                        <a href="#" data-nav="aktivitas-fisik">Aktivitas Fisik</a>
-                        <a href="#" data-nav="kesehatan-mental">Kesehatan Mental</a>
-                        <a href="#" data-nav="perawatan-diri">Perawatan Diri</a>
-                        <a href="#" data-nav="vegan">Vegan</a>
-                        <a href="#" data-nav="eco-living">Eco Living</a>
+                        <a href="{{ route('kategori.pola-makan-sehat') }}" data-nav="pola-makan">Pola Makan Sehat</a>
+                        <a href="{{ route('kategori.aktivitas-fisik') }}" data-nav="aktivitas-fisik">Aktivitas Fisik</a>
+                        <a href="{{ route('kategori.kesehatan-mental') }}" data-nav="kesehatan-mental">Kesehatan Mental</a>
+                        <a href="{{ route('kategori.perawatan-diri') }}" data-nav="perawatan-diri">Perawatan Diri</a>
+                        <a href="{{ route('kategori.vegan') }}" data-nav="vegan">Vegan</a>
+                        <a href="{{ route('kategori.eco') }}" data-nav="eco-living">Eco Living</a>
                     </div>
                 </div>
 
-                <a href="#" data-nav="cek-sehat">
+                <a href="{{ route('cek-bmi') }}" data-nav="cek-sehat">
                     Cek Sehat
                 </a>
 
-                <a href="#" data-nav="tentang-kami">
+                <a href="{{ route('tentang-kami') }}" data-nav="tentang-kami">
                     Tentang Kami
                 </a>
 
-                <a href="#" class="navbar-fitplan" data-nav="fitplan">
+                <a href="{{ route('fitplan') }}" class="navbar-fitplan" data-nav="fitplan">
                     FitPlan
                 </a>
 
-                <a href="#" class="navbar-login" data-nav="login">
+                <a href="{{ route('login') }}" class="navbar-login" data-nav="login">
                     Login
                 </a>
             </div>
@@ -357,17 +357,17 @@
             const dropdown = artikelToggle.closest(".navbar-dropdown");
             const menuToggle = document.getElementById("navbarMenuToggle");
             const navLinks = document.querySelector(".navbar-links");
-            
+
             // State management dengan switch case
             let currentNavState = "beranda";
-            
+
             // Fungsi untuk mengubah status navbar menggunakan switch case
             function setNavbarState(state) {
                 // Hapus kelas aktif dari semua link
                 document.querySelectorAll('.navbar-links a').forEach(link => {
                     link.classList.remove('navbar-active');
                 });
-                
+
                 // Gunakan switch case untuk mengatur status navbar
                 switch(state) {
                     case 'beranda':
@@ -418,22 +418,24 @@
                         document.querySelector('[data-nav="beranda"]').classList.add('navbar-active');
                         console.log("Status navigasi: Default (Beranda)");
                 }
-                
+
                 currentNavState = state;
-                
+
                 // Tutup menu mobile jika terbuka
                 if (navLinks.classList.contains('navbar-active')) {
                     menuToggle.classList.remove('navbar-active');
                     navLinks.classList.remove('navbar-active');
                 }
             }
-            
-            // Event listeners untuk link navbar
-            document.querySelectorAll('.navbar-links a').forEach(link => {
+
+            // Event listeners untuk link navbar - hanya untuk visual feedback
+            document.querySelectorAll('.navbar-links a[data-nav]').forEach(link => {
                 link.addEventListener('click', function(e) {
-                    e.preventDefault();
                     const navItem = this.getAttribute('data-nav');
-                    if (navItem) {
+                    const href = this.getAttribute('href');
+
+                    // Hanya set state untuk visual feedback, biarkan navigasi normal
+                    if (navItem && href && href !== '#') {
                         setNavbarState(navItem);
                     }
                 });
@@ -462,7 +464,7 @@
                     navLinks.classList.toggle("navbar-active");
                 });
             }
-            
+
             // Inisialisasi status awal
             setNavbarState('beranda');
         });

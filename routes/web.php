@@ -6,7 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BmiController;
-use App\Http\Cntrollers\TentangKamiController;
+use App\Http\Controllers\TentangKamiController;
 use Illuminate\Support\Facades\Route;
 
 // Home Route
@@ -34,7 +34,7 @@ Route::get('/kategori/pola-makan-sehat/bagian-artikel', [ArticleController::clas
 
 // Kategori Aktivitas Fisik
 Route::get('/kategori/aktivitas-fisik', [ArticleController::class, 'aktivitasFisik'])->name('kategori.aktivitas-fisik');
-Route::get('/kategori/aktivitas-fisik/list-olahraga', [ArticleController::class, 'listOlahraga'])->name('kategori.aktivitas-fisik.list-olahraga');
+Route::get('/kategori/aktivitas-fisik/panduan', [ArticleController::class, 'aktivitasFisikPanduan'])->name('kategori.aktivitas-fisik.panduan');
 Route::get('/kategori/aktivitas-fisik/olahraga-aman-bumil', [ArticleController::class, 'olahragaAmanBumil'])->name('kategori.aktivitas-fisik.olahraga-aman-bumil');
 Route::get('/kategori/aktivitas-fisik/topik', [ArticleController::class, 'aktivitasFisikTopik'])->name('kategori.aktivitas-fisik.topik');
 Route::get('/kategori/aktivitas-fisik/banner', [ArticleController::class, 'aktivitasFisikBanner'])->name('kategori.aktivitas-fisik.banner');
@@ -96,3 +96,8 @@ Route::get('/test', function () {
 
 // BMI Route
 Route::get('/cek-bmi', [BmiController::class, 'index'])->name('cek-bmi');
+
+// FitPlan Route (placeholder for now)
+Route::get('/fitplan', function () {
+    return view('user.fitplan');
+})->name('fitplan');

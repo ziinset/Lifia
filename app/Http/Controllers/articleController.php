@@ -16,15 +16,11 @@ class ArticleController extends Controller
         return view('user.kategori.pola-makan-sehat.sarapan-seimbang');
     }
 
-    public function olahragaAmanBumil()
-    {
-        return view('user.kategori.aktivitas-fisik.olahraga-aman-bumil');
-    }
-
     // Kesehatan Mental Methods
     public function kesehatanMental()
     {
-        return view('user.kategori.kesehatan-mental.kesehatan-mental');
+        // Use the existing view file as the main page for Kesehatan Mental
+        return view('user.kategori.kesehatan-mental.artikel-mental');
     }
 
     public function kesehatanMentalPanduan()
@@ -49,7 +45,7 @@ class ArticleController extends Controller
 
     public function kesehatanMentalSarapanSeimbang()
     {
-        return view('user.kategori.kesehatan-mental.sarapan-seimbang');
+        return view('user.kategori.kesehatan-mental.meredakan-stres');
     }
 
     // Pola Makan Sehat Methods
@@ -79,19 +75,24 @@ class ArticleController extends Controller
         return view('user.kategori.aktivitas-fisik.listolahraga');
     }
 
-    public function listOlahraga()
+    public function aktivitasFisikPanduan()
     {
-        return view('user.kategori.aktivitas-fisik.listolahraga');
+        return view('user.kategori.aktivitas-fisik.panduan');
+    }
+
+    public function olahragaAmanBumil()
+    {
+        return view('user.kategori.aktivitas-fisik.olahraga-aman-bumil');
     }
 
     public function aktivitasFisikTopik()
     {
-        return view('user.kategori.aktivitas-fisik.topik4');
+        return view('user.kategori.aktivitas-fisik.topik');
     }
 
     public function aktivitasFisikBanner()
     {
-        return view('user.kategori.aktivitas-fisik.banner4');
+        return view('user.kategori.aktivitas-fisik.banner');
     }
 
     public function aktivitasFisikBagian()

@@ -294,7 +294,7 @@
             </div>
 
             <div class="navbar-links" id="navbarLinks">
-                <a href="#" data-nav="beranda">
+                <a href="{{ route('home') }}" data-nav="beranda">
                     Beranda
                 </a>
 
@@ -305,28 +305,28 @@
                         <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
                     </a>
                     <div class="navbar-dropdown-menu" id="navbarArtikelMenu">
-                        <a href="#" data-nav="pola-makan">Pola Makan Sehat</a>
-                        <a href="#" data-nav="aktivitas-fisik">Aktivitas Fisik</a>
-                        <a href="#" data-nav="kesehatan-mental">Kesehatan Mental</a>
-                        <a href="#" data-nav="perawatan-diri">Perawatan Diri</a>
-                        <a href="#" data-nav="vegan">Vegan</a>
-                        <a href="#" data-nav="eco-living">Eco Living</a>
+                        <a href="{{ route('kategori.pola-makan-sehat') }}" data-nav="pola-makan">Pola Makan Sehat</a>
+                        <a href="{{ route('kategori.aktivitas-fisik') }}" data-nav="aktivitas-fisik">Aktivitas Fisik</a>
+                        <a href="{{ route('kategori.kesehatan-mental') }}" data-nav="kesehatan-mental">Kesehatan Mental</a>
+                        <a href="{{ route('kategori.perawatan-diri') }}" data-nav="perawatan-diri">Perawatan Diri</a>
+                        <a href="{{ route('kategori.vegan') }}" data-nav="vegan">Vegan</a>
+                        <a href="{{ route('kategori.eco') }}" data-nav="eco-living">Eco Living</a>
                     </div>
                 </div>
 
-                <a href="#" data-nav="cek-sehat">
+                <a href="{{ route('cek-bmi') }}" data-nav="cek-sehat">
                     Cek Sehat
                 </a>
 
-                <a href="#" data-nav="tentang-kami">
+                <a href="{{ route('tentang-kami') }}" data-nav="tentang-kami">
                     Tentang Kami
                 </a>
 
-                <a href="#" class="navbar-fitplan" data-nav="fitplan">
+                <a href="{{ route('fitplan') }}" class="navbar-fitplan" data-nav="fitplan">
                     FitPlan
                 </a>
 
-                <a href="#" class="navbar-login" data-nav="login">
+                <a href="{{ route('login') }}" class="navbar-login" data-nav="login">
                     Login
                 </a>
             </div>
@@ -417,12 +417,14 @@
                 }
             }
 
-            // Event listeners untuk link navbar
-            document.querySelectorAll('.navbar-links a').forEach(link => {
+            // Event listeners untuk link navbar - hanya untuk visual feedback
+            document.querySelectorAll('.navbar-links a[data-nav]').forEach(link => {
                 link.addEventListener('click', function(e) {
-                    e.preventDefault();
                     const navItem = this.getAttribute('data-nav');
-                    if (navItem) {
+                    const href = this.getAttribute('href');
+
+                    // Hanya set state untuk visual feedback, biarkan navigasi normal
+                    if (navItem && href && href !== '#') {
                         setNavbarState(navItem);
                     }
                 });
@@ -450,50 +452,9 @@
                     menuToggle.classList.toggle("navbar-active");
                     navLinks.classList.toggle("navbar-active");
                 });
-
-            // Tutup menu mobile jika terbuka
-            if (navLinks.classList.contains('navbar-active')) {
-                menuToggle.classList.remove('navbar-active');
-                navLinks.classList.remove('navbar-active');
             }
-        }
 
-        // Event listeners untuk link navbar
-        document.querySelectorAll('.navbar-links a').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const navItem = this.getAttribute('data-nav');
-                if (navItem) {
-                    setNavbarState(navItem);
-                }
-            });
+            // Inisialisasi status awal
+            setNavbarState('beranda');
         });
-
-        // Dropdown functionality
-        if (artikelToggle) {
-            artikelToggle.addEventListener("click", function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                dropdown.classList.toggle("navbar-show");
-            });
-
-            // Close dropdown if clicked outside
-            document.addEventListener("click", function(e) {
-                if (!dropdown.contains(e.target)) {
-                    dropdown.classList.remove("navbar-show");
-                }
-            });
-        }
-
-        // Mobile menu toggle
-        if (menuToggle) {
-            menuToggle.addEventListener("click", function() {
-                menuToggle.classList.toggle("navbar-active");
-                navLinks.classList.toggle("navbar-active");
-            });
-        }
-
-        // Inisialisasi status awal
-        setNavbarState('beranda');
-    });
 </script>

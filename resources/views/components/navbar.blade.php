@@ -345,12 +345,24 @@
                 </a>
                 @endguest
                 @auth
-                <a href="{{ route('profil', ['redirect_to' => '/']) }}" class="navbar-login" data-nav="profile" style="display:flex; align-items:center; gap:10px; border-color:#fff; background:rgba(255,255,255,0.15);">
-                    @php
-                        $nama = Auth::user()->nama_lengkap ?? Auth::user()->email;
-                        $initial = strtoupper(mb_substr($nama, 0, 1));
-                        $foto = Auth::user()->foto ?? null;
-                    @endphp
+                @php
+                    $user = Auth::user();
+                    $nama = $user->nama_lengkap ?? $user->email;
+                    $initial = strtoupper(mb_substr($nama, 0, 1));
+                    $foto = $user->foto ?? null;
+                    
+                    // Simple logic: Admin ke dashboard admin, User ke dashboard user (profil)
+                    if ($user->role === 'admin') {
+                        $profileUrl = route('admin.dashboard');
+                    } else {
+                        $profileUrl = route('profil', ['redirect_to' => '/']);
+                    }
+                    
+                    // DEBUG: Uncomment untuk lihat role user
+                    // dd('Email: ' . $user->email . ' | Role: ' . ($user->role ?? 'NULL') . ' | URL: ' . $profileUrl);
+                @endphp
+                <a href="{{ $profileUrl }}" class="navbar-login" data-nav="profile" style="display:flex; align-items:center; gap:10px; border-color:#fff; background:rgba(255,255,255,0.15);">
+                    
                     @if($foto)
                         <img src="{{ asset('storage/' . $foto) }}" alt="Avatar" style="width:28px; height:28px; border-radius:50%; object-fit:cover; border:1px solid rgba(255,255,255,0.6);">
                     @else

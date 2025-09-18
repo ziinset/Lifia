@@ -14,10 +14,18 @@
 
         <!-- Search -->
         <div class="search-container">
-            <div class="search-box">
-                <input type="text" placeholder="Cari resep, artikel, atau tips kesehatan...">
-                <button class="search-btn"><i class="fas fa-search"></i></button>
-            </div>
+            <form action="{{ route('search') }}" method="GET" class="search-form">
+                <div class="search-box">
+                    <input type="text" 
+                           name="q" 
+                           id="searchInput"
+                           placeholder="Cari resep, artikel, atau tips kesehatan..."
+                           value="{{ request('q') }}"
+                           autocomplete="off">
+                    <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+            </form>
         </div>
 
         <!-- User Section -->
@@ -137,6 +145,166 @@
     background: linear-gradient(135deg, #435331 0%, #799549 100%);
     transform: translateY(-50%) scale(1.05);
     box-shadow: 0 4px 12px rgba(121, 149, 73, 0.4);
+}
+
+/* Search Suggestions */
+.search-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e5e7eb;
+    max-height: 500px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    margin-top: 0.5rem;
+}
+
+.search-suggestions.show {
+    display: block;
+}
+
+.search-results-header {
+    padding: 1rem;
+    background: linear-gradient(135deg, #f8fdf4 0%, #e8f5e8 100%);
+    border-bottom: 1px solid #e5e7eb;
+    font-weight: 600;
+    color: #2d5016;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.view-all-btn {
+    background: #799549;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.view-all-btn:hover {
+    background: #435331;
+    transform: translateY(-1px);
+}
+
+.suggestion-item {
+    padding: 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid #f3f4f6;
+    transition: all 0.2s ease;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-item:hover {
+    background: linear-gradient(135deg, #f8fdf4 0%, #e8f5e8 100%);
+}
+
+.suggestion-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, #799549 0%, #8BAC65 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.suggestion-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.suggestion-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.suggestion-title {
+    font-weight: 600;
+    color: #2d5016;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.suggestion-description {
+    color: #6b7280;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.suggestion-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.suggestion-category {
+    font-size: 0.7rem;
+    color: white;
+    background: #799549;
+    padding: 0.2rem 0.6rem;
+    border-radius: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.suggestion-author {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    font-weight: 500;
+}
+
+.suggestion-item:hover .suggestion-title {
+    color: #799549;
+}
+
+.suggestion-item:hover .suggestion-category {
+    background: #2d5016;
+}
+
+.no-results {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.no-results i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #d1d5db;
 }
 
 .user-section {
@@ -324,4 +492,116 @@ function goBack() {
     // Always redirect to landing page
     window.location.href = '/';
 }
+
+// Search functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const searchSuggestions = document.getElementById('searchSuggestions');
+    let searchTimeout;
+
+    if (searchInput && searchSuggestions) {
+        // Handle input for search results
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim();
+            
+            clearTimeout(searchTimeout);
+            
+            if (query.length >= 1) {
+                searchTimeout = setTimeout(() => {
+                    fetchSearchResults(query);
+                }, 300);
+            } else {
+                hideSuggestions();
+            }
+        });
+
+        // Handle Enter key
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const query = this.value.trim();
+                if (query) {
+                    window.location.href = `/search?q=${encodeURIComponent(query)}`;
+                }
+            }
+        });
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
+                hideSuggestions();
+            }
+        });
+
+        // Show suggestions when input is focused and has value
+        searchInput.addEventListener('focus', function() {
+            const query = this.value.trim();
+            if (query.length >= 1) {
+                fetchSearchResults(query);
+            }
+        });
+    }
+
+    function fetchSearchResults(query) {
+        fetch(`/search/suggestions?q=${encodeURIComponent(query)}`)
+            .then(response => response.json())
+            .then(results => {
+                displaySearchResults(results, query);
+            })
+            .catch(error => {
+                console.error('Error fetching search results:', error);
+                hideSuggestions();
+            });
+    }
+
+    function displaySearchResults(results, query) {
+        if (results.length === 0) {
+            searchSuggestions.innerHTML = `
+                <div class="no-results">
+                    <i class="fas fa-search"></i>
+                    <div>Tidak ada hasil untuk "${query}"</div>
+                </div>
+            `;
+            searchSuggestions.classList.add('show');
+            return;
+        }
+
+        let html = `
+            <div class="search-results-header">
+                <span>Hasil Pencarian (${results.length})</span>
+                <a href="/search?q=${encodeURIComponent(query)}" class="view-all-btn">Lihat Semua</a>
+            </div>
+        `;
+
+        results.forEach(result => {
+            const hasImage = result.image && result.image !== '/image/Rectangle 127.png';
+            html += `
+                <div class="suggestion-item" onclick="selectSuggestion('${result.url}')">
+                    <div class="suggestion-image">
+                        ${hasImage ? `<img src="${result.image}" alt="${result.title}">` : '<i class="fas fa-newspaper"></i>'}
+                    </div>
+                    <div class="suggestion-content">
+                        <div class="suggestion-title">${result.title}</div>
+                        <div class="suggestion-description">${result.description}</div>
+                        <div class="suggestion-meta">
+                            <span class="suggestion-category">${result.category}</span>
+                            <span class="suggestion-author">${result.author}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        searchSuggestions.innerHTML = html;
+        searchSuggestions.classList.add('show');
+    }
+
+    function hideSuggestions() {
+        searchSuggestions.classList.remove('show');
+    }
+
+    window.selectSuggestion = function(url) {
+        window.location.href = url;
+    };
+});
 </script>

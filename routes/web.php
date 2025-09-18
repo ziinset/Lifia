@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PremiumController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,11 @@ Route::get('/kategori/{category}', [ArticleController::class, 'showCategory'])->
 Route::get('/kategori/{category}/{article}', [ArticleController::class, 'showArticle'])->name('artikel.show');
 Route::get('/artikel/sarapan-seimbang', [ArticleController::class, 'sarapanSeimbang'])->name('artikel.sarapan-seimbang');
 Route::get('/list-olahraga', fn() => view('listolahraga.listolahraga'))->name('list-olahraga');
+
+// Search Routes
+Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::get('/search/suggestions', [SearchController::class, 'suggestions'])->name('search.suggestions');
+Route::get('/search/quick', [SearchController::class, 'quickSearch'])->name('search.quick');
 
 // ==========================
 // Auth Routes
@@ -77,4 +83,8 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
         ->name('admin.dashboard');
+    Route::get('/admin/langganan', [AdminController::class, 'langganan'])
+        ->name('admin.langganan');
+    Route::post('/admin/profile/update', [AdminController::class, 'updateProfile'])
+        ->name('admin.profile.update');
 });

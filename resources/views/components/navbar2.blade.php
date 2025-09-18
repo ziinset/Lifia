@@ -337,12 +337,21 @@
                 </a>
                 @endguest
                 @auth
-                <a href="{{ route('profil', ['redirect_to' => '/home']) }}" class="navbar-login" data-nav="profile" style="display:flex; align-items:center; gap:10px; border-color:#556B2F; background:rgba(85,107,47,0.08); color:#556B2F;">
-                    @php
-                        $nama = Auth::user()->nama_lengkap ?? Auth::user()->email;
-                        $initial = strtoupper(mb_substr($nama, 0, 1));
-                        $foto = Auth::user()->foto ?? null;
-                    @endphp
+                @php
+                    $user = Auth::user();
+                    $nama = $user->nama_lengkap ?? $user->email;
+                    $initial = strtoupper(mb_substr($nama, 0, 1));
+                    $foto = $user->foto ?? null;
+                    
+                    // Simple logic: Admin ke dashboard admin, User ke dashboard user (profil)
+                    if ($user->role === 'admin') {
+                        $profileUrl = route('admin.dashboard');
+                    } else {
+                        $profileUrl = route('profil', ['redirect_to' => '/home']);
+                    }
+                @endphp
+                <a href="{{ $profileUrl }}" class="navbar-login" data-nav="profile" style="display:flex; align-items:center; gap:10px; border-color:#556B2F; background:rgba(85,107,47,0.08); color:#556B2F;">
+                    
                     @if($foto)
                         <img src="{{ asset('storage/' . $foto) }}" alt="Avatar" style="width:28px; height:28px; border-radius:50%; object-fit:cover; border:1px solid rgba(85,107,47,0.4);">
                     @else

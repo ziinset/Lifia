@@ -78,9 +78,13 @@ class FavoriteController extends Controller
                 'article_url' => $request->article_url,
             ]);
 
+            // Set session flash message for page refresh
+            session()->flash('success', 'Artikel berhasil disimpan ke favorit');
+            
             return response()->json([
                 'success' => true,
                 'message' => 'Artikel berhasil disimpan ke favorit',
+                'is_favorited' => true,
                 'favorite' => $favorite
             ]);
         } catch (\Exception $e) {
@@ -144,9 +148,13 @@ class FavoriteController extends Controller
 
             $favorite->delete();
 
+            // Set session flash message for page refresh
+            session()->flash('success', 'Artikel berhasil dihapus dari favorit');
+            
             return response()->json([
                 'success' => true,
-                'message' => 'Artikel berhasil dihapus dari favorit'
+                'message' => 'Artikel berhasil dihapus dari favorit',
+                'is_favorited' => false
             ]);
         } catch (\Exception $e) {
             \Log::error('Favorite destroy error: ' . $e->getMessage());

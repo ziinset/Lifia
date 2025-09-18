@@ -1,4 +1,5 @@
 {{-- Topik Populer Section --}}
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
     .topik-section {
         font-family: 'Inter', sans-serif;
@@ -63,6 +64,25 @@
             stroke: #fff;
             stroke-width: 2;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            color: #fff;
+        }
+
+        .heart-icon svg path[fill="red"] {
+            fill: red !important;
+            stroke: red !important;
+        }
+
+        .heart-icon.favorited {
+            color: #B4D678 !important;
+        }
+
+        .heart-icon.favorited svg {
+            stroke: #B4D678 !important;
+        }
+
+        .heart-icon.favorited svg path {
+            fill: #B4D678 !important;
+            stroke: #B4D678 !important;
         }
 
         .category-tag {
@@ -216,6 +236,25 @@
             stroke: #fff;
             stroke-width: 2;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            color: #fff;
+        }
+
+        .small-heart svg path[fill="red"] {
+            fill: red !important;
+            stroke: red !important;
+        }
+
+        .small-heart.favorited {
+            color: #B4D678 !important;
+        }
+
+        .small-heart.favorited svg {
+            stroke: #B4D678 !important;
+        }
+
+        .small-heart.favorited svg path {
+            fill: #B4D678 !important;
+            stroke: #B4D678 !important;
         }
 
         /* Responsive Design */
@@ -271,7 +310,7 @@
                 <article class="featured-item">
                     <div class="featured-image-container">
                         <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop&crop=center" alt="Healthy Grilled Chicken Salad" class="featured-image">
-                        <div class="heart-icon">
+                        <div class="heart-icon" onclick="toggleFavorite(this, 'makanan-sehat-pemula', 'Makanan Sehat untuk Pemula: Panduan 7 Hari Awal', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop&crop=center', 'Tips dan menu sederhana untuk mulai hidup sehat tanpa ribet. Cocok buat kamu yang baru mulai jaga pola makan.', 'Graciella Yeriza N', '#')">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
@@ -294,7 +333,7 @@
                 <article class="featured-item">
                     <div class="featured-image-container">
                         <img src="https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?w=600&h=400&fit=crop&crop=center" alt="Plant-Based Power Bowl" class="featured-image">
-                        <div class="heart-icon">
+                        <div class="heart-icon" onclick="toggleFavorite(this, 'sarapan-sehat-cepat', 'Sarapan Sehat: Pilihan Cepat dan Bergizi untuk Setiap Hari', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?w=600&h=400&fit=crop&crop=center', 'Ide sarapan anti-bosan dan praktis yang bantu kamu tetap semangat sepanjang hari.', 'Graciella Yeriza N', '#')">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
@@ -322,7 +361,7 @@
                 <article class="article-item">
                     <div class="article-image-container">
                         <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=300&fit=crop&crop=center" alt="Mengatur Porsi Makan" class="article-image">
-                        <div class="small-heart">
+                        <div class="small-heart" onclick="toggleFavorite(this, 'mengatur-porsi-makan', 'Cara Mengatur Porsi Makan Agar Tetap Kenyang Tanpa Kalori Berlebih', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=300&fit=crop&crop=center', 'Panduan visual & trik makan agar tetap puas tapi tidak berlebihan kalori.', 'Graciella Yeriza Natalie', '#')">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
@@ -349,7 +388,7 @@
                 <article class="article-item">
                     <div class="article-image-container">
                         <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=300&h=300&fit=crop&crop=center" alt="Makan Tengah Malam" class="article-image">
-                        <div class="small-heart">
+                        <div class="small-heart" onclick="toggleFavorite(this, 'bahaya-makan-tengah-malam', 'Bahaya Makan Tengah Malam & Tips Menghindarinya', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=300&h=300&fit=crop&crop=center', 'Panduan visual & trik makan agar tetap puas tapi tidak berlebihan kalori.', 'Graciella Yeriza Natalie', '#')">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
@@ -376,7 +415,7 @@
                 <article class="article-item">
                     <div class="article-image-container">
                         <img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?w=300&h=300&fit=crop&crop=center" alt="Snack Sehat" class="article-image">
-                        <div class="small-heart">
+                        <div class="small-heart" onclick="toggleFavorite(this, 'snack-sehat-camilan', 'Snack Sehat: Camilan Enak yang Nggak Bikin Berat Badan Naik', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1607532941433-304659e8198a?w=300&h=300&fit=crop&crop=center', 'Ganti keripik dan gorengan dengan camilan sehat yang tetap lezat dan mudah dibuat.', 'Graciella Yeriza Natalie', '#')">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
@@ -403,7 +442,7 @@
                 <article class="article-item">
                     <div class="article-image-container">
                         <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&h=300&fit=crop&crop=center" alt="Minuman Sehat" class="article-image">
-                        <div class="small-heart">
+                        <div class="small-heart" onclick="toggleFavorite(this, 'minuman-sehat-rendah-kalori', 'Minum yang Bikin Sehat: Pilihan Minuman Rendah Kalori yang Menyegarkan', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&h=300&fit=crop&crop=center', 'Ganti minuman manis dengan pilihan sehat yang tetap segar dan nikmat sepanjang hari.', 'Graciella Yeriza Natalie', '#')">
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
@@ -430,3 +469,251 @@
         </section>
         </div>
     </div>
+
+<script>
+// CSRF Token will be available from bagianartikel.blade.php via window.csrfToken
+
+// Toggle favorite function
+async function toggleFavorite(button, articleId, title, category, image, description, author, url) {
+    // Check if user is authenticated
+    @guest
+        // Arahkan langsung ke halaman login jika belum login
+        window.location.href = '{{ route('login') }}';
+        return;
+    @endguest
+
+    // Prevent multiple clicks
+    if (button.dataset.processing === 'true') {
+        return;
+    }
+    button.dataset.processing = 'true';
+
+    // Check if currently favorited by looking at the class
+    const isCurrentlyFavorited = button.classList.contains('favorited');
+    console.log('Heart icon clicked - currently favorited:', isCurrentlyFavorited);
+
+    try {
+        if (isCurrentlyFavorited) {
+            // Remove from favorites
+            const response = await fetch('/favorites', {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    article_id: articleId
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Update heart icon appearance
+                updateHeartIcon(button, false);
+                showNotification('Artikel berhasil dihapus dari favorit', 'success');
+            } else {
+                showNotification(data.message || 'Gagal menghapus dari favorit', 'error');
+            }
+        } else {
+            // Add to favorites
+            const response = await fetch('/favorites', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    article_id: articleId,
+                    article_title: title,
+                    article_category: category,
+                    article_image: image,
+                    article_description: description,
+                    article_author: author,
+                    article_url: url
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                // Update heart icon appearance
+                updateHeartIcon(button, true);
+                showNotification('Artikel berhasil disimpan ke favorit', 'success');
+            } else if (response.status === 409) {
+                // Handle duplicate - article already favorited, so remove it instead
+                console.log('Article already favorited, removing instead');
+                const deleteResponse = await fetch('/favorites', {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': window.csrfToken,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        article_id: articleId
+                    })
+                });
+                
+                const deleteData = await deleteResponse.json();
+                if (deleteData.success) {
+                    updateHeartIcon(button, false);
+                    showNotification('Artikel berhasil dihapus dari favorit', 'success');
+                } else {
+                    showNotification('Gagal menghapus dari favorit', 'error');
+                }
+            } else {
+                showNotification(data.message || 'Gagal menyimpan ke favorit', 'error');
+            }
+        }
+    } catch (error) {
+        console.error('Error toggling favorite:', error);
+        showNotification('Terjadi kesalahan. Silakan coba lagi.', 'error');
+    } finally {
+        button.dataset.processing = 'false';
+    }
+}
+
+// Show notification function
+function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${type === 'success' ? '#B4D678' : '#ff6b6b'};
+        color: white;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        z-index: 9999;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 100);
+
+    setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+            if (document.body.contains(notification)) {
+                document.body.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+
+// Check favorite status on page load
+document.addEventListener('DOMContentLoaded', async function() {
+    // Check for Laravel session flash messages
+    @if(session('success'))
+        showNotification('{{ session('success') }}', 'success');
+    @endif
+    
+    @if(session('error'))
+        showNotification('{{ session('error') }}', 'error');
+    @endif
+    
+    // Check for success message in URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const successMessage = urlParams.get('success');
+    const errorMessage = urlParams.get('error');
+    
+    if (successMessage) {
+        showNotification(decodeURIComponent(successMessage), 'success');
+        // Clean URL without refreshing page
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+    
+    if (errorMessage) {
+        showNotification(decodeURIComponent(errorMessage), 'error');
+        // Clean URL without refreshing page
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+    
+    @auth
+        // Add small delay to ensure DOM is fully ready
+        setTimeout(async () => {
+            console.log('Starting to check favorite status for all heart icons...');
+            const heartIcons = document.querySelectorAll('.heart-icon, .small-heart');
+            console.log('Found', heartIcons.length, 'heart icons');
+            
+            for (const heartIcon of heartIcons) {
+                const onclick = heartIcon.getAttribute('onclick');
+                if (onclick) {
+                    // Extract article ID from onclick attribute
+                    const match = onclick.match(/toggleFavorite\(this,\s*'([^']+)'/);
+                    if (match) {
+                        const articleId = match[1];
+                        console.log('Checking favorite status for article:', articleId);
+                        await checkFavoriteStatus(heartIcon, articleId);
+                        // Small delay between requests
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                    }
+                }
+            }
+            console.log('Finished checking all heart icons');
+        }, 500);
+    @endauth
+});
+
+// Update heart icon appearance (same as bagianartikel.blade.php)
+function updateHeartIcon(heartIcon, isFavorited) {
+    const svgEl = heartIcon.querySelector('svg');
+    const path = heartIcon.querySelector('svg path');
+    console.log('Updating heart icon for favorited:', isFavorited);
+    if (!path) return;
+
+    if (isFavorited) {
+        // Favorited: fill green and set color so currentColor resolves correctly
+        heartIcon.classList.add('favorited');
+        if (svgEl) svgEl.style.color = '#B4D678';
+        path.setAttribute('fill', 'currentColor');
+        path.setAttribute('stroke', 'currentColor');
+        heartIcon.title = 'Hapus dari favorit';
+        console.log('Added favorited class and set fill to currentColor');
+    } else {
+        // Not favorited: remove fill and revert color to white
+        heartIcon.classList.remove('favorited');
+        if (svgEl) svgEl.style.color = '#fff';
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', 'currentColor');
+        heartIcon.title = 'Simpan ke favorit';
+        console.log('Removed favorited class and set fill to none');
+    }
+}
+
+// Check if article is already favorited
+async function checkFavoriteStatus(heartIcon, articleId) {
+    try {
+        console.log('Making API call to check favorite status for:', articleId);
+        const response = await fetch(`/favorites/check?article_id=${articleId}`, {
+            method: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': window.csrfToken,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        const data = await response.json();
+        console.log('API response for', articleId, ':', data);
+        
+        if (data.success) {
+            console.log('Article', articleId, 'is favorited:', data.is_favorited);
+            updateHeartIcon(heartIcon, data.is_favorited);
+        } else {
+            console.log('API call failed for', articleId, ':', data.message);
+        }
+    } catch (error) {
+        console.error('Error checking favorite status for', articleId, ':', error);
+    }
+}
+</script>

@@ -631,7 +631,7 @@
             return card;
         }
 
-        // Remove favorite
+        // Remove favorite (with confirmation)
         async function removeFavorite(articleId) {
             if (!confirm('Hapus artikel dari favorit?')) {
                 return;
@@ -650,8 +650,10 @@
                 });
 
                 const data = await response.json();
-
+                
                 if (data.success) {
+                    showNotification(data.message || 'Artikel berhasil dihapus dari favorit', 'success');
+                    
                     // Remove from allFavorites array
                     allFavorites = allFavorites.filter(fav => fav.article_id !== articleId);
                     
@@ -661,8 +663,6 @@
                         : allFavorites.filter(fav => fav.article_category === currentFilter);
                     
                     displayFavorites(filteredFavorites);
-                    
-                    showNotification(data.message, 'success');
                 } else {
                     showNotification(data.message || 'Gagal menghapus artikel', 'error');
                 }

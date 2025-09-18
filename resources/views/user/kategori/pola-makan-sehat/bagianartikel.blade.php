@@ -173,6 +173,12 @@
             height: 24px;
         }
 
+        /* Favorited state: apply consistent green immediately */
+        .main-bookmark-btn.favorited,
+        .sidebar-bookmark-btn.favorited {
+            color: #B4D678;
+        }
+
         /* Right Side Articles */
         .sidebar-articles {
             display: flex;
@@ -409,7 +415,7 @@
                             12 jam lalu</span></span>
                         <div class="main-article-actions">
                             <button class="main-action-btn" onclick="window.location.href='{{ route('artikel.sarapan-seimbang') }}'">Selengkapnya</button>
-                            <button class="main-bookmark-btn" onclick="toggleFavorite(this, 'sarapan-seimbang', 'Mulai Hari dengan Sarapan Seimbang', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80', 'Sarapan bukan cuma soal kenyang. Artikel ini membahas kombinasi karbohidrat kompleks, protein, dan serat untuk energi maksimal seharian.', 'Graciella Yeriza Natalie', '{{ route('artikel.sarapan-seimbang') }}')">
+                            <button class="main-bookmark-btn" onclick="toggleBookmark(this, 'sarapan-seimbang', 'Mulai Hari dengan Sarapan Seimbang', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80', 'Sarapan bukan cuma soal kenyang. Artikel ini membahas kombinasi karbohidrat kompleks, protein, dan serat untuk energi maksimal seharian.', 'Graciella Yeriza Natalie', '{{ route('artikel.sarapan-seimbang') }}')">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
                                 </svg>
@@ -441,7 +447,7 @@
                             </div>
                             <div class="sidebar-article-actions">
                                 <button class="sidebar-action-btn">selengkapnya</button>
-                                <button class="sidebar-bookmark-btn" onclick="toggleFavorite(this, 'buah-lokal-gizi', 'Buah Lokal, Gizi Maksimal', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80', 'Mengapa apel malang atau pisang kepok lebih baik dari buah impor? Kenali manfaat buah lokal yang sering diremehan.', 'Graciella Yeriza N', '#')">
+                                <button class="sidebar-bookmark-btn" onclick="toggleBookmark(this, 'buah-lokal-gizi', 'Buah Lokal, Gizi Maksimal', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80', 'Mengapa apel malang atau pisang kepok lebih baik dari buah impor? Kenali manfaat buah lokal yang sering diremehan.', 'Graciella Yeriza N', '#')">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
                                     </svg>
@@ -471,7 +477,7 @@
                             </div>
                             <div class="sidebar-article-actions">
                                 <button class="sidebar-action-btn">selengkapnya</button>
-                                <button class="sidebar-bookmark-btn" onclick="toggleFavorite(this, 'sayuran-hijau-serat', 'Sayuran Hijau: Sumber Serat dan Antioksidan', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80', 'Tak suka sayur? Coba trik mudah ini agar sayuran jadi lebih nikmat dan tetap kaya nutrisi.', 'Graciella Yeriza N', '#')">
+                                <button class="sidebar-bookmark-btn" onclick="toggleBookmark(this, 'sayuran-hijau-serat', 'Sayuran Hijau: Sumber Serat dan Antioksidan', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80', 'Tak suka sayur? Coba trik mudah ini agar sayuran jadi lebih nikmat dan tetap kaya nutrisi.', 'Graciella Yeriza N', '#')">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
                                     </svg>
@@ -501,7 +507,7 @@
                             </div>
                             <div class="sidebar-article-actions">
                                 <button class="sidebar-action-btn">selengkapnya</button>
-                                <button class="sidebar-bookmark-btn" onclick="toggleFavorite(this, 'sayuran-hijau-serat', 'Sayuran Hijau: Sumber Serat dan Antioksidan', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80', 'Tak suka sayur? Coba trik mudah ini agar sayuran jadi lebih nikmat dan tetap kaya nutrisi.', 'Graciella Yeriza N', '#')">
+                                <button class="sidebar-bookmark-btn" onclick="toggleBookmark(this, 'hidrasi-minum-air', 'Hidrasi: Minum Air dengan Cara yang Benar', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80', 'Ternyata minum air terlalu cepat juga bisa berdampak kurang baik. Simak tips minum air dengan benar di sini.', 'Graciella Yeriza N', '#')">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
                                     </svg>
@@ -517,44 +523,58 @@
 </div>
 
 <script>
-// CSRF Token for AJAX requests
-const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '{{ csrf_token() }}';
+// CSRF Token for AJAX requests - set globally for all scripts
+window.csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '{{ csrf_token() }}';
+const csrfToken = window.csrfToken;
 
-// Toggle favorite function
-async function toggleFavorite(button, articleId, title, category, image, description, author, url) {
+// Provide guest flags globally so any component can use them
+window.isGuest = {!! auth()->guard()->guest() ? 'true' : 'false' !!};
+window.loginUrl = '{{ route('login') }}';
+
+// Global guard: if guest clicks any save/love/bookmark element, redirect to login
+document.addEventListener('click', function(e) {
+    if (!window.isGuest) return;
+    const clickable = e.target.closest('.main-bookmark-btn, .sidebar-bookmark-btn, .heart-icon, .small-heart');
+    if (clickable) {
+        e.preventDefault();
+        // Native browser alert
+        alert('Silakan login terlebih dahulu untuk menyimpan artikel');
+        window.location.href = window.loginUrl;
+    }
+}, true);
+
+// Toggle bookmark function (renamed to avoid collision with topik.blade.php)
+async function toggleBookmark(button, articleId, title, category, image, description, author, url) {
     // Debug log
-    console.log('toggleFavorite called with:', {
-        articleId, title, category, image, description, author, url
-    });
+    console.log('=== TOGGLE FAVORITE CLICKED ===');
+    console.log('Article ID:', articleId);
+    console.log('Button element:', button);
+    console.log('Button color:', button.style.color);
     
     // Check if user is authenticated
     @guest
+        // Tampilkan peringatan lalu arahkan ke login
         alert('Silakan login terlebih dahulu untuk menyimpan artikel');
         window.location.href = '{{ route("login") }}';
         return;
     @endguest
 
+    // Prevent multiple clicks
+    if (button.dataset.processing === 'true') {
+        console.log('Already processing, ignoring click');
+        return;
+    }
+    button.dataset.processing = 'true';
+
     try {
-        // Check current favorite status
-        const checkResponse = await fetch(`/favorites/check?article_id=${articleId}`, {
-            method: 'GET',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        });
-
-        if (!checkResponse.ok) {
-            throw new Error(`HTTP error! status: ${checkResponse.status}`);
-        }
-
-        const checkData = await checkResponse.json();
-        const isFavorited = checkData.is_favorited;
+        // Determine current state by class to avoid CSS/computed color issues
+        const isCurrentlyFavorited = button.classList.contains('favorited');
+        console.log('Bookmark button clicked - currently favorited:', isCurrentlyFavorited);
 
         let response;
-        if (isFavorited) {
+        if (isCurrentlyFavorited) {
             // Remove from favorites
+            console.log('REMOVING from favorites:', articleId);
             response = await fetch('/favorites', {
                 method: 'DELETE',
                 headers: {
@@ -567,12 +587,12 @@ async function toggleFavorite(button, articleId, title, category, image, descrip
             });
         } else {
             // Add to favorites
+            console.log('ADDING to favorites:', articleId);
             response = await fetch('/favorites', {
                 method: 'POST',
                 headers: {
                     'X-CSRF-TOKEN': csrfToken,
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
                 },
                 body: JSON.stringify({
                     article_id: articleId,
@@ -586,57 +606,53 @@ async function toggleFavorite(button, articleId, title, category, image, descrip
             });
         }
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error('HTTP Error:', response.status, errorText);
-            throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
-        }
-
         const data = await response.json();
+        console.log('Response status:', response.status);
+        console.log('Response data:', data);
 
         if (data.success) {
-            // Update button appearance
-            updateBookmarkButton(button, !isFavorited);
-            
-            // Show success message
+            // Update button appearance - toggle the state
+            updateBookmarkButton(button, !isCurrentlyFavorited);
             showNotification(data.message, 'success');
+            console.log('Updated button to state:', !isCurrentlyFavorited);
+        } else if (response.status === 409) {
+            // Handle duplicate - treat as success
+            updateBookmarkButton(button, true);
+            showNotification('Artikel sudah ada di favorit', 'success');
         } else {
-            console.error('Server response error:', data);
-            let errorMsg = data.message || 'Terjadi kesalahan';
-            if (data.error) {
-                errorMsg += ` (${data.error})`;
-            }
-            if (data.file && data.line) {
-                console.error(`Error in ${data.file} line ${data.line}`);
-            }
-            showNotification(errorMsg, 'error');
+            showNotification(data.message || 'Terjadi kesalahan', 'error');
         }
     } catch (error) {
         console.error('Error:', error);
         console.error('Full error details:', error);
         console.error('Error stack:', error.stack);
-        
-        // Check if it's a network error
-        if (error.name === 'TypeError' && error.message.includes('fetch')) {
-            showNotification('Koneksi bermasalah. Pastikan server berjalan.', 'error');
-        } else {
-            showNotification('Terjadi kesalahan saat menyimpan artikel. Silakan coba lagi.', 'error');
-        }
+        showNotification('Terjadi kesalahan saat menyimpan artikel', 'error');
+    } finally {
+        // Reset processing flag
+        button.dataset.processing = 'false';
+        console.log('=== TOGGLE FAVORITE FINISHED ===');
     }
 }
 
 // Update bookmark button appearance
 function updateBookmarkButton(button, isFavorited) {
-    const svg = button.querySelector('svg path');
+    const svg = button.querySelector('svg');
+    const path = button.querySelector('svg path');
+    if (!svg || !path) return;
+
     if (isFavorited) {
-        // Filled bookmark
-        svg.setAttribute('fill', 'currentColor');
-        button.style.color = '#B4D678';
+        // Apply green color consistently and fill the icon
+        button.classList.add('favorited');
+        svg.style.color = '#B4D678';
+        path.setAttribute('fill', 'currentColor');
+        path.setAttribute('stroke', 'currentColor');
         button.title = 'Hapus dari favorit';
     } else {
-        // Empty bookmark
-        svg.setAttribute('fill', 'none');
-        button.style.color = '#666';
+        // Revert to default grey outline
+        button.classList.remove('favorited');
+        svg.style.color = '#666';
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', 'currentColor');
         button.title = 'Simpan ke favorit';
     }
 }
@@ -688,8 +704,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         for (const button of bookmarkButtons) {
             const onclick = button.getAttribute('onclick');
             if (onclick) {
-                // Extract article ID from onclick attribute
-                const match = onclick.match(/toggleFavorite\([^,]+,\s*'([^']+)'/);
+                // Extract article ID from onclick attribute (supports both function names)
+                const match = onclick.match(/toggle(?:Favorite|Bookmark)\(.*?'([^']+)'/);
                 if (match) {
                     const articleId = match[1];
                     

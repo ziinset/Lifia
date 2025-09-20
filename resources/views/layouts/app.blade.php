@@ -44,10 +44,11 @@
     @yield('styles')
 </head>
 <body>
+    @include('components.navbar2')
     <div class="main-content">
         @yield('content')
     </div>
-
+    @include('components.footer')
     @yield('scripts')
 </body>
 </html>

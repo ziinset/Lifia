@@ -35,13 +35,13 @@ Route::get('/kategori/pola-makan-sehat/bagian-artikel', [ArticleController::clas
 // Kategori Aktivitas Fisik
 Route::get('/kategori/aktivitas-fisik', [ArticleController::class, 'aktivitasFisik'])->name('kategori.aktivitas-fisik');
 Route::get('/kategori/aktivitas-fisik/panduan', [ArticleController::class, 'aktivitasFisikPanduan'])->name('kategori.aktivitas-fisik.panduan');
-Route::get('/kategori/aktivitas-fisik/olahraga-aman-bumil', [ArticleController::class, 'olahragaAmanBumil'])->name('kategori.aktivitas-fisik.olahraga-aman-bumil');
 Route::get('/kategori/aktivitas-fisik/topik', [ArticleController::class, 'aktivitasFisikTopik'])->name('kategori.aktivitas-fisik.topik');
 Route::get('/kategori/aktivitas-fisik/banner', [ArticleController::class, 'aktivitasFisikBanner'])->name('kategori.aktivitas-fisik.banner');
-Route::get('/kategori/aktivitas-fisik/bagian', [ArticleController::class, 'aktivitasFisikBagian'])->name('kategori.aktivitas-fisik.bagian');
+Route::get('/kategori/aktivitas-fisik/bagian-artikel', [ArticleController::class, 'aktivitasFisikBagian'])->name('kategori.aktivitas-fisik.bagian-artikel');
+Route::get('/kategori/aktivitas-fisik/olahraga-aman-bumil', [ArticleController::class, 'olahragaAmanBumil'])->name('kategori.aktivitas-fisik.olahraga-aman-bumil');
 
 // Kategori Kesehatan Mental
-Route::get('/kategori/kesehatan-mental', [ArticleController::class, 'kesehatanMental'])->name('kategori.kesehatan-mental');
+Route::get('/kategori/kesehatan-mental', action: [ArticleController::class, 'kesehatanMental'])->name('kategori.kesehatan-mental');
 Route::get('/kategori/kesehatan-mental/panduan', [ArticleController::class, 'kesehatanMentalPanduan'])->name('kategori.kesehatan-mental.panduan');
 Route::get('/kategori/kesehatan-mental/topik', [ArticleController::class, 'kesehatanMentalTopik'])->name('kategori.kesehatan-mental.topik');
 Route::get('/kategori/kesehatan-mental/banner', [ArticleController::class, 'kesehatanMentalBanner'])->name('kategori.kesehatan-mental.banner');
@@ -101,3 +101,7 @@ Route::get('/cek-bmi', [BmiController::class, 'index'])->name('cek-bmi');
 Route::get('/fitplan', function () {
     return view('user.fitplan');
 })->name('fitplan');
+
+Route::get('/sidebar', function () {
+    return view('components.sidebar');
+})->name('sidebar');

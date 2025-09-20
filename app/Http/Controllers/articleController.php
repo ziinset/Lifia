@@ -69,36 +69,37 @@ class ArticleController extends Controller
         return view('user.kategori.pola-makan-sehat.bagianartikel');
     }
 
-    // Aktivitas Fisik Methods
-    public function aktivitasFisik()
-    {
-        return view('user.kategori.aktivitas-fisik.listolahraga');
-    }
+// Aktivitas Fisik Methods
+public function aktivitasFisik()
+{
+    return view('user.kategori.aktivitas-fisik.artikel-aktivitas');
+}
 
-    public function aktivitasFisikPanduan()
-    {
-        return view('user.kategori.aktivitas-fisik.panduan');
-    }
+public function aktivitasFisikPanduan()
+{
+    return view('user.kategori.aktivitas-fisik.panduan');
+}
 
-    public function olahragaAmanBumil()
-    {
-        return view('user.kategori.aktivitas-fisik.olahraga-aman-bumil');
-    }
+public function aktivitasFisikTopik()
+{
+    return view('user.kategori.aktivitas-fisik.topik');
+}
 
-    public function aktivitasFisikTopik()
-    {
-        return view('user.kategori.aktivitas-fisik.topik');
-    }
+public function aktivitasFisikBanner()
+{
+    return view('user.kategori.aktivitas-fisik.banner');
+}
 
-    public function aktivitasFisikBanner()
-    {
-        return view('user.kategori.aktivitas-fisik.banner');
-    }
+public function aktivitasFisikBagianArtikel()
+{
+    return view('user.kategori.aktivitas-fisik.bagianartikel');
+}
 
-    public function aktivitasFisikBagian()
-    {
-        return view('user.kategori.aktivitas-fisik.bagian');
-    }
+public function aktivitasFisikOlahragaAmanBumil()
+{
+    return view('user.kategori.aktivitas-fisik.olahraga-aman-bumil');
+}
+
 
     // Eco/Gaya Hidup Ramah Lingkungan Methods
     public function eco()

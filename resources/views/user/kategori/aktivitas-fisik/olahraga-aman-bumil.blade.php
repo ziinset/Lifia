@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Mulai Hari Dengan Sarapan Seimbang</title>
+=======
+    <title>Olahraga Aman untuk Ibu Hamil: Tetap Aktif Tanpa Risiko</title>
+>>>>>>> jonathan
     <link rel="stylesheet" href="{{ asset('css/sarapan-seimbang.css') }}">
 </head>
 <body>
     <x-navbar />
     <div class="container article">
+<<<<<<< HEAD
         <div class="category">🍃 Pola Makan Sehat</div>
 
         <h1>Mulai Hari Dengan Sarapan Seimbang</h1>
@@ -18,12 +23,28 @@
             <img src="{{ asset('img/food1.png') }}" alt="Menu sarapan 1">
             <img src="{{ asset('img/food2.png') }}" alt="Menu sarapan 2">
             <img src="{{ asset('img/food3.png') }}" alt="Menu sarapan 3">
+=======
+        <div class="category">🍃 Olahraga Sehat</div>
+
+        <h1>Olahraga Aman untuk Ibu Hamil: Tetap Aktif Tanpa Risiko</h1>
+        <p class="intro-text">Apakah kamu sering melewatkan sarapan? Ternyata kebiasaan ini bisa memengaruhi produktivitasmu sepanjang hari!</p>
+
+        <div class="image-row">
+            <img src="{{ asset('img/olga1.png') }}" alt="Olahraga 1">
+            <img src="{{ asset('img/olga2.png') }}" alt="Olahraga 2">
+            <img src="{{ asset('img/olga3.png') }}" alt="Olahraga 3">
+>>>>>>> jonathan
         </div>
 
         <div class="section">
             <h2>Apa Itu Sarapan?</h2>
+<<<<<<< HEAD
             <p>Sarapan adalah makan pertama yang kamu konsumsi setelah tidur malam. Setelah tubuh berjam‑jam tidak mendapat asupan, sarapan berfungsi sebagai “bahan bakar” awal untuk memulai aktivitas.</p>
             <p>Waktu terbaik sarapan adalah 1–2 jam setelah bangun. Pilih menu yang seimbang: karbohidrat kompleks, protein, lemak sehat, serta sayur dan buah agar energi lebih stabil.</p>
+=======
+            <p>Sarapan adalah makan pertama yang kamu konsumsi setelah tidur malam. Setelah tubuh berjam - jam tidak mendapat asupan, sarapan berfungsi sebagai “bahan bakar” awal untuk memulai aktivitas.</p>
+            <p>Waktu terbaik sarapan adalah 1-2 jam setelah bangun. Pilih menu yang seimbang: karbohidrat kompleks, protein, lemak sehat, serta sayur dan buah agar energi lebih stabil.</p>
+>>>>>>> jonathan
         </div>
 
         <div class="section">
@@ -103,7 +124,11 @@
 
     @include('components.footer')
 </body>
+<<<<<<< HEAD
 </html>
 
 
 
+=======
+</html>
+>>>>>>> jonathan

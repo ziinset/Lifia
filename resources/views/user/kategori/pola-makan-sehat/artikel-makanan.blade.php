@@ -3,6 +3,12 @@
 @section('title', 'Pola Makan Sehat')
 
 @section('content')
+<<<<<<< HEAD
+=======
+{{-- Navbar --}}
+@includeIf('components.navbar2')
+
+>>>>>>> jonathan
 {{-- Halaman Artikel --}}
 @includeIf('components.hero2')
 

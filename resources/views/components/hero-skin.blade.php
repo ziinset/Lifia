@@ -55,7 +55,7 @@
 
     <!-- Right Image -->
     <div class="lg:w-1/2 flex justify-center">
-      <img src="{{asset('images/skin.svg')}}" alt="Self Care"
+      <img src="images/skin.svg" alt="Self Care"
            class="object-contain w-full max-w-xl">
     </div>
   </section>

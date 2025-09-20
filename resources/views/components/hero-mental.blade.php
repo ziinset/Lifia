@@ -55,7 +55,7 @@
 
     <!-- Right Image (satu gambar saja) -->
     <div class="lg:w-1/2 flex justify-center">
-      <img src="{{asset('images/mental.svg')}}" alt="Hero Mental Health"
+      <img src="images/mental.svg" alt="Hero Mental Health"
            class="rounded-xl object-contain w-full max-w-md">
     </div>
   </section>

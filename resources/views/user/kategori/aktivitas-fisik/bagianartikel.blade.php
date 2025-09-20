@@ -1,3 +1,4 @@
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
 {{-- Artikel Section --}}
 <style>
     .artikel-section {
@@ -5,6 +6,41 @@
         padding: 40px 20px;
         font-family: 'Poppins', sans-serif;
     }
+=======
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artikel Terbaru</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            padding: 40px 20px;
+            font-family: 'Poppins', sans-serif;
+            opacity: 0;
+            animation: fadeInBody 1s ease-out 0.2s forwards;
+        }
+
+        @keyframes fadeInBody {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
 
         .container {
             max-width: 1200px;
@@ -15,8 +51,26 @@
             color: #4E342E;
             font-family: 'Poppins', sans-serif;
             font-size: 32px;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-weight: 600;
             margin-bottom: 30px;
+=======
+            font-weight: 700;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: slideInFromLeft 0.8s ease-out 0.3s forwards;
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .articles-layout {
@@ -31,6 +85,22 @@
             display: flex;
             flex-direction: column;
             height: auto;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
+=======
+            opacity: 0;
+            animation: slideInFromBottom 0.8s ease-out 0.5s forwards;
+        }
+
+        @keyframes slideInFromBottom {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .main-article-image {
@@ -41,14 +111,33 @@
             margin-bottom: 16px;
             position: relative;
             flex-shrink: 0;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
+=======
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .main-article-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .main-article-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
         }
 
+=======
+            transition: transform 0.3s ease;
+        }
+
+        .main-article-image:hover img {
+            transform: scale(1.05);
+        }
+
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         .main-article-content {
             display: flex;
             flex-direction: column;
@@ -59,14 +148,29 @@
             display: inline-flex;
             align-items: center;
             background-color: #e8f5e8;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             color: #4a7c59;
+=======
+            color: #8BAC65;
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             padding: 6px 14px;
             border-radius: 20px;
             font-family: 'Poppins', sans-serif;
             font-size: 13px;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-weight: 500;
+=======
+            font-weight: 700;
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             margin-bottom: 12px;
             width: fit-content;
+            transition: all 0.3s ease;
+        }
+
+        .main-category-tag:hover {
+            background-color: #8BAC65;
+            color: white;
+            transform: translateY(-2px);
         }
 
         .main-category-icon {
@@ -82,6 +186,7 @@
         .main-article-content h2 {
             font-family: 'Poppins', sans-serif;
             font-size: 22px;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-weight: 600;
             line-height: 1.3;
             margin-bottom: 12px;
@@ -93,6 +198,25 @@
             font-size: 15px;
             line-height: 1.5;
             color: #666;
+=======
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 12px;
+            color: #4E342E;
+            transition: color 0.3s ease;
+        }
+
+        .main-article-content h2:hover {
+            color: #8BAC65;
+        }
+
+        .main-article-desc {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #4E342E;
+            font-weight: 500;
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             margin-bottom: 20px;
         }
 
@@ -100,9 +224,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-family: 'Poppins', sans-serif;
             font-size: 12px;
             color: #999;
+=======
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #999;
+            font-weight: 600;
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .main-article-meta .author {
@@ -140,11 +271,36 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
+=======
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .main-action-btn:hover::before {
+            left: 100%;
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .main-action-btn:hover {
             background-color: #A5C866;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             transform: translateY(-1px);
+=======
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(180, 214, 120, 0.4);
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .main-bookmark-btn {
@@ -166,6 +322,10 @@
         .main-bookmark-btn:hover {
             background: rgba(180, 214, 120, 0.1);
             color: #B4D678;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
+=======
+            transform: scale(1.1);
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .main-bookmark-btn svg {
@@ -187,6 +347,38 @@
             align-items: flex-start;
             height: 158px;
             flex-shrink: 0;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
+=======
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-article:nth-child(1) {
+            animation: slideInFromRight 0.8s ease-out 0.7s forwards;
+        }
+
+        .sidebar-article:nth-child(2) {
+            animation: slideInFromRight 0.8s ease-out 0.9s forwards;
+        }
+
+        .sidebar-article:nth-child(3) {
+            animation: slideInFromRight 0.8s ease-out 1.1s forwards;
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .sidebar-article:hover {
+            transform: translateX(10px);
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .sidebar-article-image {
@@ -197,12 +389,28 @@
             overflow: hidden;
             background-color: #f0f0f0;
             margin-top: 2px;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
+=======
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-article:hover .sidebar-article-image {
+            transform: scale(1.05);
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .sidebar-article-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
+=======
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-article:hover .sidebar-article-image img {
+            transform: scale(1.1);
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .sidebar-article-content {
@@ -222,13 +430,26 @@
             display: inline-flex;
             align-items: center;
             background-color: transparent;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             color: #4a7c59;
             padding: 0;
             font-family: 'Poppins', sans-serif;
             font-size: 12px;
             font-weight: 500;
+=======
+            color: #8BAC65;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             margin-bottom: 8px;
             width: fit-content;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar-category-tag:hover {
+            color: #4E342E;
         }
 
         .sidebar-category-icon {
@@ -244,16 +465,33 @@
         .sidebar-article h3 {
             font-family: 'Poppins', sans-serif;
             font-size: 15px;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-weight: 600;
             color: #333;
+=======
+            font-weight: 700;
+            color: #4E342E;
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             line-height: 1.2;
             margin-bottom: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar-article:hover h3 {
+            color: #8BAC65;
         }
 
         .sidebar-article-desc {
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-family: 'Poppins', sans-serif;
             font-size: 12px;
             color: #666;
+=======
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #4E342E;
+            font-weight: 500;
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             line-height: 1.3;
             margin-bottom: 6px;
             flex-grow: 1;
@@ -272,9 +510,14 @@
         }
 
         .sidebar-author-info {
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-family: 'Poppins', sans-serif;
+=======
+            font-family: 'Montserrat', sans-serif;
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             font-size: 12px;
             color: #999;
+            font-weight: 600;
             flex: 1;
         }
 
@@ -300,11 +543,35 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
+=======
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar-action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .sidebar-action-btn:hover::before {
+            left: 100%;
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .sidebar-action-btn:hover {
             background-color: #A5C866;
             transform: translateY(-1px);
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
+=======
+            box-shadow: 0 5px 15px rgba(180, 214, 120, 0.4);
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .sidebar-bookmark-btn {
@@ -330,6 +597,10 @@
         .sidebar-bookmark-btn:hover {
             background: rgba(180, 214, 120, 0.1);
             color: #B4D678;
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
+=======
+            transform: scale(1.1);
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         @media (max-width: 768px) {
@@ -342,6 +613,7 @@
                 font-size: 24px;
                 margin-bottom: 20px;
             }
+<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
 
             .main-article-container {
                 height: auto;
@@ -351,6 +623,17 @@
                 height: 250px;
             }
 
+=======
+            
+            .main-article-container {
+                height: auto;
+            }
+            
+            .main-article-image {
+                height: 250px;
+            }
+            
+>>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             .main-article-content h2 {
                 font-size: 20px;
             }

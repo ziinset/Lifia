@@ -301,11 +301,13 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
-                <img src="{{ asset('images/logo-lifia.svg') }}" alt="Lifia Logo" width="150">
+                <a href="{{ route('landing') }}">
+                    <img src="{{ asset('images/logo-lifia.svg') }}" alt="Lifia Logo" width="150">
+                </a>
             </div>
 
             <div class="navbar-links" id="navbarLinks">
-                <a href="{{ route('home') }}" data-nav="beranda">
+                <a href="#" data-nav="beranda">
                     Beranda
                 </a>
 
@@ -316,30 +318,61 @@
                         <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
                     </a>
                     <div class="navbar-dropdown-menu" id="navbarArtikelMenu">
-                        <a href="{{ route('kategori.pola-makan-sehat') }}" data-nav="pola-makan">Pola Makan Sehat</a>
-                        <a href="{{ route('kategori.aktivitas-fisik') }}" data-nav="aktivitas-fisik">Aktivitas Fisik</a>
-                        <a href="{{ route('kategori.kesehatan-mental') }}" data-nav="kesehatan-mental">Kesehatan Mental</a>
-                        <a href="{{ route('kategori.perawatan-diri') }}" data-nav="perawatan-diri">Perawatan Diri</a>
-                        <a href="{{ route('kategori.vegan') }}" data-nav="vegan">Vegan</a>
-                        <a href="{{ route('kategori.eco') }}" data-nav="eco-living">Eco Living</a>
+                        <a href="{{ route('artikel.show', ['category' => 'pola-makan-sehat', 'article' => 'artikel-makanan']) }}" data-nav="pola-makan">Pola Makan Sehat</a>
+                        <a href="{{ route('artikel.show', ['category' => 'aktivitas-fisik', 'article' => 'listolahraga']) }}" data-nav="aktivitas-fisik">Aktivitas Fisik</a>
+                        <a href="{{ route('artikel.show', ['category' => 'kesehatan-mental', 'article' => 'artikel-mental']) }}" data-nav="kesehatan-mental">Kesehatan Mental</a>
+                        <a href="{{ route('artikel.show', ['category' => 'perawatan-diri', 'article' => 'artikel-perawatan']) }}" data-nav="perawatan-diri">Perawatan Diri</a>
+                        <a href="{{ route('artikel.show', ['category' => 'vegan', 'article' => 'artikel-vegan']) }}" data-nav="vegan">Vegan</a>
+                        <a href="{{ route('artikel.show', ['category' => 'eco-living', 'article' => 'artikel-eco']) }}" data-nav="eco-living">Eco Living</a>
                     </div>
                 </div>
 
-                <a href="{{ route('cek-bmi') }}" data-nav="cek-sehat">
+                <a href="#" data-nav="cek-sehat">
                     Cek Sehat
                 </a>
 
-                <a href="{{ route('tentang-kami') }}" data-nav="tentang-kami">
+                <a href="#" data-nav="tentang-kami">
                     Tentang Kami
                 </a>
 
-                <a href="{{ route('fitplan') }}" class="navbar-fitplan" data-nav="fitplan">
+                <a href="#" class="navbar-fitplan" data-nav="fitplan">
                     FitPlan
                 </a>
 
-                <a href="{{ route('login') }}" class="navbar-login" data-nav="login">
+                @guest
+                <a href="{{ route('login', ['redirect_to' => '/']) }}" class="navbar-login" data-nav="login">
                     Login
                 </a>
+                @endguest
+                @auth
+                @php
+                    $user = Auth::user();
+                    $nama = $user->nama_lengkap ?? $user->email;
+                    $initial = strtoupper(mb_substr($nama, 0, 1));
+                    $foto = $user->foto ?? null;
+
+                    // Simple logic: Admin ke dashboard admin, User ke dashboard user (profil)
+                    if ($user->role === 'admin') {
+                        $profileUrl = route('admin.dashboard');
+                    } else {
+                        $profileUrl = route('profil', ['redirect_to' => '/']);
+                    }
+
+                    // DEBUG: Uncomment untuk lihat role user
+                    // dd('Email: ' . $user->email . ' | Role: ' . ($user->role ?? 'NULL') . ' | URL: ' . $profileUrl);
+                @endphp
+                <a href="{{ $profileUrl }}" class="navbar-login" data-nav="profile" style="display:flex; align-items:center; gap:10px; border-color:#fff; background:rgba(255,255,255,0.15);">
+
+                    @if($foto)
+                        <img src="{{ asset('storage/' . $foto) }}" alt="Avatar" style="width:28px; height:28px; border-radius:50%; object-fit:cover; border:1px solid rgba(255,255,255,0.6);">
+                    @else
+                        <span style="width:28px; height:28px; border-radius:50%; background:#ffffff; color:#4E342E; display:inline-flex; align-items:center; justify-content:center; font-weight:700;">
+                            {{ $initial }}
+                        </span>
+                    @endif
+                    <span style="font-weight:600;">{{ $nama }}</span>
+                </a>
+                @endauth
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -428,14 +461,16 @@
                 }
             }
 
-            // Event listeners untuk link navbar - hanya untuk visual feedback
-            document.querySelectorAll('.navbar-links a[data-nav]').forEach(link => {
+            // Event listeners untuk link navbar
+            document.querySelectorAll('.navbar-links a').forEach(link => {
                 link.addEventListener('click', function(e) {
+                    // Biarkan navigasi default untuk link yang bukan '#'
+                    if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
+                        return;
+                    }
+                    e.preventDefault();
                     const navItem = this.getAttribute('data-nav');
-                    const href = this.getAttribute('href');
-
-                    // Hanya set state untuk visual feedback, biarkan navigasi normal
-                    if (navItem && href && href !== '#') {
+                    if (navItem) {
                         setNavbarState(navItem);
                     }
                 });

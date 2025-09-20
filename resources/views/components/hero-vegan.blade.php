@@ -56,7 +56,7 @@
 
     <!-- Right Image -->
     <div class="lg:w-1/2 flex justify-center">
-      <img src="{{asset('images/vegan.svg')}}" alt="Vegan Lifestyle"
+      <img src="images/vegan.svg" alt="Vegan Lifestyle"
            class="object-contain w-full max-w-lg">
     </div>
   </section>

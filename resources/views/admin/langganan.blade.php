@@ -34,20 +34,8 @@
             background: #FFFDF9;
         }
 
-        .top-header {
-            background: white;
-            padding: 20px 32px;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-bottom: 0;
-        }
-
+        /* Keep the animation for langganan page */
         .user-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
             opacity: 0;
             transform: translateX(20px);
             animation: slideInRight 0.6s ease 0.3s forwards;
@@ -58,44 +46,6 @@
                 opacity: 1;
                 transform: translateX(0);
             }
-        }
-
-        .user-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        .header-avatar-image {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #e5e7eb;
-            transition: all 0.3s ease;
-        }
-
-        .user-avatar:hover {
-            box-shadow: 0 4px 12px rgba(85, 107, 47, 0.3);
-            transform: scale(1.05);
-        }
-
-        .user-avatar:hover .header-avatar-image {
-            border-color: #556B2F;
-        }
-
-        .user-details h2 {
-            font-size: 20px;
-            font-weight: 500;
-            font-family: 'Poppins', sans-serif;
-            color: #4E342E;
-            margin: 0;
         }
 
         .user-details p {
@@ -576,24 +526,8 @@
 
         <!-- Main Content -->
         <div class="main-content">
-            <!-- Top Header -->
-            <div class="top-header">
-                <div class="user-info">
-                    <div class="user-details">
-                        <h2>{{ Auth::user()->nama_lengkap ?? 'Admin' }}</h2>
-                        <p class="user-status">{{ Auth::user()->status ?? 'Admin' }}</p>
-                    </div>
-                    @php
-                        $foto = Auth::user()->foto ?? null;
-                        $initial = strtoupper(substr(Auth::user()->nama_lengkap ?? 'A', 0, 1));
-                    @endphp
-                    <div class="user-avatar">
-                        <img src="{{ $foto ? asset('storage/' . $foto) : 'https://placehold.co/48x48/8BAC65/white?text=' . $initial }}" 
-                             alt="{{ Auth::user()->nama_lengkap ?? 'Admin' }}"
-                             class="header-avatar-image">
-                    </div>
-                </div>
-            </div>
+            <!-- Include Header Admin Component -->
+            @include('components.headeradmin')
 
             <div class="content-wrapper">
                 <div class="page-header">

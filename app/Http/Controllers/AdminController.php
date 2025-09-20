@@ -17,6 +17,41 @@ class AdminController extends Controller
         return view('admin.langganan');
     }
 
+    public function kategori()
+    {
+        return view('admin.kategori');
+    }
+
+    public function polaMakanSehat()
+    {
+        return view('admin.crud-pola-makan');
+    }
+
+    public function aktivitasFisik()
+    {
+        return view('admin.crud-aktivitas-fisik');
+    }
+
+    public function kesehatanMental()
+    {
+        return view('admin.crud-kesehatan-mental');
+    }
+
+    public function perawatanDiri()
+    {
+        return view('admin.crud-perawatan-diri');
+    }
+
+    public function gayaHidupVegan()
+    {
+        return view('admin.crud-gaya-hidup-vegan');
+    }
+
+    public function ecoLiving()
+    {
+        return view('admin.crud-eco-living');
+    }
+
     // Update admin profile (foto, nama, dan status)
     public function updateProfile(Request $request)
     {

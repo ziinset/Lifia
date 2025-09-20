@@ -9,7 +9,7 @@
             $foto = Auth::user()->foto ?? null;
             $initial = strtoupper(substr(Auth::user()->nama_lengkap ?? 'A', 0, 1));
         @endphp
-        <div class="user-avatar" onclick="openProfileModal(event)">
+        <div class="user-avatar" id="userAvatarButton">
             <img src="{{ $foto ? asset('storage/' . $foto) : 'https://placehold.co/48x48/8BAC65/white?text=' . $initial }}" 
                  alt="{{ Auth::user()->nama_lengkap ?? 'Admin' }}"
                  class="header-avatar-image">
@@ -357,19 +357,36 @@
 <!-- Header Admin JavaScript -->
 <script>
     function openProfileModal(event) {
+        // Strict validation - only allow if event is a genuine user click
+        if (!event || event.type !== 'click') {
+            console.warn('Modal open blocked: Invalid event type');
+            return;
+        }
+        
         // Prevent any event bubbling that might cause accidental triggers
-        if (event) {
-            event.preventDefault();
-            event.stopPropagation();
+        event.preventDefault();
+        event.stopPropagation();
+        
+        // Additional check: ensure the click target is the avatar element
+        const avatarElement = document.querySelector('.user-avatar');
+        if (!avatarElement || (!avatarElement.contains(event.target) && event.target !== avatarElement)) {
+            console.warn('Modal open blocked: Click not on avatar element');
+            return;
         }
         
         const modal = document.getElementById('profileModal');
         if (modal && !modal.classList.contains('active')) {
+            // Double-check that this is not an accidental trigger
+            if (event.isTrusted === false) {
+                console.warn('Modal open blocked: Untrusted event');
+                return;
+            }
+            
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
             
-            // Log for debugging (remove in production)
-            console.log('Profile modal opened by user click');
+            // Log for debugging
+            console.log('Profile modal opened by genuine user click');
         }
     }
 
@@ -381,8 +398,15 @@
         }
     }
 
+    // Global flag to prevent duplicate event listeners
+    let modalInitialized = false;
+    
     // Initialize modal state and event listeners when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
+        // Prevent multiple initializations
+        if (modalInitialized) return;
+        modalInitialized = true;
+        
         const modal = document.getElementById('profileModal');
         
         // Always ensure modal is closed on page load/navigation
@@ -392,29 +416,64 @@
             
             // Clear any stored modal state
             sessionStorage.removeItem('profileModalOpen');
+            localStorage.removeItem('profileModalOpen');
             
-            // Close modal when clicking outside
-            modal.addEventListener('click', function(e) {
+            // Remove any existing event listeners to prevent duplicates
+            const newModal = modal.cloneNode(true);
+            modal.parentNode.replaceChild(newModal, modal);
+            
+            // Add fresh event listener for clicking outside
+            newModal.addEventListener('click', function(e) {
                 if (e.target === this) {
                     closeProfileModal();
                 }
             });
         }
         
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeProfileModal();
-            }
-        });
+        // Close modal with Escape key (remove existing listeners first)
+        document.removeEventListener('keydown', handleEscapeKey);
+        document.addEventListener('keydown', handleEscapeKey);
+        
+        // Add safe click event listener to avatar
+        const avatarButton = document.getElementById('userAvatarButton');
+        if (avatarButton) {
+            // Remove any existing listeners
+            avatarButton.replaceWith(avatarButton.cloneNode(true));
+            const newAvatarButton = document.getElementById('userAvatarButton');
+            
+            newAvatarButton.addEventListener('click', function(event) {
+                // Only proceed if this is a genuine user click
+                if (event && event.isTrusted && event.type === 'click') {
+                    openProfileModal(event);
+                }
+            });
+        }
         
         // Prevent any accidental modal opening on page load
         setTimeout(function() {
-            if (modal && modal.classList.contains('active')) {
+            const currentModal = document.getElementById('profileModal');
+            if (currentModal && currentModal.classList.contains('active')) {
                 console.warn('Modal was unexpectedly active, closing it');
                 closeProfileModal();
             }
         }, 100);
+    });
+    
+    // Separate function for escape key handling
+    function handleEscapeKey(e) {
+        if (e.key === 'Escape') {
+            closeProfileModal();
+        }
+    }
+    
+    // Clean up on page unload
+    window.addEventListener('beforeunload', function() {
+        const modal = document.getElementById('profileModal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        modalInitialized = false;
     });
 
     // Profile image change functionality

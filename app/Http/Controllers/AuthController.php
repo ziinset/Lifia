@@ -77,7 +77,7 @@ class AuthController extends Controller
 
             // Cek role
             if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard')->with('success', 'Selamat datang Admin!');
+                return redirect()->route('admin.dashboard');
             }
 
             // Tentukan redirect dinamis berdasarkan asal

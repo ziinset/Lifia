@@ -85,6 +85,23 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.dashboard');
     Route::get('/admin/langganan', [AdminController::class, 'langganan'])
         ->name('admin.langganan');
+    Route::get('/admin/kategori', [AdminController::class, 'kategori'])
+        ->name('admin.kategori');
+    
+    // Admin Article Category Routes
+    Route::get('/admin/pola-makan-sehat', [AdminController::class, 'polaMakanSehat'])
+        ->name('admin.pola-makan-sehat');
+    Route::get('/admin/aktivitas-fisik', [AdminController::class, 'aktivitasFisik'])
+        ->name('admin.aktivitas-fisik');
+    Route::get('/admin/kesehatan-mental', [AdminController::class, 'kesehatanMental'])
+        ->name('admin.kesehatan-mental');
+    Route::get('/admin/perawatan-diri', [AdminController::class, 'perawatanDiri'])
+        ->name('admin.perawatan-diri');
+    Route::get('/admin/gaya-hidup-vegan', [AdminController::class, 'gayaHidupVegan'])
+        ->name('admin.gaya-hidup-vegan');
+    Route::get('/admin/eco-living', [AdminController::class, 'ecoLiving'])
+        ->name('admin.eco-living');
+        
     Route::post('/admin/profile/update', [AdminController::class, 'updateProfile'])
         ->name('admin.profile.update');
 });

@@ -1,8 +1,8 @@
 <style>
-    /* FitPlan Header Styles */
+    /* FitPlan Hero Styles */
     .fitplan-hero {
         position: relative;
-        background: #f6f4ef;
+        background: #5e7844; /* hijau seperti gambar pertama */
         padding: 120px 0 60px;
         overflow: hidden;
     }
@@ -17,116 +17,111 @@
         gap: 36px;
     }
 
-    .fitplan-eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        color: #ffffff;
-        background: #5e7844;
-        padding: 8px 14px;
-        border-radius: 999px;
-        box-shadow: 0 4px 14px rgba(94,120,68,.3);
-    }
-
     .fitplan-title {
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
-        color: #27341b;
-        font-size: 46px;
-        line-height: 1.2;
-        margin: 14px 0 10px;
+        color: #ffffff;
+        font-size: 40px;
+        line-height: 1.3;
+        margin: 0 0 12px;
     }
 
     .fitplan-desc {
         font-family: 'Montserrat', sans-serif;
-        color: #5b5b5b;
+        color: #e7e7e7;
         line-height: 1.8;
         font-size: 15px;
-        max-width: 560px;
-        margin-bottom: 18px;
+        max-width: 520px;
+        margin-bottom: 28px;
     }
 
     .fitplan-metrics {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
-        margin: 18px 0 22px;
-        max-width: 520px;
+        gap: 14px;
+        margin-bottom: 28px;
+        max-width: 480px;
     }
 
     .fitplan-metric {
-        background: #ffffff;
-        border: 1px solid #e1ead8;
+        background: #fff;
         border-radius: 14px;
-        padding: 14px 16px;
-        display: grid;
-        gap: 2px;
-        box-shadow: 0 6px 16px rgba(0,0,0,.05);
+        padding: 18px 16px;
+        text-align: center;
+        box-shadow: 0 6px 18px rgba(0,0,0,.12);
     }
 
-    .fitplan-metric strong { color: #2f4b1e; font-size: 18px; }
-    .fitplan-metric span { color: #7c8b73; font-size: 12px; font-weight: 600; }
+    .fitplan-metric strong {
+        color: #2f4b1e;
+        font-size: 20px;
+    }
+    .fitplan-metric span {
+        color: #666;
+        font-size: 13px;
+        font-weight: 600;
+    }
 
     .fitplan-cta {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        background: linear-gradient(135deg, #7ea861, #6e9754);
+        justify-content: center;
+        gap: 8px;
+        background: linear-gradient(135deg, #9e8262, #c8b39b);
         color: #fff;
         border: none;
-        padding: 14px 20px;
-        border-radius: 14px;
+        padding: 14px 26px;
+        border-radius: 20px;
         font-weight: 700;
         font-family: 'Montserrat', sans-serif;
-        box-shadow: 0 10px 24px rgba(110,151,84,.25);
         cursor: pointer;
         text-decoration: none;
+        transition: transform 0.25s ease;
+    }
+
+    .fitplan-cta:hover {
+        transform: translateY(-2px);
     }
 
     /* Right visual */
     .fitplan-visual {
-        position: relative;
-        display: grid;
-        place-items: center;
-    }
+    position: relative;
+    display: grid;
+    place-items: center;
+}
 
-    .fitplan-circle {
-        width: 520px;
-        height: 520px;
-        border-radius: 50%;
-        background: radial-gradient(circle at 40% 40%, #88a36f, #5e7844 70%);
-        position: relative;
-        display: grid;
-        place-items: center;
-        overflow: hidden;
-        box-shadow: 0 20px 50px rgba(94,120,68,.45);
-    }
+.fitplan-circle {
+    width: 480px;
+    height: 480px;
+    border-radius: 50%;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 18px 40px rgba(0,0,0,.2);
+}
 
-    .fitplan-people {
-        width: 92%;
-        height: auto;
-        object-fit: contain;
-        transform: translateY(8px);
-    }
+
+.fitplan-people {
+    position: absolute;
+    bottom: 0;
+    right: 98px; /* geser dikit ke kanan */
+    width: auto;
+    max-width: 389px; /* atur sesuai selera */
+    height: auto;
+    z-index: 2;
+}
 
     .fitplan-float {
         position: absolute;
-        background: rgba(255,255,255,.95);
-        border: 1px solid #e1ead8;
+        background: #dff1d6;
         border-radius: 16px;
         padding: 10px 12px;
-        color: #2f4b1e;
-        font-family: 'Montserrat', sans-serif;
-        font-size: 13px;
-        font-weight: 700;
         box-shadow: 0 10px 30px rgba(0,0,0,.12);
         animation: fpfloat 6s ease-in-out infinite;
     }
 
-    .fitplan-float.fp1 { top: 18%; right: -16px; animation-delay: 0s; }
-    .fitplan-float.fp2 { bottom: 14%; left: -10px; animation-delay: 2s; }
+    .fitplan-float.fp1 { top: 20%; right: -16px; animation-delay: 0s; }
+    .fitplan-float.fp2 { bottom: 15%; left: -14px; animation-delay: 2s; }
+    .fitplan-float fp3 { top: 45%; left: -12px; animation-delay: 1s; }
 
     @keyframes fpfloat {
         0%, 100% { transform: translateY(0); }
@@ -136,38 +131,47 @@
     @media (max-width: 1024px) {
         .fitplan-hero { padding: 100px 0 40px; }
         .fitplan-hero .container { grid-template-columns: 1fr; text-align: center; }
-        .fitplan-desc, .fitplan-metrics { margin-left: auto; margin-right: auto; }
-        .fitplan-circle { width: 420px; height: 420px; }
+        .fitplan-circle { width: 380px; height: 380px; }
     }
 
     @media (max-width: 520px) {
-        .fitplan-title { font-size: 32px; }
-        .fitplan-circle { width: 340px; height: 340px; }
+        .fitplan-title { font-size: 28px; }
+        .fitplan-circle { width: 300px; height: 300px; }
     }
+    @media (max-width: 768px) {
+    .fitplan-people {
+        max-width: 280px;
+        right: 0;
+    }
+}
+
+@media (max-width: 520px) {
+    .fitplan-people {
+        max-width: 220px;
+        right: 0;
+    }
+}
+
 </style>
 
 <section class="fitplan-hero">
     <div class="container">
         <div class="fitplan-left">
-            <div class="fitplan-eyebrow">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-                Panduan Olahraga
-            </div>
-            <h1 class="fitplan-title">Sehat & Konsisten</h1>
-            <p class="fitplan-desc">FitPlan siap bantu kamu, dari pemula sampai pro, menyusun latihan harian yang terstruktur dan menyenangkan.</p>
+            <h1 class="fitplan-title">Panduan Olahraga<br>Sehat & Konsisten</h1>
+            <p class="fitplan-desc">Pilih tujuanmu, ikuti panduan harian, dan lihat progresmu berkembang.</p>
 
             <div class="fitplan-metrics">
                 <div class="fitplan-metric">
                     <strong>500+</strong>
-                    <span>Latihan</span>
+                    <span>Pengguna aktif</span>
                 </div>
                 <div class="fitplan-metric">
                     <strong>100+</strong>
-                    <span>Program</span>
+                    <span>Video workout</span>
                 </div>
                 <div class="fitplan-metric">
                     <strong>60+</strong>
-                    <span>Instruktur</span>
+                    <span>Resep kesehatan</span>
                 </div>
             </div>
 
@@ -175,16 +179,18 @@
         </div>
 
         <div class="fitplan-visual">
-            <div class="fitplan-circle">
-                <!-- Replace with real asset if available -->
-                <img class="fitplan-people" src="{{ asset('img/fitplan-people.png') }}" alt="Athlete" onerror="this.src='data:image/svg+xml;utf8,\
-                <svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 300 380\'>\
-                <rect width=\'100%\' height=\'100%\' fill=\'%237ea861\'/>\
-                <text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'Poppins, sans-serif\' font-size=\'22\' fill=\'white\'>Gambar Atlet</text>\
-                </svg>'"/>
+            <div class="fitplan-circle"></div>
 
-                <div class="fitplan-float fp1">Target Harian ✓</div>
-                <div class="fitplan-float fp2">Konsisten 7 hari</div>
+            <img class="fitplan-people" src="{{ asset('img/fitplan-people.png') }}" alt="Athlete" />
+
+            <div class="fitplan-float fp1">
+                <iconify-icon icon="mdi:weight-lifter"></iconify-icon>
+            </div>
+            <div class="fitplan-float fp2">
+                <iconify-icon icon="mdi:food-apple"></iconify-icon>
+            </div>
+            <div class="fitplan-float fp3">
+                <iconify-icon icon="mdi:run"></iconify-icon>
             </div>
         </div>
     </div>

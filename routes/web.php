@@ -99,9 +99,9 @@ Route::get('/cek-bmi', [BmiController::class, 'index'])->name('cek-bmi');
 
 // FitPlan Route (placeholder for now)
 Route::get('/fitplan', function () {
-    return view('user.fitplan');
+    return view('premium.fitplan');
 })->name('fitplan');
 
-Route::get('/sidebar', function () {
-    return view('components.sidebar');
-})->name('sidebar');
+Route::get('/program-turun-berat-badan', function () {
+    return view('premium.program-turunbb');
+})->name('program-turun-berat-badan');

@@ -18,7 +18,7 @@ use App\Http\Controllers\SearchController;
 // ==========================
 // Halaman umum (tanpa login)
 // ==========================
-Route::get('/', fn() => view('landing'))->name('landing');
+Route::get('/', fn() => view('home'))->name('home');
 Route::get('/home', fn() => view('home'))->name('home');
 Route::get('/artikel', [ArticleController::class, 'index'])->name('artikel');
 Route::get('/kategori/{category}', [ArticleController::class, 'showCategory'])->name('kategori');
@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
     // Premium routes with controller
     Route::get('/premium', [PremiumController::class, 'premium'])->name('premium');
     Route::get('/nonpremium', [PremiumController::class, 'nonpremium'])->name('nonpremium');
-    
+
     // Favorite routes
     Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
     Route::delete('/favorites', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
@@ -87,7 +87,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.langganan');
     Route::get('/admin/kategori', [AdminController::class, 'kategori'])
         ->name('admin.kategori');
-    
+
     // Admin Article Category Routes
     Route::get('/admin/pola-makan-sehat', [AdminController::class, 'polaMakanSehat'])
         ->name('admin.pola-makan-sehat');
@@ -101,7 +101,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.gaya-hidup-vegan');
     Route::get('/admin/eco-living', [AdminController::class, 'ecoLiving'])
         ->name('admin.eco-living');
-        
+
     Route::post('/admin/profile/update', [AdminController::class, 'updateProfile'])
         ->name('admin.profile.update');
 });

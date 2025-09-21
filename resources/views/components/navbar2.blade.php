@@ -293,7 +293,7 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
-                <a href="{{ route('landing') }}">
+                <a href="{{ route('home') }}">
                     <img src="{{ asset('images/logo2-lifia.svg') }}" alt="Lifia Logo" width="150">
                 </a>
             </div>

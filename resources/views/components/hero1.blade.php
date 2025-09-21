@@ -17,12 +17,7 @@
             box-sizing: border-box;
         }
 
-        .hero-section {
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-            background-color: #fff;
-            overflow-x: hidden;
-        }
+       
 
         .hero-section .hero-container {
             background: linear-gradient(to bottom, #7BA05B 0%, #8BAC65 50%, #A8C373 100%);
@@ -640,67 +635,94 @@
             }
         }
 
-        /* Hover Fitplan - scoped */
-        .hero-section .hero-nav-links a.hero-fitplan:hover {
+        /* Navbar override for hero section */
+        .hero-section .navbar {
+            position: relative;
+            top: auto;
+            left: auto;
+            width: 100%;
+            z-index: auto;
+            background: transparent;
+        }
+
+        .hero-section .navbar-container {
+            background: transparent;
+            position: relative;
+        }
+
+        .hero-section .navbar-links {
+            background: transparent;
+        }
+
+        .hero-section .navbar-links a {
+            color: #fff;
+            border: 1.4px solid #fff;
+            background-color: transparent;
+        }
+
+        .hero-section .navbar-links a::after {
+            background-color: white;
+        }
+
+        .hero-section .navbar-links a:hover::after {
+            width: 50px;
+        }
+
+        .hero-section .navbar-links a.navbar-active {
+            background: linear-gradient(135deg, #F5F3EF, #EDE7DD, #E6DACB);
+            color: #4E342E;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: none;
+        }
+
+        .hero-section .navbar-links a:not(.navbar-active):hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .hero-section .navbar-links a.navbar-fitplan {
+            background: linear-gradient(135deg, #F5F3EF, #EDE7DD, #E6DACB);
+            color: #4E342E;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border: none;
+        }
+
+        .hero-section .navbar-dropdown-menu {
+            background: linear-gradient(to bottom, #ffffff, #f8f8f8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-section .navbar-dropdown-menu::before {
+            background: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero-section .navbar-dropdown-menu a:hover {
+            background: linear-gradient(135deg, #7BA05B, #8BAC65);
+            color: white;
+        }
+
+        .hero-section .navbar-menu-toggle span {
+            background-color: white;
+        }
+
+        .hero-section .navbar-links.navbar-active {
+            background: linear-gradient(to bottom, #7BA05B, #8BAC65);
+            right: 0;
+        }
+
+        .hero-section .navbar-links a.navbar-fitplan:hover {
             background-color: rgba(255, 255, 255, 0.3);
         }
+
     </style>
 </head>
 <body>
     <div class="hero-section">
         <div class="hero-container">
             <!-- Navigation -->
-            <nav class="hero-navbar">
-                <div class="hero-logo">
-                    <img src="{{asset('images/logo-lifia.svg')}}" alt="Lifia Logo">
-                </div>
-
-                <!-- Mobile Menu Toggle -->
-                <div class="hero-menu-toggle" id="heroMenuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
-                <div class="hero-nav-links" id="heroNavLinks">
-                    <a href="#" class="hero-active">
-                        Beranda
-                    </a>
-
-                    <!-- Artikel with dropdown -->
-                    <div class="hero-dropdown">
-                        <a href="#" class="hero-artikel" id="heroArtikelToggle">
-                            Artikel
-                            <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
-                        </a>
-                        <div class="hero-dropdown-menu" id="heroArtikelMenu">
-                            <a href="{{ route('artikel') }}">Pola Makan Sehat</a>
-                            <a href="#">Aktivitas Fisik</a>
-                            <a href="#">Kesehatan Mental</a>
-                            <a href="#">Perawatan Diri</a>
-                            <a href="#">Vegan</a>
-                            <a href="#">Eco Living</a>
-                        </div>
-                    </div>
-
-                    <a href="#">
-                        Cek Sehat
-                    </a>
-
-                    <a href="#">
-                        Tentang Kami
-                    </a>
-
-                    <a href="#" class="hero-fitplan">
-                        FitPlan
-                    </a>
-
-                    <a href="#" class="hero-login">
-                        Login
-                    </a>
-                </div>
-            </nav>
-
+            @include('components.navbar')
             <!-- Hero Section -->
             <section class="hero-content">
                 <div class="hero-text">
@@ -711,7 +733,6 @@
                         hidup yang lebih sehat mulai dari
                         pola makan, olahraga, skincare,
                         hingga kesehatan mental.
-                    </p>
                     <div class="hero-search-container">
                         <div class="hero-search-box">
                             <iconify-icon icon="iconamoon:search" class="hero-search-icon"></iconify-icon>
@@ -734,45 +755,122 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const artikelToggle = document.getElementById("heroArtikelToggle");
-            const dropdown = artikelToggle.closest(".hero-dropdown");
-            const menuToggle = document.getElementById("heroMenuToggle");
-            const navLinks = document.getElementById("heroNavLinks");
+            const artikelToggle = document.getElementById("navbarArtikelToggle");
+            const dropdown = artikelToggle.closest(".navbar-dropdown");
+            const menuToggle = document.getElementById("navbarMenuToggle");
+            const navLinks = document.querySelector(".navbar-links");
 
-            // Artikel dropdown toggle
-            artikelToggle.addEventListener("click", function(e) {
-                e.preventDefault();
-                dropdown.classList.toggle("hero-show");
+            // State management dengan switch case
+            let currentNavState = "beranda";
+
+            // Fungsi untuk mengubah status navbar menggunakan switch case
+            function setNavbarState(state) {
+                // Hapus kelas aktif dari semua link
+                document.querySelectorAll('.navbar-links a').forEach(link => {
+                    link.classList.remove('navbar-active');
+                });
+
+                // Gunakan switch case untuk mengatur status navbar
+                switch(state) {
+                    case 'beranda':
+                        document.querySelector('[data-nav="beranda"]').classList.add('navbar-active');
+                        console.log("Status navigasi: Beranda");
+                        break;
+                    case 'pola-makan':
+                        document.querySelector('[data-nav="pola-makan"]').classList.add('navbar-active');
+                        console.log("Status navigasi: Pola Makan Sehat");
+                        break;
+                    case 'aktivitas-fisik':
+                        document.querySelector('[data-nav="aktivitas-fisik"]').classList.add('navbar-active');
+                        console.log("Status navigasi: Aktivitas Fisik");
+                        break;
+                    case 'kesehatan-mental':
+                        document.querySelector('[data-nav="kesehatan-mental"]').classList.add('navbar-active');
+                        console.log("Status navigasi: Kesehatan Mental");
+                        break;
+                    case 'perawatan-diri':
+                        document.querySelector('[data-nav="perawatan-diri"]').classList.add('navbar-active');
+                        console.log("Status navigasi: Perawatan Diri");
+                        break;
+                    case 'vegan':
+                        document.querySelector('[data-nav="vegan"]').classList.add('navbar-active');
+                        console.log("Status navigasi: Vegan");
+                        break;
+                    case 'eco-living':
+                        document.querySelector('[data-nav="eco-living"]').classList.add('navbar-active');
+                        console.log("Status navigasi: Eco Living");
+                        break;
+                    case 'cek-sehat':
+                        document.querySelector('[data-nav="cek-sehat"]').classList.add('navbar-active');
+                        console.log("Status navigasi: Cek Sehat");
+                        break;
+                    case 'tentang-kami':
+                        document.querySelector('[data-nav="tentang-kami"]').classList.add('navbar-active');
+                        console.log("Status navigasi: Tentang Kami");
+                        break;
+                    case 'fitplan':
+                        document.querySelector('[data-nav="fitplan"]').classList.add('navbar-active');
+                        console.log("Status navigasi: FitPlan");
+                        break;
+                    case 'login':
+                        document.querySelector('[data-nav="login"]').classList.add('navbar-active');
+                        console.log("Status navigasi: Login");
+                        break;
+                    default:
+                        document.querySelector('[data-nav="beranda"]').classList.add('navbar-active');
+                        console.log("Status navigasi: Default (Beranda)");
+                }
+
+                currentNavState = state;
+
+                // Tutup menu mobile jika terbuka
+                if (navLinks.classList.contains('navbar-active')) {
+                    menuToggle.classList.remove('navbar-active');
+                    navLinks.classList.remove('navbar-active');
+                }
+            }
+
+            // Event listeners untuk link navbar
+            document.querySelectorAll('.navbar-links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Biarkan navigasi default untuk link yang bukan '#'
+                    if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
+                        return;
+                    }
+                    e.preventDefault();
+                    const navItem = this.getAttribute('data-nav');
+                    if (navItem) {
+                        setNavbarState(navItem);
+                    }
+                });
             });
+
+            // Dropdown functionality
+            if (artikelToggle) {
+                artikelToggle.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dropdown.classList.toggle("navbar-show");
+                });
+
+                // Close dropdown if clicked outside
+                document.addEventListener("click", function(e) {
+                    if (!dropdown.contains(e.target)) {
+                        dropdown.classList.remove("navbar-show");
+                    }
+                });
+            }
 
             // Mobile menu toggle
-            menuToggle.addEventListener("click", function() {
-                menuToggle.classList.toggle("hero-active");
-                navLinks.classList.toggle("hero-active");
-            });
+            if (menuToggle) {
+                menuToggle.addEventListener("click", function() {
+                    menuToggle.classList.toggle("navbar-active");
+                    navLinks.classList.toggle("navbar-active");
+                });
+            }
 
-            // Close dropdown if clicked outside
-            document.addEventListener("click", function(e) {
-                if (!dropdown.contains(e.target)) {
-                    dropdown.classList.remove("hero-show");
-                }
-            });
-
-            // Close mobile menu when clicking on a link
-            navLinks.addEventListener("click", function(e) {
-                if (e.target.tagName === "A" && !e.target.classList.contains("hero-artikel")) {
-                    menuToggle.classList.remove("hero-active");
-                    navLinks.classList.remove("hero-active");
-                }
-            });
-
-            // Close mobile menu when clicking outside
-            document.addEventListener("click", function(e) {
-                if (!menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
-                    menuToggle.classList.remove("hero-active");
-                    navLinks.classList.remove("hero-active");
-                }
-            });
+            // Inisialisasi status awal
+            setNavbarState('beranda');
         });
     </script>
 </body>

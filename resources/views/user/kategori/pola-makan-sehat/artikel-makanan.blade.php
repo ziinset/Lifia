@@ -1,14 +1,7 @@
-@extends('layouts.app')
 
-@section('title', 'Pola Makan Sehat')
-
-@section('content')
-<<<<<<< HEAD
-=======
 {{-- Navbar --}}
 @includeIf('components.navbar2')
 
->>>>>>> jonathan
 {{-- Halaman Artikel --}}
 @includeIf('components.hero2')
 
@@ -37,5 +30,3 @@
 <div style="margin-top: 50px;">
     @includeIf('user.kategori.pola-makan-sehat.panduan')
 </div>
-@endsection
-

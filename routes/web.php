@@ -1,15 +1,11 @@
 <?php
 
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BmiController;
-use App\Http\Controllers\TentangKamiController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PremiumController;
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\SearchController;
 
@@ -73,7 +69,7 @@ Route::middleware('auth')->group(function () {
     // Premium routes with controller
     Route::get('/premium', [PremiumController::class, 'premium'])->name('premium');
     Route::get('/nonpremium', [PremiumController::class, 'nonpremium'])->name('nonpremium');
-
+    
     // Favorite routes
     Route::post('/favorites', [FavoriteController::class, 'store'])->name('favorites.store');
     Route::delete('/favorites', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
@@ -89,6 +85,23 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.dashboard');
     Route::get('/admin/langganan', [AdminController::class, 'langganan'])
         ->name('admin.langganan');
+    Route::get('/admin/kategori', [AdminController::class, 'kategori'])
+        ->name('admin.kategori');
+    
+    // Admin Article Category Routes
+    Route::get('/admin/pola-makan-sehat', [AdminController::class, 'polaMakanSehat'])
+        ->name('admin.pola-makan-sehat');
+    Route::get('/admin/aktivitas-fisik', [AdminController::class, 'aktivitasFisik'])
+        ->name('admin.aktivitas-fisik');
+    Route::get('/admin/kesehatan-mental', [AdminController::class, 'kesehatanMental'])
+        ->name('admin.kesehatan-mental');
+    Route::get('/admin/perawatan-diri', [AdminController::class, 'perawatanDiri'])
+        ->name('admin.perawatan-diri');
+    Route::get('/admin/gaya-hidup-vegan', [AdminController::class, 'gayaHidupVegan'])
+        ->name('admin.gaya-hidup-vegan');
+    Route::get('/admin/eco-living', [AdminController::class, 'ecoLiving'])
+        ->name('admin.eco-living');
+        
     Route::post('/admin/profile/update', [AdminController::class, 'updateProfile'])
         ->name('admin.profile.update');
 });

@@ -37,7 +37,7 @@ class ProfileController extends Controller
         // ========== Update ke tabel users ==========
         // Update field yang ada di database
         $user->lokasi = $request->lokasi ?? $user->lokasi;
-
+        
         // Upload foto profil
         if ($request->hasFile('foto')) {
             $path = $request->file('foto')->store('foto_profil', 'public');

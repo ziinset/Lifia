@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('article_author')->nullable();
             $table->string('article_url')->nullable(); // URL to the full article
             $table->timestamps();
-            
+
             // Prevent duplicate favorites for same user and article
             $table->unique(['user_id', 'article_id']);
         });

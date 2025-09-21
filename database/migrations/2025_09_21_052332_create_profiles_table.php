@@ -8,17 +8,20 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('profiles', function (Blueprint $table) {
+        Schema::create('profiles', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->string('no_hp')->nullable();
             $table->string('instagram')->nullable();
             $table->string('tiktok')->nullable();
             $table->string('facebook')->nullable();
+            $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
     public function down(): void
     {
-        Schema::table('profiles', function (Blueprint $table) {
-            $table->dropColumn(['instagram', 'tiktok', 'facebook']);
-        });
+        Schema::dropIfExists('profiles');
     }
 };

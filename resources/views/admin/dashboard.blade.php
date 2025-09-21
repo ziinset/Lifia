@@ -256,8 +256,8 @@
             background: white;
             padding: 24px;
             border-radius: 16px;
-            box-shadow: 
-                0 6px 16px rgba(0, 0, 0, 0.15), 
+            box-shadow:
+                0 6px 16px rgba(0, 0, 0, 0.15),
                 0 3px 8px rgba(0, 0, 0, 0.1),
                 inset 0 1px 3px rgba(0, 0, 0, 0.1),
                 inset 0 -1px 2px rgba(0, 0, 0, 0.05);
@@ -388,7 +388,7 @@
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -562,7 +562,7 @@
                         date_default_timezone_set('Asia/Jakarta');
                         $hour = date('H');
                         $greeting = '';
-                        
+
                         if ($hour >= 5 && $hour < 12) {
                             $greeting = 'Selamat Pagi';
                         } elseif ($hour >= 12 && $hour < 17) {
@@ -576,7 +576,7 @@
                     <h1>Halo {{ Auth::user()->nama_lengkap ?? 'Admin' }}, {{ $greeting }}!</h1>
                     <p>Konsistensi kecil setiap hari membawa perubahan besar</p>
                 </div>
-                
+
                 <div class="dashboard-content">
                     <!-- Statistics Cards -->
                     <div class="stats-grid">
@@ -604,7 +604,7 @@
                         <!-- Activities Section -->
                         <div class="activities-section">
                             <h2 class="section-header">Riwayat Aktivitas</h2>
-                            
+
                             <div class="activity-item">
                                 <img src="https://via.placeholder.com/40x40/556B2F/ffffff?text=G" alt="Avatar" class="activity-avatar">
                                 <div class="activity-content">
@@ -658,7 +658,7 @@
                             <div class="notes-content">
                                 <div class="note-item">
                                     <div class="note-title">Pola Makan Enak</div>
-                                    <div class="note-content">Jku suka jajabebat wu...</div>
+                                    <div class="note-content">Aku suka PJBL wu...</div>
                                     <div class="note-date">3 - 12</div>
                                 </div>
 
@@ -691,7 +691,7 @@
             const successMsg = document.querySelector('.alert-success');
             const infoMsg = document.querySelector('.alert-info');
             const errorMsg = document.querySelector('.alert-error');
-            
+
             if (successMsg) {
                 setTimeout(() => {
                     successMsg.style.opacity = '0';
@@ -701,7 +701,7 @@
                     }, 300);
                 }, 5000);
             }
-            
+
             if (infoMsg) {
                 setTimeout(() => {
                     infoMsg.style.opacity = '0';
@@ -711,7 +711,7 @@
                     }, 300);
                 }, 5000);
             }
-            
+
             if (errorMsg) {
                 setTimeout(() => {
                     errorMsg.style.opacity = '0';

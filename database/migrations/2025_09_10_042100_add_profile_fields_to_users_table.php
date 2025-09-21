@@ -12,16 +12,37 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('lokasi')->nullable()->after('role');
-            $table->string('foto')->nullable()->after('lokasi');
-            $table->string('nomor')->nullable()->after('foto');
-            $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable()->after('nomor');
-            $table->date('tanggal_lahir')->nullable()->after('jenis_kelamin');
-            $table->string('hobi')->nullable()->after('tanggal_lahir');
-            $table->text('bio')->nullable()->after('hobi');
-            $table->string('instagram')->nullable()->after('bio');
-            $table->string('tiktok')->nullable()->after('instagram');
-            $table->string('facebook')->nullable()->after('tiktok');
+            // Check and add columns that don't exist
+            if (!Schema::hasColumn('users', 'lokasi')) {
+                $table->string('lokasi')->nullable()->after('role');
+            }
+            if (!Schema::hasColumn('users', 'foto')) {
+                $table->string('foto')->nullable()->after('lokasi');
+            }
+            if (!Schema::hasColumn('users', 'nomor')) {
+                $table->string('nomor')->nullable()->after('foto');
+            }
+            if (!Schema::hasColumn('users', 'jenis_kelamin')) {
+                $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable()->after('nomor');
+            }
+            if (!Schema::hasColumn('users', 'tanggal_lahir')) {
+                $table->date('tanggal_lahir')->nullable()->after('jenis_kelamin');
+            }
+            if (!Schema::hasColumn('users', 'hobi')) {
+                $table->string('hobi')->nullable()->after('tanggal_lahir');
+            }
+            if (!Schema::hasColumn('users', 'bio')) {
+                $table->text('bio')->nullable()->after('hobi');
+            }
+            if (!Schema::hasColumn('users', 'instagram')) {
+                $table->string('instagram')->nullable()->after('bio');
+            }
+            if (!Schema::hasColumn('users', 'tiktok')) {
+                $table->string('tiktok')->nullable()->after('instagram');
+            }
+            if (!Schema::hasColumn('users', 'facebook')) {
+                $table->string('facebook')->nullable()->after('tiktok');
+            }
         });
     }
 

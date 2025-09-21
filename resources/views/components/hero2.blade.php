@@ -417,38 +417,7 @@
     </div>
 
     <div class="hero2-container">
-        <!-- Navigation -->
-        <nav class="hero2-nav">
-            <div class="hero2-brand">
-                <img src="{{ asset('img/logo-lifia-nav.svg') }}" alt="Lifia">
-            </div>
-            <div class="hero2-menu">
-                <a class="hero2-link" href="{{ route('home') }}">Beranda</a>
-
-                <!-- Artikel with dropdown -->
-                <div class="hero2-dropdown">
-                    <a class="hero2-link active" href="{{ route('artikel') }}" id="hero2ArtikelToggle">
-                        Artikel
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="6 9 12 15 18 9"/>
-                        </svg>
-                    </a>
-                    <div class="hero2-dropdown-menu" id="hero2ArtikelMenu">
-                        <a href="{{ route('artikel') }}">Pola Makan Sehat</a>
-                        <a href="#">Aktivitas Fisik</a>
-                        <a href="#">Kesehatan Mental</a>
-                        <a href="#">Perawatan Diri</a>
-                        <a href="#">Vegan</a>
-                        <a href="#">Eco Living</a>
-                    </div>
-                </div>
-
-                <a class="hero2-link" href="#">Cek Sehat</a>
-                <a class="hero2-link" href="#">Tentang Kami</a>
-                <a class="hero2-login" href="#">Login</a>
-            </div>
-        </nav>
-
+        
         <!-- Main Hero Section -->
         <section class="hero2-section">
             <div>

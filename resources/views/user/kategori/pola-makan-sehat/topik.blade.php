@@ -1,8 +1,5 @@
 {{-- Topik Populer Section --}}
-<<<<<<< HEAD
-=======
 <meta name="csrf-token" content="{{ csrf_token() }}">
->>>>>>> jonathan
 <style>
     .topik-section {
         font-family: 'Inter', sans-serif;
@@ -67,8 +64,6 @@
             stroke: #fff;
             stroke-width: 2;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-<<<<<<< HEAD
-=======
             color: #fff;
         }
 
@@ -88,7 +83,6 @@
         .heart-icon.favorited svg path {
             fill: #B4D678 !important;
             stroke: #B4D678 !important;
->>>>>>> jonathan
         }
 
         .category-tag {
@@ -242,8 +236,6 @@
             stroke: #fff;
             stroke-width: 2;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-<<<<<<< HEAD
-=======
             color: #fff;
         }
 
@@ -263,7 +255,6 @@
         .small-heart.favorited svg path {
             fill: #B4D678 !important;
             stroke: #B4D678 !important;
->>>>>>> jonathan
         }
 
         /* Responsive Design */
@@ -319,11 +310,7 @@
                 <article class="featured-item">
                     <div class="featured-image-container">
                         <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop&crop=center" alt="Healthy Grilled Chicken Salad" class="featured-image">
-<<<<<<< HEAD
-                        <div class="heart-icon">
-=======
                         <div class="heart-icon" onclick="toggleFavorite(this, 'makanan-sehat-pemula', 'Makanan Sehat untuk Pemula: Panduan 7 Hari Awal', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop&crop=center', 'Tips dan menu sederhana untuk mulai hidup sehat tanpa ribet. Cocok buat kamu yang baru mulai jaga pola makan.', 'Graciella Yeriza N', '#')">
->>>>>>> jonathan
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
@@ -346,11 +333,7 @@
                 <article class="featured-item">
                     <div class="featured-image-container">
                         <img src="https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?w=600&h=400&fit=crop&crop=center" alt="Plant-Based Power Bowl" class="featured-image">
-<<<<<<< HEAD
-                        <div class="heart-icon">
-=======
                         <div class="heart-icon" onclick="toggleFavorite(this, 'sarapan-sehat-cepat', 'Sarapan Sehat: Pilihan Cepat dan Bergizi untuk Setiap Hari', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1515543237350-b3eea1ec8082?w=600&h=400&fit=crop&crop=center', 'Ide sarapan anti-bosan dan praktis yang bantu kamu tetap semangat sepanjang hari.', 'Graciella Yeriza N', '#')">
->>>>>>> jonathan
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
@@ -378,11 +361,7 @@
                 <article class="article-item">
                     <div class="article-image-container">
                         <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=300&fit=crop&crop=center" alt="Mengatur Porsi Makan" class="article-image">
-<<<<<<< HEAD
-                        <div class="small-heart">
-=======
                         <div class="small-heart" onclick="toggleFavorite(this, 'mengatur-porsi-makan', 'Cara Mengatur Porsi Makan Agar Tetap Kenyang Tanpa Kalori Berlebih', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=300&fit=crop&crop=center', 'Panduan visual & trik makan agar tetap puas tapi tidak berlebihan kalori.', 'Graciella Yeriza Natalie', '#')">
->>>>>>> jonathan
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
@@ -409,11 +388,7 @@
                 <article class="article-item">
                     <div class="article-image-container">
                         <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=300&h=300&fit=crop&crop=center" alt="Makan Tengah Malam" class="article-image">
-<<<<<<< HEAD
-                        <div class="small-heart">
-=======
                         <div class="small-heart" onclick="toggleFavorite(this, 'bahaya-makan-tengah-malam', 'Bahaya Makan Tengah Malam & Tips Menghindarinya', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=300&h=300&fit=crop&crop=center', 'Panduan visual & trik makan agar tetap puas tapi tidak berlebihan kalori.', 'Graciella Yeriza Natalie', '#')">
->>>>>>> jonathan
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
@@ -440,11 +415,7 @@
                 <article class="article-item">
                     <div class="article-image-container">
                         <img src="https://images.unsplash.com/photo-1607532941433-304659e8198a?w=300&h=300&fit=crop&crop=center" alt="Snack Sehat" class="article-image">
-<<<<<<< HEAD
-                        <div class="small-heart">
-=======
                         <div class="small-heart" onclick="toggleFavorite(this, 'snack-sehat-camilan', 'Snack Sehat: Camilan Enak yang Nggak Bikin Berat Badan Naik', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1607532941433-304659e8198a?w=300&h=300&fit=crop&crop=center', 'Ganti keripik dan gorengan dengan camilan sehat yang tetap lezat dan mudah dibuat.', 'Graciella Yeriza Natalie', '#')">
->>>>>>> jonathan
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
@@ -471,11 +442,7 @@
                 <article class="article-item">
                     <div class="article-image-container">
                         <img src="https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&h=300&fit=crop&crop=center" alt="Minuman Sehat" class="article-image">
-<<<<<<< HEAD
-                        <div class="small-heart">
-=======
                         <div class="small-heart" onclick="toggleFavorite(this, 'minuman-sehat-rendah-kalori', 'Minum yang Bikin Sehat: Pilihan Minuman Rendah Kalori yang Menyegarkan', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&h=300&fit=crop&crop=center', 'Ganti minuman manis dengan pilihan sehat yang tetap segar dan nikmat sepanjang hari.', 'Graciella Yeriza Natalie', '#')">
->>>>>>> jonathan
                             <svg viewBox="0 0 24 24">
                                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                             </svg>
@@ -501,9 +468,6 @@
             </div>
         </section>
         </div>
-<<<<<<< HEAD
-    </div>
-=======
     </div>
 
 <script>
@@ -589,7 +553,7 @@ async function toggleFavorite(button, articleId, title, category, image, descrip
                         article_id: articleId
                     })
                 });
-                
+
                 const deleteData = await deleteResponse.json();
                 if (deleteData.success) {
                     updateHeartIcon(button, false);
@@ -653,35 +617,35 @@ document.addEventListener('DOMContentLoaded', async function() {
     @if(session('success'))
         showNotification('{{ session('success') }}', 'success');
     @endif
-    
+
     @if(session('error'))
         showNotification('{{ session('error') }}', 'error');
     @endif
-    
+
     // Check for success message in URL parameters
     const urlParams = new URLSearchParams(window.location.search);
     const successMessage = urlParams.get('success');
     const errorMessage = urlParams.get('error');
-    
+
     if (successMessage) {
         showNotification(decodeURIComponent(successMessage), 'success');
         // Clean URL without refreshing page
         window.history.replaceState({}, document.title, window.location.pathname);
     }
-    
+
     if (errorMessage) {
         showNotification(decodeURIComponent(errorMessage), 'error');
         // Clean URL without refreshing page
         window.history.replaceState({}, document.title, window.location.pathname);
     }
-    
+
     @auth
         // Add small delay to ensure DOM is fully ready
         setTimeout(async () => {
             console.log('Starting to check favorite status for all heart icons...');
             const heartIcons = document.querySelectorAll('.heart-icon, .small-heart');
             console.log('Found', heartIcons.length, 'heart icons');
-            
+
             for (const heartIcon of heartIcons) {
                 const onclick = heartIcon.getAttribute('onclick');
                 if (onclick) {
@@ -741,7 +705,7 @@ async function checkFavoriteStatus(heartIcon, articleId) {
 
         const data = await response.json();
         console.log('API response for', articleId, ':', data);
-        
+
         if (data.success) {
             console.log('Article', articleId, 'is favorited:', data.is_favorited);
             updateHeartIcon(heartIcon, data.is_favorited);
@@ -753,4 +717,3 @@ async function checkFavoriteStatus(heartIcon, articleId) {
     }
 }
 </script>
->>>>>>> jonathan

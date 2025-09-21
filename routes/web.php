@@ -8,11 +8,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BmiController;
 use App\Http\Controllers\TentangKamiController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PremiumController;
-use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\SearchController;
 

@@ -47,7 +47,6 @@
                                     <th>Slug</th>
                                     <th>Header Type</th>
                                     <th>Status</th>
-                                    <th>Urutan</th>
                                     <th>Dibuat</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -58,7 +57,7 @@
                                     <td>{{ $index + 1 }}</td>
                                     <td class="category-name">
                                         @if($category->icon)
-                                            <i class="{{ $category->icon }}" style="margin-right: 8px; color: {{ $category->color }};"></i>
+                                            <i class="{{ $category->icon }}" style="margin-right: 8px;"></i>
                                         @endif
                                         {{ $category->name }}
                                     </td>
@@ -71,7 +70,6 @@
                                             {{ $category->is_active ? 'Aktif' : 'Nonaktif' }}
                                         </span>
                                     </td>
-                                    <td class="sort-order">{{ $category->sort_order }}</td>
                                     <td class="timestamp">{{ $category->created_at->format('d/m/Y H:i') }}</td>
                                     <td>
                                         <div class="action-buttons">
@@ -81,7 +79,7 @@
                                             </button>
                                             <button class="btn btn-toggle" onclick="toggleStatus({{ $category->id }})">
                                                 <i class="fas fa-{{ $category->is_active ? 'eye-slash' : 'eye' }}"></i>
-                                                {{ $category->is_active ? 'Nonaktif' : 'Aktif' }}
+                                                {{ $category->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
                                             </button>
                                             <button class="btn btn-delete" onclick="deleteCategory({{ $category->id }})">
                                                 <i class="fas fa-trash"></i>
@@ -138,21 +136,9 @@
                     <textarea id="description" name="description" rows="2"></textarea>
                 </div>
                 
-                <div class="form-row-3">
-                    <div class="form-group">
-                        <label for="icon">Icon (Font Awesome)</label>
-                        <input type="text" id="icon" name="icon" placeholder="fas fa-heart">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="color">Warna</label>
-                        <input type="color" id="color" name="color" value="#4E342E">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="sort_order">Urutan</label>
-                        <input type="number" id="sort_order" name="sort_order" min="0" value="0">
-                    </div>
+                <div class="form-group">
+                    <label for="icon">Icon (Font Awesome)</label>
+                    <input type="text" id="icon" name="icon" placeholder="fas fa-heart">
                 </div>
                 
                 <div class="form-row">
@@ -647,13 +633,6 @@
             margin-bottom: 16px;
         }
         
-        .form-row-3 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 16px;
-            padding: 0 24px;
-            margin-bottom: 16px;
-        }
         
         .form-group label {
             display: block;
@@ -767,7 +746,7 @@
                 padding: 6px 10px;
             }
             
-            .form-row, .form-row-3 {
+            .form-row {
                 grid-template-columns: 1fr;
             }
             
@@ -779,8 +758,7 @@
             
             /* Hide less important columns on mobile */
             th:nth-child(3), td:nth-child(3), /* Slug */
-            th:nth-child(6), td:nth-child(6), /* Urutan */
-            th:nth-child(7), td:nth-child(7)  /* Dibuat */ {
+            th:nth-child(6), td:nth-child(6)  /* Dibuat */ {
                 display: none;
             }
             
@@ -789,7 +767,7 @@
             th:nth-child(2) { width: 30%; }  /* Nama Kategori */
             th:nth-child(4) { width: 15%; }  /* Header Type */
             th:nth-child(5) { width: 12%; }  /* Status */
-            th:nth-child(8) { width: 35%; }  /* Aksi */
+            th:nth-child(7) { width: 35%; }  /* Aksi */
         }
     </style>
 
@@ -821,9 +799,7 @@
                 document.getElementById('name').value = category.name;
                 document.getElementById('description').value = category.description || '';
                 document.getElementById('icon').value = category.icon || '';
-                document.getElementById('color').value = category.color || '#4E342E';
                 document.getElementById('header_type').value = category.header_type;
-                document.getElementById('sort_order').value = category.sort_order;
                 document.getElementById('is_active').checked = category.is_active;
                 
                 document.getElementById('categoryModal').style.display = 'block';

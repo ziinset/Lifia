@@ -9,6 +9,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MealPlanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,4 +117,13 @@ Route::middleware(['auth'])->group(function () {
         
     Route::post('/admin/profile/update', [AdminController::class, 'updateProfile'])
         ->name('admin.profile.update');
+});
+
+// ==========================
+// Premium Routes (requires login)
+// ==========================
+Route::middleware(['auth'])->group(function () {
+    Route::get('/premium/mealplan', [MealPlanController::class, 'index'])->name('premium.mealplan');
+    Route::get('/premium/mealplan/day/{day}', [MealPlanController::class, 'getMealPlan'])->name('premium.mealplan.day');
+    Route::get('/premium/mealplan/weekly', [MealPlanController::class, 'getWeeklyOverview'])->name('premium.mealplan.weekly');
 });

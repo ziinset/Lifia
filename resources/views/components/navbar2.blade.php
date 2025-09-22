@@ -313,8 +313,7 @@
                         @if(isset($globalCategories) && $globalCategories->count() > 0)
                             @foreach($globalCategories as $category)
                                 <a href="{{ route('artikel.category', $category->slug) }}" 
-                                   data-nav="{{ $category->slug }}" 
-                                   style="color: {{ $category->color ?? '#333' }};">
+                                   data-nav="{{ $category->slug }}">
                                     @if($category->icon)
                                         <i class="{{ $category->icon }}"></i>
                                     @endif

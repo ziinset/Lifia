@@ -42,6 +42,9 @@
             // Get categories for dynamic routing
             $adminCategories = isset($globalCategories) ? $globalCategories : collect();
             
+            // Debug: Check if categories exist
+            // dd('Categories count: ' . $adminCategories->count(), $adminCategories->toArray());
+            
             // Create dynamic route checking for all categories
             $isOnArticlePage = false;
             
@@ -92,7 +95,7 @@
             
             <!-- Dynamic Dropdown Submenu -->
             <div id="artikel-submenu" style="display: none; margin-left: 20px; margin-top: 8px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); border-radius: 16px; padding: 8px 0; border-left: 3px solid #556B2F; box-shadow: 0 4px 20px rgba(0,0,0,0.08); backdrop-filter: blur(10px);">
-                @if($adminCategories->count() > 0)
+                @if($adminCategories && $adminCategories->count() > 0)
                     @foreach($adminCategories as $category)
                         @php
                             // Check if specific route exists, otherwise use dynamic route
@@ -112,9 +115,9 @@
                         @endphp
                         <a href="{{ $routeUrl }}" class="submenu-item {{ $isActive ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ $isActive ? '#556B2F' : '#6b7280' }}; background-color: {{ $isActive ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
                             @if($category->icon)
-                                <i class="{{ $category->icon }}" style="width: 6px; height: 6px; margin-right: 12px; font-size: 10px; color: {{ $category->color ?? '#556B2F' }}; transform: {{ $isActive ? 'scale(1)' : 'scale(0.8)' }}; transition: transform 0.3s ease;"></i>
+                                <i class="{{ $category->icon }}" style="width: 6px; height: 6px; margin-right: 12px; font-size: 10px; color: #556B2F; transform: {{ $isActive ? 'scale(1)' : 'scale(0.8)' }}; transition: transform 0.3s ease;"></i>
                             @else
-                                <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: {{ $category->color ?? '#556B2F' }}; margin-right: 12px; transform: {{ $isActive ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                                <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ $isActive ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
                             @endif
                             <span style="margin-left: 8px; transition: transform 0.3s ease;">{{ $category->name }}</span>
                         </a>
@@ -147,6 +150,7 @@
                     </a>
                 @endif
             </div>
+            
         </div>
 
         <!-- Fitplan Menu Item -->
@@ -699,8 +703,10 @@ function toggleArtikelDropdown() {
     const toggle = document.querySelector('.artikel-toggle');
     const sidebar = document.getElementById('sidebar-admin');
     
-    if (submenu.classList.contains('show')) {
+    
+    if (submenu.style.display === 'block') {
         // Close dropdown
+        submenu.style.display = 'none';
         submenu.classList.remove('show');
         arrow.classList.remove('rotated');
         // Only remove dropdown-open, preserve page-active if it exists
@@ -709,9 +715,11 @@ function toggleArtikelDropdown() {
         }
         sidebar.classList.remove('scrollable');
     } else {
-        // Open dropdown - add dropdown-open only if not already page-active
+        // Open dropdown
+        submenu.style.display = 'block';
         submenu.classList.add('show');
         arrow.classList.add('rotated');
+        // Add dropdown-open only if not already page-active
         if (!toggle.classList.contains('page-active')) {
             toggle.classList.add('dropdown-open');
         }
@@ -728,6 +736,7 @@ document.addEventListener('click', function(event) {
     const sidebar = document.getElementById('sidebar-admin');
     
     if (!dropdown.contains(event.target)) {
+        submenu.style.display = 'none';
         submenu.classList.remove('show');
         arrow.classList.remove('rotated');
         // Only remove dropdown-open, preserve page-active if it exists
@@ -797,8 +806,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initial state - no scrolling
     sidebar.style.overflowY = 'hidden';
     
-    // Don't auto-open dropdown on page load - let user manually open it
-    // This prevents unwanted dropdown opening on page refresh
+    // Auto-open dropdown if we're on an article page
+    if (toggle && toggle.classList.contains('page-active')) {
+        submenu.style.display = 'block';
+        submenu.classList.add('show');
+        arrow.classList.add('rotated');
+        sidebar.classList.add('scrollable');
+    }
     
     // Add wheel event listener to prevent scrolling when dropdown is closed
     sidebar.addEventListener('wheel', function(e) {

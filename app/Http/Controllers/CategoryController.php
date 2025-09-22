@@ -34,9 +34,7 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'icon' => 'nullable|string|max:255',
-            'color' => 'nullable|string|max:7',
-            'header_type' => 'required|in:header,header1,hero-mental,hero-olga',
-            'sort_order' => 'nullable|integer|min:0'
+            'header_type' => 'required|in:header,header1,hero-mental,hero-olga'
         ]);
 
         $category = Category::create([
@@ -44,9 +42,9 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name),
             'description' => $request->description,
             'icon' => $request->icon,
-            'color' => $request->color ?? '#4E342E',
+            'color' => '#4E342E', // Default color
             'header_type' => $request->header_type,
-            'sort_order' => $request->sort_order ?? 0,
+            'sort_order' => 0, // Default sort order
             'is_active' => true
         ]);
 
@@ -73,9 +71,7 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'icon' => 'nullable|string|max:255',
-            'color' => 'nullable|string|max:7',
-            'header_type' => 'required|in:header,header1,hero-mental,hero-olga',
-            'sort_order' => 'nullable|integer|min:0'
+            'header_type' => 'required|in:header,header1,hero-mental,hero-olga'
         ]);
 
         $category->update([
@@ -83,9 +79,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name),
             'description' => $request->description,
             'icon' => $request->icon,
-            'color' => $request->color,
             'header_type' => $request->header_type,
-            'sort_order' => $request->sort_order,
             'is_active' => $request->has('is_active')
         ]);
 

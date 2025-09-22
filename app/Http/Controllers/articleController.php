@@ -35,7 +35,7 @@ class ArticleController extends Controller
         }
 
         $viewPath = $categoryViews[$category];
-        
+
         // Check if view file exists
         if (!view()->exists($viewPath)) {
             // Fallback to main artikel page
@@ -86,7 +86,7 @@ class ArticleController extends Controller
         }
 
         $viewPath = $articleViews[$category][$article];
-        
+
         // Check if view file exists
         if (!view()->exists($viewPath)) {
             abort(404, 'Artikel tidak ditemukan');
@@ -105,4 +105,62 @@ class ArticleController extends Controller
     {
         return view('user.kategori.pola-makan-sehat.sarapan-seimbang');
     }
+
+    // Kesehatan Mental Methods
+    public function kesehatanMental()
+    {
+        // Use the existing view file as the main page for Kesehatan Mental
+        return view('user.kategori.kesehatan-mental.artikel-mental');
+    }
+
+    public function kesehatanMentalPanduan()
+    {
+        return view('user.kategori.kesehatan-mental.panduan');
+    }
+
+    public function kesehatanMentalTopik()
+    {
+        return view('user.kategori.kesehatan-mental.topik');
+    }
+
+    public function kesehatanMentalBanner()
+    {
+        return view('user.kategori.kesehatan-mental.banner');
+    }
+
+    public function kesehatanMentalBagianArtikel()
+    {
+        return view('user.kategori.kesehatan-mental.bagianartikel');
+    }
+
+    public function kesehatanMentalSarapanSeimbang()
+    {
+        return view('user.kategori.kesehatan-mental.meredakan-stres');
+    }
+
+    // Pola Makan Sehat Methods
+    public function polaMakanSehatPanduan()
+    {
+        return view('user.kategori.pola-makan-sehat.panduan');
+    }
+
+    public function polaMakanSehatTopik()
+    {
+        return view('user.kategori.pola-makan-sehat.topik');
+    }
+
+    public function polaMakanSehatBanner()
+    {
+        return view('user.kategori.pola-makan-sehat.banner');
+    }
+
+    public function polaMakanSehatBagianArtikel()
+    {
+        return view('user.kategori.pola-makan-sehat.bagianartikel');
+    }
+
+// Aktivitas Fisik Methods
+public function aktivitasFisik()
+{
+    return view('user.kategori.aktivitas-fisik.artikel-fisik');
 }

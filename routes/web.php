@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BmiController;
+use App\Http\Controllers\TentangKamiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
@@ -105,3 +108,57 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/profile/update', [AdminController::class, 'updateProfile'])
         ->name('admin.profile.update');
 });
+// Kategori Perawatan Diri/Self-care
+Route::get('/kategori/perawatan-diri', [ArticleController::class, 'perawatanDiri'])->name('kategori.perawatan-diri');
+Route::get('/kategori/perawatan-diri/panduan', [ArticleController::class, 'perawatanDiriPanduan'])->name('kategori.perawatan-diri.panduan');
+Route::get('/kategori/perawatan-diri/topik', [ArticleController::class, 'perawatanDiriTopik'])->name('kategori.perawatan-diri.topik');
+Route::get('/kategori/perawatan-diri/banner', [ArticleController::class, 'perawatanDiriBanner'])->name('kategori.perawatan-diri.banner');
+Route::get('/kategori/perawatan-diri/bagian-artikel', [ArticleController::class, 'perawatanDiriBagianArtikel'])->name('kategori.perawatan-diri.bagian-artikel');
+Route::get('/kategori/perawatan-diri/kulit-malam', [ArticleController::class, 'perawatanDiriKulitMalam'])->name('kategori.perawatan-diri.kulit-malam');
+
+// Kategori Vegan/Vegetarian
+Route::get('/kategori/vegan', [ArticleController::class, 'vegan'])->name('kategori.vegan');
+Route::get('/kategori/vegan/panduan', [ArticleController::class, 'veganPanduan'])->name('kategori.vegan.panduan');
+Route::get('/kategori/vegan/topik', [ArticleController::class, 'veganTopik'])->name('kategori.vegan.topik');
+Route::get('/kategori/vegan/banner', [ArticleController::class, 'veganBanner'])->name('kategori.vegan.banner');
+Route::get('/kategori/vegan/bagian-artikel', [ArticleController::class, 'veganBagianArtikel'])->name('kategori.vegan.bagian-artikel');
+Route::get('/kategori/vegan/tips-pemula', [ArticleController::class, 'veganTipsPemula'])->name('kategori.vegan.tips-pemula');
+
+// Artikel Routes (Legacy/Alternative)
+Route::get('/artikel', [ArticleController::class, 'index'])->name('artikel');
+Route::get('/artikel/sarapan-seimbang', [ArticleController::class, 'sarapanSeimbang'])->name('artikel.sarapan-seimbang');
+Route::get('/artikel/olahraga-aman-bumil', [ArticleController::class, 'olahragaAmanBumil'])->name('artikel.olahraga-aman-bumil');
+
+// Public Routes (Alternative URLs)
+Route::get('/pola-makan-sehat', [ArticleController::class, 'index'])->name('pola-makan-sehat');
+Route::get('/aktivitas-fisik', [ArticleController::class, 'aktivitasFisik'])->name('aktivitas-fisik');
+Route::get('/kesehatan-mental', [ArticleController::class, 'kesehatanMental'])->name('kesehatan-mental');
+Route::get('/eco', [ArticleController::class, 'eco'])->name('eco');
+Route::get('/perawatan-diri', [ArticleController::class, 'perawatanDiri'])->name('perawatan-diri');
+Route::get('/vegan', [ArticleController::class, 'vegan'])->name('vegan');
+Route::get('/tentang-kami', [TentangKamiController::class, 'index'])->name('tentang-kami');
+
+// About Route
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+// Test Route (for development)
+Route::get('/test', function () {
+    return view('test');
+})->name('test');
+
+// BMI Route
+Route::get('/cek-bmi', [BmiController::class, 'index'])->name('cek-bmi');
+
+// FitPlan Route (placeholder for now)
+Route::get('/fitplan', function () {
+    return view('premium.fitplan');
+})->name('fitplan');
+
+Route::get('/program-turun-berat-badan', function () {
+    return view('premium.program-turunbb');
+})->name('program-turun-berat-badan');
+
+// Premium: Panduan Bakar Lemak di Perut
+Route::get('/panduan/bakar-lemak-di-perut', function () {
+    return view('premium.panduan-bakar-lemak');
+})->name('premium.panduan-bakar-lemak');

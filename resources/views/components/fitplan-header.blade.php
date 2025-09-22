@@ -99,10 +99,11 @@
     box-shadow: 0 18px 40px rgba(0,0,0,.2);
 }
 
+
 .fitplan-people {
     position: absolute;
     bottom: 0;
-    right: 94px; /* geser dikit ke kanan */
+    right: 98px; /* geser dikit ke kanan */
     width: auto;
     max-width: 389px; /* atur sesuai selera */
     height: auto;
@@ -150,6 +151,10 @@
         right: 0;
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> goldi
 </style>
 
 <section class="fitplan-hero">

@@ -105,8 +105,8 @@
         .login-button {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(135deg, #4a7c59 0%, #2d5016 100%);
-            color: white;
+            background:#FFF;
+            color: #4A3F35;
             border: none;
             border-radius: 12px;
             font-size: 1.1rem;

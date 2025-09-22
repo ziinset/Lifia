@@ -1,35 +1,35 @@
 @extends('layouts.app')
 
-@section('title', 'Pola Makan Sehat')
+@section('title', 'Aktivitas Fisik')
 
 @section('content')
 {{-- Halaman Artikel --}}
-@includeIf('components.hero2')
+@includeIf('components.hero-olga')
 
 <div style="margin-bottom: 40px;">
-    @includeIf('user.kategori.pola-makan-sehat.bagianartikel')
+    @includeIf('user.kategori.aktivitas-fisik.bagianartikel')
 </div>
 
 {{-- Halaman Banner --}}
 <div style="margin-top: 40px; margin-bottom: 60px;">
-    @includeIf('user.kategori.pola-makan-sehat.banner')
+    @includeIf('user.kategori.aktivitas-fisik.banner')
 </div>
 
 {{-- Halaman Topik --}}
 <div style="margin-top: 50px;">
-    @includeIf('user.kategori.pola-makan-sehat.topik')
+    @includeIf('user.kategori.aktivitas-fisik.topik')
 </div>
 
 {{-- Halaman image --}}
 <div style="margin-top: 100px;">
     <img src="{{ asset('image/Rectangle 159.png') }}"
-        alt="Eat Organic"
+        alt="Aktivitas Fisik"
         style="width: 100%; height: auto; display: block;">
 </div>
 
 {{-- Halaman Panduan --}}
 <div style="margin-top: 50px;">
-    @includeIf('user.kategori.pola-makan-sehat.panduan')
+    @includeIf('user.kategori.aktivitas-fisik.panduan')
 </div>
 @endsection
 

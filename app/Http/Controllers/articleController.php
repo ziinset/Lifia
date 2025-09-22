@@ -72,7 +72,7 @@ class ArticleController extends Controller
 // Aktivitas Fisik Methods
 public function aktivitasFisik()
 {
-    return view('user.kategori.aktivitas-fisik.artikel-aktivitas');
+    return view('user.kategori.aktivitas-fisik.artikel-fisik');
 }
 
 public function aktivitasFisikPanduan()

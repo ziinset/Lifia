@@ -29,14 +29,14 @@
 
 
   <!-- Hero Section -->
-  <section class="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto px-6 lg:px-10 py-14 mt-12">
+  <section class="flex flex-col lg:flex-row items-center justify-between max-w-5xl mx-auto px-6 lg:px-10 py-10 mt-6">
 
     <!-- Left Content -->
-    <div class="lg:w-1/2 text-left mb-10 lg:mb-0">
-      <h1 class="text-3xl lg:text-4xl font-extrabold text-[#3A2C29] leading-snug mb-5">
+    <div class="lg:w-1/2 text-left mb-6 lg:mb-0">
+      <h1 class="text-2xl lg:text-3xl font-extrabold text-[#3A2C29] leading-snug mb-4">
         Tenangkan Pikiran,<br> Kuatkan Diri.
       </h1>
-      <p class="text-[#5C4A3A] text-base leading-relaxed mb-8 max-w-md">
+      <p class="text-[#5C4A3A] text-sm leading-relaxed mb-6 max-w-md">
         Kesehatan mental sama pentingnya dengan kesehatan fisik.
         Luangkan waktu untuk mengenali perasaanmu, atur napas, dan beri ruang untuk dirimu sendiri.
         Perubahan kecil dalam cara berpikir bisa membawa dampak besar bagi hidup yang lebih seimbang dan bahagia.
@@ -49,14 +49,14 @@
           style="color:#4E342E; font-size:20px;">
         </iconify-icon>
         <input type="text" placeholder="Telusuri..."
-          class="search-input w-full pl-11 pr-4 py-3 rounded-lg shadow-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6BA84F] text-base">
+          class="search-input w-full pl-11 pr-4 py-2 rounded-lg shadow-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6BA84F] text-sm">
       </div>
     </div>
 
     <!-- Right Image (satu gambar saja) -->
     <div class="lg:w-1/2 flex justify-center">
       <img src="{{asset('images/mental.svg')}}" alt="Hero Mental Health"
-           class="rounded-xl object-contain w-full max-w-md">
+           class="rounded-xl object-contain w-full max-w-sm">
     </div>
   </section>
 

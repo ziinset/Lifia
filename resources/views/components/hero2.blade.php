@@ -3,18 +3,16 @@
         background: #f6f4ef;
         position: relative;
         overflow: hidden;
-        min-height: 100vh;
+        min-height: 70vh;
     }
 
     .hero2-container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 100px 20px 48px 20px;
+        padding: 60px 20px 32px 20px;
         position: relative;
         z-index: 2;
     }
-
-
 
 
     .hero2-section {
@@ -30,7 +28,7 @@
         font-family: 'Poppins', sans-serif;
         font-weight: 800;
         color: #3a2f2b;
-        font-size: 54px;
+        font-size: 42px;
         line-height: 1.22;
         margin-bottom: 14px;
     }
@@ -68,8 +66,8 @@
         background: white;
         border: 1px solid #dce8d2;
         border-radius: 999px;
-        padding: 14px 18px;
-        max-width: 540px;
+        padding: 12px 16px;
+        max-width: 480px;
         box-shadow: 0 8px 22px rgba(44,85,48,.08);
         margin-bottom: 18px;
     }
@@ -98,8 +96,8 @@
 
 
     .hero2-circle {
-        width: 600px;
-        height: 600px;
+        width: 480px;
+        height: 480px;
         background: transparent;
         position: relative;
         overflow: hidden;
@@ -116,15 +114,15 @@
     }
 
     .hero2-food img {
-        width: 120%;
-        height: 120%;
+        width: 100%;
+        height: 100%;
         object-fit: contain;
         transform: translateY(8px);
     }
 
     .hero2-float {
         position: absolute;
-        top: 220px;
+        top: 160px;
         background: rgba(234,244,226,.95);
         border: 1px solid #d6e8c9;
         padding: 12px 16px;
@@ -209,27 +207,27 @@
     }
 
     @media (max-width: 1200px) {
-        .hero2-title { font-size: 44px; }
-        .hero2-circle { width: 520px; height: 520px; }
-        .hero2-float { top: 200px; }
+        .hero2-title { font-size: 36px; }
+        .hero2-circle { width: 420px; height: 420px; }
+        .hero2-float { top: 150px; }
     }
 
     @media (max-width: 1024px) {
         .hero2-section { grid-template-columns: 1fr; text-align: center; }
         .hero2-img-wrap { order: -1; }
-        .hero2-circle { width: 460px; height: 460px; margin: 0 auto; }
+        .hero2-circle { width: 360px; height: 360px; margin: 0 auto; }
         .hero2-vegetables { display: none; }
-        .hero2-float { top: 160px; }
+        .hero2-float { top: 120px; }
     }
 
     @media (max-width: 640px) {
-        .hero2-title { font-size: 30px; }
-        .hero2-container { padding: 84px 16px 28px; }
+        .hero2-title { font-size: 26px; }
+        .hero2-container { padding: 56px 16px 20px; }
         .hero2-search { max-width: 100%; }
         .hero2-menu { gap: 8px; }
         .hero2-link { padding: 6px 12px; font-size: 14px; }
-        .hero2-circle { width: 380px; height: 380px; }
-        .hero2-float { top: 120px; }
+        .hero2-circle { width: 300px; height: 300px; }
+        .hero2-float { top: 90px; }
     }
 
 </style>

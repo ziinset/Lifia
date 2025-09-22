@@ -84,7 +84,7 @@ Route::get('/kesehatan-mental', [ArticleController::class, 'kesehatanMental'])->
 Route::get('/eco', [ArticleController::class, 'eco'])->name('eco');
 Route::get('/perawatan-diri', [ArticleController::class, 'perawatanDiri'])->name('perawatan-diri');
 Route::get('/vegan', [ArticleController::class, 'vegan'])->name('vegan');
-Route::get('/tentang-kami', [\App\Http\Controllers\TentangKamiController::class, 'index'])->name('tentang-kami');
+Route::get('/tentang-kami', [TentangKamiController::class, 'index'])->name('tentang-kami');
 
 // About Route
 Route::get('/about', [AboutController::class, 'index'])->name('about');

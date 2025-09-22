@@ -164,3 +164,4 @@ public function aktivitasFisik()
 {
     return view('user.kategori.aktivitas-fisik.artikel-fisik');
 }
+}

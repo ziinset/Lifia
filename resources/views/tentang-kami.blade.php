@@ -8,7 +8,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <!-- Iconify -->
+  <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -168,7 +169,7 @@
     <div class="flex flex-col lg:flex-row gap-8 lg:items-center">
       <div class="flex-1 text-center lg:text-left">
         <p class="hero-description text-[#6B5B47] text-lg max-w-lg mx-auto lg:mx-0">
-          Kami hadir untuk menginspirasi dan memandumu menjalani hidup yang lebih sehat secara fisik, mental, 
+          Kami hadir untuk menginspirasi dan memandumu menjalani hidup yang lebih sehat secara fisik, mental,
           dan emosional demi masa depan yang lebih berkualitas.
         </p>
       </div>
@@ -190,7 +191,7 @@
 
     <div class="flex flex-col lg:flex-row gap-8 items-start lg:items-center mt-8">
       <div class="flex-1 w-full">
-        <img src="images/happypeople.png" 
+        <img src="images/happypeople.png"
              alt="Happy people celebrating healthy lifestyle"
              class="hero-image w-full h-[220px] sm:h-[280px] lg:h-[300px] object-cover rounded-2xl shadow-lg">
       </div>
@@ -247,8 +248,8 @@
     </div>
   </div>
 
-  <img src="images/elemen.svg" 
-       alt="elemen dekoratif" 
+  <img src="images/elemen.svg"
+       alt="elemen dekoratif"
        class="decorative-element absolute bottom-0 left-0 w-full h-auto z-0 pointer-events-none select-none">
 </section>
 
@@ -259,9 +260,9 @@
     <p class="text-sm font-semibold tracking-wide text-[#4B5C3B] uppercase">Tentang Kami</p>
     <h2 class="text-3xl lg:text-4xl font-extrabold text-[#4B5C3B]">Mengapa Kami Ada?</h2>
     <p class="text-[#6B5B47] leading-relaxed">
-      Website Gaya Hidup Sehat ini hadir untuk menemani kamu menjalani hidup yang lebih seimbang, bahagia, 
+      Website Gaya Hidup Sehat ini hadir untuk menemani kamu menjalani hidup yang lebih seimbang, bahagia,
       dan sehat secara fisik, mental, dan emosional. <br><br>
-      Di tengah kesibukan dan banjir informasi, kami ingin menghadirkan konten ringkas, mudah dipahami, dan relevan. 
+      Di tengah kesibukan dan banjir informasi, kami ingin menghadirkan konten ringkas, mudah dipahami, dan relevan.
       Karena semua orang berhak mendapatkan informasi kesehatan yang positif, akurat, dan membangun tanpa ribet.
     </p>
 
@@ -288,8 +289,8 @@
 
 <!-- Image Content -->
 <div class="flex-1 flex justify-center">
-  <img src="images/round.svg" 
-       alt="People sitting together in park" 
+  <img src="images/round.svg"
+       alt="People sitting together in park"
        class="max-w-sm h-auto">
 </div>
 </section>
@@ -304,7 +305,7 @@
 
     <!-- Cards Container -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      
+
       <!-- Card 1 -->
       <div class="bg-white rounded-xl shadow-sm p-6 text-left border border-[#E6E3DC] hover:shadow-md transition">
         <div class="text-[#7BA05B] text-3xl mb-4">
@@ -355,10 +356,10 @@
 
     <!-- Team Members -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      
+
       <!-- Member 1 -->
       <div class="bg-white rounded-2xl shadow-sm p-6 text-center border border-[#E6E3DC] hover:shadow-md transition">
-        <img src="images/grace.svg" alt="Graciella Yeriza.N" 
+        <img src="images/grace.svg" alt="Graciella Yeriza.N"
              class="w-32 md:w-40 h-auto object-contain rounded-lg mx-auto mb-4">
         <h3 class="font-bold text-[#4B5C3B]">Graciella Yeriza.N</h3>
         <p class="text-sm text-[#6B5B47] mb-4">Desain & Konten</p>
@@ -377,7 +378,7 @@
 
       <!-- Member 2 -->
       <div class="bg-white rounded-2xl shadow-sm p-6 text-center border border-[#E6E3DC] hover:shadow-md transition">
-        <img src="images/goldi.svg" alt="Goldi Bangun.A" 
+        <img src="images/goldi.svg" alt="Goldi Bangun.A"
              class="w-32 md:w-40 h-auto object-contain rounded-lg mx-auto mb-4">
         <h3 class="font-bold text-[#4B5C3B]">Goldi Bangun.A</h3>
         <p class="text-sm text-[#6B5B47] mb-4">Frontend Developer</p>
@@ -396,7 +397,7 @@
 
       <!-- Member 3 -->
       <div class="bg-white rounded-2xl shadow-sm p-6 text-center border border-[#E6E3DC] hover:shadow-md transition">
-        <img src="images/jojo.svg" alt="Jonathan Arya.P" 
+        <img src="images/jojo.svg" alt="Jonathan Arya.P"
              class="w-32 md:w-40 h-auto object-contain rounded-lg mx-auto mb-4">
         <h3 class="font-bold text-[#4B5C3B]">Jonathan Arya.P</h3>
         <p class="text-sm text-[#6B5B47] mb-4">Backend Developer</p>

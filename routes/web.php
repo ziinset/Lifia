@@ -105,3 +105,8 @@ Route::get('/fitplan', function () {
 Route::get('/program-turun-berat-badan', function () {
     return view('premium.program-turunbb');
 })->name('program-turun-berat-badan');
+
+// Premium: Panduan Bakar Lemak di Perut
+Route::get('/panduan/bakar-lemak-di-perut', function () {
+    return view('premium.panduan-bakar-lemak');
+})->name('premium.panduan-bakar-lemak');

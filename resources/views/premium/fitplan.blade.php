@@ -11,7 +11,7 @@
 </head>
 
 <body class="bg-gray-50 font-inter">
-    @include('components.navbar')
+    @include('components.navbar2')
     @include('components.fitplan-header')
 
     <main class="max-w-5xl mx-auto px-4 py-10">

@@ -302,7 +302,7 @@
                 <div class="navbar-dropdown">
                     <a href="#" class="navbar-artikel" id="navbarArtikelToggle">
                         Artikel
-                        <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
+                        <span class="iconify" data-icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></span>
                     </a>
                     <div class="navbar-dropdown-menu" id="navbarArtikelMenu">
                         <a href="{{ route('kategori.pola-makan-sehat') }}" data-nav="pola-makan">Pola Makan Sehat</a>
@@ -340,6 +340,86 @@
         </div>
     </nav>
 
+    @php
+        // Deteksi halaman aktif berdasarkan route name
+        $currentRoute = request()->route()->getName();
+        $activeNav = 'beranda'; // default
+
+        // Mapping route ke navbar state
+        switch($currentRoute) {
+            case 'home':
+                $activeNav = 'beranda';
+                break;
+            case 'kategori.pola-makan-sehat':
+            case 'kategori.pola-makan-sehat.artikel':
+            case 'kategori.pola-makan-sehat.sarapan-seimbang':
+            case 'kategori.pola-makan-sehat.panduan':
+            case 'kategori.pola-makan-sehat.topik':
+            case 'kategori.pola-makan-sehat.banner':
+            case 'kategori.pola-makan-sehat.bagian-artikel':
+                $activeNav = 'pola-makan';
+                break;
+            case 'kategori.aktivitas-fisik':
+            case 'kategori.aktivitas-fisik.panduan':
+            case 'kategori.aktivitas-fisik.topik':
+            case 'kategori.aktivitas-fisik.banner':
+            case 'kategori.aktivitas-fisik.bagian-artikel':
+            case 'kategori.aktivitas-fisik.olahraga-aman-bumil':
+                $activeNav = 'aktivitas-fisik';
+                break;
+            case 'kategori.kesehatan-mental':
+            case 'kategori.kesehatan-mental.panduan':
+            case 'kategori.kesehatan-mental.topik':
+            case 'kategori.kesehatan-mental.banner':
+            case 'kategori.kesehatan-mental.bagian-artikel':
+            case 'kategori.kesehatan-mental.sarapan-seimbang':
+                $activeNav = 'kesehatan-mental';
+                break;
+            case 'kategori.perawatan-diri':
+            case 'kategori.perawatan-diri.panduan':
+            case 'kategori.perawatan-diri.topik':
+            case 'kategori.perawatan-diri.banner':
+            case 'kategori.perawatan-diri.bagian-artikel':
+            case 'kategori.perawatan-diri.kulit-malam':
+                $activeNav = 'perawatan-diri';
+                break;
+            case 'kategori.vegan':
+            case 'kategori.vegan.panduan':
+            case 'kategori.vegan.topik':
+            case 'kategori.vegan.banner':
+            case 'kategori.vegan.bagian-artikel':
+            case 'kategori.vegan.tips-pemula':
+                $activeNav = 'vegan';
+                break;
+            case 'kategori.eco':
+            case 'kategori.eco.panduan':
+            case 'kategori.eco.topik':
+            case 'kategori.eco.banner':
+            case 'kategori.eco.bagian-artikel':
+            case 'kategori.eco.mengurangi-sampah':
+                $activeNav = 'eco-living';
+                break;
+            case 'cek-bmi':
+                $activeNav = 'cek-sehat';
+                break;
+            case 'tentang-kami':
+            case 'about':
+                $activeNav = 'tentang-kami';
+                break;
+            case 'fitplan':
+            case 'program-turun-berat-badan':
+            case 'premium.panduan-bakar-lemak':
+                $activeNav = 'fitplan';
+                break;
+            case 'login':
+            case 'register':
+                $activeNav = 'login';
+                break;
+            default:
+                $activeNav = 'beranda';
+        }
+    @endphp
+
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const artikelToggle = document.getElementById("navbarArtikelToggle");
@@ -347,74 +427,18 @@
             const menuToggle = document.getElementById("navbarMenuToggle");
             const navLinks = document.querySelector(".navbar-links");
 
-            // State management dengan switch case
-            let currentNavState = "beranda";
+            // Set navbar state berdasarkan PHP
+            const activeNav = '{{ $activeNav }}';
 
-            // Fungsi untuk mengubah status navbar menggunakan switch case
-            function setNavbarState(state) {
-                // Hapus kelas aktif dari semua link
-                document.querySelectorAll('.navbar-links a').forEach(link => {
-                    link.classList.remove('navbar-active');
-                });
+            // Hapus kelas aktif dari semua link
+            document.querySelectorAll('.navbar-links a').forEach(link => {
+                link.classList.remove('navbar-active');
+            });
 
-                // Gunakan switch case untuk mengatur status navbar
-                switch(state) {
-                    case 'beranda':
-                        document.querySelector('[data-nav="beranda"]').classList.add('navbar-active');
-                        console.log("Status navigasi: Beranda");
-                        break;
-                    case 'pola-makan':
-                        document.querySelector('[data-nav="pola-makan"]').classList.add('navbar-active');
-                        console.log("Status navigasi: Pola Makan Sehat");
-                        break;
-                    case 'aktivitas-fisik':
-                        document.querySelector('[data-nav="aktivitas-fisik"]').classList.add('navbar-active');
-                        console.log("Status navigasi: Aktivitas Fisik");
-                        break;
-                    case 'kesehatan-mental':
-                        document.querySelector('[data-nav="kesehatan-mental"]').classList.add('navbar-active');
-                        console.log("Status navigasi: Kesehatan Mental");
-                        break;
-                    case 'perawatan-diri':
-                        document.querySelector('[data-nav="perawatan-diri"]').classList.add('navbar-active');
-                        console.log("Status navigasi: Perawatan Diri");
-                        break;
-                    case 'vegan':
-                        document.querySelector('[data-nav="vegan"]').classList.add('navbar-active');
-                        console.log("Status navigasi: Vegan");
-                        break;
-                    case 'eco-living':
-                        document.querySelector('[data-nav="eco-living"]').classList.add('navbar-active');
-                        console.log("Status navigasi: Eco Living");
-                        break;
-                    case 'cek-sehat':
-                        document.querySelector('[data-nav="cek-sehat"]').classList.add('navbar-active');
-                        console.log("Status navigasi: Cek Sehat");
-                        break;
-                    case 'tentang-kami':
-                        document.querySelector('[data-nav="tentang-kami"]').classList.add('navbar-active');
-                        console.log("Status navigasi: Tentang Kami");
-                        break;
-                    case 'fitplan':
-                        document.querySelector('[data-nav="fitplan"]').classList.add('navbar-active');
-                        console.log("Status navigasi: FitPlan");
-                        break;
-                    case 'login':
-                        document.querySelector('[data-nav="login"]').classList.add('navbar-active');
-                        console.log("Status navigasi: Login");
-                        break;
-                    default:
-                        document.querySelector('[data-nav="beranda"]').classList.add('navbar-active');
-                        console.log("Status navigasi: Default (Beranda)");
-                }
-
-                currentNavState = state;
-
-                // Tutup menu mobile jika terbuka
-                if (navLinks.classList.contains('navbar-active')) {
-                    menuToggle.classList.remove('navbar-active');
-                    navLinks.classList.remove('navbar-active');
-                }
+            // Set active berdasarkan halaman saat ini
+            const activeElement = document.querySelector(`[data-nav="${activeNav}"]`);
+            if (activeElement) {
+                activeElement.classList.add('navbar-active');
             }
 
             // Event listeners untuk link navbar - hanya untuk visual feedback
@@ -425,7 +449,13 @@
 
                     // Hanya set state untuk visual feedback, biarkan navigasi normal
                     if (navItem && href && href !== '#') {
-                        setNavbarState(navItem);
+                        // Hapus kelas aktif dari semua link
+                        document.querySelectorAll('.navbar-links a').forEach(link => {
+                            link.classList.remove('navbar-active');
+                        });
+
+                        // Set active pada link yang diklik
+                        this.classList.add('navbar-active');
                     }
                 });
             });
@@ -453,8 +483,5 @@
                     navLinks.classList.toggle("navbar-active");
                 });
             }
-
-            // Inisialisasi status awal
-            setNavbarState('beranda');
         });
-</script>
+    </script>

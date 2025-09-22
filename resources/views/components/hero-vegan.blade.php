@@ -28,7 +28,6 @@
   </style>
 </head>
 <body class="bg-[#F8F6F2]">
-  @include('components.navbar2')
 
   <!-- Hero Section -->
   <section class="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto px-6 lg:px-10 py-16 mt-12">

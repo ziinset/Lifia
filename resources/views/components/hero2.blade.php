@@ -9,97 +9,13 @@
     .hero2-container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 28px 20px 48px 20px;
+        padding: 100px 20px 48px 20px;
         position: relative;
         z-index: 2;
     }
 
 
 
-    .hero2-nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 8px;
-    }
-
-    .hero2-brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-family: 'Poppins', sans-serif;
-        font-weight: 700;
-        color: #2c5530;
-        font-size: 28px;
-    }
-
-    .hero2-brand img {
-        height: 28px;
-        width: auto;
-    }
-
-    .hero2-menu {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex-wrap: wrap;
-    }
-
-    .hero2-link {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        color: #2c5530;
-        text-decoration: none;
-        background: #ffffff;
-        border: 1px solid #d8e4d0;
-        padding: 8px 14px;
-        border-radius: 28px;
-        transition: all .2s ease;
-        box-shadow: 0 1px 0 rgba(0,0,0,.03);
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-    }
-
-    .hero2-link:hover {
-        background: #f6fbf2;
-        transform: translateY(-1px);
-    }
-
-    .hero2-link.active {
-        background: #7ea861;
-        color: #fff;
-        border-color: #6e9754;
-    }
-
-    .hero2-link.active {
-        position: relative;
-    }
-
-    .hero2-link.active::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: -10px;
-        width: 48px;
-        height: 4px;
-        background: #7ea861;
-        border-radius: 4px;
-    }
-
-    .hero2-login {
-        background: white;
-        border: 1px solid #d9e6cf;
-        padding: 8px 16px;
-        border-radius: 28px;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        color: #2c5530;
-        text-decoration: none;
-        box-shadow: 0 2px 8px rgba(44,85,48,.08);
-    }
 
     .hero2-section {
         display: grid;
@@ -253,9 +169,8 @@
 
     /* Floating vegetables animation */
     .hero2-vegetables {
-        position: absolute;
-        animation: float 6s ease-in-out infinite;
-        z-index: 1;
+        display: none !important;
+        animation: none !important;
     }
 
     .hero2-vegetables.veggie-1 {
@@ -309,7 +224,7 @@
 
     @media (max-width: 640px) {
         .hero2-title { font-size: 30px; }
-        .hero2-container { padding: 20px 16px 28px; }
+        .hero2-container { padding: 84px 16px 28px; }
         .hero2-search { max-width: 100%; }
         .hero2-menu { gap: 8px; }
         .hero2-link { padding: 6px 12px; font-size: 14px; }
@@ -317,137 +232,14 @@
         .hero2-float { top: 120px; }
     }
 
-    /* Dropdown Styles */
-    .hero2-dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .hero2-dropdown-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: white;
-        border: 1px solid #d8e4d0;
-        border-radius: 12px;
-        box-shadow: 0 8px 24px rgba(44,85,48,.12);
-        min-width: 200px;
-        z-index: 1000;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
-        transition: all 0.3s ease;
-        margin-top: 8px;
-    }
-
-    .hero2-dropdown.hero2-show .hero2-dropdown-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-
-    .hero2-dropdown-menu a {
-        display: block;
-        padding: 12px 16px;
-        color: #2c5530;
-        text-decoration: none;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 500;
-        font-size: 14px;
-        border-radius: 0;
-        background: transparent;
-        border: none;
-        transition: all 0.2s ease;
-    }
-
-    .hero2-dropdown-menu a:first-child {
-        border-radius: 12px 12px 0 0;
-    }
-
-    .hero2-dropdown-menu a:last-child {
-        border-radius: 0 0 12px 12px;
-    }
-
-    .hero2-dropdown-menu a:hover {
-        background: linear-gradient(135deg, #7ea861, #8BAC65);
-        color: white;
-        transform: translateX(6px);
-        box-shadow: 0 4px 12px rgba(126, 168, 97, 0.3);
-    }
 </style>
 
 <div class="hero2-wrapper">
 
 
-    <!-- Floating vegetables -->
-    <div class="hero2-vegetables veggie-1">
-        <svg width="40" height="40" viewBox="0 0 48 48" fill="none">
-            <path d="M24 4C18.5 4 14 8.5 14 14V34C14 39.5 18.5 44 24 44C29.5 44 34 39.5 34 34V14C34 8.5 29.5 4 24 4Z" fill="#4CAF50"/>
-            <path d="M20 12H28V36H20Z" fill="#66BB6A"/>
-        </svg>
-    </div>
-
-    <div class="hero2-vegetables veggie-2">
-        <svg width="35" height="35" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="18" fill="#F44336"/>
-            <circle cx="24" cy="24" r="12" fill="#FF5722"/>
-            <path d="M20 20L28 28M28 20L20 28" stroke="#fff" stroke-width="2"/>
-        </svg>
-    </div>
-
-    <div class="hero2-vegetables veggie-3">
-        <svg width="30" height="30" viewBox="0 0 48 48" fill="none">
-            <path d="M24 6L30 18H18L24 6Z" fill="#4CAF50"/>
-            <circle cx="24" cy="30" r="12" fill="#4CAF50"/>
-        </svg>
-    </div>
-
-    <div class="hero2-vegetables veggie-4">
-        <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="16" fill="#FF9800"/>
-            <path d="M16 24C16 18 20 14 24 14C28 14 32 18 32 24" stroke="#fff" stroke-width="2"/>
-        </svg>
-    </div>
-
-    <div class="hero2-vegetables veggie-5">
-        <svg width="28" height="28" viewBox="0 0 48 48" fill="none">
-            <circle cx="24" cy="24" r="14" fill="#8BC34A"/>
-            <path d="M18 20H30V28H18Z" fill="#9CCC65"/>
-        </svg>
-    </div>
+    <!-- Floating vegetables removed -->
 
     <div class="hero2-container">
-        <!-- Navigation -->
-        <nav class="hero2-nav">
-            <div class="hero2-brand">
-                <img src="{{ asset('img/logo-lifia-nav.svg') }}" alt="Lifia">
-            </div>
-            <div class="hero2-menu">
-                <a class="hero2-link" href="{{ route('home') }}">Beranda</a>
-
-                <!-- Artikel with dropdown -->
-                <div class="hero2-dropdown">
-                    <a class="hero2-link active" href="#" id="hero2ArtikelToggle">
-                        Artikel
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="6 9 12 15 18 9"/>
-                        </svg>
-                    </a>
-                    <div class="hero2-dropdown-menu" id="hero2ArtikelMenu">
-                        <a href="{{ route('kategori.pola-makan-sehat') }}">Pola Makan Sehat</a>
-                        <a href="{{ route('kategori.aktivitas-fisik') }}">Aktivitas Fisik</a>
-                        <a href="{{ route('kategori.kesehatan-mental') }}">Kesehatan Mental</a>
-                        <a href="{{ route('kategori.perawatan-diri') }}">Perawatan Diri</a>
-                        <a href="{{ route('kategori.vegan') }}">Vegan</a>
-                        <a href="{{ route('kategori.eco') }}">Eco Living</a>
-                    </div>
-                </div>
-
-                <a class="hero2-link" href="{{ route('cek-bmi') }}">Cek Sehat</a>
-                <a class="hero2-link" href="{{ route('tentang-kami') }}">Tentang Kami</a>
-                <a class="hero2-login" href="{{ route('login') }}">Login</a>
-            </div>
-        </nav>
 
         <!-- Main Hero Section -->
         <section class="hero2-section">
@@ -498,23 +290,3 @@
 
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const artikelToggle = document.getElementById("hero2ArtikelToggle");
-        const dropdown = artikelToggle.closest(".hero2-dropdown");
-
-        // Artikel dropdown toggle
-        artikelToggle.addEventListener("click", function(e) {
-            e.preventDefault();
-            dropdown.classList.toggle("hero2-show");
-        });
-
-        // Close dropdown if clicked outside
-        document.addEventListener("click", function(e) {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove("hero2-show");
-            }
-        });
-    });
-</script>

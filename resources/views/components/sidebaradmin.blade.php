@@ -39,14 +39,38 @@
 
         <!-- Artikel Menu Item with Dropdown -->
         @php
-            // Check if we're on any admin article page
-            $isOnArticlePage = request()->routeIs('admin.pola-makan-sehat') || 
-                              request()->routeIs('admin.aktivitas-fisik') || 
-                              request()->routeIs('admin.kesehatan-mental') || 
-                              request()->routeIs('admin.perawatan-diri') || 
-                              request()->routeIs('admin.gaya-hidup-vegan') || 
-                              request()->routeIs('admin.eco-living') ||
-                              request()->is('admin/kategori/*');
+            // Get categories for dynamic routing
+            $adminCategories = isset($globalCategories) ? $globalCategories : collect();
+            
+            // Create dynamic route checking for all categories
+            $isOnArticlePage = false;
+            
+            
+            if ($adminCategories->count() > 0) {
+                foreach ($adminCategories as $category) {
+                    $specificRouteName = 'admin.' . $category->slug;
+                    $routeExists = \Illuminate\Support\Facades\Route::has($specificRouteName);
+                    
+                    if ($routeExists && request()->routeIs($specificRouteName)) {
+                        $isOnArticlePage = true;
+                        break;
+                    } elseif (!$routeExists && request()->is('admin/' . $category->slug)) {
+                        $isOnArticlePage = true;
+                        break;
+                    }
+                }
+            } else {
+                // Fallback for backward compatibility
+                $isOnArticlePage = request()->routeIs('admin.pola-makan-sehat') || 
+                                  request()->routeIs('admin.aktivitas-fisik') || 
+                                  request()->routeIs('admin.kesehatan-mental') || 
+                                  request()->routeIs('admin.perawatan-diri') || 
+                                  request()->routeIs('admin.gaya-hidup-vegan') || 
+                                  request()->routeIs('admin.eco-living');
+            }
+            
+            // Also check for category management pages
+            $isOnArticlePage = $isOnArticlePage || request()->is('admin/kategori/*');
         @endphp
         <div class="artikel-dropdown" style="margin-bottom: 12px;">
             <a href="#" class="menu-item artikel-toggle {{ $isOnArticlePage ? 'page-active' : '' }}" onclick="toggleArtikelDropdown()" style="display: flex; align-items: center; padding: 14px 20px; text-decoration: none; color: {{ $isOnArticlePage ? 'white' : '#6b7280' }}; background-color: {{ $isOnArticlePage ? '#556B2F' : 'transparent' }}; border-radius: 25px; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-weight: 500; position: relative; overflow: hidden;">
@@ -66,12 +90,41 @@
                 @endif
             </a>
             
-            <!-- Dropdown Submenu -->
+            <!-- Dynamic Dropdown Submenu -->
             <div id="artikel-submenu" style="display: none; margin-left: 20px; margin-top: 8px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); border-radius: 16px; padding: 8px 0; border-left: 3px solid #556B2F; box-shadow: 0 4px 20px rgba(0,0,0,0.08); backdrop-filter: blur(10px);">
-                <a href="{{ route('admin.pola-makan-sehat') }}" class="submenu-item {{ request()->routeIs('admin.pola-makan-sehat') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.pola-makan-sehat') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.pola-makan-sehat') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
-                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.pola-makan-sehat') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
-                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Pola Makan Sehat</span>
-                </a>
+                @if($adminCategories->count() > 0)
+                    @foreach($adminCategories as $category)
+                        @php
+                            // Check if specific route exists, otherwise use dynamic route
+                            $specificRouteName = 'admin.' . $category->slug;
+                            $routeExists = \Illuminate\Support\Facades\Route::has($specificRouteName);
+                            
+                            if ($routeExists) {
+                                $routeName = $specificRouteName;
+                                $routeUrl = route($specificRouteName);
+                                $isActive = request()->routeIs($specificRouteName);
+                            } else {
+                                // Use dynamic route for new categories
+                                $routeName = 'admin.dynamic-category';
+                                $routeUrl = route('admin.dynamic-category', $category->slug);
+                                $isActive = request()->is('admin/' . $category->slug);
+                            }
+                        @endphp
+                        <a href="{{ $routeUrl }}" class="submenu-item {{ $isActive ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ $isActive ? '#556B2F' : '#6b7280' }}; background-color: {{ $isActive ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                            @if($category->icon)
+                                <i class="{{ $category->icon }}" style="width: 6px; height: 6px; margin-right: 12px; font-size: 10px; color: {{ $category->color ?? '#556B2F' }}; transform: {{ $isActive ? 'scale(1)' : 'scale(0.8)' }}; transition: transform 0.3s ease;"></i>
+                            @else
+                                <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: {{ $category->color ?? '#556B2F' }}; margin-right: 12px; transform: {{ $isActive ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                            @endif
+                            <span style="margin-left: 8px; transition: transform 0.3s ease;">{{ $category->name }}</span>
+                        </a>
+                    @endforeach
+                @else
+                    <!-- Fallback untuk kategori default -->
+                    <a href="{{ route('admin.pola-makan-sehat') }}" class="submenu-item {{ request()->routeIs('admin.pola-makan-sehat') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.pola-makan-sehat') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.pola-makan-sehat') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                        <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.pola-makan-sehat') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                        <span style="margin-left: 8px; transition: transform 0.3s ease;">Pola Makan Sehat</span>
+                    </a>
                 <a href="{{ route('admin.aktivitas-fisik') }}" class="submenu-item {{ request()->routeIs('admin.aktivitas-fisik') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.aktivitas-fisik') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.aktivitas-fisik') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
                     <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.aktivitas-fisik') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
                     <span style="margin-left: 8px; transition: transform 0.3s ease;">Aktivitas Fisik</span>
@@ -82,16 +135,17 @@
                 </a>
                 <a href="{{ route('admin.perawatan-diri') }}" class="submenu-item {{ request()->routeIs('admin.perawatan-diri') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.perawatan-diri') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.perawatan-diri') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
                     <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.perawatan-diri') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
-                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Perawatan Diri</span>
-                </a>
-                <a href="{{ route('admin.gaya-hidup-vegan') }}" class="submenu-item {{ request()->routeIs('admin.gaya-hidup-vegan') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.gaya-hidup-vegan') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.gaya-hidup-vegan') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
-                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.gaya-hidup-vegan') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
-                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Gaya Hidup Vegan</span>
-                </a>
-                <a href="{{ route('admin.eco-living') }}" class="submenu-item {{ request()->routeIs('admin.eco-living') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.eco-living') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.eco-living') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
-                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.eco-living') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
-                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Eco Living</span>
-                </a>
+                        <span style="margin-left: 8px; transition: transform 0.3s ease;">Perawatan Diri</span>
+                    </a>
+                    <a href="{{ route('admin.gaya-hidup-vegan') }}" class="submenu-item {{ request()->routeIs('admin.gaya-hidup-vegan') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.gaya-hidup-vegan') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.gaya-hidup-vegan') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                        <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.gaya-hidup-vegan') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                        <span style="margin-left: 8px; transition: transform 0.3s ease;">Gaya Hidup Vegan</span>
+                    </a>
+                    <a href="{{ route('admin.eco-living') }}" class="submenu-item {{ request()->routeIs('admin.eco-living') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.eco-living') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.eco-living') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                        <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.eco-living') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                        <span style="margin-left: 8px; transition: transform 0.3s ease;">Eco Living</span>
+                    </a>
+                @endif
             </div>
         </div>
 

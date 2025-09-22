@@ -8,6 +8,7 @@ use App\Http\Controllers\PremiumController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use App\Http\Controllers\SearchController;
 Route::get('/', fn() => view('landing'))->name('landing');
 Route::get('/home', fn() => view('home'))->name('home');
 Route::get('/artikel', [ArticleController::class, 'index'])->name('artikel');
-Route::get('/kategori/{category}', [ArticleController::class, 'showCategory'])->name('kategori');
+Route::get('/kategori/{category}', [ArticleController::class, 'showCategory'])->name('artikel.category');
 Route::get('/kategori/{category}/{article}', [ArticleController::class, 'showArticle'])->name('artikel.show');
 Route::get('/artikel/sarapan-seimbang', [ArticleController::class, 'sarapanSeimbang'])->name('artikel.sarapan-seimbang');
 Route::get('/list-olahraga', fn() => view('listolahraga.listolahraga'))->name('list-olahraga');
@@ -88,6 +89,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/kategori', [AdminController::class, 'kategori'])
         ->name('admin.kategori');
     
+    // Category CRUD Routes
+    Route::resource('admin/categories', CategoryController::class)->except(['show']);
+    Route::get('/admin/categories/{category}/edit', [CategoryController::class, 'edit'])->name('admin.categories.edit');
+    Route::post('/admin/categories/{category}/toggle', [CategoryController::class, 'toggleStatus'])->name('admin.categories.toggle');
+    Route::post('/admin/categories/update-order', [CategoryController::class, 'updateOrder'])->name('admin.categories.update-order');
+    
     // Admin Article Category Routes
     Route::get('/admin/pola-makan-sehat', [AdminController::class, 'polaMakanSehat'])
         ->name('admin.pola-makan-sehat');
@@ -101,6 +108,11 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.gaya-hidup-vegan');
     Route::get('/admin/eco-living', [AdminController::class, 'ecoLiving'])
         ->name('admin.eco-living');
+    
+    // Dynamic Category Routes - untuk kategori baru yang ditambahkan via CRUD
+    Route::get('/admin/{category}', [AdminController::class, 'dynamicCategory'])
+        ->name('admin.dynamic-category')
+        ->where('category', '[a-z0-9\-]+');
         
     Route::post('/admin/profile/update', [AdminController::class, 'updateProfile'])
         ->name('admin.profile.update');

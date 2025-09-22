@@ -19,7 +19,8 @@ class AdminController extends Controller
 
     public function kategori()
     {
-        return view('admin.kategori');
+        $categories = \App\Models\Category::orderBy('sort_order', 'asc')->get();
+        return view('admin.kategori', compact('categories'));
     }
 
     public function polaMakanSehat()
@@ -50,6 +51,29 @@ class AdminController extends Controller
     public function ecoLiving()
     {
         return view('admin.crud-eco-living');
+    }
+
+    /**
+     * Handle dynamic category routes for new categories added via CRUD
+     */
+    public function dynamicCategory($category)
+    {
+        // Check if category exists in database
+        $categoryModel = \App\Models\Category::where('slug', $category)->first();
+        
+        if (!$categoryModel) {
+            abort(404, 'Kategori tidak ditemukan');
+        }
+        
+        // Try to find existing CRUD view for this category
+        $viewName = 'admin.crud-' . $category;
+        
+        if (view()->exists($viewName)) {
+            return view($viewName);
+        }
+        
+        // If no specific view exists, use generic CRUD view
+        return view('admin.crud-generic', compact('categoryModel'));
     }
 
     // Update admin profile (foto, nama, dan status)

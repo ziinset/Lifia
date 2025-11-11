@@ -59,6 +59,5 @@
       <img src="images/fitnes.svg" alt="Fitness" class="w-[340px] lg:w-[420px] object-contain">
     </div>
   </section>
-
 </body>
 </html>

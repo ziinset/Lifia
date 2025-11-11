@@ -1,0 +1,62 @@
+/* resources/css/sidebar.css - File opsional untuk styling tambahan */
+
+/* Custom scrollbar untuk sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.3);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.5);
+}
+
+/* Smooth hover transitions */
+.sidebar-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s;
+}
+
+.sidebar-item:hover::before {
+    left: 100%;
+}
+
+/* Active state glow effect */
+.sidebar-active {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        position: fixed;
+        top: 0;
+        left: -100%;
+        z-index: 50;
+        transition: left 0.3s ease-in-out;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+}

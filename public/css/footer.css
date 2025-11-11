@@ -1,0 +1,203 @@
+/* LIFIA Footer Styles - Isolated to prevent conflicts */
+
+/* Footer specific styles - using high specificity to avoid conflicts */
+.lifia-footer {
+    background-color: #3B5C3F;
+    color: white;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.lifia-footer .lifia-main-content {
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    margin-bottom: -1px;
+}
+
+.lifia-footer .lifia-main-content h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    color: #333;
+    animation: lifia-fadeInUp 1s ease-out;
+}
+
+/* Animasi keyframes - prefixed with lifia- to avoid conflicts */
+@keyframes lifia-fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes lifia-slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes lifia-slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes lifia-slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes lifia-wave {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-3px);
+    }
+    75% {
+        transform: translateX(3px);
+    }
+}
+
+/* Animasi untuk footer curve */
+.lifia-footer .lifia-footer-curve {
+    animation: lifia-slideInUp 1.2s ease-out;
+}
+
+/* Animasi untuk konten footer */
+.lifia-footer .lifia-footer-content > div:nth-child(1) {
+    animation: lifia-slideInLeft 1s ease-out 0.2s both;
+}
+
+.lifia-footer .lifia-footer-content > div:nth-child(2) {
+    animation: lifia-slideInUp 1s ease-out 0.4s both;
+}
+
+.lifia-footer .lifia-footer-content > div:nth-child(3) {
+    animation: lifia-slideInUp 1s ease-out 0.6s both;
+}
+
+.lifia-footer .lifia-footer-content > div:nth-child(4) {
+    animation: lifia-slideInRight 1s ease-out 0.8s both;
+}
+
+/* Animasi untuk simbol > */
+.lifia-footer .lifia-arrow-symbol {
+    animation: lifia-wave 2s ease-in-out infinite;
+}
+
+/* Animasi hover untuk social media icons */
+.lifia-footer .lifia-social-icon {
+    transition: all 0.3s ease;
+}
+
+.lifia-footer .lifia-social-icon:hover {
+    transform: translateY(-3px) scale(1.1);
+    background-color: rgba(255,255,255,0.2) !important;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-color: rgba(255,255,255,0.4) !important;
+}
+
+/* Animasi untuk contact icons */
+.lifia-footer .lifia-contact-icon {
+    transition: all 0.3s ease;
+}
+
+.lifia-footer .lifia-contact-icon:hover {
+    transform: scale(1.1);
+    background-color: #7cb342 !important;
+}
+
+/* Animasi untuk links */
+.lifia-footer .lifia-footer-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.lifia-footer .lifia-footer-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #8bc34a;
+    transition: width 0.3s ease;
+}
+
+.lifia-footer .lifia-footer-link:hover::after {
+    width: 100%;
+}
+
+.lifia-footer .lifia-footer-link:hover {
+    color: white !important;
+    transform: translateX(5px);
+}
+
+/* Hover untuk deskripsi LIFIA */
+.lifia-footer .lifia-description {
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.lifia-footer .lifia-description:hover {
+    color: white !important;
+    transform: translateX(5px);
+}
+
+/* Animasi untuk copyright */
+.lifia-footer .lifia-copyright {
+    animation: lifia-fadeInUp 1s ease-out 1s both;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .lifia-footer .lifia-footer-content {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
+        text-align: left;
+    }
+
+    .lifia-footer .lifia-footer-curve {
+        height: 100px !important;
+        top: -60px !important;
+    }
+
+    .lifia-footer .lifia-footer-container {
+        padding: 60px 20px 30px 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .lifia-footer .lifia-main-content h1 {
+        font-size: 2rem;
+    }
+
+    .lifia-footer .lifia-footer-content {
+        gap: 35px !important;
+    }
+}

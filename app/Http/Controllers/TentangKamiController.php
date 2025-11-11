@@ -11,4 +11,8 @@ class TentangKamiController extends Controller
         // arahkan ke view tentang-kami.blade.php
         return view('tentang-kami');
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/goldi

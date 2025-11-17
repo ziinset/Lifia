@@ -418,7 +418,7 @@
 
                 <!-- Article 2 -->
                 <article class="article-item">
-                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=150&fit=crop" alt="Lemon water" class="article-image">
+                    <img src="{{ asset('img/Rectangle 160.png') }}" alt="Lemon water" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
                             <img src="{{ asset('image/fluent_food-fish-20-filled.png') }}" alt="Fish icon" class="tag-fish-icon">
@@ -429,7 +429,7 @@
                         <div class="article-meta">
                             <div class="meta-top">
                                 <div class="author-info">
-                                    <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                                    <img src="{{ asset('image/uil_pen.png') }}" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
                                     <span>Ditinjau: Graciella Yeriza Natalie</span>
                                 </div>
                                 <div class="time-info">
@@ -452,7 +452,7 @@
 
                 <!-- Article 3 -->
                 <article class="article-item">
-                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=200&h=150&fit=crop" alt="Woman eating" class="article-image">
+                    <img src="{{ asset('img/Rectangle 161.png') }}" alt="Woman eating" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
                             <img src="{{ asset('image/fluent_food-fish-20-filled.png') }}" alt="Fish icon" class="tag-fish-icon">
@@ -486,7 +486,7 @@
 
                 <!-- Article 4 -->
                 <article class="article-item">
-                    <img src="https://images.unsplash.com/photo-1559840244-8a6ec64be3e3?w=200&h=150&fit=crop" alt="Pregnant woman eating" class="article-image">
+                    <img src="{{ asset('img/Rectangle 163.png') }}" alt="Pregnant woman eating" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
                             <img src="{{ asset('image/fluent_food-fish-20-filled.png') }}" alt="Fish icon" class="tag-fish-icon">
@@ -497,7 +497,7 @@
                         <div class="article-meta">
                             <div class="meta-top">
                                 <div class="author-info">
-                                    <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                                    <img src="{{ asset('image/uil_pen.png') }}" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
                                     <span>Ditinjau: Graciella Yeriza Natalie</span>
                                 </div>
                             </div>
@@ -513,7 +513,7 @@
 
                 <!-- Article 5 -->
                 <article class="article-item">
-                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=200&h=150&fit=crop" alt="Diet food" class="article-image">
+                    <img src="{{ asset('img/Rectangle 164.png') }}" alt="Diet food" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
                             <img src="{{ asset('image/fluent_food-fish-20-filled.png') }}" alt="Fish icon" class="tag-fish-icon">
@@ -524,7 +524,7 @@
                         <div class="article-meta">
                             <div class="meta-top">
                                 <div class="author-info">
-                                    <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                                    <img src="{{ asset('image/uil_pen.png') }}" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
                                     <span>Ditinjau: Penulis Graciella Yeriza Natalie</span>
                                 </div>
                             </div>

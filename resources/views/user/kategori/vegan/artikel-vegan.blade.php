@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Pola Makan Sehat')
+@section('title', 'vegan')
 
 @section('content')
 
@@ -10,17 +10,17 @@
 </div>
 
 <div style="margin-bottom: 40px;">
-    @includeIf('user.kategori.pola-makan-sehat.bagianartikel')
+    @includeIf('user.kategori.vegan.bagianartikel')
 </div>
 
 {{-- Halaman Banner --}}
 <div style="margin-top: 40px; margin-bottom: 60px;">
-    @includeIf('user.kategori.pola-makan-sehat.banner')
+    @includeIf('user.kategori.vegan.banner')
 </div>
 
 {{-- Halaman Topik --}}
 <div style="margin-top: 50px;">
-    @includeIf('user.kategori.pola-makan-sehat.topik')
+    @includeIf('user.kategori.vegan.topik')
 </div>
 
 {{-- Halaman image --}}
@@ -32,7 +32,7 @@
 
 {{-- Halaman Panduan --}}
 <div style="margin-top: 50px;">
-    @includeIf('user.kategori.pola-makan-sehat.panduan')
+    @includeIf('user.kategori.vegan.panduan')
 </div>
 @endsection
 

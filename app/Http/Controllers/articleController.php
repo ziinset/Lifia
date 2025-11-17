@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
-    public function index()
+    public function kategoriPolaMakanSehat()
     {
         return view('user.kategori.pola-makan-sehat.artikel-makanan');
     }

@@ -398,7 +398,7 @@
                 </div>
                 <div class="main-article-content">
                     <div class="main-category-tag">
-                        <div class="main-category-icon"></div>
+                        <div class="main-category-icon" style="background-image: url('{{ asset('image/fluent_food-fish-20-filled.png') }}');"></div>
                         Pola Makan Sehat
                     </div>
                     <h2>Mulai Hari dengan Sarapan Seimbang</h2>
@@ -408,7 +408,7 @@
                             <i class="fas fa-clock clock-icon"></i>
                             12 jam lalu</span></span>
                         <div class="main-article-actions">
-                            <button class="main-action-btn" onclick="window.location.href='{{ route('artikel.sarapan-seimbang') }}'">Selengkapnya</button>
+                            <button class="main-action-btn" onclick="window.location.href='{{ route('kategori.pola-makan-sehat.sarapan-seimbang') }}'">Selengkapnya</button>
                             <button class="main-bookmark-btn">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
@@ -429,7 +429,7 @@
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
-                                <div class="sidebar-category-icon"></div>
+                                <div class="sidebar-category-icon" style="background-image: url('{{ asset('image/fluent_food-fish-20-filled.png') }}');"></div>
                                 Pola Makan Sehat
                             </div>
                             <h3>Buah Lokal, Gizi Maksimal</h3>
@@ -459,7 +459,7 @@
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
-                                <div class="sidebar-category-icon"></div>
+                                <div class="sidebar-category-icon" style="background-image: url('{{ asset('image/fluent_food-fish-20-filled.png') }}');"></div>
                                 Pola Makan Sehat
                             </div>
                             <h3>Sayuran Hijau: Sumber Serat dan Antioksidan</h3>
@@ -489,7 +489,7 @@
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
-                                <div class="sidebar-category-icon"></div>
+                                <div class="sidebar-category-icon" style="background-image: url('{{ asset('image/fluent_food-fish-20-filled.png') }}');"></div>
                                 Pola Makan Sehat
                             </div>
                             <h3>Hidrasi: Minum Air dengan Cara yang Benar</h3>

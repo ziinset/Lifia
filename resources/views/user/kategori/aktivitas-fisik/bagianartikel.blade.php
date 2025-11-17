@@ -398,7 +398,7 @@
                 </div>
                 <div class="main-article-content">
                     <div class="main-category-tag">
-                        <div class="main-category-icon"></div>
+                        <div class="main-category-icon" style="background-image: url('{{ asset('image/streamline-plump_dumbell-remix.png') }}');"></div>
                         Olahraga & Aktivitas Fisik
                     </div>
                     <h2>Senam Ringan di Rumah untuk Pemula</h2>
@@ -431,8 +431,8 @@
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
-                                <div class="sidebar-category-icon"></div>
-                                Pola Makan Sehat
+                                <div class="sidebar-category-icon" style="background-image: url('{{ asset('image/streamline-plump_dumbell-remix.png') }}');"></div>
+                                Aktivitas Fisik
                             </div>
                             <h3>Buah Lokal, Gizi Maksimal</h3>
                             <p class="sidebar-article-desc">Mengapa apel malang atau pisang kepok lebih baik dari buah impor? Kenali manfaat buah lokal yang sering diremehan.</p>
@@ -461,8 +461,8 @@
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
-                                <div class="sidebar-category-icon"></div>
-                                Pola Makan Sehat
+                                <div class="sidebar-category-icon" style="background-image: url('{{ asset('image/streamline-plump_dumbell-remix.png') }}');"></div>
+                                Aktivitas Fisik
                             </div>
                             <h3>Sayuran Hijau: Sumber Serat dan Antioksidan</h3>
                             <p class="sidebar-article-desc">Tak suka sayur? Coba trik mudah ini agar sayuran jadi lebih nikmat dan tetap kaya nutrisi.</p>
@@ -491,8 +491,8 @@
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
-                                <div class="sidebar-category-icon"></div>
-                                Pola Makan Sehat
+                                <div class="sidebar-category-icon" style="background-image: url('{{ asset('image/streamline-plump_dumbell-remix.png') }}');"></div>
+                                Aktivitas Fisik
                             </div>
                             <h3>Hidrasi: Minum Air dengan Cara yang Benar</h3>
                             <p class="sidebar-article-desc">Ternyata minum air terlalu cepat juga bisa berdampak kurang baik. Simak tips minum air dengan benar di sini.</p>

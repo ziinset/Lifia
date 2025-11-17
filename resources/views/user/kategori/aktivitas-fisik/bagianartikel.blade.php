@@ -394,21 +394,23 @@
             <!-- Left Side - Main Article -->
             <div class="main-article-container">
                 <div class="main-article-image">
-                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80" alt="Mulai Hari dengan Sarapan Seimbang">
+                    <img src="{{ asset('image/kategori-aktivitas-fisik/Rectangle 171.png') }}" alt="Mulai Hari dengan Sarapan Seimbang">
                 </div>
                 <div class="main-article-content">
                     <div class="main-category-tag">
                         <div class="main-category-icon"></div>
-                        Pola Makan Sehat
+                        Olahraga & Aktivitas Fisik
                     </div>
-                    <h2>Mulai Hari dengan Sarapan Seimbang</h2>
-                    <p class="main-article-desc">Sarapan bukan cuma soal kenyang. Artikel ini membahas kombinasi karbohidrat kompleks, protein, dan serat untuk energi maksimal seharian.</p>
+                    <h2>Senam Ringan di Rumah untuk Pemula</h2>
+                    <p class="main-article-desc">Ingin mulai olahraga tapi nggak punya
+                        banyak waktu atau alat? Artikel ini pandu kamu melakukan senam
+                        sederhana selama 15 menit di rumah.</p>
                     <div class="main-article-meta">
                         <span>Ditinjau: <span class="author">Graciella Yeriza Natalie</span> <span class="time-info">
                             <i class="fas fa-clock clock-icon"></i>
                             12 jam lalu</span></span>
                         <div class="main-article-actions">
-                            <button class="main-action-btn" onclick="window.location.href='{{ route('artikel.sarapan-seimbang') }}'">Selengkapnya</button>
+                            <button class="main-action-btn" onclick="window.location.href='{{ route('kategori.aktivitas-fisik.artikel.artikel') }}'">Selengkapnya</button>
                             <button class="main-bookmark-btn">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>

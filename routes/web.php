@@ -24,29 +24,29 @@ Route::get('/profil', [ProfileController::class, 'index'])->name('profil.index')
 Route::put('/profil/update', [ProfileController::class, 'update'])->name('profil.update');
 
 // Kategori Pola Makan Sehat
-Route::get('/kategori/pola-makan-sehat', [ArticleController::class, 'index'])->name('kategori.pola-makan-sehat');
-Route::get('/kategori/pola-makan-sehat/artikel-makanan', [ArticleController::class, 'index'])->name('kategori.pola-makan-sehat.artikel');
-Route::get('/kategori/pola-makan-sehat/sarapan-seimbang', [ArticleController::class, 'sarapanSeimbang'])->name('kategori.pola-makan-sehat.sarapan-seimbang');
-Route::get('/kategori/pola-makan-sehat/panduan', [ArticleController::class, 'polaMakanSehatPanduan'])->name('kategori.pola-makan-sehat.panduan');
-Route::get('/kategori/pola-makan-sehat/topik', [ArticleController::class, 'polaMakanSehatTopik'])->name('kategori.pola-makan-sehat.topik');
-Route::get('/kategori/pola-makan-sehat/banner', [ArticleController::class, 'polaMakanSehatBanner'])->name('kategori.pola-makan-sehat.banner');
-Route::get('/kategori/pola-makan-sehat/bagian-artikel', [ArticleController::class, 'polaMakanSehatBagianArtikel'])->name('kategori.pola-makan-sehat.bagian-artikel');
+Route::get('/kategori/pola-makan-sehat', [articleController::class, 'index'])->name('kategori.pola-makan-sehat');
+Route::get('/kategori/pola-makan-sehat/artikel-makanan', [articleController::class, 'index'])->name('kategori.pola-makan-sehat.artikel');
+Route::get('/kategori/pola-makan-sehat/sarapan-seimbang', [articleController::class, 'sarapanSeimbang'])->name('kategori.pola-makan-sehat.sarapan-seimbang');
+Route::get('/kategori/pola-makan-sehat/panduan', [articleController::class, 'polaMakanSehatPanduan'])->name('kategori.pola-makan-sehat.panduan');
+Route::get('/kategori/pola-makan-sehat/topik', [articleController::class, 'polaMakanSehatTopik'])->name('kategori.pola-makan-sehat.topik');
+Route::get('/kategori/pola-makan-sehat/banner', [articleController::class, 'polaMakanSehatBanner'])->name('kategori.pola-makan-sehat.banner');
+Route::get('/kategori/pola-makan-sehat/bagian-artikel', [articleController::class, 'polaMakanSehatBagianArtikel'])->name('kategori.pola-makan-sehat.bagian-artikel');
 
 // Kategori Aktivitas Fisik
-Route::get('/kategori/aktivitas-fisik', [ArticleController::class, 'aktivitasFisik'])->name('kategori.aktivitas-fisik');
-Route::get('/kategori/aktivitas-fisik/panduan', [ArticleController::class, 'aktivitasFisikPanduan'])->name('kategori.aktivitas-fisik.panduan');
-Route::get('/kategori/aktivitas-fisik/topik', [ArticleController::class, 'aktivitasFisikTopik'])->name('kategori.aktivitas-fisik.topik');
-Route::get('/kategori/aktivitas-fisik/banner', [ArticleController::class, 'aktivitasFisikBanner'])->name('kategori.aktivitas-fisik.banner');
-Route::get('/kategori/aktivitas-fisik/bagian-artikel', [ArticleController::class, 'aktivitasFisikBagian'])->name('kategori.aktivitas-fisik.bagian-artikel');
-Route::get('/kategori/aktivitas-fisik/olahraga-aman-bumil', [ArticleController::class, 'olahragaAmanBumil'])->name('kategori.aktivitas-fisik.olahraga-aman-bumil');
+Route::get('/kategori/aktivitas-fisik', [articleController::class, 'aktivitasFisik'])->name('kategori.aktivitas-fisik');
+Route::get('/kategori/aktivitas-fisik/panduan', [articleController::class, 'aktivitasFisikPanduan'])->name('kategori.aktivitas-fisik.panduan');
+Route::get('/kategori/aktivitas-fisik/topik', [articleController::class, 'aktivitasFisikTopik'])->name('kategori.aktivitas-fisik.topik');
+Route::get('/kategori/aktivitas-fisik/banner', [articleController::class, 'aktivitasFisikBanner'])->name('kategori.aktivitas-fisik.banner');
+Route::get('/kategori/aktivitas-fisik/bagian-artikel', [articleController::class, 'aktivitasFisikBagian'])->name('kategori.aktivitas-fisik.bagian-artikel');
+
 
 // Kategori Kesehatan Mental
-Route::get('/kategori/kesehatan-mental', action: [ArticleController::class, 'kesehatanMental'])->name('kategori.kesehatan-mental');
-Route::get('/kategori/kesehatan-mental/panduan', [ArticleController::class, 'kesehatanMentalPanduan'])->name('kategori.kesehatan-mental.panduan');
-Route::get('/kategori/kesehatan-mental/topik', [ArticleController::class, 'kesehatanMentalTopik'])->name('kategori.kesehatan-mental.topik');
-Route::get('/kategori/kesehatan-mental/banner', [ArticleController::class, 'kesehatanMentalBanner'])->name('kategori.kesehatan-mental.banner');
-Route::get('/kategori/kesehatan-mental/bagian-artikel', [ArticleController::class, 'kesehatanMentalBagianArtikel'])->name('kategori.kesehatan-mental.bagian-artikel');
-Route::get('/kategori/kesehatan-mental/sarapan-seimbang', [ArticleController::class, 'kesehatanMentalSarapanSeimbang'])->name('kategori.kesehatan-mental.sarapan-seimbang');
+Route::get('/kategori/kesehatan-mental', action: [articleController::class, 'kesehatanMental'])->name('kategori.kesehatan-mental');
+Route::get('/kategori/kesehatan-mental/panduan', [articleController::class, 'kesehatanMentalPanduan'])->name('kategori.kesehatan-mental.panduan');
+Route::get('/kategori/kesehatan-mental/topik', [articleController::class, 'kesehatanMentalTopik'])->name('kategori.kesehatan-mental.topik');
+Route::get('/kategori/kesehatan-mental/banner', [articleController::class, 'kesehatanMentalBanner'])->name('kategori.kesehatan-mental.banner');
+Route::get('/kategori/kesehatan-mental/bagian-artikel', [articleController::class, 'kesehatanMentalBagianArtikel'])->name('kategori.kesehatan-mental.bagian-artikel');
+
 
 // Kategori Eco/Gaya Hidup Ramah Lingkungan
 Route::get('/kategori/eco', [ArticleController::class, 'eco'])->name('kategori.eco');
@@ -54,7 +54,8 @@ Route::get('/kategori/eco/panduan', [ArticleController::class, 'ecoPanduan'])->n
 Route::get('/kategori/eco/topik', [ArticleController::class, 'ecoTopik'])->name('kategori.eco.topik');
 Route::get('/kategori/eco/banner', [ArticleController::class, 'ecoBanner'])->name('kategori.eco.banner');
 Route::get('/kategori/eco/bagian-artikel', [ArticleController::class, 'ecoBagianArtikel'])->name('kategori.eco.bagian-artikel');
-Route::get('/kategori/eco/mengurangi-sampah', [ArticleController::class, 'ecoMengurangiSampah'])->name('kategori.eco.mengurangi-sampah');
+Route::get('/kategori/eco/artikel', [ArticleController::class, 'ecoArtikel'])->name('kategori.eco.artikel.artikel');
+
 
 // Kategori Perawatan Diri/Self-care
 Route::get('/kategori/perawatan-diri', [ArticleController::class, 'perawatanDiri'])->name('kategori.perawatan-diri');
@@ -62,7 +63,7 @@ Route::get('/kategori/perawatan-diri/panduan', [ArticleController::class, 'peraw
 Route::get('/kategori/perawatan-diri/topik', [ArticleController::class, 'perawatanDiriTopik'])->name('kategori.perawatan-diri.topik');
 Route::get('/kategori/perawatan-diri/banner', [ArticleController::class, 'perawatanDiriBanner'])->name('kategori.perawatan-diri.banner');
 Route::get('/kategori/perawatan-diri/bagian-artikel', [ArticleController::class, 'perawatanDiriBagianArtikel'])->name('kategori.perawatan-diri.bagian-artikel');
-Route::get('/kategori/perawatan-diri/kulit-malam', [ArticleController::class, 'perawatanDiriKulitMalam'])->name('kategori.perawatan-diri.kulit-malam');
+
 
 // Kategori Vegan/Vegetarian
 Route::get('/kategori/vegan', [ArticleController::class, 'vegan'])->name('kategori.vegan');
@@ -70,12 +71,15 @@ Route::get('/kategori/vegan/panduan', [ArticleController::class, 'veganPanduan']
 Route::get('/kategori/vegan/topik', [ArticleController::class, 'veganTopik'])->name('kategori.vegan.topik');
 Route::get('/kategori/vegan/banner', [ArticleController::class, 'veganBanner'])->name('kategori.vegan.banner');
 Route::get('/kategori/vegan/bagian-artikel', [ArticleController::class, 'veganBagianArtikel'])->name('kategori.vegan.bagian-artikel');
-Route::get('/kategori/vegan/tips-pemula', [ArticleController::class, 'veganTipsPemula'])->name('kategori.vegan.tips-pemula');
+
 
 // Artikel Routes (Legacy/Alternative)
 Route::get('/artikel', [ArticleController::class, 'index'])->name('artikel');
 Route::get('/artikel/sarapan-seimbang', [ArticleController::class, 'sarapanSeimbang'])->name('artikel.sarapan-seimbang');
-Route::get('/artikel/olahraga-aman-bumil', [ArticleController::class, 'olahragaAmanBumil'])->name('artikel.olahraga-aman-bumil');
+Route::get('/kategori/aktivitas-fisik/artikel', [articleController::class, 'aktivitasFisikArtikel'])->name('kategori.aktivitas-fisik.artikel.artikel');
+Route::get('/kategori/kesehatan-mental/artikel', [articleController::class, 'kesehatanMentalArtikel'])->name('kategori.kesehatan-mental.artikel.artikel');
+Route::get('/kategori/perawatan-diri/artikel', [ArticleController::class, 'perawatanArtikel'])->name('kategori.perawatan-diri.artikel.artikel');
+Route::get('/kategori/vegan/artikel', [ArticleController::class, 'veganArtikel'])->name('kategori.vegan.artikel.artikel');
 
 // Public Routes (Alternative URLs)
 Route::get('/pola-makan-sehat', [ArticleController::class, 'index'])->name('pola-makan-sehat');
@@ -103,10 +107,10 @@ Route::get('/fitplan', function () {
 })->name('fitplan');
 
 Route::get('/program-turun-berat-badan', function () {
-    return view('premium.program-turunbb');
+    return view('premium.program-turun-berat-badan.program-turunbb');
 })->name('program-turun-berat-badan');
 
-// Premium: Panduan Bakar Lemak di Perut
-Route::get('/panduan/bakar-lemak-di-perut', function () {
-    return view('premium.panduan-bakar-lemak');
-})->name('premium.panduan-bakar-lemak');
+// Premium: Meal Plan
+Route::get('/mealplan', function () {
+    return view('premium.mealplan');
+})->name('mealplan');

@@ -13,7 +13,7 @@ class ArticleController extends Controller
 
     public function sarapanSeimbang()
     {
-        return view('user.kategori.pola-makan-sehat.sarapan-seimbang');
+        return view('user.kategori.pola-makan-sehat.artikel.artikel');
     }
 
     // Kesehatan Mental Methods
@@ -43,9 +43,9 @@ class ArticleController extends Controller
         return view('user.kategori.kesehatan-mental.bagianartikel');
     }
 
-    public function kesehatanMentalSarapanSeimbang()
+    public function kesehatanMentalArtikel()
     {
-        return view('user.kategori.kesehatan-mental.meredakan-stres');
+        return view('user.kategori.kesehatan-mental.artikel.artikel');
     }
 
     // Pola Makan Sehat Methods
@@ -95,9 +95,9 @@ public function aktivitasFisikBagianArtikel()
     return view('user.kategori.aktivitas-fisik.bagianartikel');
 }
 
-public function aktivitasFisikOlahragaAmanBumil()
+public function aktivitasFisikArtikel()
 {
-    return view('user.kategori.aktivitas-fisik.olahraga-aman-bumil');
+    return view('user.kategori.aktivitas-fisik.artikel.artikel');
 }
 
 
@@ -127,9 +127,9 @@ public function aktivitasFisikOlahragaAmanBumil()
         return view('user.kategori.eco.bagianartikel');
     }
 
-    public function ecoMengurangiSampah()
+    public function ecoArtikel()
     {
-        return view('user.kategori.eco.mengurangi-sampah');
+        return view('user.kategori.eco.artikel.artikel');
     }
 
     // Perawatan Diri/Self-care Methods
@@ -158,9 +158,9 @@ public function aktivitasFisikOlahragaAmanBumil()
         return view('user.kategori.perawatan-diri.bagianartikel');
     }
 
-    public function perawatanDiriKulitMalam()
+    public function perawatanArtikel()
     {
-        return view('user.kategori.perawatan-diri.kulit-malam');
+        return view('user.kategori.perawatan-diri.artikel.artikel');
     }
 
     // Vegan/Vegetarian Methods
@@ -189,8 +189,8 @@ public function aktivitasFisikOlahragaAmanBumil()
         return view('user.kategori.vegan.bagianartikel');
     }
 
-    public function veganTipsPemula()
+    public function veganArtikel()
     {
-        return view('user.kategori.vegan.tips-pemula');
+        return view('user.kategori.vegan.artikel.artikel');
     }
 }

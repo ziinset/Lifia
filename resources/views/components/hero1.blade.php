@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Iconify for icons -->
+    <!-- Iconify for icons --> 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <style>
         .hero-section * {
@@ -127,7 +128,7 @@
             opacity: 0;
             visibility: hidden;
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15),
-                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
         }
@@ -189,17 +190,32 @@
             opacity: 0;
         }
 
-        .hero-section .hero-dropdown.hero-show .hero-dropdown-menu a:nth-child(1) { animation-delay: 0.05s; }
-        .hero-section .hero-dropdown.hero-show .hero-dropdown-menu a:nth-child(2) { animation-delay: 0.1s; }
-        .hero-section .hero-dropdown.hero-show .hero-dropdown-menu a:nth-child(3) { animation-delay: 0.15s; }
-        .hero-section .hero-dropdown.hero-show .hero-dropdown-menu a:nth-child(4) { animation-delay: 0.2s; }
-        .hero-section .hero-dropdown.hero-show .hero-dropdown-menu a:nth-child(5) { animation-delay: 0.20s; }
+        .hero-section .hero-dropdown.hero-show .hero-dropdown-menu a:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .hero-section .hero-dropdown.hero-show .hero-dropdown-menu a:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .hero-section .hero-dropdown.hero-show .hero-dropdown-menu a:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+
+        .hero-section .hero-dropdown.hero-show .hero-dropdown-menu a:nth-child(4) {
+            animation-delay: 0.2s;
+        }
+
+        .hero-section .hero-dropdown.hero-show .hero-dropdown-menu a:nth-child(5) {
+            animation-delay: 0.20s;
+        }
 
         @keyframes heroFadeSlideIn {
             from {
                 opacity: 0;
                 transform: translateY(-8px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -646,29 +662,31 @@
         }
     </style>
 </head>
+
 <body>
     <div class="hero-section">
         <div class="hero-container">
+            @include('components.navbar')  
             <!-- Navigation -->
-            <nav class="hero-navbar">
+            <!-- <nav class="hero-navbar">
                 <div class="hero-logo">
                     <img src="{{asset('images/logo-lifia.svg')}}" alt="Lifia Logo">
-                </div>
+                </div> -->
 
                 <!-- Mobile Menu Toggle -->
-                <div class="hero-menu-toggle" id="heroMenuToggle">
+                <!-- <div class="hero-menu-toggle" id="heroMenuToggle">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </div> -->
 
-                <div class="hero-nav-links" id="heroNavLinks">
+                <!-- <div class="hero-nav-links" id="heroNavLinks">
                     <a href="{{ route('home') }}" class="hero-active">
                         Beranda
-                    </a>
+                    </a> -->
 
                     <!-- Artikel with dropdown -->
-                    <div class="hero-dropdown">
+                    <!-- <div class="hero-dropdown">
                         <a href="#" class="hero-artikel" id="heroArtikelToggle">
                             Artikel
                             <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
@@ -699,7 +717,7 @@
                         Login
                     </a>
                 </div>
-            </nav>
+            </nav> -->
 
             <!-- Hero Section -->
             <section class="hero-content">
@@ -723,9 +741,9 @@
                 <div class="hero-image">
                     <div class="hero-image-container">
                         <!-- Gambar model tanpa background shape -->
-                        <img src="{{asset('images/mod.png')}}"
-                             alt="Happy couple exercising - Model Sehat"
-                             style="background: transparent; border-radius: 0;">
+                        <img src="{{asset('images/skin.svg')}}"
+                            alt="Happy couple exercising - Model Sehat"
+                            style="background: transparent; border-radius: 0;">
                     </div>
                 </div>
             </section>
@@ -776,4 +794,5 @@
         });
     </script>
 </body>
+
 </html>

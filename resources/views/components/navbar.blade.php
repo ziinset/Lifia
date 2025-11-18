@@ -18,7 +18,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 24px 60px;
+            padding: 24px 60px !important;
             background: transparent;
             position: relative;
         }
@@ -30,15 +30,15 @@
 
         .navbar-links {
             display: flex;
-            gap: 20px;
+            gap: 20px !important;
             align-items: center;
         }
 
         .navbar-links a {
             text-decoration: none;
-            padding: 7px 20px;
-            height: 35px;
-            line-height: 35px;
+            padding: 7px 20px !important;
+            height: 35px !important;
+            line-height: 35px !important;
             border-radius: 30px;
             font-weight: 600;
             font-size: 14px;
@@ -89,7 +89,7 @@
             border: none;
         }
 
-        /* Dropdown Styles */
+        /* Modern Grid Dropdown */
         .navbar-dropdown {
             position: relative;
             display: inline-block;
@@ -100,72 +100,206 @@
             position: absolute;
             top: 100%;
             left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            background: linear-gradient(to bottom, #ffffff, #f8f8f8);
-            backdrop-filter: blur(8px);
-            min-width: 240px;
-            border-radius: 16px;
-            padding: 12px 0;
-            z-index: 99;
-            margin-top: 8px;
+            transform: translateX(-50%) translateY(12px);
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 12px;
+            z-index: 1000;
+            margin-top: 12px;
             opacity: 0;
             visibility: hidden;
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15), 
-                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: all 0.3s ease;
+            box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: top center;
+            min-width: 200px;
+            width: auto;
+        }
+
+        .dropdown-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+        }
+
+        /* Removed dropdown header styles */
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 12px;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: #4A5568;
+            background: #F8FAFC;
+            border: 1px solid #EDF2F7;
+            white-space: nowrap;
+            min-width: 0;
+        }
+
+        .dropdown-item {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #F8FAFC;
+            border: 1px solid #EDF2F7;
+            border-left: 3px solid transparent;
+        }
+
+
+        .dropdown-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 2px 12px rgba(180, 214, 120, 0.3);
+            border-left-color: #B4D678;
+            background: transparent;
+        }
+
+
+        .dropdown-item i {
+            font-size: 16px;
+            margin-right: 8px;
+            color: #B4D678;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .dropdown-item:hover i {
+            color: #B4D678;
+            transform: translateX(4px);
+            text-shadow: 0 0 8px rgba(180, 214, 120, 0.3);
+        }
+
+        .dropdown-item-content {
+            flex-grow: 1;
+        }
+
+        .dropdown-item-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .dropdown-item-content h4 {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0;
+            color: inherit;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dropdown-arrow {
+            margin-left: 12px;
+            opacity: 0.5;
+            transition: all 0.2s ease;
+            font-size: 12px;
+        }
+
+        .dropdown-arrow {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #A0AEC0;
+        }
+
+        .dropdown-item:hover .dropdown-arrow {
+            transform: translateX(4px);
+            opacity: 1;
+            color: #B4D678;
         }
 
         .navbar-dropdown-menu::before {
-            content: "";
+            content: '';
             position: absolute;
             top: -6px;
             left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 12px;
-            background: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-bottom: none;
-            border-right: none;
-            rotate: 45deg;
+            transform: translateX(-50%) rotate(45deg);
+            width: 14px;
+            height: 14px;
+            background: white;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-left: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.03);
+            z-index: -1;
         }
 
         .navbar-dropdown-menu a {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            margin: 2px 8px;
-            color: #333;
+            gap: 12px;
+            padding: 12px 16px;
+            margin: 4px 0;
+            color: #2D3748;
             font-family: 'Poppins', sans-serif;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            border-radius: 10px;
-            transition: all 0.25s ease;
-            border: none !important;
+            border-radius: 12px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             background: transparent;
+            position: relative;
+            overflow: hidden;
             height: auto !important;
             line-height: 1.4 !important;
+            border: none !important;
         }
 
-        .navbar-dropdown-menu a::after {
-            display: none !important;
+        .navbar-dropdown-menu a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #7BA05B, #8BAC65);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 8px;
         }
 
         .navbar-dropdown-menu a:hover {
-            background: linear-gradient(135deg, #7BA05B, #8BAC65);
             color: white;
-            transform: translateX(6px);
-            box-shadow: 0 4px 12px rgba(123, 160, 91, 0.3);
+            transform: translateX(8px) scale(1.02);
+            box-shadow: 0 4px 20px rgba(123, 160, 91, 0.25);
+        }
+
+        .navbar-dropdown-menu a:hover::before {
+            opacity: 1;
+        }
+
+        .navbar-dropdown-menu a i {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-dropdown-menu a:hover i {
+            transform: scale(1.2);
         }
 
         .navbar-dropdown.navbar-show .navbar-dropdown-menu {
             display: block;
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(0);
+            transform: translateX(-50%) translateY(8px);
+            animation: dropdownFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes dropdownFadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(5px);
+            }
         }
 
         .navbar-dropdown.navbar-show .navbar-dropdown-menu a {
@@ -230,13 +364,13 @@
         /* Responsive Design */
         @media (max-width: 1024px) {
             .navbar-container {
-                padding: 20px 40px;
+                padding: 20px 40px !important;
             }
         }
 
         @media (max-width: 768px) {
             .navbar-container {
-                padding: 15px 20px;
+                padding: 15px 20px !important;
             }
             
             .navbar-menu-toggle {
@@ -265,9 +399,9 @@
             }
             
             .navbar-links a {
-                width: 80%;
-                padding: 12px;
-                font-size: 16px;
+                width: 80% !important;
+                padding: 12px !important;
+                font-size: 16px !important;
                 border: 1.4px solid rgba(255, 255, 255, 0.5);
             }
             
@@ -286,16 +420,18 @@
 
         @media (max-width: 480px) {
             .navbar-container {
-                padding: 12px 15px;
+                padding: 12px 15px !important;
             }
         }
 
         @media (max-width: 360px) {
             .navbar-links a {
-                font-size: 14px;
+                font-size: 14px !important;
             }
         }
     </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <nav class="navbar">
@@ -305,7 +441,7 @@
             </div>
 
             <div class="navbar-links" id="navbarLinks">
-                <a href="#" data-nav="beranda">
+                <a href="{{ route('home') }}" data-nav="beranda">
                     Beranda
                 </a>
 
@@ -316,28 +452,78 @@
                         <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
                     </a>
                     <div class="navbar-dropdown-menu" id="navbarArtikelMenu">
-                        <a href="#" data-nav="pola-makan">Pola Makan Sehat</a>
-                        <a href="#" data-nav="aktivitas-fisik">Aktivitas Fisik</a>
-                        <a href="#" data-nav="kesehatan-mental">Kesehatan Mental</a>
-                        <a href="#" data-nav="perawatan-diri">Perawatan Diri</a>
-                        <a href="#" data-nav="vegan">Vegan</a>
-                        <a href="#" data-nav="eco-living">Eco Living</a>
+                        <div class="dropdown-grid">
+                            <a href="{{ route('kategori.pola-makan-sehat') }}" class="dropdown-item" data-nav="pola-makan">
+                                <i class="fas fa-utensils"></i>
+                                <div class="dropdown-item-content">
+                                    <h4>Pola Makan Sehat</h4>
+                                </div>
+                                <span class="dropdown-arrow">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </a>
+                            <a href="{{ route('kategori.aktivitas-fisik') }}" class="dropdown-item" data-nav="aktivitas-fisik">
+                                <i class="fas fa-dumbbell"></i>
+                                <div class="dropdown-item-content">
+                                    <h4>Aktivitas Fisik</h4>
+                                </div>
+                                <span class="dropdown-arrow">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </a>
+                            <a href="{{ route('kategori.kesehatan-mental') }}" class="dropdown-item" data-nav="kesehatan-mental">
+                                <i class="fas fa-brain"></i>
+                                <div class="dropdown-item-content">
+                                    <h4>Kesehatan Mental</h4>
+                                </div>
+                                <span class="dropdown-arrow">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </a>
+                            <a href="{{ route('kategori.perawatan-diri') }}" class="dropdown-item" data-nav="perawatan-diri">
+                                <i class="fas fa-spa"></i>
+                                <div class="dropdown-item-content">
+                                    <h4>Perawatan Diri</h4>
+                                </div>
+                                <span class="dropdown-arrow">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </a>
+                            <a href="{{ route('kategori.vegan') }}" class="dropdown-item" data-nav="vegan">
+                                <i class="fas fa-leaf"></i>
+                                <div class="dropdown-item-content">
+                                    <h4>Gaya Hidup Vegan</h4>
+                                </div>
+                                <span class="dropdown-arrow">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </a>
+                            <a href="{{ route('kategori.eco') }}" class="dropdown-item" data-nav="eco-living">
+                                <i class="fas fa-recycle"></i>
+                                <div class="dropdown-item-content">
+                                    <h4>Eco Living</h4>
+                                </div>
+                                <span class="dropdown-arrow">
+                                    <i class="fas fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <a href="#" data-nav="cek-sehat">
+                <a href="{{ route('cek-bmi') }}" data-nav="cek-sehat">
                     Cek Sehat
                 </a>
 
-                <a href="#" data-nav="tentang-kami">
+                <a href="{{ route('tentang-kami') }}" data-nav="tentang-kami">
                     Tentang Kami
                 </a>
 
-                <a href="#" class="navbar-fitplan" data-nav="fitplan">
+                <a href="{{ route('fitplan') }}" data-nav="fitplan">
                     FitPlan
                 </a>
 
-                <a href="#" class="navbar-login" data-nav="login">
+                <a href="{{ route('login') }}" class="navbar-login" data-nav="login">
                     Login
                 </a>
             </div>
@@ -428,17 +614,6 @@
                 }
             }
             
-            // Event listeners untuk link navbar
-            document.querySelectorAll('.navbar-links a').forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const navItem = this.getAttribute('data-nav');
-                    if (navItem) {
-                        setNavbarState(navItem);
-                    }
-                });
-            });
-
             // Dropdown functionality
             if (artikelToggle) {
                 artikelToggle.addEventListener("click", function(e) {

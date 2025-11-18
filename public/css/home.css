@@ -1,7 +1,7 @@
 /* Lifia Home Page Styles */
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
 }
 
@@ -28,11 +28,7 @@ Hero Section Styling
 .hero-content p {
     font-weight: 400;
     line-height: 1.7;
-<<<<<<< HEAD
-} 
-=======
 }
->>>>>>> origin/goldi
 
 /* Search bar styling yang lebih rounded */
 .search-container {
@@ -95,29 +91,31 @@ Hero Section Styling
 }
 
 /* Categories Section */
+/* Font Poppins untuk kategori */
+.category-title,
+.category-subtitle,
+.category-card h3,
+.category-card p {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Section Categories - Padding yang lebih spesifik */
+.category-section {
+    padding: 6rem 2rem 8rem 2rem;  /* top 6rem, right 2rem, bottom 8rem, left 2rem */
+}
+
 .category-title {
     font-weight: 800;
-    font-size: 2.5rem;
-    color: #2F3E2B;
+    font-size: 2.3rem;
+    color: #4B5C3B;
     margin-bottom: 0.5rem;
 }
 
 .category-subtitle {
     color: #6B7280;
-    font-size: 1.1rem;
+    font-size: 1.0rem;
     line-height: 1.6;
     max-width: 500px;
-}
-
-.category-button {
-    background: #5D4037;
-    color: white;
-    padding: 12px 32px;
-    border-radius: 50px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
 }
 
 .category-button:hover {
@@ -134,7 +132,7 @@ Hero Section Styling
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     border: 1px solid rgba(0, 0, 0, 0.02);
-    height: 320px;
+    height: 400px;
     display: flex;
     flex-direction: column;
 }
@@ -145,7 +143,7 @@ Hero Section Styling
 }
 
 .category-card img {
-    height: 180px;
+    height: 280px;
     object-fit: cover;
     transition: transform 0.4s ease;
     width: 100%;
@@ -160,11 +158,9 @@ Hero Section Styling
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-<<<<<<< HEAD
-=======
+    justify-content: center;
+    gap: 8px;
     background-color: white;
->>>>>>> origin/goldi
 }
 
 .category-card h3 {
@@ -203,11 +199,12 @@ Hero Section Styling
 .cta-title {
     font-weight: 700;
     font-size: 3.5rem;
-    line-height: 1.1;
+    line-height: 1.05; /* lebih rapat dari 1.1 */
     margin-bottom: 24px;
     margin-left: 50px;
     letter-spacing: -0.02em;
 }
+
 
 .cta-highlight {
     color: #B0E258;
@@ -216,13 +213,14 @@ Hero Section Styling
 
 .cta-card {
     background: #F5F5DC;
-    width: 380px;
-    border-radius: 20px;
+    width: 450px;
+    border-radius: 24px;
     padding: 0;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto;
 }
 
 .cta-card:hover {
@@ -232,7 +230,7 @@ Hero Section Styling
 
 .cta-card img {
     border-radius: 0;
-    height: 220px;
+    height: 280px;
     object-fit: cover;
     width: 100%;
     margin-bottom: 0;
@@ -244,18 +242,17 @@ Hero Section Styling
 }
 
 .cta-card-content {
-    padding: 24px;
-<<<<<<< HEAD
-    background: #F5F5DC;
-=======
+    padding: 32px;
     background: #fff;
->>>>>>> origin/goldi
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .cta-card h3 {
     font-weight: 700;
     font-size: 1.5rem;
-    color: #2D1810;
+    color: #4E342E;
     margin-bottom: 12px;
     line-height: 1.3;
 }
@@ -296,8 +293,8 @@ Hero Section Styling
 .info-card {
     background: linear-gradient(135deg, #F0F8E8 0%, #E8F5E0 100%);
     border-radius: 32px;
-    padding: 48px;
-    margin-bottom: 64px;
+    padding: 64px 48px;
+    margin: 40px 0 100px 0;
     box-shadow: 0 10px 40px rgba(123, 193, 66, 0.1);
 }
 
@@ -309,7 +306,7 @@ Hero Section Styling
 .info-title {
     font-weight: 700;
     font-size: 2rem;
-    color: #1F2937;
+    color: #4B5C3B;
     margin-bottom: 20px;
 }
 
@@ -321,7 +318,7 @@ Hero Section Styling
 }
 
 .info-button {
-    background: #7BC142;
+    background: #556B2F;
     color: white;
     padding: 16px 40px;
     border-radius: 50px;
@@ -337,17 +334,22 @@ Hero Section Styling
 }
 
 /* Steps Section */
+.steps-section {
+    padding: 40px 0;
+}
+
 .steps-title {
     font-weight: 800;
     font-size: 2.5rem;
-    color: #1F2937;
+    color: #A8C373;
     margin-bottom: 16px;
 }
 
 .steps-subtitle {
-    color: #6B7280;
+    color: #4A3F35;
     font-size: 1.1rem;
     line-height: 1.6;
+    margin-bottom: 40px;
 }
 
 .step-icon {
@@ -380,15 +382,17 @@ Hero Section Styling
 
 .step-title {
     font-weight: 700;
-    font-size: 1.3rem;
-    color: #1F2937;
-    margin-bottom: 16px;
+    font-size: 1.4rem;
+    color: #4A3F35;
+    margin-bottom: 20px;
+    padding: 0 20px;
 }
 
 .step-text {
     color: #6B7280;
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.7;
+    padding: 0 15px;
 }
 
 /* Responsive adjustments */

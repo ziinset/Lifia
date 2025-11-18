@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,22 +31,44 @@
 
         .main-content {
             min-height: 100vh;
+            padding-top: 83px;
         }
 
-        /* Hide scrollbars globally */
-        html, body {
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
+        html,
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
-        html::-webkit-scrollbar, body::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
+
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar {
+            display: none;
             width: 0;
             height: 0;
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                padding-top: 75px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding-top: 65px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding-top: 59px;
+            }
         }
     </style>
 
     @yield('styles')
 </head>
+
 <body>
     @include('components.navbar2')
     <div class="main-content">
@@ -54,4 +77,5 @@
     @include('components.footer')
     @yield('scripts')
 </body>
+
 </html>

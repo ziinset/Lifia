@@ -30,7 +30,7 @@
 <body class="bg-[#F8F6F2]">
 
   <!-- Hero Section -->
-  <section class="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto px-6 lg:px-10 py-16 mt-12">
+  <section class="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto px-6 lg:px-10 py-16">
 
 <!-- Left Content -->
 <div class="lg:w-1/2 text-left mb-10 lg:mb-0">

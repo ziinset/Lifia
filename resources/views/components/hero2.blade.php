@@ -4,12 +4,15 @@
         position: relative;
         overflow: hidden;
         min-height: 70vh;
+        /* tarik hero2 naik untuk menempel ke bawah navbar */
+        margin-top: -83px;
     }
 
     .hero2-container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 60px 20px 32px 20px;
+        /* padding atas diperbesar agar teks tidak tertutup navbar meski wrapper ditarik naik */
+        padding: 110px 20px 32px 20px;
         position: relative;
         z-index: 2;
     }
@@ -20,7 +23,7 @@
         grid-template-columns: 1.05fr .95fr;
         align-items: center;
         gap: 30px;
-        margin-top: 18px;
+        margin-top: 0;
         position: relative;
     }
 
@@ -218,16 +221,27 @@
         .hero2-circle { width: 360px; height: 360px; margin: 0 auto; }
         .hero2-vegetables { display: none; }
         .hero2-float { top: 120px; }
+        /* sesuaikan dengan navbar min-height 75px dan padding-top .main-content di layout */
+        .hero2-wrapper { margin-top: -75px; }
+        .hero2-container { padding-top: 96px; }
+    }
+
+    @media (max-width: 768px) {
+        /* navbar min-height 65px */
+        .hero2-wrapper { margin-top: -65px; }
+        .hero2-container { padding-top: 88px; }
     }
 
     @media (max-width: 640px) {
         .hero2-title { font-size: 26px; }
-        .hero2-container { padding: 56px 16px 20px; }
+        .hero2-container { padding: 80px 16px 20px; }
         .hero2-search { max-width: 100%; }
         .hero2-menu { gap: 8px; }
         .hero2-link { padding: 6px 12px; font-size: 14px; }
         .hero2-circle { width: 300px; height: 300px; }
         .hero2-float { top: 90px; }
+        /* navbar min-height 59px untuk <=480px, tapi kita pakai di sini supaya konsisten */
+        .hero2-wrapper { margin-top: -59px; }
     }
 
 </style>

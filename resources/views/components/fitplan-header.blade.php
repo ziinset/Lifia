@@ -2,7 +2,7 @@
     /* FitPlan Hero Styles */
     .fitplan-hero {
         position: relative;
-        background: #5e7844; /* hijau seperti gambar pertama */
+        background: #5e7844;
         padding: 120px 0 60px;
         overflow: hidden;
     }
@@ -48,13 +48,14 @@
         border-radius: 14px;
         padding: 18px 16px;
         text-align: center;
-        box-shadow: 0 6px 18px rgba(0,0,0,.12);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
     }
 
     .fitplan-metric strong {
         color: #2f4b1e;
         font-size: 20px;
     }
+
     .fitplan-metric span {
         color: #666;
         font-size: 13px;
@@ -84,74 +85,113 @@
 
     /* Right visual */
     .fitplan-visual {
-    position: relative;
-    display: grid;
-    place-items: center;
-}
+        position: relative;
+        display: grid;
+        place-items: center;
+    }
 
-.fitplan-circle {
-    width: 480px;
-    height: 480px;
-    border-radius: 50%;
-    background: #fff;
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 18px 40px rgba(0,0,0,.2);
-}
+    .fitplan-circle {
+        width: 480px;
+        height: 480px;
+        border-radius: 50%;
+        background: #fff;
+        position: relative;
+        z-index: 1;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, .2);
+    }
 
 
-.fitplan-people {
-    position: absolute;
-    bottom: 0;
-    right: 98px; /* geser dikit ke kanan */
-    width: auto;
-    max-width: 389px; /* atur sesuai selera */
-    height: auto;
-    z-index: 2;
-}
+    .fitplan-people {
+        position: absolute;
+        bottom: 0;
+        right: 98px;
+        /* geser dikit ke kanan */
+        width: auto;
+        max-width: 389px;
+        /* atur sesuai selera */
+        height: auto;
+        z-index: 2;
+    }
 
     .fitplan-float {
         position: absolute;
         background: #dff1d6;
         border-radius: 16px;
         padding: 10px 12px;
-        box-shadow: 0 10px 30px rgba(0,0,0,.12);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
         animation: fpfloat 6s ease-in-out infinite;
     }
 
-    .fitplan-float.fp1 { top: 20%; right: -16px; animation-delay: 0s; }
-    .fitplan-float.fp2 { bottom: 15%; left: -14px; animation-delay: 2s; }
-    .fitplan-float fp3 { top: 45%; left: -12px; animation-delay: 1s; }
+    .fitplan-float.fp1 {
+        top: 20%;
+        right: -16px;
+        animation-delay: 0s;
+    }
+
+    .fitplan-float.fp2 {
+        bottom: 15%;
+        left: -14px;
+        animation-delay: 2s;
+    }
+
+    .fitplan-float fp3 {
+        top: 45%;
+        left: -12px;
+        animation-delay: 1s;
+    }
 
     @keyframes fpfloat {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
     }
 
     @media (max-width: 1024px) {
-        .fitplan-hero { padding: 100px 0 40px; }
-        .fitplan-hero .container { grid-template-columns: 1fr; text-align: center; }
-        .fitplan-circle { width: 380px; height: 380px; }
+        .fitplan-hero {
+            padding: 100px 0 40px;
+        }
+
+        .fitplan-hero .container {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .fitplan-circle {
+            width: 380px;
+            height: 380px;
+        }
     }
 
     @media (max-width: 520px) {
-        .fitplan-title { font-size: 28px; }
-        .fitplan-circle { width: 300px; height: 300px; }
+        .fitplan-title {
+            font-size: 28px;
+        }
+
+        .fitplan-circle {
+            width: 300px;
+            height: 300px;
+        }
     }
+
     @media (max-width: 768px) {
-    .fitplan-people {
-        max-width: 280px;
-        right: 0;
+        .fitplan-people {
+            max-width: 280px;
+            right: 0;
+        }
     }
-}
 
-@media (max-width: 520px) {
-    .fitplan-people {
-        max-width: 220px;
-        right: 0;
+    @media (max-width: 520px) {
+        .fitplan-people {
+            max-width: 220px;
+            right: 0;
+        }
     }
-}
-
 </style>
 
 <section class="fitplan-hero">

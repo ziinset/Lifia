@@ -8,10 +8,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-<<<<<<< HEAD
-        return view('home');
-=======
         return view('user.home');
->>>>>>> origin/goldi
     }
 }

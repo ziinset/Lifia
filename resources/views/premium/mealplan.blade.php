@@ -1,12 +1,41 @@
-@extends('layouts.app')
-
-@section('title', 'Meal Plan Premium - Lifia')
-
-@section('content')
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meal Plan Premium - Lifia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background: #f8fafc;
+        }
+        .mealplan-container {
+            min-height: 100vh;
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        body {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+    @stack('styles')
+</head>
+<body class="has-mealplan-header">
 <div class="mealplan-container">
-    <!-- Regular Navbar for Meal Plan -->
-    @include('components.navbar')
-
     <!-- Header Banner Component -->
     @include('components.mealplan-header')
 
@@ -127,7 +156,156 @@
 .day-tabs {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 16px;
+    margin: 0 auto 40px;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 0 20px 16px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.day-tabs-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.day-tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.day-tab {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 30px;
+    background: #F1F5F9;
+    color: #94A3B8;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+    min-width: 100px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.day-tab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.day-tab.active {
+    background: #10B981;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+@media (max-width: 768px) {
+    .day-tabs {
+        justify-content: flex-start;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .day-tab {
+        padding: 12px 24px;
+        font-size: 15px;
+        min-width: 90px;
+    }
+}
+
+/* Meal Categories */
+.meal-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.meal-category-section {
+    margin-bottom: 16px;
+}
+
+/* Meal Card */
+.meal-card {
+    display: flex;
+    gap: 16px;
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #E2E8F0;
+}
+
+.meal-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.meal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.meal-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.meal-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #10B981;
+    margin: 0;
+}
+
+.meal-nutrition-inline {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    color: #64748B;
+    margin: 2px 0;
+}
+
+.meal-nutrition-inline span:first-child {
+    font-weight: 600;
+    color: #1E293B;
+}
+
+.meal-description {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    .meal-card {
+        flex-direction: column;
+    }
+    
+    .meal-image {
+        width: 100%;
+        height: 160px;
+    }
+}
     margin-bottom: 3rem;
     overflow-x: auto;
     padding-bottom: 0.5rem;
@@ -378,4 +556,5 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-@endsection
+</body>
+</html>

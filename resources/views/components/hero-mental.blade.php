@@ -29,7 +29,7 @@
 
 
   <!-- Hero Section -->
-  <section class="flex flex-col lg:flex-row items-center justify-between max-w-5xl mx-auto px-6 lg:px-10 py-10 mt-6">
+  <section class="flex flex-col lg:flex-row items-center justify-between max-w-5xl mx-auto px-6 lg:px-10 py-10">
 
     <!-- Left Content -->
     <div class="lg:w-1/2 text-left mb-6 lg:mb-0">

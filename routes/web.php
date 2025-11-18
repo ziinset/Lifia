@@ -8,13 +8,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BmiController;
 use App\Http\Controllers\TentangKamiController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\TentangKamiController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CekSehatController;
 use App\Http\Controllers\FitPlanController;
-use App\Http\Controllers\AuthController;
 
 // Home Route
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -103,6 +98,11 @@ Route::get('/test', function () {
 
 // BMI Route
 Route::get('/cek-bmi', [BmiController::class, 'index'])->name('cek-bmi');
+
+// Meal Plan Route
+Route::get('/mealplan', function () {
+    return view('premium.mealplan');
+})->name('mealplan');
 
 // FitPlan Route (placeholder for now)
 Route::get('/fitplan', function () {

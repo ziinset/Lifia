@@ -147,20 +147,22 @@
 }
 
 .container {
-    max-width: 100%;
+    max-width: 1120px;
     margin: 0 auto;
-    padding: 0 3rem;
+    padding: 0 2.5rem;
 }
 
-/* Day Navigation Tabs */
 .day-tabs {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 55px;                 /* jarak antar tombol diperbesar lagi */
     margin: 0 auto 40px;
     max-width: 100%;
+    width: 100%;
     overflow-x: auto;
-    padding: 0 20px 16px;
+    padding: 0 0 16px;
+    scroll-padding-left: 2.5rem;
+    scroll-padding-right: 2.5rem;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -178,11 +180,11 @@
 }
 
 .day-tab {
-    padding: 14px 28px;
+    padding: 10px 24px;            /* sedikit lebih lebar */
     border: none;
-    border-radius: 30px;
-    background: #F1F5F9;
-    color: #94A3B8;
+    border-radius: 10px;           /* radius diperkecil */
+    background: #D9D9D9;             /* warna background tombol non-aktif */
+    color: rgba(78, 52, 46, 0.4);    /* teks #4E342E dengan 40% opacity */
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     font-weight: 500;
@@ -210,8 +212,11 @@
 @media (max-width: 768px) {
     .day-tabs {
         justify-content: flex-start;
-        padding-left: 20px;
-        padding-right: 20px;
+        gap: 1rem;               /* sedikit lebih renggang di mobile */
+        padding-left: 0;         /* biarkan mengikuti padding container */
+        padding-right: 0;
+        scroll-padding-left: 20px;  /* sesuaikan dengan kebutuhan mobile */
+        scroll-padding-right: 20px;
     }
     
     .day-tab {
@@ -225,7 +230,7 @@
 .meal-categories {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 50px;
 }
 
 .meal-category-section {
@@ -312,12 +317,12 @@
 }
 
 .day-tab {
-    background: #e2e8f0;
+    background: #D9D9D9;             /* konsisten dengan style non-aktif di atas */
     border: none;
-    padding: 1rem 2rem;
-    border-radius: 25px;
+    padding: 1rem 2.5rem;           /* sedikit lebih lebar */
+    border-radius: 10px;            /* radius diperkecil */
     font-weight: 500;
-    color: #64748b;
+    color: rgba(78, 52, 46, 0.4);    /* teks #4E342E dengan 40% opacity */
     cursor: pointer;
     transition: all 0.3s ease;
     white-space: nowrap;

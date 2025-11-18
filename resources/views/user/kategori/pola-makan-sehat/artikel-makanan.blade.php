@@ -3,9 +3,6 @@
 @section('title', 'Pola Makan Sehat')
 
 @section('content')
-{{-- Navbar --}}
-@includeIf('components.navbar2')
-
 {{-- Halaman Artikel --}}
 @includeIf('components.hero2')
 

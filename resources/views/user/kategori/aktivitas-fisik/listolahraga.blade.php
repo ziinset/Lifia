@@ -1,20 +1,27 @@
-{{-- Halaman Artikel --}}
+@extends('layouts.app')
+
+@section('title', 'Aktivitas Fisik')
+
+@section('content')
 
 {{-- header/hero --}}
+<div style="margin-bottom: 40px;">
     @include('components.hero-olga')
-
+</div>
 
 {{-- bagian --}}
 <div style="margin-bottom: 40px;">
-    @include('user.kategori.aktivitas-fisik.bagian')
+    @includeIf('user.kategori.aktivitas-fisik.bagian')
 </div>
 
 {{-- banner --}}
 <div style="margin-bottom: 40px;">
-    @include('user.kategori.aktivitas-fisik.banner')
+    @includeIf('user.kategori.aktivitas-fisik.banner')
 </div>
 
 {{-- topik --}}
 <div style="margin-bottom: 40px;">
-    @include('user.kategori.aktivitas-fisik.topik4')
+    @includeIf('user.kategori.aktivitas-fisik.topik4')
 </div>
+
+@endsection

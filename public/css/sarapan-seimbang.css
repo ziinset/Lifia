@@ -1,0 +1,282 @@
+/* Fonts - Using Google Fonts for better reliability */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    color: #1f2937;
+    background: #ffffff;
+    line-height: 1.7;
+    font-weight: 400;
+}
+
+.article-wrapper {
+    background: #ffffff;
+    padding-top: 90px; /* Space untuk navbar yang absolute */
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1050px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+/* Meta/Categories */
+.category {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #16a34a;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 0;
+}
+
+.category-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: inline-block;
+}
+
+.article {
+    padding: 28px 0 64px;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+h1 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 14px 0 10px;
+    color: #111827;
+}
+
+h2 {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    margin: 32px 0 12px;
+    color: #111827;
+    line-height: 1.3;
+}
+
+h3 {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    margin: 12px 0 8px;
+    color: #111827;
+    line-height: 1.3;
+}
+
+.intro-text {
+    font-family: 'Montserrat', Arial, sans-serif;
+    color: #4b5563;
+    margin-bottom: 12px;
+    font-weight: 400;
+}
+
+/* Image rows */
+.image-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 14px 0 22px;
+}
+
+.image-row img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Sections */
+.section {
+    margin: 8px 0 24px;
+}
+
+.section p {
+    font-family: 'Montserrat', Arial, sans-serif;
+    color: #4b5563;
+    margin-bottom: 12px;
+    font-weight: 400;
+}
+
+/* Benefits two-column */
+.benefits {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 24px;
+    align-items: start;
+    margin-top: 16px;
+}
+
+.benefits .left-image img {
+    width: 100%;
+    height: 494px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.benefit-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: stretch;
+}
+
+.benefit-item {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.benefit-item .kicker {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #111827;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.benefit-item p {
+    font-family: 'Montserrat', Arial, sans-serif;
+    margin: 0;
+    color: #4b5563;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.6;
+    flex: 1;
+}
+
+/* Warning/Skip breakfast */
+.warning-section .hero-image {
+    margin: 10px 0 14px;
+}
+
+.warning-section img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Placeholder block */
+.placeholder-box {
+    background: #e5e7eb;
+    border-radius: 10px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #111827;
+    font-weight: 700;
+    margin: 10px 0 12px;
+}
+
+.tips-subsection {
+    margin-bottom: 10px;
+}
+
+/* Quick solutions section */
+.quick-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 8px 0 10px;
+}
+
+.quick-images img {
+    width: 100%;
+    height: 215px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.checklist {
+    margin: 8px 0 0 0;
+    padding-left: 0;
+    list-style: none;
+    color: #4b5563;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 400;
+}
+
+.checklist li {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.checklist li .check {
+    color: #16a34a;
+    margin-top: 2px;
+}
+
+.muted {
+    font-family: 'Montserrat', Arial, sans-serif;
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.highlight {
+    font-family: 'Montserrat', Arial, sans-serif;
+    color: #16a34a;
+    font-weight: 600;
+}
+
+/* Strong and bold text */
+strong, b {
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+}
+
+/* Ensure text elements use Montserrat (but h2, h3, .kicker, .category will override with Poppins) */
+p, span:not(.check), li {
+    font-family: 'Montserrat', Arial, sans-serif;
+}
+
+
+@media (max-width: 920px) {
+    .image-row { grid-template-columns: 1fr; }
+    .benefits { grid-template-columns: 1fr; }
+    .benefit-list { grid-template-columns: 1fr; }
+    .quick-images { grid-template-columns: 1fr; }
+}
+
+

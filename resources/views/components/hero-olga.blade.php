@@ -28,7 +28,6 @@
   </style>
 </head>
 <body class="bg-[#F8F6F2]">
-  @include('components.navbar2')
 
   <!-- Hero Section -->
   <section class="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto px-6 lg:px-10 py-14">
@@ -44,14 +43,16 @@
       </p>
 
       <!-- Search -->
-      <div class="relative w-full max-w-md">
-        <iconify-icon icon="iconamoon:search"
-          class="absolute left-3.5 top-1/2 -translate-y-1/2"
-          style="color:#4E342E; font-size:20px;">
-        </iconify-icon>
-        <input type="text" placeholder="Telusuri..."
-          class="search-input w-full pl-11 pr-4 py-3 rounded-lg shadow-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6BA84F] text-base">
-      </div>
+      <form action="{{ route('kategori.aktivitas-fisik') }}" method="GET" class="w-full max-w-md">
+        <div class="relative">
+          <iconify-icon icon="iconamoon:search"
+            class="absolute left-3.5 top-1/2 -translate-y-1/2"
+            style="color:#4E342E; font-size:20px;">
+          </iconify-icon>
+          <input type="text" name="search" placeholder="Telusuri..."
+            class="search-input w-full pl-11 pr-4 py-3 rounded-lg shadow-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#6BA84F] text-base">
+        </div>
+      </form>
     </div>
 
     <!-- Right Image -->

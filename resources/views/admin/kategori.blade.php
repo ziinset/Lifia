@@ -189,21 +189,22 @@
 
         .main-content {
             flex: 1;
-            margin-left: 280px;
+            margin-left: 260px;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
         }
 
         .content-wrapper {
-            padding: 2rem;
+            padding: 1.5rem;
             flex: 1;
         }
 
         /* Page Header */
         .page-header {
             background: transparent;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;

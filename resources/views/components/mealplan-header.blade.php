@@ -1,16 +1,8 @@
 <!-- Main Header Banner -->
-<div class="mealplan-header" style="background-image: url('{{ asset('images/Rectangle 597 (1).png') }}');">
+<div class="mealplan-header" style="background-image: url('{{ asset('images/meal.svg') }}');">
     <div class="header-overlay"></div>
-    
-    <!-- Back Button -->
-    <div class="back-button">
-        <a href="{{ url()->previous() }}" class="back-link">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M19 12H5M12 19L5 12L12 5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span>Keluar</span>
-        </a>
-    </div>
+
+    <!-- Back Button removed -->
 
     <!-- Content positioned left -->
     <div class="header-content">
@@ -32,7 +24,7 @@
     background-position: center top; /* Fokus ke bagian atas gambar */
     background-repeat: no-repeat;
     background-attachment: scroll;
-    border-radius: 16px;
+
     margin-bottom: 2rem;
     overflow: hidden;
     display: flex;
@@ -61,43 +53,7 @@
     max-width: 600px;
 }
 
-/* Back Button */
-.back-button {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    z-index: 3;
-}
-
-.back-link {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.75rem 1rem;
-    border-radius: 25px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.back-link:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateX(-5px);
-    color: white;
-}
-
-.back-link svg {
-    transition: transform 0.3s ease;
-}
-
-.back-link:hover svg {
-    transform: translateX(-3px);
-}
+/* Back Button styles removed */
 
 /* Title and Description */
 .main-title {
@@ -125,26 +81,26 @@
     .mealplan-header {
         height: 450px; /* Lebih panjang untuk tablet */
     }
-    
+
     .header-content {
         padding: 2rem 1.5rem;
     }
-    
+
     .back-button {
         top: 1.5rem;
         left: 1rem;
     }
-    
+
     .back-link {
         padding: 0.5rem 0.75rem;
         font-size: 0.875rem;
     }
-    
+
     .main-title {
         font-size: 2.5rem;
         margin-bottom: 1rem;
     }
-    
+
     .main-description {
         font-size: 1rem;
         line-height: 1.6;
@@ -155,26 +111,16 @@
     .mealplan-header {
         height: 400px; /* Tetap panjang untuk mobile */
     }
-    
+
     .main-title {
         font-size: 2rem;
     }
-    
+
     .main-description {
         font-size: 0.9rem;
     }
-    
-    .back-link span {
-        display: none;
-    }
-    
-    .back-link {
-        width: 40px;
-        height: 40px;
-        padding: 0;
-        justify-content: center;
-        border-radius: 50%;
-    }
+
+    /* Back button styles removed */
 }
 
 /* Animation */
@@ -193,7 +139,5 @@
     animation: fadeInUp 0.8s ease-out;
 }
 
-.back-button {
-    animation: fadeInUp 0.8s ease-out 0.2s both;
-}
+/* Back button animation removed */
 </style>

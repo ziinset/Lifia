@@ -85,6 +85,9 @@
         justify-content: flex-end;
         align-items: center;
         margin-bottom: 0;
+        position: sticky;
+        top: 0;
+        z-index: 999;
     }
 
     .user-info {

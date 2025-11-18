@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
@@ -10,6 +12,7 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MealPlanController;
+use App\Http\Controllers\NotesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,18 +23,115 @@ use App\Http\Controllers\MealPlanController;
 // ==========================
 // Halaman umum (tanpa login)
 // ==========================
-Route::get('/', fn() => view('landing'))->name('landing');
-Route::get('/home', fn() => view('home'))->name('home');
+Route::get('/', fn() => view('user.home'))->name('home');
+Route::get('/landing', fn() => view('landing'))->name('landing');
+
+// Halaman Artikel utama
 Route::get('/artikel', [ArticleController::class, 'index'])->name('artikel');
+
+// Aliases navigasi kategori sesuai skema teman, dipetakan ke controller yang ada
+// Pola Makan Sehat
+Route::get('/kategori/pola-makan-sehat', function () {
+    return app(ArticleController::class)->showCategory('pola-makan-sehat');
+})->name('kategori.pola-makan-sehat');
+Route::get('/kategori/pola-makan-sehat/artikel-makanan', function () {
+    return app(ArticleController::class)->showArticle('pola-makan-sehat', 'artikel-makanan');
+})->name('kategori.pola-makan-sehat.artikel');
+Route::get('/kategori/pola-makan-sehat/sarapan-seimbang', [ArticleController::class, 'sarapanSeimbang'])->name('kategori.pola-makan-sehat.sarapan-seimbang');
+
+// Aktivitas Fisik
+Route::get('/kategori/aktivitas-fisik', function () {
+    return app(ArticleController::class)->showCategory('aktivitas-fisik');
+})->name('kategori.aktivitas-fisik');
+Route::get('/kategori/aktivitas-fisik/listolahraga', function () {
+    return app(ArticleController::class)->showArticle('aktivitas-fisik', 'listolahraga');
+})->name('kategori.aktivitas-fisik.listolahraga');
+// Legacy article page alias
+Route::get('/kategori/aktivitas-fisik/artikel', [ArticleController::class, 'aktivitasFisikArtikel'])->name('kategori.aktivitas-fisik.artikel.artikel');
+
+// Kesehatan Mental
+Route::get('/kategori/kesehatan-mental', function () {
+    return app(ArticleController::class)->showCategory('kesehatan-mental');
+})->name('kategori.kesehatan-mental');
+Route::get('/kategori/kesehatan-mental/artikel-mental', function () {
+    return app(ArticleController::class)->showArticle('kesehatan-mental', 'artikel-mental');
+})->name('kategori.kesehatan-mental.artikel-mental');
+// Halaman artikel generik di dalam folder artikel
+Route::get('/kategori/kesehatan-mental/artikel', function () {
+    return app(ArticleController::class)->showArticle('kesehatan-mental', 'artikel');
+})->name('kategori.kesehatan-mental.artikel.artikel');
+
+// Perawatan Diri
+Route::get('/kategori/perawatan-diri', function () {
+    return app(ArticleController::class)->showCategory('perawatan-diri');
+})->name('kategori.perawatan-diri');
+Route::get('/kategori/perawatan-diri/artikel-perawatan', function () {
+    return app(ArticleController::class)->showArticle('perawatan-diri', 'artikel-perawatan');
+})->name('kategori.perawatan-diri.artikel-perawatan');
+// Halaman artikel generik di dalam folder artikel
+Route::get('/kategori/perawatan-diri/artikel', function () {
+    return app(ArticleController::class)->showArticle('perawatan-diri', 'artikel');
+})->name('kategori.perawatan-diri.artikel.artikel');
+
+// Vegan
+Route::get('/kategori/vegan', function () {
+    return app(ArticleController::class)->showCategory('vegan');
+})->name('kategori.vegan');
+Route::get('/kategori/vegan/artikel-vegan', function () {
+    return app(ArticleController::class)->showArticle('vegan', 'artikel-vegan');
+})->name('kategori.vegan.artikel-vegan');
+// Halaman artikel generik di dalam folder artikel
+Route::get('/kategori/vegan/artikel', function () {
+    return app(ArticleController::class)->showArticle('vegan', 'artikel');
+})->name('kategori.vegan.artikel.artikel');
+
+// Eco Living
+Route::get('/kategori/eco-living', function () {
+    return app(ArticleController::class)->showCategory('eco-living');
+})->name('kategori.eco-living');
+Route::get('/kategori/eco-living/artikel-eco', function () {
+    return app(ArticleController::class)->showArticle('eco-living', 'artikel-eco');
+})->name('kategori.eco-living.artikel-eco');
+// Halaman artikel generik di dalam folder artikel
+Route::get('/kategori/eco-living/artikel', function () {
+    return app(ArticleController::class)->showArticle('eco-living', 'artikel');
+})->name('kategori.eco-living.artikel.artikel');
+
+// Alias lama untuk kompatibilitas (beberapa view masih memanggil kategori.eco)
+Route::get('/kategori/eco', function () {
+    return app(ArticleController::class)->showCategory('eco-living');
+})->name('kategori.eco');
+Route::get('/kategori/eco/artikel-eco', function () {
+    return app(ArticleController::class)->showArticle('eco-living', 'artikel-eco');
+})->name('kategori.eco.artikel-eco');
+// Halaman artikel generik untuk alias eco
+Route::get('/kategori/eco/artikel', function () {
+    return app(ArticleController::class)->showArticle('eco-living', 'artikel');
+})->name('kategori.eco.artikel.artikel');
+
+// Tetap sediakan rute dinamis agar kompatibel dengan URL lain
 Route::get('/kategori/{category}', [ArticleController::class, 'showCategory'])->name('artikel.category');
 Route::get('/kategori/{category}/{article}', [ArticleController::class, 'showArticle'])->name('artikel.show');
-Route::get('/artikel/sarapan-seimbang', [ArticleController::class, 'sarapanSeimbang'])->name('artikel.sarapan-seimbang');
-Route::get('/list-olahraga', fn() => view('listolahraga.listolahraga'))->name('list-olahraga');
 
 // Search Routes
 Route::get('/search', [SearchController::class, 'search'])->name('search');
 Route::get('/search/suggestions', [SearchController::class, 'suggestions'])->name('search.suggestions');
 Route::get('/search/quick', [SearchController::class, 'quickSearch'])->name('search.quick');
+
+// Cek BMI (alias publik tanpa controller)
+Route::get('/cek-bmi', fn() => view('user.cek-bmi'))->name('cek-bmi');
+
+// Tentang Kami (alias publik tanpa controller)
+Route::get('/tentang-kami', fn() => view('tentang-kami'))->name('tentang-kami');
+
+// FitPlan (alias publik; bisa dipindah ke auth middleware nanti)
+Route::get('/fitplan', fn() => view('premium.fitplan'))->name('fitplan');
+
+// Meal Plan (alias publik untuk kompatibilitas)
+Route::get('/mealplan', fn() => view('premium.mealplan'))->name('mealplan');
+
+// Program Turun Berat Badan (alias publik)
+Route::get('/program-turun-berat-badan', fn() => view('premium.program-turun-berat-badan.program-turunbb'))->name('program-turun-berat-badan');
 
 // ==========================
 // Auth Routes
@@ -65,9 +165,56 @@ Route::middleware('auth')->group(function () {
     Route::post('/profil', [ProfileController::class, 'update'])->name('profil.update');
 
     // Halaman user lain
-    Route::get('/aktivitas', fn() => view('user.aktivitas'))->name('aktivitas');
+    Route::get('/aktivitas', function () {
+        $userId = auth()->id();
+        $bmiRecord = null;
+        if ($userId) {
+            $bmiRecord = DB::table('bmi_records')
+                ->where('user_id', $userId)
+                ->orderByDesc('measured_at')
+                ->orderByDesc('id')
+                ->first();
+        }
+        return view('user.aktivitas', compact('bmiRecord'));
+    })->name('aktivitas');
     Route::get('/koleksi', [FavoriteController::class, 'showCollection'])->name('koleksi');
-    Route::get('/progres', fn() => view('user.progres'))->name('progres');
+    Route::get('/progres', function () {
+        $userId = auth()->id();
+        $bmiRecord = null;
+        if ($userId) {
+            $bmiRecord = DB::table('bmi_records')
+                ->where('user_id', $userId)
+                ->orderByDesc('measured_at')
+                ->orderByDesc('id')
+                ->first();
+        }
+        return view('user.progres', compact('bmiRecord'));
+    })->name('progres');
+
+    // Simpan hasil BMI
+    Route::post('/bmi', function (Request $request) {
+        $userId = auth()->id();
+        if (!$userId) {
+            return response()->json(['message' => 'Unauthenticated'], 401);
+        }
+        $data = $request->validate([
+            'height_cm' => 'required|numeric|min:1',
+            'weight_kg' => 'required|numeric|min:1',
+            'bmi' => 'required|numeric|min:1',
+            'measured_at' => 'nullable|date',
+        ]);
+        DB::table('bmi_records')->insert([
+            'user_id' => $userId,
+            'height_cm' => $data['height_cm'],
+            'weight_kg' => $data['weight_kg'],
+            'bmi' => $data['bmi'],
+            'measured_at' => $data['measured_at'] ?? now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        return response()->json(['message' => 'Saved']);
+    })->name('bmi.store');
+
     // Premium routes with controller
     Route::get('/premium', [PremiumController::class, 'premium'])->name('premium');
     Route::get('/nonpremium', [PremiumController::class, 'nonpremium'])->name('nonpremium');
@@ -77,6 +224,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/favorites', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
     Route::get('/favorites/check', [FavoriteController::class, 'check'])->name('favorites.check');
+    
+    // Notes routes
+    Route::get('/notes', [NotesController::class, 'index'])->name('notes.index');
+    Route::post('/notes', [NotesController::class, 'store'])->name('notes.store');
+    Route::get('/notes/{id}', [NotesController::class, 'show'])->name('notes.show');
+    Route::put('/notes/{id}', [NotesController::class, 'update'])->name('notes.update');
+    Route::delete('/notes/{id}', [NotesController::class, 'destroy'])->name('notes.destroy');
+    Route::post('/notes/{id}/toggle-pin', [NotesController::class, 'togglePin'])->name('notes.toggle-pin');
 });
 
 // ==========================

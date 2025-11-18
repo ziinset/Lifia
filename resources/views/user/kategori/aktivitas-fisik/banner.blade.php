@@ -1,27 +1,8 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banner Section</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #f8f9fa;
-            padding: 40px 20px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+{{-- Banner Section --}}
+<style>
+    .banner-section {
+        margin-top: 50px;
+    }
 
         /* Banner Section Styles */
         .banner-section {
@@ -299,8 +280,7 @@
             }
         }
     </style>
-</head>
-<body>
+
     <div class="container">
         <!-- Banner Section -->
         <div class="banner-section">
@@ -308,49 +288,49 @@
                 <div class="banner-slides">
                     <div class="banner-slide active">
                         <div class="banner-image">
-                            <img src="image/Rectangle 179.png" alt="Olahraga Aman untuk Ibu Hamil">
+                            <img src="image/Rectangle 136.png" alt="Tips Sehat Setiap Hari">
                         </div>
                         <div class="banner-overlay">
                             <div class="banner-content">
-                                <h3>Olahraga Aman untuk Ibu Hamil: Tetap Aktif Tanpa Risiko</h3>
-                                <p>Ibu hamil tetap bisa aktif dengan olahraga ringan seperti jalan kaki dan yoga prenatal. Aktivitas ini membantu menjaga kebugaran dan mempersiapkan tubuh untuk persalinan.</p>
+                                <h3>Tips Sehat Setiap Hari</h3>
+                                <p>Kebiasaan kecil bisa berdampak besar untuk kesehatanmu. Yuk mulai hari ini dengan tips sederhana yang bisa langsung kamu praktikkan!</p>
                                 <button class="banner-btn">Baca Selengkapnya</button>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="banner-slide">
                         <div class="banner-image">
-                            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Menu Diet Seimbang">
+                            <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Resep Makanan Bergizi">
                         </div>
                         <div class="banner-overlay">
                             <div class="banner-content">
-                                <h3>Menu Diet Seimbang: Kunci Tubuh Ideal dan Sehat</h3>
-                                <p>Dapatkan berat badan ideal dengan menu diet seimbang yang mudah diikuti. Kombinasi protein, karbohidrat, dan sayuran untuk nutrisi optimal setiap hari.</p>
+                                <h3>Resep Makanan Bergizi</h3>
+                                <p>Temukan berbagai resep makanan sehat yang mudah dibuat dan kaya nutrisi. Cocok untuk menu harian keluarga Indonesia.</p>
                                 <button class="banner-btn">Baca Selengkapnya</button>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="banner-slide">
                         <div class="banner-image">
-                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Cara Mengatasi Stres">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Olahraga di Rumah">
                         </div>
                         <div class="banner-overlay">
                             <div class="banner-content">
-                                <h3>Cara Mengatasi Stres: Teknik Relaksasi yang Efektif</h3>
-                                <p>Pelajari berbagai teknik mengatasi stres dari meditasi hingga aktivitas fisik. Jaga kesehatan mental dengan cara mudah yang bisa dilakukan kapan saja.</p>
+                                <h3>Olahraga di Rumah</h3>
+                                <p>Tidak perlu ke gym untuk tetap sehat! Ikuti panduan olahraga mudah yang bisa dilakukan di rumah dengan peralatan sederhana.</p>
                                 <button class="banner-btn">Baca Selengkapnya</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="banner-navigation">
                     <button class="nav-prev" onclick="prevSlide()">‹</button>
                     <button class="nav-next" onclick="nextSlide()">›</button>
                 </div>
-                
+
                 <div class="banner-indicators">
                     <span class="indicator active" onclick="currentSlide(1)"></span>
                     <span class="indicator" onclick="currentSlide(2)"></span>
@@ -369,7 +349,7 @@
         function showSlide(index) {
             slides.forEach(slide => slide.classList.remove('active'));
             indicators.forEach(indicator => indicator.classList.remove('active'));
-            
+
             slides[index].classList.add('active');
             indicators[index].classList.add('active');
         }
@@ -445,5 +425,3 @@
             }
         }
     </script>
-</body>
-</html>

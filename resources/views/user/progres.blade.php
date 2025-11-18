@@ -775,7 +775,7 @@
                     <div class="progress-card welcome">
                         <div class="welcome-content">
                             <h3>Selamat datang...</h3>
-                            <p>Semangat terus jaga<br>kesehatanmu! 💪</p>
+                            <p>Semangat terus jaga<br>kesehatanmu! </p>
                             <button class="progress-btn">
                                 <i class="fas fa-plus"></i>
                                 Tambah Progress
@@ -793,36 +793,47 @@
                             <p>Pantau perkembangan kesehatanmu setiap hari</p>
                             
                             <div class="progress-bars">
+                                <?php $hasBmi = isset($bmiRecord) && $bmiRecord; ?>
+                                <?php
+                                    $weight = $hasBmi ? (float)$bmiRecord->weight_kg : null;
+                                    $height = $hasBmi ? (float)$bmiRecord->height_cm : null;
+                                    $bmiVal = $hasBmi ? (float)$bmiRecord->bmi : null;
+                                    // Hitung lebar bar sederhana (skala visual, tidak ilmiah)
+                                    $wWidth = $weight ? min(100, max(0, ($weight / 120) * 100)) : 0; // asumsikan 120kg = 100%
+                                    $bmiWidth = $bmiVal ? min(100, max(0, (($bmiVal - 14) / (40 - 14)) * 100)) : 0; // 14-40 rentang visual
+                                    $hWidth = $height ? min(100, max(0, ($height / 200) * 100)) : 0; // 200cm = 100%
+                                ?>
+
                                 <div class="progress-item">
                                     <div class="progress-icon weight"></div>
                                     <div class="progress-info">
                                         <span class="progress-label">Berat Badan</span>
                                         <div class="progress-bar">
-                                            <div class="progress-fill" data-width="85%"></div>
+                                            <div class="progress-fill" data-width="<?php echo number_format($wWidth,0); ?>%" style="width: 0%; background:#556B2F;"></div>
                                         </div>
-                                        <span class="progress-value">65 kg</span>
+                                        <span class="progress-value"><?php echo $weight !== null ? number_format($weight, 1, '.', '') . ' kg' : '—'; ?></span>
                                     </div>
                                 </div>
-                                
+
                                 <div class="progress-item">
                                     <div class="progress-icon bmi"></div>
                                     <div class="progress-info">
                                         <span class="progress-label">BMI</span>
                                         <div class="progress-bar">
-                                            <div class="progress-fill" data-width="70%"></div>
+                                            <div class="progress-fill" data-width="<?php echo number_format($bmiWidth,0); ?>%" style="width: 0%; background:#7BA05B;"></div>
                                         </div>
-                                        <span class="progress-value">21.5</span>
+                                        <span class="progress-value"><?php echo $bmiVal !== null ? number_format($bmiVal, 1, '.', '') : '—'; ?></span>
                                     </div>
                                 </div>
-                                
+
                                 <div class="progress-item">
                                     <div class="progress-icon target"></div>
                                     <div class="progress-info">
-                                        <span class="progress-label">Target</span>
+                                        <span class="progress-label">Tinggi</span>
                                         <div class="progress-bar">
-                                            <div class="progress-fill" data-width="72%"></div>
+                                            <div class="progress-fill" data-width="<?php echo number_format($hWidth,0); ?>%" style="width: 0%; background:#9EC978;"></div>
                                         </div>
-                                        <span class="progress-value">72%</span>
+                                        <span class="progress-value"><?php echo $height !== null ? number_format($height, 0, '.', '') . ' cm' : '—'; ?></span>
                                     </div>
                                 </div>
                             </div>
@@ -920,9 +931,9 @@
             const progressBars = document.querySelectorAll('.progress-fill');
             progressBars.forEach(bar => {
                 const width = bar.getAttribute('data-width');
-                bar.style.width = width;
+                if (width) bar.style.width = width;
             });
-        }, 1000); // Start animation after 1 second
+        }, 300); // Start animation after 0.3s
 
         // Activity buttons interaction
         const activityBtns = document.querySelectorAll('.activity-btn');

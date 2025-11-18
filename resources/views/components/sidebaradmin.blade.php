@@ -1,5 +1,5 @@
 <!-- Sidebar Admin Component -->
-<div class="sidebar-admin initial-load" id="sidebar-admin" style="width: 260px; height: 100vh; background-color: #ffffff; border-right: 1px solid #e5e7eb; font-family: 'Poppins', sans-serif; font-weight: 500; position: fixed; left: 0; top: 0; z-index: 1000; overflow-y: hidden;">
+<div class="sidebar-admin initial-load" id="sidebar-admin" style="width: 260px; height: 100vh; background-color: #ffffff; border-right: 1px solid #e5e7eb; font-family: 'Poppins', sans-serif; font-weight: 500; position: fixed; left: 0; top: 0; z-index: 1001; overflow-y: hidden;">
     <!-- Logo Section -->
     <div class="logo-section" style="padding: 32px 24px 48px 24px; text-align: center;">
         <img src="{{ asset('images/logo2-lifia.svg') }}" alt="Lifia" style="height: 40px; width: auto;">

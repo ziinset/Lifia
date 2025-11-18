@@ -4,9 +4,12 @@
 
 @section('content')
 <div class="mealplan-container">
+    <!-- Regular Navbar for Meal Plan -->
+    @include('components.navbar')
+
     <!-- Header Banner Component -->
     @include('components.mealplan-header')
-    
+
     <!-- Main Content -->
     <div class="mealplan-content">
         <div class="container">
@@ -28,9 +31,9 @@
                     <div class="category-badge sarapan">Sarapan</div>
                     <div class="meal-card">
                         <div class="meal-image">
-                            <img src="{{ asset('images/meals/oat-bowl.jpg') }}" alt="Energy Oat Bowl">
+                            <img src="{{ asset('images/oat.svg') }}" alt="Energy Oat Bowl">
                         </div>
-                        
+
                         <div class="meal-info">
                             <h4 class="meal-title">Energy Oat Bowl</h4>
                             <div class="meal-nutrition-inline">
@@ -47,9 +50,9 @@
                     <div class="category-badge snack-pagi">Snack Pagi</div>
                     <div class="meal-card">
                         <div class="meal-image">
-                            <img src="{{ asset('images/meals/yogurt-berry.jpg') }}" alt="Berry Yogurt Boost">
+                            <img src="{{ asset('images/bery.svg') }}" alt="Berry Yogurt Boost">
                         </div>
-                        
+
                         <div class="meal-info">
                             <h4 class="meal-title">Berry Yogurt Boost</h4>
                             <div class="meal-nutrition-inline">
@@ -66,9 +69,9 @@
                     <div class="category-badge makan-siang">Makan Siang</div>
                     <div class="meal-card">
                         <div class="meal-image">
-                            <img src="{{ asset('images/meals/chicken-salad.jpg') }}" alt="Grilled Chicken Power Plate">
+                            <img src="{{ asset('images/ayam.svg') }}" alt="Grilled Chicken Power Plate">
                         </div>
-                        
+
                         <div class="meal-info">
                             <h4 class="meal-title">Grilled Chicken Power Plate</h4>
                             <div class="meal-nutrition-inline">
@@ -85,9 +88,9 @@
                     <div class="category-badge makan-malam">Makan Malam</div>
                     <div class="meal-card">
                         <div class="meal-image">
-                            <img src="{{ asset('images/meals/salmon-bowl.jpg') }}" alt="Salmon & Quinoa Bowl">
+                            <img src="{{ asset('images/salmon.jpeg') }}" alt="Salmon & Quinoa Bowl">
                         </div>
-                        
+
                         <div class="meal-info">
                             <h4 class="meal-title">Salmon & Quinoa Bowl</h4>
                             <div class="meal-nutrition-inline">
@@ -296,50 +299,50 @@
     .container {
         padding: 0 1.5rem;
     }
-    
+
     .day-tabs {
         gap: 0.5rem;
     }
-    
+
     .day-tab {
         padding: 0.75rem 1.25rem;
         font-size: 0.9rem;
     }
-    
+
     .meal-category {
         padding: 1rem;
     }
-    
+
     .meal-categories {
         max-width: 100%;
     }
-    
+
     .meal-card {
         flex-direction: column;
         gap: 1rem;
         padding: 1rem;
     }
-    
+
     .meal-image {
         width: 100%;
         height: 200px;
         align-self: center;
         max-width: 300px;
     }
-    
+
     .category-badge {
         align-self: center;
     }
-    
+
     .meal-title {
         text-align: center;
         font-size: 1rem;
     }
-    
+
     .meal-nutrition-inline {
         text-align: center;
     }
-    
+
     .meal-description {
         text-align: center;
         font-size: 0.85rem;
@@ -351,25 +354,25 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Day tab functionality
     const dayTabs = document.querySelectorAll('.day-tab');
-    
+
     dayTabs.forEach(tab => {
         tab.addEventListener('click', function() {
             // Remove active class from all tabs
             dayTabs.forEach(t => t.classList.remove('active'));
-            
+
             // Add active class to clicked tab
             this.classList.add('active');
-            
+
             // Load meal data for selected day
             const day = this.dataset.day;
             loadMealPlan(day);
         });
     });
-    
+
     function loadMealPlan(day) {
         // This would typically load data via AJAX
         console.log(`Loading meal plan for day ${day}`);
-        
+
         // For now, we'll just update the content
         // In a real implementation, you'd fetch data from the server
     }

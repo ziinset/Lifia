@@ -730,14 +730,29 @@
                 <!-- Left Section -->
                 <div class="left-section">
                     <!-- BMI Card -->
-                    <div class="activity-card bmi">
+                    <div class="activity-card bmi" <?php if(isset($bmiRecord) && $bmiRecord): ?> data-bmi-server="1" <?php endif; ?>>
                         <div class="activity-icon">
                             <img src="image/famicons_scale.png" alt="BMI Icon">
                         </div>
                         <div class="activity-info">
                             <h3>Menghitung BMI</h3>
-                            <div class="date">12 Juli 2025, 10.30</div>
-                            <div class="description">Tinggi: 170 cm, Berat: 60 kg, BMI: 20.8</div>
+                            <div class="date">
+                                <?php if(isset($bmiRecord) && $bmiRecord): ?>
+                                    <?php echo \Carbon\Carbon::parse($bmiRecord->measured_at)
+                                        ->timezone(config('app.timezone', 'Asia/Jakarta'))
+                                        ->locale('id')
+                                        ->translatedFormat('d F Y, H.i'); ?>
+                                <?php else: ?>
+                                    —
+                                <?php endif; ?>
+                            </div>
+                            <div class="description">
+                                <?php if(isset($bmiRecord) && $bmiRecord): ?>
+                                    Tinggi: <?php echo (int) $bmiRecord->height_cm; ?> cm, Berat: <?php echo (int) $bmiRecord->weight_kg; ?> kg, BMI: <?php echo number_format((float)$bmiRecord->bmi, 1, '.', ''); ?>
+                                <?php else: ?>
+                                    Belum ada data BMI. <a href="<?php echo url('/cek-bmi'); ?>" style="font-weight:600; color:#23410f; text-decoration:underline;">Isi di Cek BMI</a>.
+                                <?php endif; ?>
+                            </div>
                         </div>
                         <div class="arrow-container">
                             <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -874,5 +889,98 @@
             </div>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const today = new Date();
+
+            function pad(n){ return n.toString().padStart(2, '0'); }
+            function formatTanggal(d) {
+                const tanggal = d.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+                const waktu = pad(d.getHours()) + '.' + pad(d.getMinutes());
+                return tanggal + ', ' + waktu;
+            }
+
+            // Set semua tanggal aktivitas ke hari ini (format Indonesia) kecuali untuk kartu BMI (biarkan ditentukan oleh server/placeholder)
+            document.querySelectorAll('.activity-info .date').forEach(function(el){
+                const isBmiCard = !!el.closest('.activity-card.bmi');
+                if (!isBmiCard) el.textContent = formatTanggal(today);
+            });
+
+            // Kalender dinamis dengan navigasi bulan
+            const calendarHeader = document.querySelector('.calendar-header h3');
+            const grid = document.querySelector('.calendar-grid');
+            const arrows = document.querySelectorAll('.calendar-header .nav-arrow');
+
+            let viewYear = today.getFullYear();
+            let viewMonth = today.getMonth(); // 0-11
+
+            function renderCalendar(year, month) {
+                if (!calendarHeader || !grid) return;
+
+                // Update judul bulan (Indonesia)
+                calendarHeader.textContent = new Date(year, month, 1).toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
+
+                // Hapus semua cell tanggal sebelumnya
+                grid.querySelectorAll('.calendar-day').forEach(function(day){ day.remove(); });
+
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                // Isi blank days sebelum tanggal 1
+                for (let i = 0; i < firstDay; i++) {
+                    const blank = document.createElement('div');
+                    blank.className = 'calendar-day';
+                    grid.appendChild(blank);
+                }
+
+                // Isi tanggal 1..N dan tandai hari ini hanya jika berada di bulan & tahun saat ini
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const cell = document.createElement('div');
+                    let cls = 'calendar-day';
+                    if (year === today.getFullYear() && month === today.getMonth() && d === today.getDate()) {
+                        cls += ' active';
+                    }
+                    cell.className = cls;
+                    cell.textContent = d;
+                    grid.appendChild(cell);
+                }
+            }
+
+            // Render awal (bulan sekarang)
+            renderCalendar(viewYear, viewMonth);
+
+            // Navigasi: bulan sebelumnya / berikutnya
+            if (arrows && arrows.length >= 2) {
+                const prevBtn = arrows[0];
+                const nextBtn = arrows[1];
+
+                prevBtn.addEventListener('click', function(){
+                    viewMonth--;
+                    if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+                    renderCalendar(viewYear, viewMonth);
+                });
+
+                nextBtn.addEventListener('click', function(){
+                    viewMonth++;
+                    if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+                    renderCalendar(viewYear, viewMonth);
+                });
+            }
+
+            // Tidak ada fallback localStorage untuk BMI di halaman ini
+            // agar data tidak tertukar antar akun. Data BMI hanya dari server.
+
+            // Klik panah pada kartu BMI menuju halaman progres
+            const bmiArrow = document.querySelector('.activity-card.bmi .arrow-container');
+            if (bmiArrow) {
+                bmiArrow.style.cursor = 'pointer';
+                bmiArrow.addEventListener('click', function(e){
+                    e.stopPropagation();
+                    window.location.href = '{{ route('progres') }}';
+                });
+            }
+        });
+    </script>
 </body>
 </html>

@@ -18,66 +18,65 @@
 
     <main class="max-w-5xl mx-auto px-4 py-10">
         <!-- Pilih Tujuan -->
-        <section class="mb-12">
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold text-gray-800">Pilih Tujuan Olahraga</h2>
-                <p class="text-gray-500 mt-1">Sesuaikan latihanmu dengan tujuan utama.</p>
+        <section class="mb-16">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-[#4E342E]">Pilih Tujuan Olahraga</h2>
+                <p class="text-gray-500 mt-2">Sesuaikan latihanmu dengan tujuan utama.</p>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
 
                 <!-- Turun Berat Badan -->
-                <div class="rounded-2xl p-8 flex flex-col items-center shadow-lg hover:shadow-xl transition min-h-[280px]"
-                    style="background:linear-gradient(180deg,#8BAC65 0%,#728B56 100%);">
-                    <span class="iconify text-5xl text-white mb-5" data-icon="mdi:scale-bathroom"></span>
-                    <h3 class="text-white font-semibold text-lg mb-4 leading-tight text-center flex-grow flex items-center">
+                <div class="rounded-[28px] p-8 flex flex-col items-center min-h-[300px] shadow-2xl hover:shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition duration-300 ease-out hover:-translate-y-1"
+                    style="background:linear-gradient(180deg,#8BAC65 0%, #728B56 100%);">
+                    <img src="{{ asset('images/fitplan/icon-weight.svg') }}" alt="Ikon Turun Berat Badan" class="w-16 h-16 mb-6" />
+                    <h3 class="text-white font-semibold text-lg mb-6 leading-tight text-center flex-grow flex items-center">
                         Turun<br>Berat Badan
                     </h3>
                     <button onclick="window.location.href='{{ route('program-turun-berat-badan') }}'"
-                        class="bg-white text-[#728B56] font-semibold px-6 py-2 rounded-full hover:opacity-90">
+                        class="bg-white text-[#728B56] font-semibold px-7 py-2 rounded-full shadow hover:opacity-95">
                         Mulai
                     </button>
                 </div>
 
                 <!-- Bentuk Otot -->
-                <div class="rounded-2xl p-8 flex flex-col items-center shadow-lg hover:shadow-xl transition min-h-[280px]"
-                    style="background:linear-gradient(180deg,#FF9800 0%,#B2751C 100%);">
-                    <span class="iconify text-5xl text-white mb-5" data-icon="mdi:dumbbell"></span>
-                    <h3 class="text-white font-semibold text-lg mb-4 leading-tight text-center flex-grow flex items-center">
+                <div class="rounded-[28px] p-8 flex flex-col items-center min-h-[300px] shadow-2xl hover:shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition duration-300 ease-out hover:-translate-y-1"
+                    style="background:linear-gradient(180deg,#FFB84D 0%, #B2751C 100%);">
+                    <img src="{{ asset('images/fitplan/icon-dumbbell.svg') }}" alt="Ikon Bentuk Otot" class="w-16 h-16 mb-6" />
+                    <h3 class="text-white font-semibold text-lg mb-6 leading-tight text-center flex-grow flex items-center">
                         Bentuk Otot
                     </h3>
-                    <button class="bg-white text-[#B2751C] font-semibold px-6 py-2 rounded-full hover:opacity-90">
+                    <button class="bg-white text-[#B2751C] font-semibold px-7 py-2 rounded-full shadow hover:opacity-95">
                         Mulai
                     </button>
                 </div>
 
                 <!-- Stamina & Energi -->
-                <div class="rounded-2xl p-8 flex flex-col items-center shadow-lg hover:shadow-xl transition min-h-[280px]"
-                    style="background:linear-gradient(180deg,#8D5D51 0%,#4E342E 100%);">
-                    <span class="iconify text-5xl text-white mb-5" data-icon="mdi:flash"></span>
-                    <h3 class="text-white font-semibold text-lg mb-4 leading-tight text-center flex-grow flex items-center">
+                <div class="rounded-[28px] p-8 flex flex-col items-center min-h-[300px] shadow-2xl hover:shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition duration-300 ease-out hover:-translate-y-1"
+                    style="background:linear-gradient(180deg,#8D5D51 0%, #4E342E 100%);">
+                    <img src="{{ asset('images/fitplan/icon-bolt.svg') }}" alt="Ikon Stamina & Energi" class="w-16 h-16 mb-6" />
+                    <h3 class="text-white font-semibold text-lg mb-6 leading-tight text-center flex-grow flex items-center">
                         Stamina &amp;<br>Energi
                     </h3>
-                    <button class="bg-white text-[#4E342E] font-semibold px-6 py-2 rounded-full hover:opacity-90">
+                    <button class="bg-white text-[#4E342E] font-semibold px-7 py-2 rounded-full shadow hover:opacity-95">
                         Mulai
                     </button>
                 </div>
 
                 <!-- Tubuh Lebih Lentur -->
-                <div class="rounded-2xl p-8 flex flex-col items-center shadow-lg hover:shadow-xl transition min-h-[280px]"
-                    style="background:linear-gradient(180deg,#B4D678 0%,#5E703F 100%);">
-                    <span class="iconify text-5xl text-white mb-5" data-icon="mdi:yoga"></span>
-                    <h3 class="text-white font-semibold text-lg mb-4 leading-tight text-center flex-grow flex items-center">
+                <div class="rounded-[28px] p-8 flex flex-col items-center min-h-[300px] shadow-2xl hover:shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition duration-300 ease-out hover:-translate-y-1"
+                    style="background:linear-gradient(180deg,#B4D678 0%, #5E703F 100%);">
+                    <img src="{{ asset('images/fitplan/icon-yoga.svg') }}" alt="Ikon Tubuh Lebih Lentur" class="w-16 h-16 mb-6" />
+                    <h3 class="text-white font-semibold text-lg mb-6 leading-tight text-center flex-grow flex items-center">
                         Tubuh Lebih<br>Lentur
                     </h3>
-                    <button class="bg-white text-[#5E703F] font-semibold px-6 py-2 rounded-full hover:opacity-90">
+                    <button class="bg-white text-[#5E703F] font-semibold px-7 py-2 rounded-full shadow hover:opacity-95">
                         Mulai
                     </button>
                 </div>
 
             </div>
         </section>
-
 
         <!-- Statistik Laporan -->
         <section class="mb-12">

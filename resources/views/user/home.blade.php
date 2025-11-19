@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 </head>
 <body class="bg-white">
-    @include('components.hero1')
+    @include('components.hero-home')
 
     <!-- Categories Section -->
-    <section class="py-20 px-4 bg-gray-50">
+    <section class="category-section px-4 bg-white">
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-12">
                 <div>
@@ -21,9 +21,6 @@
                         Topik hidup sehat, mulai dari pola makan hingga kesehatan mental—ringan, relevan, dan mudah dipraktikkan.
                     </p>
                 </div>
-                <a href="#" class="category-button mt-4 lg:mt-0">
-                    Selengkapnya
-                </a>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -32,7 +29,7 @@
                     <img src="{{ asset('img/makansehat.png') }}" alt="Pola Makan Sehat" class="w-full">
                     <div class="category-card-content">
                         <h3>Pola Makan Sehat</h3>
-                        <p>Resep bergizi & praktis untuk mendukung aktivitas harian yang aktif.</p>
+                        <p>Resep bergizi untuk mendukung aktivitas harian yang aktif.</p>
                     </div>
                 </div>
 
@@ -67,10 +64,10 @@
     </section>
 
     <!-- Call to Action Section -->
-    <section class="bg-gradient-green py-20 px-4">
+    <section class="bg-gradient-green py-20 px-4 sm:px-6">
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
-                <div class="lg:w-1/2 text-white">
+                <div class="lg:w-1/2 text-white pl-2 sm:pl-4">
                     <div class="cta-badge">
                         KESEHATAN DIMULAI DARI HAL KECIL
                     </div>
@@ -85,31 +82,30 @@
                         kualitas hidup.
                     </p>
                 </div>
-                <div class="lg:w-1/2 flex justify-center lg:justify-end">
-                    <div class="cta-card">
-                        <img src="{{ asset('img/orgminum.png') }}" alt="Healthy drink" class="w-full">
-                        <div class="cta-card-content">
+                <div class="lg:w-1/2 flex justify-center lg:justify-end items-stretch h-full pr-2 sm:pr-4">
+                    <div class="cta-card group h-full flex flex-col">
+                        <img src="{{ asset('images/cta-model.svg') }}" alt="Wanita sehat">
+                        <div class="cta-card-content flex-grow flex flex-col">
                             <h3>Tips Pola Makan Sehat</h3>
-                            <p>
-                                Simak langkah mudah makanan dan<br>
-                                minuman sehat untuk pemula.
-                            </p>
+                            <p class="mb-4">Simak langkah mudah makanan dan <br>minuman sehat untuk pemula.</p>
+                            <div class="mt-auto">
+                                <button class="cta-arrow-button" onclick="window.location.href='{{ url('/kategori/pola-makan-sehat') }}'">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
-                        <button class="cta-arrow-button">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </button>
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Info Section -->
-    <section class="py-20 px-4 bg-white">
+    <section class="py-16 md:py-24 px-4 bg-white">
         <div class="max-w-6xl mx-auto">
-            <div class="info-card">
+            <div class="info-card py-12 md:py-16">
                 <div class="flex flex-col lg:flex-row items-center">
                     <div class="lg:w-1/3 mb-8 lg:mb-0">
                         <img src="{{ asset('img/bmiberanda.png') }}" alt="Body weight scale" class="info-image w-full max-w-sm mx-auto lg:mx-0">
@@ -121,7 +117,7 @@
                         <p class="info-text">
                             Dengan mengetahui BMI, kamu bisa memahami apakah tubuhmu berada dalam kategori yang sehat atau belum. BMI adalah indikator sederhana namun efektif yang dapat membantu kamu mengambil langkah yang tepat untuk menjaga pola makan dan gaya hidup yang lebih sehat. Yuk, mulai dari tahu angkanya!
                         </p>
-                        <button class="info-button">
+                        <button class="info-button" onclick="window.location.href='{{ url('/cek-bmi') }}'">
                             Cek Sekarang
                         </button>
                     </div>
@@ -129,16 +125,17 @@
             </div>
 
             <!-- Steps Section -->
-            <div class="text-center mb-16">
-                <h2 class="steps-title">
-                    Langkah Mudah Memulai Gaya Hidup Sehat
-                </h2>
-                <p class="steps-subtitle max-w-3xl mx-auto">
-                    Mulai dari kebiasaan kecil untuk tubuh bugar dan hidup lebih seimbang.
-                </p>
-            </div>
+            <div class="steps-section">
+                <div class="text-center">
+                    <h2 class="steps-title">
+                        Langkah Mudah Memulai Gaya Hidup Sehat
+                    </h2>
+                    <p class="steps-subtitle max-w-3xl mx-auto">
+                        Mulai dari kebiasaan kecil untuk tubuh bugar dan hidup lebih seimbang.
+                    </p>
+                </div>
 
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-16">
                 <!-- Step 1 -->
                 <div class="text-center">
                     <div class="step-icon step-icon-1">
@@ -146,7 +143,7 @@
                     </div>
                     <h3 class="step-title">Pola Makan Seimbang</h3>
                     <p class="step-text">
-                        Perbanyak asupan sayur dan buah, batasi makanan olahan, serta konsumsi air putih yang cukup untuk hidrasi optimal.
+                        Perbanyak asupan sayur dan buah, batasi makanan olahan, konsumsi air putih yang cukup untuk hidrasi optimal.
                     </p>
                 </div>
 
@@ -171,7 +168,8 @@
                          Tidur 7-8 jam sehari, kelola stres dengan baik, dan luangkan waktu untuk relaksasi dan me-time.
                      </p>
                  </div>
-             </div>
+                </div>
+            </div>
         </div>
     </section>
 

@@ -394,7 +394,7 @@
             <!-- Left Side - Main Article -->
             <div class="main-article-container">
                 <div class="main-article-image">
-                    <img src="{{ asset('image/kategori-aktivitas-fisik/Rectangle 171.png') }}" alt="Mulai Hari dengan Sarapan Seimbang">
+                    <img src="{{asset('image/kategori-aktivitas-fisik/Rectangle 171.png')}}" alt="Mulai Hari dengan Sarapan Seimbang">
                 </div>
                 <div class="main-article-content">
                     <div class="main-category-tag">

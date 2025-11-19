@@ -168,14 +168,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/aktivitas', function () {
         $userId = auth()->id();
         $bmiRecord = null;
+        $latestFavorite = null;
         if ($userId) {
             $bmiRecord = DB::table('bmi_records')
                 ->where('user_id', $userId)
                 ->orderByDesc('measured_at')
                 ->orderByDesc('id')
                 ->first();
+
+            $latestFavorite = \App\Models\Favorite::where('user_id', $userId)
+                ->orderByDesc('created_at')
+                ->first();
         }
-        return view('user.aktivitas', compact('bmiRecord'));
+        return view('user.aktivitas', compact('bmiRecord', 'latestFavorite'));
     })->name('aktivitas');
     Route::get('/koleksi', [FavoriteController::class, 'showCollection'])->name('koleksi');
     Route::get('/progres', function () {

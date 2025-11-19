@@ -78,9 +78,6 @@ class FavoriteController extends Controller
                 'article_url' => $request->article_url,
             ]);
 
-            // Set session flash message for page refresh
-            session()->flash('success', 'Artikel berhasil disimpan ke favorit');
-            
             return response()->json([
                 'success' => true,
                 'message' => 'Artikel berhasil disimpan ke favorit',
@@ -148,9 +145,6 @@ class FavoriteController extends Controller
 
             $favorite->delete();
 
-            // Set session flash message for page refresh
-            session()->flash('success', 'Artikel berhasil dihapus dari favorit');
-            
             return response()->json([
                 'success' => true,
                 'message' => 'Artikel berhasil dihapus dari favorit',

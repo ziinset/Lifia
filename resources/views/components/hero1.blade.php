@@ -663,7 +663,7 @@
                 </div>
 
                 <div class="hero-nav-links" id="heroNavLinks">
-                    <a href="{{ route('home') }}" class="hero-active">
+                    <a href="{{ Auth::check() && Auth::user()->role === 'admin' ? route('admin.dashboard') : route('home') }}" class="hero-active">
                         Beranda
                     </a>
 
@@ -700,7 +700,7 @@
                         $u = Auth::user();
                         $avatar = $u->foto ? asset('storage/' . $u->foto) : 'https://placehold.co/28x28/8BAC65/ffffff?text=' . urlencode(substr($u->nama_lengkap ?? 'U', 0, 1));
                     @endphp
-                    <a href="{{ route('profil') }}" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; border:1.4px solid #fff; border-radius:30px; padding:7px 14px; background:transparent;">
+                    <a href="{{ Auth::check() && Auth::user()->role === 'admin' ? route('admin.dashboard') : route('profil') }}" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; border:1.4px solid #fff; border-radius:30px; padding:7px 14px; background:transparent;">
                         <img src="{{ $avatar }}" alt="{{ $u->nama_lengkap ?? 'User' }}" style="width:28px; height:28px; border-radius:50%; border:2px solid rgba(255,255,255,0.7); object-fit:cover; box-shadow:0 2px 6px rgba(0,0,0,0.15);">
                         <span style="font-weight:600; font-size:13px; white-space:nowrap;">{{ $u->nama_lengkap ?? ($u->email ?? 'Akun') }}</span>
                     </a>

@@ -45,7 +45,6 @@
                                     <th>No</th>
                                     <th>Nama Kategori</th>
                                     <th>Slug</th>
-                                    <th>Header Type</th>
                                     <th>Status</th>
                                     <th>Dibuat</th>
                                     <th>Aksi</th>
@@ -62,9 +61,6 @@
                                         {{ $category->name }}
                                     </td>
                                     <td class="slug">{{ $category->slug }}</td>
-                                    <td class="header-type">
-                                        <span class="badge badge-{{ $category->header_type }}">{{ ucfirst($category->header_type) }}</span>
-                                    </td>
                                     <td>
                                         <span class="status-badge {{ $category->is_active ? 'active' : 'inactive' }}">
                                             {{ $category->is_active ? 'Aktif' : 'Nonaktif' }}
@@ -138,28 +134,45 @@
                 
                 <div class="form-group">
                     <label for="icon">Icon (Font Awesome)</label>
-                    <input type="text" id="icon" name="icon" placeholder="fas fa-heart">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <input type="text" id="icon" name="icon" placeholder="fas fa-heart" list="iconSuggestions" oninput="updateIconPreview()" style="flex:1;">
+                        <span id="iconPreviewWrap" title="Preview" style="width:36px; height:36px; display:flex; align-items:center; justify-content:center; border:1px solid #e5e7eb; border-radius:8px;">
+                            <i id="iconPreview" class="fas fa-heart" style="font-size:16px; color:#4B5C3B;"></i>
+                        </span>
+                    </div>
+                    <small style="display:block; color:#6b7280; margin-top:6px;">Contoh: <code>fas fa-leaf</code>, <code>fas fa-utensils</code>, <code>fas fa-dumbbell</code></small>
+                    <datalist id="iconSuggestions">
+                        <option value="fas fa-heart"></option>
+                        <option value="fas fa-leaf"></option>
+                        <option value="fas fa-utensils"></option>
+                        <option value="fas fa-dumbbell"></option>
+                        <option value="fas fa-brain"></option>
+                        <option value="fas fa-spa"></option>
+                        <option value="fas fa-recycle"></option>
+                        <option value="fas fa-apple-alt"></option>
+                        <option value="fas fa-carrot"></option>
+                        <option value="fas fa-seedling"></option>
+                        <option value="fas fa-bicycle"></option>
+                        <option value="fas fa-running"></option>
+                        <option value="fas fa-walking"></option>
+                        <option value="fas fa-swimmer"></option>
+                        <option value="fas fa-fish"></option>
+                        <option value="fas fa-bread-slice"></option>
+                        <option value="fas fa-cheese"></option>
+                        <option value="fas fa-egg"></option>
+                        <option value="fas fa-apple-whole"></option>
+                        <option value="fas fa-mug-hot"></option>
+                        <option value="fas fa-lemon"></option>
+                        <option value="fas fa-water"></option>
+                        <option value="fas fa-seedling"></option>
+                        <option value="fas fa-sun"></option>
+                        <option value="fas fa-cloud"></option>
+                    </datalist>
+                    <div id="iconQuickGrid" style="margin-top:10px; display:grid; grid-template-columns: repeat(8, 36px); gap:8px;">
+                        <!-- populated by JS -->
+                    </div>
                 </div>
                 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="header_type">Tipe Header *</label>
-                        <select id="header_type" name="header_type" required>
-                            <option value="header">Header Default</option>
-                            <option value="header1">Header Hero</option>
-                            <option value="hero-mental">Hero Mental</option>
-                            <option value="hero-olga">Hero Olahraga</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" id="is_active" name="is_active" checked>
-                            <span class="checkmark"></span>
-                            Aktif
-                        </label>
-                    </div>
-                </div>
                 
                 <div class="modal-actions">
                     <button type="button" class="btn btn-cancel" onclick="closeModal()">Batal</button>
@@ -348,15 +361,13 @@
             font-family: 'Poppins', sans-serif;
         }
         
-        /* Specific column widths */
-        th:nth-child(1) { width: 4%; }   /* No */
-        th:nth-child(2) { width: 22%; }  /* Nama Kategori */
-        th:nth-child(3) { width: 14%; }  /* Slug */
-        th:nth-child(4) { width: 12%; }  /* Header Type */
-        th:nth-child(5) { width: 8%; }   /* Status */
-        th:nth-child(6) { width: 6%; }   /* Urutan */
-        th:nth-child(7) { width: 12%; }  /* Dibuat */
-        th:nth-child(8) { width: 22%; }  /* Aksi */
+        /* Specific column widths (after removing Header Type) */
+        th:nth-child(1) { width: 6%; }   /* No */
+        th:nth-child(2) { width: 26%; }  /* Nama Kategori */
+        th:nth-child(3) { width: 18%; }  /* Slug */
+        th:nth-child(4) { width: 10%; }  /* Status */
+        th:nth-child(5) { width: 12%; }  /* Dibuat */
+        th:nth-child(6) { width: 28%; }  /* Aksi */
 
         tbody tr {
             border-bottom: 1px solid #e2e8f0;
@@ -567,18 +578,22 @@
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 3000; /* above sidebar (1001) */
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.5);
             backdrop-filter: blur(4px);
+            /* center content */
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
         }
         
         .modal-content {
             background-color: white;
-            margin: 3% auto;
+            margin: 0;
             padding: 0;
             border-radius: 12px;
             width: 95%;
@@ -587,6 +602,7 @@
             overflow-y: auto;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             animation: modalSlideIn 0.3s ease;
+            z-index: 3100; /* ensure content also above */
         }
         
         @keyframes modalSlideIn {
@@ -775,14 +791,52 @@
     <script>
         // CSRF Token
         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '{{ csrf_token() }}';
+
+        // Icon picker quick list
+        const POPULAR_ICONS = [
+            'fas fa-heart','fas fa-leaf','fas fa-utensils','fas fa-dumbbell','fas fa-brain','fas fa-spa','fas fa-recycle',
+            'fas fa-apple-alt','fas fa-carrot','fas fa-seedling','fas fa-bicycle','fas fa-running','fas fa-walking',
+            'fas fa-swimmer','fas fa-fish','fas fa-bread-slice','fas fa-cheese','fas fa-egg','fas fa-apple-whole',
+            'fas fa-mug-hot','fas fa-lemon','fas fa-water','fas fa-sun','fas fa-cloud'
+        ];
+
+        function renderIconQuickGrid() {
+            const grid = document.getElementById('iconQuickGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            POPULAR_ICONS.forEach(cls => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.title = cls;
+                btn.style.cssText = 'width:36px;height:36px;border:1px solid #e5e7eb;border-radius:8px;display:flex;align-items:center;justify-content:center;background:#fff;cursor:pointer;transition:all .2s;';
+                btn.innerHTML = `<i class="${cls}" style="color:#4B5C3B;"></i>`;
+                btn.addEventListener('click', () => {
+                    const input = document.getElementById('icon');
+                    input.value = cls;
+                    updateIconPreview();
+                });
+                btn.addEventListener('mouseenter', ()=> btn.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)');
+                btn.addEventListener('mouseleave', ()=> btn.style.boxShadow='none');
+                grid.appendChild(btn);
+            });
+        }
+
+        function updateIconPreview() {
+            const v = (document.getElementById('icon')?.value || '').trim();
+            const el = document.getElementById('iconPreview');
+            if (!el) return;
+            el.className = v || 'fas fa-heart';
+        }
         
         // Modal Functions
         function openAddModal() {
             document.getElementById('modalTitle').textContent = 'Tambah Kategori';
             document.getElementById('categoryForm').reset();
             document.getElementById('categoryId').value = '';
-            document.getElementById('is_active').checked = true;
-            document.getElementById('categoryModal').style.display = 'block';
+            document.getElementById('categoryModal').style.display = 'flex';
+            // reset preview
+            renderIconQuickGrid();
+            updateIconPreview();
         }
         
         function closeModal() {
@@ -800,10 +854,12 @@
                 document.getElementById('name').value = category.name;
                 document.getElementById('description').value = category.description || '';
                 document.getElementById('icon').value = category.icon || '';
-                document.getElementById('header_type').value = category.header_type;
-                document.getElementById('is_active').checked = category.is_active;
+
+                // init icon picker UI
+                renderIconQuickGrid();
+                updateIconPreview();
                 
-                document.getElementById('categoryModal').style.display = 'block';
+                document.getElementById('categoryModal').style.display = 'flex';
             } catch (error) {
                 console.error('Error:', error);
                 alert('Gagal memuat data kategori');
@@ -875,14 +931,10 @@
             const formData = new FormData(this);
             const categoryId = document.getElementById('categoryId').value;
             
-            // Convert FormData to JSON
+            // Convert FormData to JSON (tanpa is_active karena checkbox dihapus)
             const data = {};
             for (let [key, value] of formData.entries()) {
-                if (key === 'is_active') {
-                    data[key] = document.getElementById('is_active').checked;
-                } else {
-                    data[key] = value;
-                }
+                data[key] = value;
             }
             
             try {
@@ -893,12 +945,18 @@
                     method: method,
                     headers: {
                         'Content-Type': 'application/json',
+                        'Accept': 'application/json',
                         'X-CSRF-TOKEN': csrfToken
                     },
                     body: JSON.stringify(data)
                 });
                 
-                const result = await response.json();
+                if (!response.ok) {
+                    const text = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${text}`);
+                }
+                
+                const result = await response.json().catch(() => ({ success: false, message: 'Invalid JSON response' }));
                 
                 if (result.success) {
                     closeModal();
@@ -907,8 +965,8 @@
                     alert(result.message || 'Gagal menyimpan kategori');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('Gagal menyimpan kategori');
+                console.error('Error menyimpan kategori:', error);
+                alert('Gagal menyimpan kategori: ' + (error.message || 'Unknown error'));
             }
         });
         

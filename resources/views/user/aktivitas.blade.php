@@ -198,8 +198,11 @@
         .activity-card:nth-child(3) { --delay: 3; }
         .activity-card:nth-child(4) { --delay: 4; }
 
+        /* Ensure all cards fill the container width */
+        .left-section .activity-card { width: 100%; }
+
         .activity-card:hover {
-            transform: translateY(-5px) scale(1.02);
+            transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.15);
         }
 
@@ -762,14 +765,29 @@
                     </div>
 
                     <!-- Favorite Card -->
-                    <div class="activity-card favorite">
+                    <div class="activity-card favorite" <?php if(isset($latestFavorite) && $latestFavorite): ?> data-fav-server="1" <?php endif; ?>>
                         <div class="activity-icon">
                             <img src="image/solar_heart-bold.png" alt="Heart Icon">
                         </div>
                         <div class="activity-info">
                             <h3>Menyimpan Artikel Favorit</h3>
-                            <div class="date">10 Juli 2025, 10.45</div>
-                            <div class="description">Tips Pola Makan Sehat</div>
+                            <div class="date">
+                                <?php if(isset($latestFavorite) && $latestFavorite): ?>
+                                    <?php echo ucfirst(\Carbon\Carbon::parse($latestFavorite->created_at)
+                                        ->timezone('Asia/Jakarta')
+                                        ->locale('id')
+                                        ->diffForHumans()); ?>
+                                <?php else: ?>
+                                    —
+                                <?php endif; ?>
+                            </div>
+                            <div class="description">
+                                <?php if(isset($latestFavorite) && $latestFavorite): ?>
+                                    Menambahkan artikel: <?php echo e(\Illuminate\Support\Str::limit($latestFavorite->article_title, 45)); ?>
+                                <?php else: ?>
+                                    Belum menambahkan artikel favorit
+                                <?php endif; ?>
+                            </div>
                         </div>
                         <div class="arrow-container">
                             <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -901,10 +919,12 @@
                 return tanggal + ', ' + waktu;
             }
 
-            // Set semua tanggal aktivitas ke hari ini (format Indonesia) kecuali untuk kartu BMI (biarkan ditentukan oleh server/placeholder)
+            // Set tanggal aktivitas default ke hari ini (kecuali BMI & favorit yang diset server saat ada data)
             document.querySelectorAll('.activity-info .date').forEach(function(el){
-                const isBmiCard = !!el.closest('.activity-card.bmi');
-                if (!isBmiCard) el.textContent = formatTanggal(today);
+                const card = el.closest('.activity-card');
+                const isBmiCard = card && card.classList.contains('bmi');
+                const isFavServer = card && card.hasAttribute('data-fav-server');
+                if (!isBmiCard && !isFavServer) el.textContent = formatTanggal(today);
             });
 
             // Kalender dinamis dengan navigasi bulan

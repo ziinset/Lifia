@@ -17,7 +17,9 @@ class Category extends Model
         'color',
         'is_active',
         'sort_order',
-        'header_type'
+        'header_type',
+        'banner_image',
+        'banner_description',
     ];
 
     protected $casts = [

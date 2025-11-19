@@ -469,7 +469,7 @@
             </div>
 
             <div class="navbar-links" id="navbarLinks">
-                <a href="{{ route('home') }}" data-nav="beranda">
+                <a href="{{ Auth::check() && Auth::user()->role === 'admin' ? route('admin.dashboard') : route('home') }}" data-nav="beranda">
                     Beranda
                 </a>
 
@@ -481,60 +481,79 @@
                     </a>
                     <div class="navbar-dropdown-menu" id="navbarArtikelMenu">
                         <div class="dropdown-grid">
-                            <a href="{{ route('kategori.pola-makan-sehat') }}" class="dropdown-item" data-nav="pola-makan">
-                                <i class="fas fa-utensils"></i>
-                                <div class="dropdown-item-content">
-                                    <h4>Pola Makan Sehat</h4>
-                                </div>
-                                <span class="dropdown-arrow">
-                                    <i class="fas fa-chevron-right"></i>
-                                </span>
-                            </a>
-                            <a href="{{ route('kategori.aktivitas-fisik') }}" class="dropdown-item" data-nav="aktivitas-fisik">
-                                <i class="fas fa-dumbbell"></i>
-                                <div class="dropdown-item-content">
-                                    <h4>Aktivitas Fisik</h4>
-                                </div>
-                                <span class="dropdown-arrow">
-                                    <i class="fas fa-chevron-right"></i>
-                                </span>
-                            </a>
-                            <a href="{{ route('kategori.kesehatan-mental') }}" class="dropdown-item" data-nav="kesehatan-mental">
-                                <i class="fas fa-brain"></i>
-                                <div class="dropdown-item-content">
-                                    <h4>Kesehatan Mental</h4>
-                                </div>
-                                <span class="dropdown-arrow">
-                                    <i class="fas fa-chevron-right"></i>
-                                </span>
-                            </a>
-                            <a href="{{ route('kategori.perawatan-diri') }}" class="dropdown-item" data-nav="perawatan-diri">
-                                <i class="fas fa-spa"></i>
-                                <div class="dropdown-item-content">
-                                    <h4>Perawatan Diri</h4>
-                                </div>
-                                <span class="dropdown-arrow">
-                                    <i class="fas fa-chevron-right"></i>
-                                </span>
-                            </a>
-                            <a href="{{ route('kategori.vegan') }}" class="dropdown-item" data-nav="vegan">
-                                <i class="fas fa-leaf"></i>
-                                <div class="dropdown-item-content">
-                                    <h4>Gaya Hidup Vegan</h4>
-                                </div>
-                                <span class="dropdown-arrow">
-                                    <i class="fas fa-chevron-right"></i>
-                                </span>
-                            </a>
-                            <a href="{{ route('kategori.eco') }}" class="dropdown-item" data-nav="eco-living">
-                                <i class="fas fa-recycle"></i>
-                                <div class="dropdown-item-content">
-                                    <h4>Eco Living</h4>
-                                </div>
-                                <span class="dropdown-arrow">
-                                    <i class="fas fa-chevron-right"></i>
-                                </span>
-                            </a>
+                            @if(isset($globalCategories) && $globalCategories->count())
+                                @foreach($globalCategories as $cat)
+                                    @php
+                                        $href = route('artikel.category', $cat->slug);
+                                        $isActive = request()->is('kategori/' . $cat->slug . '*');
+                                        $icon = $cat->icon ?: 'fas fa-folder';
+                                    @endphp
+                                    <a href="{{ $href }}" class="dropdown-item{{ $isActive ? ' active' : '' }}" data-nav="{{ $cat->slug }}">
+                                        <i class="{{ $icon }}"></i>
+                                        <div class="dropdown-item-content">
+                                            <h4>{{ $cat->name }}</h4>
+                                        </div>
+                                        <span class="dropdown-arrow">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </span>
+                                    </a>
+                                @endforeach
+                            @else
+                                <a href="{{ route('kategori.pola-makan-sehat') }}" class="dropdown-item" data-nav="pola-makan">
+                                    <i class="fas fa-utensils"></i>
+                                    <div class="dropdown-item-content">
+                                        <h4>Pola Makan Sehat</h4>
+                                    </div>
+                                    <span class="dropdown-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <a href="{{ route('kategori.aktivitas-fisik') }}" class="dropdown-item" data-nav="aktivitas-fisik">
+                                    <i class="fas fa-dumbbell"></i>
+                                    <div class="dropdown-item-content">
+                                        <h4>Aktivitas Fisik</h4>
+                                    </div>
+                                    <span class="dropdown-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <a href="{{ route('kategori.kesehatan-mental') }}" class="dropdown-item" data-nav="kesehatan-mental">
+                                    <i class="fas fa-brain"></i>
+                                    <div class="dropdown-item-content">
+                                        <h4>Kesehatan Mental</h4>
+                                    </div>
+                                    <span class="dropdown-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <a href="{{ route('kategori.perawatan-diri') }}" class="dropdown-item" data-nav="perawatan-diri">
+                                    <i class="fas fa-spa"></i>
+                                    <div class="dropdown-item-content">
+                                        <h4>Perawatan Diri</h4>
+                                    </div>
+                                    <span class="dropdown-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <a href="{{ route('kategori.vegan') }}" class="dropdown-item" data-nav="vegan">
+                                    <i class="fas fa-leaf"></i>
+                                    <div class="dropdown-item-content">
+                                        <h4>Gaya Hidup Vegan</h4>
+                                    </div>
+                                    <span class="dropdown-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                                <a href="{{ route('kategori.eco') }}" class="dropdown-item" data-nav="eco-living">
+                                    <i class="fas fa-recycle"></i>
+                                    <div class="dropdown-item-content">
+                                        <h4>Eco Living</h4>
+                                    </div>
+                                    <span class="dropdown-arrow">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -556,7 +575,7 @@
                     $u = Auth::user();
                     $avatar = $u->foto ? asset('storage/' . $u->foto) : 'https://placehold.co/28x28/8BAC65/ffffff?text=' . urlencode(substr($u->nama_lengkap ?? 'U', 0, 1));
                 @endphp
-                <a href="{{ route('profil') }}" class="navbar-account" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:#698648; border:1.4px solid #698648; border-radius:30px; padding:7px 14px; background:transparent;">
+                <a href="{{ Auth::check() && Auth::user()->role === 'admin' ? route('admin.dashboard') : route('profil') }}" class="navbar-account" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:#698648; border:1.4px solid #698648; border-radius:30px; padding:7px 14px; background:transparent;">
                     <img src="{{ $avatar }}" alt="{{ $u->nama_lengkap ?? 'User' }}" style="width:28px; height:28px; border-radius:50%; border:2px solid rgba(105,134,72,0.6); object-fit:cover; box-shadow:0 2px 6px rgba(0,0,0,0.10);">
                     <span style="font-weight:600; font-size:13px; white-space:nowrap;">{{ $u->nama_lengkap ?? ($u->email ?? 'Akun') }}</span>
                 </a>

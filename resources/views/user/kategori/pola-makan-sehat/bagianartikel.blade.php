@@ -173,6 +173,18 @@
             height: 24px;
         }
 
+        /* Filled state for saved bookmarks */
+        .main-bookmark-btn.saved svg path,
+        .sidebar-bookmark-btn.saved svg path {
+            fill: #8BAC65 !important;
+            stroke: #8BAC65 !important;
+            transition: fill 0.2s ease, stroke 0.2s ease;
+        }
+        .main-bookmark-btn.saved,
+        .sidebar-bookmark-btn.saved {
+            color: #8BAC65;
+        }
+
         /* Right Side Articles */
         .sidebar-articles {
             display: flex;
@@ -409,7 +421,12 @@
                             12 jam lalu</span></span>
                         <div class="main-article-actions">
                             <button class="main-action-btn" onclick="window.location.href='{{ route('kategori.pola-makan-sehat.sarapan-seimbang') }}'">Selengkapnya</button>
-                            <button class="main-bookmark-btn">
+                            <button class="main-bookmark-btn" 
+                                    data-article-id="pola-sarapan-seimbang"
+                                    data-article-title="Mulai Hari dengan Sarapan Seimbang"
+                                    data-article-category="pola-makan-sehat"
+                                    data-article-image="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80"
+                                    data-article-url="{{ route('kategori.pola-makan-sehat.sarapan-seimbang') }}">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
                                 </svg>
@@ -441,7 +458,12 @@
                             </div>
                             <div class="sidebar-article-actions">
                                 <button class="sidebar-action-btn" onclick="window.location.href='{{ route('kategori.pola-makan-sehat.artikel') }}'">selengkapnya</button>
-                                <button class="sidebar-bookmark-btn">
+                                <button class="sidebar-bookmark-btn"
+                                        data-article-id="pola-buah-lokal"
+                                        data-article-title="Buah Lokal, Gizi Maksimal"
+                                        data-article-category="pola-makan-sehat"
+                                        data-article-image="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                                        data-article-url="{{ route('kategori.pola-makan-sehat.artikel') }}">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
                                     </svg>
@@ -466,19 +488,24 @@
                             <p class="sidebar-article-desc">Tak suka sayur? Coba trik mudah ini agar sayuran jadi lebih nikmat dan tetap kaya nutrisi.</p>
                         </div>
                         <div class="sidebar-article-footer">
-                            <div class="sidebar-author-info">
-                                <span>Penulis: <span class="author">Graciella Yeriza N</span></span>
-                            </div>
-                            <div class="sidebar-article-actions">
-                                <button class="sidebar-action-btn">selengkapnya</button>
-                                <button class="sidebar-bookmark-btn">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
-                                    </svg>
-                                </button>
+                                <div class="sidebar-author-info">
+                                    <span>Penulis: <span class="author">Graciella Yeriza N</span></span>
+                                </div>
+                                <div class="sidebar-article-actions">
+                                    <button class="sidebar-action-btn" onclick="window.location.href='{{ route('kategori.pola-makan-sehat.artikel') }}'">selengkapnya</button>
+                                    <button class="sidebar-bookmark-btn"
+                                            data-article-id="pola-sayuran-hijau"
+                                            data-article-title="Sayuran Hijau: Sumber Serat dan Antioksidan"
+                                            data-article-category="pola-makan-sehat"
+                                            data-article-image="https://images.unsplash.com/photo-1576045057995-568f588f82fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80"
+                                            data-article-url="{{ route('kategori.pola-makan-sehat.artikel') }}">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </div>
 
                 <!-- Article 3 -->
@@ -500,8 +527,13 @@
                                 <span>Penulis: <span class="author">Graciella Yeriza N</span></span>
                             </div>
                             <div class="sidebar-article-actions">
-                                <button class="sidebar-action-btn">selengkapnya</button>
-                                <button class="sidebar-bookmark-btn">
+                                <button class="sidebar-action-btn" onclick="window.location.href='{{ route('kategori.pola-makan-sehat.artikel') }}'">selengkapnya</button>
+                                <button class="sidebar-bookmark-btn"
+                                        data-article-id="pola-hidrasi"
+                                        data-article-title="Hidrasi: Minum Air dengan Cara yang Benar"
+                                        data-article-category="pola-makan-sehat"
+                                        data-article-image="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                                        data-article-url="{{ route('kategori.pola-makan-sehat.artikel') }}">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
                                     </svg>
@@ -514,3 +546,125 @@
         </div>
     </div>
 </div>
+
+<script>
+(function() {
+    const csrfToken = window.csrfToken || document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '{{ csrf_token() }}';
+    window.csrfToken = csrfToken;
+
+    function buttonToArticle(btn) {
+        return {
+            article_id: btn.dataset.articleId,
+            article_title: btn.dataset.articleTitle,
+            article_category: btn.dataset.articleCategory,
+            article_image: btn.dataset.articleImage || '',
+            article_description: '',
+            article_author: '{{ auth()->user()->name ?? '' }}',
+            article_url: btn.dataset.articleUrl || ''
+        };
+    }
+
+    async function saveFavorite(article, btn) {
+        try {
+            const res = await fetch('/favorites', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(article)
+            });
+
+            if (res.status === 401) {
+                window.location.href = '/login';
+                return;
+            }
+
+            const data = await res.json();
+            if (data.success) {
+                markSaved(btn, true);
+            } else if (res.status === 409) {
+                markSaved(btn, true);
+            }
+        } catch (e) {
+            console.error('Favorite error:', e);
+        }
+    }
+
+    async function removeFavorite(articleId, btn) {
+        try {
+            const res = await fetch('/favorites', {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ article_id: articleId })
+            });
+
+            if (res.status === 401) {
+                window.location.href = '/login';
+                return;
+            }
+
+            const data = await res.json();
+            if (data.success) {
+                markSaved(btn, false);
+            }
+        } catch (e) {
+            console.error('Remove favorite error:', e);
+        }
+    }
+
+    function markSaved(btn, saved) {
+        if (saved) {
+            btn.classList.add('saved');
+            btn.style.color = '#8BAC65';
+        } else {
+            btn.classList.remove('saved');
+            btn.style.color = '';
+        }
+    }
+
+    async function init() {
+        const buttons = document.querySelectorAll('.main-bookmark-btn, .sidebar-bookmark-btn');
+        // Click handlers with toggle
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const article = buttonToArticle(btn);
+                if (!article.article_id) return;
+                if (btn.classList.contains('saved')) {
+                    removeFavorite(article.article_id, btn);
+                } else {
+                    saveFavorite(article, btn);
+                }
+            });
+        });
+
+        // Mark saved state on load
+        try {
+            const res = await fetch('/favorites', { method: 'GET', headers: { 'X-CSRF-TOKEN': csrfToken, 'Content-Type': 'application/json' } });
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success && Array.isArray(data.favorites)) {
+                    const savedIds = new Set(data.favorites.map(f => f.article_id));
+                    buttons.forEach(btn => {
+                        const id = btn.dataset.articleId;
+                        if (id && savedIds.has(id)) {
+                            markSaved(btn, true);
+                        }
+                    });
+                }
+            }
+        } catch (e) {
+            console.warn('Could not load favorites for marking saved state:', e);
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+</script>

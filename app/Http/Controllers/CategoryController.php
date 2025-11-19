@@ -34,7 +34,6 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'icon' => 'nullable|string|max:255',
-            'header_type' => 'required|in:header,header1,hero-mental,hero-olga'
         ]);
 
         $category = Category::create([
@@ -43,7 +42,7 @@ class CategoryController extends Controller
             'description' => $request->description,
             'icon' => $request->icon,
             'color' => '#4E342E', // Default color
-            'header_type' => $request->header_type,
+            'header_type' => $request->input('header_type', 'header'),
             'sort_order' => 0, // Default sort order
             'is_active' => true
         ]);
@@ -71,7 +70,7 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'icon' => 'nullable|string|max:255',
-            'header_type' => 'required|in:header,header1,hero-mental,hero-olga'
+            // header_type dihapus dari validasi karena field sudah tidak ada di modal
         ]);
 
         $category->update([
@@ -79,8 +78,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name),
             'description' => $request->description,
             'icon' => $request->icon,
-            'header_type' => $request->header_type,
-            'is_active' => $request->has('is_active')
+            // header_type & is_active tidak dikirim dari form; biarkan nilai lama tetap
         ]);
 
         return response()->json([

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
+use App\Models\Category;
 
 class ArticleController extends Controller
 {
@@ -19,7 +21,6 @@ class ArticleController extends Controller
     // Kesehatan Mental Methods
     public function kesehatanMental()
     {
-        // Use the existing view file as the main page for Kesehatan Mental
         return view('user.kategori.kesehatan-mental.artikel-mental');
     }
 
@@ -69,37 +70,36 @@ class ArticleController extends Controller
         return view('user.kategori.pola-makan-sehat.bagianartikel');
     }
 
-// Aktivitas Fisik Methods
-public function aktivitasFisik()
-{
-    return view('user.kategori.aktivitas-fisik.artikel-fisik');
-}
+    // Aktivitas Fisik Methods
+    public function aktivitasFisik()
+    {
+        return view('user.kategori.aktivitas-fisik.artikel-fisik');
+    }
 
-public function aktivitasFisikPanduan()
-{
-    return view('user.kategori.aktivitas-fisik.panduan');
-}
+    public function aktivitasFisikPanduan()
+    {
+        return view('user.kategori.aktivitas-fisik.panduan');
+    }
 
-public function aktivitasFisikTopik()
-{
-    return view('user.kategori.aktivitas-fisik.topik');
-}
+    public function aktivitasFisikTopik()
+    {
+        return view('user.kategori.aktivitas-fisik.topik');
+    }
 
-public function aktivitasFisikBanner()
-{
-    return view('user.kategori.aktivitas-fisik.banner');
-}
+    public function aktivitasFisikBanner()
+    {
+        return view('user.kategori.aktivitas-fisik.banner');
+    }
 
-public function aktivitasFisikBagianArtikel()
-{
-    return view('user.kategori.aktivitas-fisik.bagianartikel');
-}
+    public function aktivitasFisikBagianArtikel()
+    {
+        return view('user.kategori.aktivitas-fisik.bagianartikel');
+    }
 
-public function aktivitasFisikArtikel()
-{
-    return view('user.kategori.aktivitas-fisik.artikel.artikel');
-}
-
+    public function aktivitasFisikArtikel()
+    {
+        return view('user.kategori.aktivitas-fisik.artikel.artikel');
+    }
 
     // Eco/Gaya Hidup Ramah Lingkungan Methods
     public function eco()
@@ -199,32 +199,56 @@ public function aktivitasFisikArtikel()
     // =============================
     public function index()
     {
-        // Halaman artikel utama (fallback)
         return view('artikel.artikel');
     }
 
     public function showCategory($category)
     {
-        // Pemetaan kategori ke view utama kategori
+        $slug = $category;
+
+        // Mapping kategori default (selalu pakai view spesifik, tanpa Coming Soon)
         $categoryViews = [
-            'pola-makan-sehat' => 'user.kategori.pola-makan-sehat.artikel-makanan',
-            'aktivitas-fisik'  => 'user.kategori.aktivitas-fisik.listolahraga',
-            'kesehatan-mental' => 'user.kategori.kesehatan-mental.artikel-mental',
-            'perawatan-diri'   => 'user.kategori.perawatan-diri.artikel-perawatan',
-            'vegan'            => 'user.kategori.vegan.artikel-vegan',
-            'eco-living'       => 'user.kategori.eco.artikel-eco', // folder view "eco"
+            'pola-makan-sehat'  => 'user.kategori.pola-makan-sehat.artikel-makanan',
+            'aktivitas-fisik'   => 'user.kategori.aktivitas-fisik.listolahraga',
+            'kesehatan-mental'  => 'user.kategori.kesehatan-mental.artikel-mental',
+            'perawatan-diri'    => 'user.kategori.perawatan-diri.artikel-perawatan',
+            'vegan'             => 'user.kategori.vegan.artikel-vegan',
+            'gaya-hidup-vegan'  => 'user.kategori.vegan.artikel-vegan', // alias slug
+            'eco-living'        => 'user.kategori.eco.artikel-eco',
         ];
 
-        $viewPath = $categoryViews[$category] ?? 'artikel.artikel';
-        if (!view()->exists($viewPath)) {
-            $viewPath = 'artikel.artikel';
+        if (isset($categoryViews[$slug])) {
+            $viewPath = $categoryViews[$slug];
+            if (!view()->exists($viewPath)) {
+                $viewPath = 'artikel.artikel';
+            }
+            return view($viewPath, ['category' => $slug]);
         }
-        return view($viewPath, compact('category'));
+
+        // Kategori dinamis (baru ditambahkan): cek DB dan tampilkan Coming Soon jika belum ada artikel
+        $categoryModel = Category::where('slug', $slug)->first();
+        if (!$categoryModel) {
+            abort(404, 'Kategori tidak ditemukan');
+        }
+
+        $hasArticles = class_exists(Article::class)
+            ? Article::where('category', $slug)->exists()
+            : false;
+
+        if (!$hasArticles) {
+            return view('user.kategori.coming-soon', compact('slug', 'categoryModel'));
+        }
+
+        // Jika sudah ada artikel untuk kategori dinamis, arahkan ke halaman generik
+        $fallbackView = 'artikel.artikel';
+        if (!view()->exists($fallbackView)) {
+            abort(404);
+        }
+        return view($fallbackView, ['category' => $slug]);
     }
 
     public function showArticle($category, $article)
     {
-        // Pemetaan artikel spesifik per kategori
         $articleViews = [
             'pola-makan-sehat' => [
                 'artikel-makanan'   => 'user.kategori.pola-makan-sehat.artikel-makanan',
@@ -246,7 +270,7 @@ public function aktivitasFisikArtikel()
                 'artikel'           => 'user.kategori.vegan.artikel.artikel',
             ],
             'eco-living' => [
-                'artikel-eco'       => 'user.kategori.eco.artikel-eco', // folder view "eco"
+                'artikel-eco'       => 'user.kategori.eco.artikel-eco',
                 'artikel'           => 'user.kategori.eco.artikel.artikel',
             ],
         ];

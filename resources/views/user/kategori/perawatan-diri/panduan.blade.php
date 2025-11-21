@@ -390,7 +390,7 @@
                     <img src="{{ asset('img/bumil-nyemil.png') }}" alt="Pregnant woman" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
-                            <img src="{{ asset('image/ri_mental-health-fill.png') }}" alt="Otak icon"
+                            <img src="{{ asset('image/material-symbols_self-improvement-rounded.png') }}" alt="Rawat icon"
                                 class="tag-fish-icon">
                             <span class="tag-text">Kesehatan Mental</span>
                         </div>
@@ -429,7 +429,7 @@
                     <img src="{{ asset('img/Rectangle 160.png') }}" alt="Lemon water" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
-                            <img src="{{ asset('image/ri_mental-health-fill.png') }}" alt="Otak icon"
+                            <img src="{{ asset('image/material-symbols_self-improvement-rounded.png') }}" alt="Rawat icon"
                                 class="tag-fish-icon">
                             <span class="tag-text">Kesehatan Mental</span>
                         </div>
@@ -468,7 +468,7 @@
                     <img src="{{ asset('img/Rectangle 161.png') }}" alt="Woman eating" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
-                            <img src="{{ asset('image/ri_mental-health-fill.png') }}" alt="Otak icon"
+                            <img src="{{ asset('image/material-symbols_self-improvement-rounded.png') }}" alt="Rawat icon"
                                 class="tag-fish-icon">
                             <span class="tag-text">Kesehatan Mental</span>
                         </div>
@@ -508,7 +508,7 @@
                         class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
-                            <img src="{{ asset('image/ri_mental-health-fill.png') }}" alt="Otak icon"
+                            <img src="{{ asset('image/material-symbols_self-improvement-rounded.png') }}" alt="Rawat icon"
                                 class="tag-fish-icon">
                             <span class="tag-text">Kesehatan Mental</span>
                         </div>
@@ -539,7 +539,7 @@
                     <img src="{{ asset('img/Rectangle 164.png') }}" alt="Diet food" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
-                            <img src="{{ asset('image/ri_mental-health-fill.png') }}" alt="Otak icon"
+                            <img src="{{ asset('image/material-symbols_self-improvement-rounded.png') }}" alt="Rawat icon"
                                 class="tag-fish-icon">
                             <span class="tag-text">Kesehatan Mental</span>
                         </div>

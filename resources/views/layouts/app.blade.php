@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Lifia - Kesehatan dan Gaya Hidup')</title>
 
     <!-- Fonts -->
@@ -13,10 +14,7 @@
 
     <!-- Iconify -->
     <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-
     <!-- Global Styles -->
-    <style>
-        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;

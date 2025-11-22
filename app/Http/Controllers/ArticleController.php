@@ -19,22 +19,24 @@ class ArticleController extends Controller
      */
     public function showCategory($category)
     {
-        // Map category slugs to view paths
+        // Check if category exists in database
+        $categoryModel = \App\Models\Category::where('slug', $category)->where('is_active', true)->first();
+        
+        if (!$categoryModel) {
+            abort(404, 'Kategori tidak ditemukan');
+        }
+
+        // Map category slugs to view paths (fallback untuk kategori lama)
         $categoryViews = [
             'pola-makan-sehat' => 'user.kategori.pola-makan-sehat.bagianartikel',
             'aktivitas-fisik' => 'user.kategori.aktivitas-fisik.bagian',
             'kesehatan-mental' => 'user.kategori.kesehatan-mental.bagianartikel',
-            'perawatan-diri' => 'artikel.artikel', // fallback to main artikel
-            'vegan' => 'artikel.artikel', // fallback to main artikel
-            'eco-living' => 'artikel.artikel', // fallback to main artikel
+            'perawatan-diri' => 'user.kategori.perawatan-diri.artikel-perawatan',
+            'vegan' => 'user.kategori.vegan.artikel-vegan',
+            'eco-living' => 'user.kategori.eco-living.artikel-eco',
         ];
 
-        // Check if category exists
-        if (!array_key_exists($category, $categoryViews)) {
-            abort(404, 'Kategori tidak ditemukan');
-        }
-
-        $viewPath = $categoryViews[$category];
+        $viewPath = $categoryViews[$category] ?? 'artikel.artikel';
         
         // Check if view file exists
         if (!view()->exists($viewPath)) {
@@ -42,7 +44,10 @@ class ArticleController extends Controller
             $viewPath = 'artikel.artikel';
         }
 
-        return view($viewPath, ['category' => $category]);
+        return view($viewPath, [
+            'category' => $category,
+            'categoryModel' => $categoryModel
+        ]);
     }
 
     /**

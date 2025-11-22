@@ -18,7 +18,11 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+<<<<<<< HEAD
             padding: 24px 60px !important;
+=======
+            padding: 24px 60px;
+>>>>>>> jonathan
             background: transparent;
             position: relative;
         }
@@ -30,15 +34,25 @@
 
         .navbar-links {
             display: flex;
+<<<<<<< HEAD
             gap: 20px !important;
+=======
+            gap: 20px;
+>>>>>>> jonathan
             align-items: center;
         }
 
         .navbar-links a {
             text-decoration: none;
+<<<<<<< HEAD
             padding: 7px 20px !important;
             height: 35px !important;
             line-height: 35px !important;
+=======
+            padding: 7px 20px;
+            height: 35px;
+            line-height: 35px;
+>>>>>>> jonathan
             border-radius: 30px;
             font-weight: 600;
             font-size: 14px;
@@ -89,7 +103,11 @@
             border: none;
         }
 
+<<<<<<< HEAD
         /* Modern Grid Dropdown */
+=======
+        /* Dropdown Styles */
+>>>>>>> jonathan
         .navbar-dropdown {
             position: relative;
             display: inline-block;
@@ -100,6 +118,7 @@
             position: absolute;
             top: 100%;
             left: 50%;
+<<<<<<< HEAD
             transform: translateX(-50%) translateY(12px);
             background: #ffffff;
             border-radius: 12px;
@@ -225,19 +244,58 @@
             border-left: 1px solid rgba(0, 0, 0, 0.05);
             box-shadow: -2px -2px 6px rgba(0, 0, 0, 0.03);
             z-index: -1;
+=======
+            transform: translateX(-50%) translateY(10px);
+            background: linear-gradient(to bottom, #ffffff, #f8f8f8);
+            backdrop-filter: blur(8px);
+            min-width: 240px;
+            border-radius: 16px;
+            padding: 12px 0;
+            z-index: 99;
+            margin-top: 8px;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15), 
+                        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-dropdown-menu::before {
+            content: "";
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-bottom: none;
+            border-right: none;
+            rotate: 45deg;
+>>>>>>> jonathan
         }
 
         .navbar-dropdown-menu a {
             display: flex;
             align-items: center;
+<<<<<<< HEAD
             gap: 12px;
             padding: 12px 16px;
             margin: 4px 0;
             color: #2D3748;
+=======
+            gap: 8px;
+            padding: 12px 20px;
+            margin: 2px 8px;
+            color: #333;
+>>>>>>> jonathan
             font-family: 'Poppins', sans-serif;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
+<<<<<<< HEAD
             border-radius: 12px;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             background: transparent;
@@ -281,12 +339,32 @@
 
         .navbar-dropdown-menu a:hover i {
             transform: scale(1.2);
+=======
+            border-radius: 10px;
+            transition: all 0.25s ease;
+            border: none !important;
+            background: transparent;
+            height: auto !important;
+            line-height: 1.4 !important;
+        }
+
+        .navbar-dropdown-menu a::after {
+            display: none !important;
+        }
+
+        .navbar-dropdown-menu a:hover {
+            background: linear-gradient(135deg, #7BA05B, #8BAC65);
+            color: white;
+            transform: translateX(6px);
+            box-shadow: 0 4px 12px rgba(123, 160, 91, 0.3);
+>>>>>>> jonathan
         }
 
         .navbar-dropdown.navbar-show .navbar-dropdown-menu {
             display: block;
             opacity: 1;
             visibility: visible;
+<<<<<<< HEAD
             transform: translateX(-50%) translateY(8px);
             animation: dropdownFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
@@ -300,6 +378,9 @@
                 opacity: 1;
                 transform: translateX(-50%) translateY(5px);
             }
+=======
+            transform: translateX(-50%) translateY(0);
+>>>>>>> jonathan
         }
 
         .navbar-dropdown.navbar-show .navbar-dropdown-menu a {
@@ -364,13 +445,21 @@
         /* Responsive Design */
         @media (max-width: 1024px) {
             .navbar-container {
+<<<<<<< HEAD
                 padding: 20px 40px !important;
+=======
+                padding: 20px 40px;
+>>>>>>> jonathan
             }
         }
 
         @media (max-width: 768px) {
             .navbar-container {
+<<<<<<< HEAD
                 padding: 15px 20px !important;
+=======
+                padding: 15px 20px;
+>>>>>>> jonathan
             }
             
             .navbar-menu-toggle {
@@ -399,9 +488,15 @@
             }
             
             .navbar-links a {
+<<<<<<< HEAD
                 width: 80% !important;
                 padding: 12px !important;
                 font-size: 16px !important;
+=======
+                width: 80%;
+                padding: 12px;
+                font-size: 16px;
+>>>>>>> jonathan
                 border: 1.4px solid rgba(255, 255, 255, 0.5);
             }
             
@@ -420,28 +515,49 @@
 
         @media (max-width: 480px) {
             .navbar-container {
+<<<<<<< HEAD
                 padding: 12px 15px !important;
+=======
+                padding: 12px 15px;
+>>>>>>> jonathan
             }
         }
 
         @media (max-width: 360px) {
             .navbar-links a {
+<<<<<<< HEAD
                 font-size: 14px !important;
             }
         }
     </style>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+=======
+                font-size: 14px;
+            }
+        }
+    </style>
+>>>>>>> jonathan
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
+<<<<<<< HEAD
                 <img src="{{ asset('images/logo-lifia.svg') }}" alt="Lifia Logo" width="150">
             </div>
 
             <div class="navbar-links" id="navbarLinks">
                 <a href="{{ route('home') }}" data-nav="beranda">
+=======
+                <a href="{{ route('landing') }}">
+                    <img src="{{ asset('images/logo-lifia.svg') }}" alt="Lifia Logo" width="150">
+                </a>
+            </div>
+
+            <div class="navbar-links" id="navbarLinks">
+                <a href="#" data-nav="beranda">
+>>>>>>> jonathan
                     Beranda
                 </a>
 
@@ -452,6 +568,7 @@
                         <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
                     </a>
                     <div class="navbar-dropdown-menu" id="navbarArtikelMenu">
+<<<<<<< HEAD
                         <div class="dropdown-grid">
                             <a href="{{ route('kategori.pola-makan-sehat') }}" class="dropdown-item" data-nav="pola-makan">
                                 <i class="fas fa-utensils"></i>
@@ -526,6 +643,63 @@
                 <a href="{{ route('login') }}" class="navbar-login" data-nav="login">
                     Login
                 </a>
+=======
+                        <a href="{{ route('artikel.show', ['category' => 'pola-makan-sehat', 'article' => 'artikel-makanan']) }}" data-nav="pola-makan">Pola Makan Sehat</a>
+                        <a href="{{ route('artikel.show', ['category' => 'aktivitas-fisik', 'article' => 'listolahraga']) }}" data-nav="aktivitas-fisik">Aktivitas Fisik</a>
+                        <a href="{{ route('artikel.show', ['category' => 'kesehatan-mental', 'article' => 'artikel-mental']) }}" data-nav="kesehatan-mental">Kesehatan Mental</a>
+                        <a href="{{ route('artikel.show', ['category' => 'perawatan-diri', 'article' => 'artikel-perawatan']) }}" data-nav="perawatan-diri">Perawatan Diri</a>
+                        <a href="{{ route('artikel.show', ['category' => 'vegan', 'article' => 'artikel-vegan']) }}" data-nav="vegan">Vegan</a>
+                        <a href="{{ route('artikel.show', ['category' => 'eco-living', 'article' => 'artikel-eco']) }}" data-nav="eco-living">Eco Living</a>
+                    </div>
+                </div>
+
+                <a href="#" data-nav="cek-sehat">
+                    Cek Sehat
+                </a>
+
+                <a href="#" data-nav="tentang-kami">
+                    Tentang Kami
+                </a>
+
+                <a href="#" class="navbar-fitplan" data-nav="fitplan">
+                    FitPlan
+                </a>
+
+                @guest
+                <a href="{{ route('login', ['redirect_to' => '/']) }}" class="navbar-login" data-nav="login">
+                    Login
+                </a>
+                @endguest
+                @auth
+                @php
+                    $user = Auth::user();
+                    $nama = $user->nama_lengkap ?? $user->email;
+                    $initial = strtoupper(mb_substr($nama, 0, 1));
+                    $foto = $user->foto ?? null;
+                    
+                    // Simple logic: Admin ke dashboard admin, User ke dashboard user (profil)
+                    if ($user->role === 'admin') {
+                        $profileUrl = route('admin.dashboard');
+                    } else {
+                        $profileUrl = route('profil', ['redirect_to' => '/']);
+                    }
+                    
+                    // DEBUG: Uncomment untuk lihat role user
+                    // dd('Email: ' . $user->email . ' | Role: ' . ($user->role ?? 'NULL') . ' | URL: ' . $profileUrl);
+                @endphp
+                <a href="{{ $profileUrl }}" class="navbar-login" data-nav="profile" style="display:flex; align-items:center; gap:10px; border-color:#fff; background:rgba(255,255,255,0.15);">
+                    
+                    @if($foto)
+                        <img src="{{ asset('storage/' . $foto) }}" alt="Avatar" style="width:28px; height:28px; border-radius:50%; object-fit:cover; border:1px solid rgba(255,255,255,0.6);">
+                    @else
+                        <span style="width:28px; height:28px; border-radius:50%; background:#ffffff; color:#4E342E; display:inline-flex; align-items:center; justify-content:center; font-weight:700;">
+                            {{ $initial }}
+                        </span>
+                    @endif
+                    <span style="font-weight:600;">{{ $nama }}</span>
+                </a>
+                @endauth
+>>>>>>> jonathan
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -614,6 +788,24 @@
                 }
             }
             
+<<<<<<< HEAD
+=======
+            // Event listeners untuk link navbar
+            document.querySelectorAll('.navbar-links a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Biarkan navigasi default untuk link yang bukan '#'
+                    if (this.getAttribute('href') && this.getAttribute('href') !== '#') {
+                        return;
+                    }
+                    e.preventDefault();
+                    const navItem = this.getAttribute('data-nav');
+                    if (navItem) {
+                        setNavbarState(navItem);
+                    }
+                });
+            });
+
+>>>>>>> jonathan
             // Dropdown functionality
             if (artikelToggle) {
                 artikelToggle.addEventListener("click", function(e) {
@@ -641,4 +833,8 @@
             // Inisialisasi status awal
             setNavbarState('beranda');
         });
+<<<<<<< HEAD
     </script>
+=======
+    </script>
+>>>>>>> jonathan

@@ -2,57 +2,76 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Models\Profile;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function index()
+    // Tampilkan profil
+    public function show()
     {
-        // contoh data user dummy
-        $user = [
-            'nama' => 'Maki Zenin Sukochi',
-            'username' => 'makimakizenin',
-            'email' => 'makimakizenin@gmail.com',
-            'nohp' => '082133334444',
-            'gender' => 'Perempuan',
-            'lahir' => '12-10-2000',
-            'bio' => 'Pecinta hidup sehat dan...',
-            'hobi' => 'Yoga, Jogging',
-            'lokasi' => 'Malang, Jawa Timur',
-            'status' => 'Pengguna Premium',
-        ];
-
-        return view('user.profil-user.profil', compact('user'));
+        $user = Auth::user();
+        // Data profil tersimpan di tabel users, bukan tabel terpisah
+        return view('user.profil', compact('user'));
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(Request $request): RedirectResponse
+    // Update profil
+    public function update(Request $request)
     {
+        $user = Auth::user();
+
         $request->validate([
-            'nama' => 'required|string|max:255',
-            'username' => 'required|string|max:255',
-            'email' => 'required|email',
-            'nohp' => 'required|string|max:15',
-            'gender' => 'required|in:Laki-laki,Perempuan',
-            'lahir' => 'required|date',
-            'bio' => 'nullable|string|max:500',
-            'hobi' => 'nullable|string|max:255',
-            'lokasi' => 'nullable|string|max:255',
+            'lokasi'        => 'nullable|string|max:255',
+            'foto'          => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'nomor'         => 'nullable|string|max:20',
+            'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
+            'tanggal_lahir' => 'nullable|date',
+            'hobi'          => 'nullable|string|max:255',
+            'bio'           => 'nullable|string',
+            'instagram'     => 'nullable|string|max:255',
+            'tiktok'        => 'nullable|string|max:255',
+            'facebook'      => 'nullable|string|max:255',
         ]);
 
-        // Update user data (dummy implementation)
-        // In real application, you would update the actual user model
+        // ========== Update ke tabel users ==========
+        // Update field yang ada di database
+        $user->lokasi = $request->lokasi ?? $user->lokasi;
 
-        return redirect()->route('profil.index')->with('success', 'Profil berhasil diperbarui!');
+        // Upload foto profil
+        if ($request->hasFile('foto')) {
+            $path = $request->file('foto')->store('foto_profil', 'public');
+            $user->foto = $path;
+        }
+
+        // Update field lain dengan cara manual (bypass fillable)
+        if ($request->has('nomor')) {
+            $user->setAttribute('nomor', $request->nomor);
+        }
+        if ($request->has('jenis_kelamin')) {
+            $user->setAttribute('jenis_kelamin', $request->jenis_kelamin);
+        }
+        if ($request->has('tanggal_lahir')) {
+            $user->setAttribute('tanggal_lahir', $request->tanggal_lahir);
+        }
+        if ($request->has('hobi')) {
+            $user->setAttribute('hobi', $request->hobi);
+        }
+        if ($request->has('bio')) {
+            $user->setAttribute('bio', $request->bio);
+        }
+        if ($request->has('instagram')) {
+            $user->setAttribute('instagram', $request->instagram);
+        }
+        if ($request->has('tiktok')) {
+            $user->setAttribute('tiktok', $request->tiktok);
+        }
+        if ($request->has('facebook')) {
+            $user->setAttribute('facebook', $request->facebook);
+        }
+
+        $user->save();
+
+        return redirect()->route('profil')->with('success', 'Profil berhasil diperbarui!');
     }
 }

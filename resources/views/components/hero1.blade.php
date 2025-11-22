@@ -678,13 +678,12 @@
                             <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
                         </a>
                         <div class="hero-dropdown-menu" id="heroArtikelMenu">
-<<<<<<< HEAD
-                            <a href="{{ route('kategori', ['category' => 'pola-makan-sehat']) }}">Pola Makan Sehat</a>
-                            <a href="{{ route('kategori', ['category' => 'aktivitas-fisik']) }}">Aktivitas Fisik</a>
-                            <a href="{{ route('kategori', ['category' => 'kesehatan-mental']) }}">Kesehatan Mental</a>
-                            <a href="{{ route('kategori', ['category' => 'perawatan-diri']) }}">Perawatan Diri</a>
-                            <a href="{{ route('kategori', ['category' => 'vegan']) }}">Vegan</a>
-                            <a href="{{ route('kategori', ['category' => 'eco-living']) }}">Eco Living</a>
+                            <a href="{{ route('kategori.pola-makan-sehat') }}">Pola Makan Sehat</a>
+                            <a href="{{ route('kategori.aktivitas-fisik') }}">Aktivitas Fisik</a>
+                            <a href="{{ route('kategori.kesehatan-mental') }}">Kesehatan Mental</a>
+                            <a href="{{ route('kategori.perawatan-diri') }}">Perawatan Diri</a>
+                            <a href="{{ route('kategori.vegan') }}">Vegan</a>
+                            <a href="{{ route('kategori.eco') }}">Eco Living</a>
                         </div>
                     </div>
 
@@ -701,30 +700,6 @@
                     </a>
 
                     <a href="{{ route('login') }}" class="hero-login">
-=======
-                            <a href="{{ route('artikel') }}">Pola Makan Sehat</a>
-                            <a href="#">Aktivitas Fisik</a>
-                            <a href="#">Kesehatan Mental</a>
-                            <a href="#">Perawatan Diri</a>
-                            <a href="#">Vegan</a>
-                            <a href="#">Eco Living</a>
-                        </div>
-                    </div>
-
-                    <a href="#">
-                        Cek Sehat
-                    </a>
-
-                    <a href="#">
-                        Tentang Kami
-                    </a>
-
-                    <a href="#" class="hero-fitplan">
-                        FitPlan
-                    </a>
-
-                    <a href="#" class="hero-login">
->>>>>>> jonathan
                         Login
                     </a>
                 </div>

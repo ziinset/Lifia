@@ -8,39 +8,22 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            if (!Schema::hasColumn('users', 'username')) {
-                $table->string('username')->nullable()->unique();
-            }
-            if (!Schema::hasColumn('users', 'nomor')) {
+        if (!Schema::hasTable('profiles')) {
+            Schema::create('profiles', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->constrained()->onDelete('cascade');
                 $table->string('nomor')->nullable();
-            }
-            if (!Schema::hasColumn('users', 'jenis_kelamin')) {
                 $table->enum('jenis_kelamin', ['Laki-laki', 'Perempuan'])->nullable();
-            }
-            if (!Schema::hasColumn('users', 'tanggal_lahir')) {
                 $table->date('tanggal_lahir')->nullable();
-            }
-            if (!Schema::hasColumn('users', 'hobi')) {
                 $table->string('hobi')->nullable();
-            }
-            if (!Schema::hasColumn('users', 'bio')) {
                 $table->text('bio')->nullable();
-            }
-        });
+                $table->timestamps();
+            });
+        }
     }
 
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn([
-                'username',
-                'nomor',
-                'jenis_kelamin',
-                'tanggal_lahir',
-                'hobi',
-                'bio'
-            ]);
-        });
+        Schema::dropIfExists('profiles');
     }
 };

@@ -736,7 +736,7 @@
 
 <<<<<<< HEAD
 ========
-
+            
             .main-article-container {
                 height: auto;
             }
@@ -809,8 +809,13 @@
                             <i class="fas fa-clock clock-icon"></i>
                             12 jam lalu</span></span>
                         <div class="main-article-actions">
+<<<<<<< HEAD
+                            <button class="main-action-btn" onclick="window.location.href='{{ route('kategori.pola-makan-sehat.sarapan-seimbang') }}'">Selengkapnya</button>
+                            <button class="main-bookmark-btn">
+=======
                             <button class="main-action-btn" onclick="window.location.href='{{ route('artikel.sarapan-seimbang') }}'">Selengkapnya</button>
                             <button class="main-bookmark-btn" onclick="toggleBookmark(this, 'sarapan-seimbang', 'Mulai Hari dengan Sarapan Seimbang', 'pola-makan-sehat', 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80', 'Sarapan bukan cuma soal kenyang. Artikel ini membahas kombinasi karbohidrat kompleks, protein, dan serat untuk energi maksimal seharian.', 'Graciella Yeriza Natalie', '{{ route('artikel.sarapan-seimbang') }}')">
+>>>>>>> jonathan
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
                                 </svg>

@@ -11,21 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('favorites', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('article_id'); // Unique identifier for each article
-            $table->string('article_title');
-            $table->string('article_category'); // pola-makan-sehat, aktivitas-fisik, etc.
-            $table->string('article_image')->nullable();
-            $table->text('article_description')->nullable();
-            $table->string('article_author')->nullable();
-            $table->string('article_url')->nullable(); // URL to the full article
-            $table->timestamps();
-            
-            // Prevent duplicate favorites for same user and article
-            $table->unique(['user_id', 'article_id']);
-        });
+        if (!Schema::hasTable('favorites')) {
+            Schema::create('favorites', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->constrained()->onDelete('cascade');
+                $table->string('article_id'); // Unique identifier for each article
+                $table->string('article_title');
+                $table->string('article_category'); // pola-makan-sehat, aktivitas-fisik, etc.
+                $table->string('article_image')->nullable();
+                $table->text('article_description')->nullable();
+                $table->string('article_author')->nullable();
+                $table->string('article_url')->nullable(); // URL to the full article
+                $table->timestamps();
+
+                // Prevent duplicate favorites for same user and article
+                $table->unique(['user_id', 'article_id']);
+            });
+        }
     }
 
     /**

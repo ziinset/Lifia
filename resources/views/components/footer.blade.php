@@ -74,22 +74,22 @@
                             <a href="{{ route('home') }}#kategori" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Topik Popular</a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="{{ route('kategori.perawatan-diri') }}" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Perawatan Diri</a>
+                            <a href="{{ route('kategori', ['category' => 'perawatan-diri']) }}" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Perawatan Diri</a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="{{ route('kategori.vegan') }}" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Gaya Hidup Vegan</a>
+                            <a href="{{ route('kategori', ['category' => 'vegan']) }}" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Gaya Hidup Vegan</a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="{{ route('kategori.kesehatan-mental') }}" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Kesehatan Mental</a>
+                            <a href="{{ route('kategori', ['category' => 'kesehatan-mental']) }}" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Kesehatan Mental</a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="{{ route('kategori.pola-makan-sehat') }}" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Pola Makan Sehat</a>
+                            <a href="{{ route('kategori', ['category' => 'pola-makan-sehat']) }}" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Pola Makan Sehat</a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="{{ route('kategori.aktivitas-fisik') }}" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Aktivitas Fisik</a>
+                            <a href="{{ route('kategori', ['category' => 'aktivitas-fisik']) }}" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Aktivitas Fisik</a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="{{ route('kategori.eco') }}" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Eco Living</a>
+                            <a href="{{ route('kategori', ['category' => 'eco-living']) }}" class="lifia-footer-link" style="font-family: 'Montserrat', sans-serif; color: #c8d8c8; text-decoration: none; font-size: 14px; font-weight: 400; display: block;">Eco Living</a>
                         </li>
                     </ul>
                 </div>

@@ -8,8 +8,12 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('lokasi')->nullable()->after('email');
-            $table->string('foto')->nullable()->after('lokasi'); // path foto profil
+            if (!Schema::hasColumn('users', 'lokasi')) {
+                $table->string('lokasi')->nullable()->after('email');
+            }
+            if (!Schema::hasColumn('users', 'foto')) {
+                $table->string('foto')->nullable()->after('lokasi'); // path foto profil
+            }
         });
     }
 

@@ -22,13 +22,14 @@ use App\Http\Controllers\SearchController;
 // ==========================
 // Halaman umum (tanpa login)
 // ==========================
-Route::get('/', fn() => view('landing'))->name('landing');
-Route::get('/home', fn() => view('home'))->name('home');
+Route::get('/', fn() => view('user.home'))->name('home');
 Route::get('/artikel', [ArticleController::class, 'index'])->name('artikel');
 Route::get('/kategori/{category}', [ArticleController::class, 'showCategory'])->name('kategori');
 Route::get('/kategori/{category}/{article}', [ArticleController::class, 'showArticle'])->name('artikel.show');
 Route::get('/artikel/sarapan-seimbang', [ArticleController::class, 'sarapanSeimbang'])->name('artikel.sarapan-seimbang');
 Route::get('/list-olahraga', fn() => view('listolahraga.listolahraga'))->name('list-olahraga');
+Route::get('/cek-bmi', [BmiController::class, 'index'])->name('cek-bmi');
+Route::get('/tentang-kami', [TentangKamiController::class, 'index'])->name('tentang-kami');
 
 // Search Routes
 Route::get('/search', [SearchController::class, 'search'])->name('search');
@@ -92,3 +93,29 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/profile/update', [AdminController::class, 'updateProfile'])
         ->name('admin.profile.update');
 });
+
+// FitPlan Route (placeholder for now)
+Route::get('/fitplan', function () {
+    return view('premium.fitplan');
+})->name('fitplan');
+
+Route::get('/program-turun-berat-badan', function () {
+    return view('premium.program-turun-berat-badan.program_turunbb');
+})->name('program-turun-berat-badan');
+
+Route::get('/program-bentuk-otot', function () {
+    return view('premium.program-bentuk-otot.program_bentuk_otot');
+})->name('program-bentuk-otot');
+
+Route::get('/program-stamina-energi', function () {
+    return view('premium.program-stamina-energi.program_stamina_energi');
+})->name('program-stamina-energi');
+
+Route::get('/program-tubuh-lentur', function () {
+    return view('premium.program-tubuh-lentur.program_tubuh_lentar');
+})->name('program-tubuh-lentur');
+
+// Premium: Meal Plan
+Route::get('/mealplan', function () {
+    return view('premium.mealplan');
+})->name('mealplan');

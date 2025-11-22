@@ -426,7 +426,7 @@
                             12 jam lalu</span></span>
                         <div class="main-article-actions">
 <<<<<<< HEAD
-                            <button class="main-action-btn" onclick="window.location.href='{{ route('kategori.aktivitas-fisik.artikel.artikel') }}'">Selengkapnya</button>
+                            <button class="main-action-btn" onclick="window.location.href='{{ route('artikel.show', ['category' => 'aktivitas-fisik', 'article' => 'listolahraga']) }}'">Selengkapnya</button>
 =======
                             <button class="main-action-btn" onclick="window.location.href='{{ route('artikel.sarapan-seimbang') }}'">Selengkapnya</button>
 >>>>>>> jonathan

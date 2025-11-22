@@ -5,7 +5,7 @@
             <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">
                 <i class="fas fa-bars"></i>
             </button>
-            
+
             <!-- Back Button -->
             <button class="back-btn" onclick="goBack()" title="Kembali ke beranda">
                 <i class="fas fa-home"></i>
@@ -16,8 +16,8 @@
         <div class="search-container">
             <form action="{{ route('search') }}" method="GET" class="search-form">
                 <div class="search-box">
-                    <input type="text" 
-                           name="q" 
+                    <input type="text"
+                           name="q"
                            id="searchInput"
                            placeholder="Cari resep, artikel, atau tips kesehatan..."
                            value="{{ request('q') }}"
@@ -40,7 +40,7 @@
                         $foto = Auth::user()->foto ?? null;
                         $initial = strtoupper(substr(Auth::user()->nama_lengkap ?? 'U', 0, 1));
                     @endphp
-                    <img src="{{ $foto ? asset('storage/' . $foto) : 'https://placehold.co/40x40/8BAC65/white?text=' . $initial }}" 
+                    <img src="{{ $foto ? asset('storage/' . $foto) : 'https://placehold.co/40x40/8BAC65/white?text=' . $initial }}"
                          alt="{{ Auth::user()->nama_lengkap }}">
                     <div class="user-details">
                         <h4>{{ Auth::user()->nama_lengkap }}</h4>
@@ -455,27 +455,27 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
-    .search-container { 
-        max-width: 350px; 
+    .search-container {
+        max-width: 350px;
     }
 }
 
 @media (max-width: 768px) {
-    .mobile-menu-btn { 
-        display: block; 
+    .mobile-menu-btn {
+        display: block;
     }
-    .topbar { 
-        flex-wrap: wrap; 
-        gap: 1rem; 
+    .topbar {
+        flex-wrap: wrap;
+        gap: 1rem;
     }
-    .search-container { 
-        order: 2; 
-        flex-basis: 100%; 
-        max-width: none; 
+    .search-container {
+        order: 2;
+        flex-basis: 100%;
+        max-width: none;
     }
-    .user-section { 
-        order: 1; 
-        margin-left: auto; 
+    .user-section {
+        order: 1;
+        margin-left: auto;
     }
 }
 </style>
@@ -489,7 +489,7 @@ function toggleMobileSidebar() {
 }
 
 function goBack() {
-    // Always redirect to landing page
+    // Always redirect to home page
     window.location.href = '/';
 }
 
@@ -503,9 +503,9 @@ document.addEventListener('DOMContentLoaded', function() {
         // Handle input for search results
         searchInput.addEventListener('input', function() {
             const query = this.value.trim();
-            
+
             clearTimeout(searchTimeout);
-            
+
             if (query.length >= 1) {
                 searchTimeout = setTimeout(() => {
                     fetchSearchResults(query);

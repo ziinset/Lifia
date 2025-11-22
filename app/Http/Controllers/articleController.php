@@ -21,12 +21,12 @@ class ArticleController extends Controller
     {
         // Map category slugs to view paths
         $categoryViews = [
-            'pola-makan-sehat' => 'user.kategori.pola-makan-sehat.bagianartikel',
-            'aktivitas-fisik' => 'user.kategori.aktivitas-fisik.bagian',
-            'kesehatan-mental' => 'user.kategori.kesehatan-mental.bagianartikel',
-            'perawatan-diri' => 'artikel.artikel', // fallback to main artikel
-            'vegan' => 'artikel.artikel', // fallback to main artikel
-            'eco-living' => 'artikel.artikel', // fallback to main artikel
+            'pola-makan-sehat' => 'user.kategori.pola-makan-sehat.artikel-makanan',
+            'aktivitas-fisik' => 'user.kategori.aktivitas-fisik.artikel-fisik',
+            'kesehatan-mental' => 'user.kategori.kesehatan-mental.artikel-mental',
+            'perawatan-diri' => 'user.kategori.perawatan-diri.artikel-perawatan',
+            'vegan' => 'user.kategori.vegan.artikel-vegan',
+            'eco-living' => 'user.kategori.eco.artikel-eco',
         ];
 
         // Check if category exists
@@ -35,7 +35,7 @@ class ArticleController extends Controller
         }
 
         $viewPath = $categoryViews[$category];
-        
+
         // Check if view file exists
         if (!view()->exists($viewPath)) {
             // Fallback to main artikel page
@@ -86,7 +86,7 @@ class ArticleController extends Controller
         }
 
         $viewPath = $articleViews[$category][$article];
-        
+
         // Check if view file exists
         if (!view()->exists($viewPath)) {
             abort(404, 'Artikel tidak ditemukan');

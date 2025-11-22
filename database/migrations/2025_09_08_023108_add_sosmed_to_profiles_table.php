@@ -9,9 +9,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('profiles', function (Blueprint $table) {
-            $table->string('instagram')->nullable();
-            $table->string('tiktok')->nullable();
-            $table->string('facebook')->nullable();
+            if (!Schema::hasColumn('profiles', 'instagram')) {
+                $table->string('instagram')->nullable();
+            }
+            if (!Schema::hasColumn('profiles', 'tiktok')) {
+                $table->string('tiktok')->nullable();
+            }
+            if (!Schema::hasColumn('profiles', 'facebook')) {
+                $table->string('facebook')->nullable();
+            }
         });
     }
 

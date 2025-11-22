@@ -255,7 +255,7 @@
             margin-top: 8px;
             opacity: 0;
             visibility: hidden;
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15), 
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15),
                         inset 0 1px 0 rgba(255, 255, 255, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
@@ -461,11 +461,11 @@
                 padding: 15px 20px;
 >>>>>>> jonathan
             }
-            
+
             .navbar-menu-toggle {
                 display: flex;
             }
-            
+
             .navbar-links {
                 position: fixed;
                 top: 0;
@@ -482,11 +482,11 @@
                 z-index: 99;
                 box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
             }
-            
+
             .navbar-links.navbar-active {
                 right: 0;
             }
-            
+
             .navbar-links a {
 <<<<<<< HEAD
                 width: 80% !important;
@@ -499,7 +499,7 @@
 >>>>>>> jonathan
                 border: 1.4px solid rgba(255, 255, 255, 0.5);
             }
-            
+
             .navbar-dropdown-menu {
                 position: static;
                 transform: none;
@@ -507,7 +507,7 @@
                 margin: 10px auto;
                 background: rgba(255, 255, 255, 0.9);
             }
-            
+
             .navbar-dropdown-menu::before {
                 display: none;
             }
@@ -543,21 +543,13 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="navbar-logo">
-<<<<<<< HEAD
-                <img src="{{ asset('images/logo-lifia.svg') }}" alt="Lifia Logo" width="150">
-            </div>
-
-            <div class="navbar-links" id="navbarLinks">
-                <a href="{{ route('home') }}" data-nav="beranda">
-=======
-                <a href="{{ route('landing') }}">
+                <a href="{{ route('home') }}">
                     <img src="{{ asset('images/logo-lifia.svg') }}" alt="Lifia Logo" width="150">
                 </a>
             </div>
 
             <div class="navbar-links" id="navbarLinks">
-                <a href="#" data-nav="beranda">
->>>>>>> jonathan
+                <a href="{{ route('home') }}" data-nav="beranda">
                     Beranda
                 </a>
 
@@ -570,7 +562,7 @@
                     <div class="navbar-dropdown-menu" id="navbarArtikelMenu">
 <<<<<<< HEAD
                         <div class="dropdown-grid">
-                            <a href="{{ route('kategori.pola-makan-sehat') }}" class="dropdown-item" data-nav="pola-makan">
+                            <a href="{{ route('kategori', ['category' => 'pola-makan-sehat']) }}" class="dropdown-item" data-nav="pola-makan">
                                 <i class="fas fa-utensils"></i>
                                 <div class="dropdown-item-content">
                                     <h4>Pola Makan Sehat</h4>
@@ -579,7 +571,7 @@
                                     <i class="fas fa-chevron-right"></i>
                                 </span>
                             </a>
-                            <a href="{{ route('kategori.aktivitas-fisik') }}" class="dropdown-item" data-nav="aktivitas-fisik">
+                            <a href="{{ route('kategori', ['category' => 'aktivitas-fisik']) }}" class="dropdown-item" data-nav="aktivitas-fisik">
                                 <i class="fas fa-dumbbell"></i>
                                 <div class="dropdown-item-content">
                                     <h4>Aktivitas Fisik</h4>
@@ -588,7 +580,7 @@
                                     <i class="fas fa-chevron-right"></i>
                                 </span>
                             </a>
-                            <a href="{{ route('kategori.kesehatan-mental') }}" class="dropdown-item" data-nav="kesehatan-mental">
+                            <a href="{{ route('kategori', ['category' => 'kesehatan-mental']) }}" class="dropdown-item" data-nav="kesehatan-mental">
                                 <i class="fas fa-brain"></i>
                                 <div class="dropdown-item-content">
                                     <h4>Kesehatan Mental</h4>
@@ -597,7 +589,7 @@
                                     <i class="fas fa-chevron-right"></i>
                                 </span>
                             </a>
-                            <a href="{{ route('kategori.perawatan-diri') }}" class="dropdown-item" data-nav="perawatan-diri">
+                            <a href="{{ route('kategori', ['category' => 'perawatan-diri']) }}" class="dropdown-item" data-nav="perawatan-diri">
                                 <i class="fas fa-spa"></i>
                                 <div class="dropdown-item-content">
                                     <h4>Perawatan Diri</h4>
@@ -606,7 +598,7 @@
                                     <i class="fas fa-chevron-right"></i>
                                 </span>
                             </a>
-                            <a href="{{ route('kategori.vegan') }}" class="dropdown-item" data-nav="vegan">
+                            <a href="{{ route('kategori', ['category' => 'vegan']) }}" class="dropdown-item" data-nav="vegan">
                                 <i class="fas fa-leaf"></i>
                                 <div class="dropdown-item-content">
                                     <h4>Gaya Hidup Vegan</h4>
@@ -615,7 +607,7 @@
                                     <i class="fas fa-chevron-right"></i>
                                 </span>
                             </a>
-                            <a href="{{ route('kategori.eco') }}" class="dropdown-item" data-nav="eco-living">
+                            <a href="{{ route('kategori', ['category' => 'eco-living']) }}" class="dropdown-item" data-nav="eco-living">
                                 <i class="fas fa-recycle"></i>
                                 <div class="dropdown-item-content">
                                     <h4>Eco Living</h4>
@@ -676,19 +668,19 @@
                     $nama = $user->nama_lengkap ?? $user->email;
                     $initial = strtoupper(mb_substr($nama, 0, 1));
                     $foto = $user->foto ?? null;
-                    
+
                     // Simple logic: Admin ke dashboard admin, User ke dashboard user (profil)
                     if ($user->role === 'admin') {
                         $profileUrl = route('admin.dashboard');
                     } else {
                         $profileUrl = route('profil', ['redirect_to' => '/']);
                     }
-                    
+
                     // DEBUG: Uncomment untuk lihat role user
                     // dd('Email: ' . $user->email . ' | Role: ' . ($user->role ?? 'NULL') . ' | URL: ' . $profileUrl);
                 @endphp
                 <a href="{{ $profileUrl }}" class="navbar-login" data-nav="profile" style="display:flex; align-items:center; gap:10px; border-color:#fff; background:rgba(255,255,255,0.15);">
-                    
+
                     @if($foto)
                         <img src="{{ asset('storage/' . $foto) }}" alt="Avatar" style="width:28px; height:28px; border-radius:50%; object-fit:cover; border:1px solid rgba(255,255,255,0.6);">
                     @else
@@ -717,17 +709,17 @@
             const dropdown = artikelToggle.closest(".navbar-dropdown");
             const menuToggle = document.getElementById("navbarMenuToggle");
             const navLinks = document.querySelector(".navbar-links");
-            
+
             // State management dengan switch case
             let currentNavState = "beranda";
-            
+
             // Fungsi untuk mengubah status navbar menggunakan switch case
             function setNavbarState(state) {
                 // Hapus kelas aktif dari semua link
                 document.querySelectorAll('.navbar-links a').forEach(link => {
                     link.classList.remove('navbar-active');
                 });
-                
+
                 // Gunakan switch case untuk mengatur status navbar
                 switch(state) {
                     case 'beranda':
@@ -778,16 +770,16 @@
                         document.querySelector('[data-nav="beranda"]').classList.add('navbar-active');
                         console.log("Status navigasi: Default (Beranda)");
                 }
-                
+
                 currentNavState = state;
-                
+
                 // Tutup menu mobile jika terbuka
                 if (navLinks.classList.contains('navbar-active')) {
                     menuToggle.classList.remove('navbar-active');
                     navLinks.classList.remove('navbar-active');
                 }
             }
-            
+
 <<<<<<< HEAD
 =======
             // Event listeners untuk link navbar
@@ -829,7 +821,7 @@
                     navLinks.classList.toggle("navbar-active");
                 });
             }
-            
+
             // Inisialisasi status awal
             setNavbarState('beranda');
         });

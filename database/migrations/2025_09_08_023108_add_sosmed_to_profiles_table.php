@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('profiles', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->string('instagram')->nullable();
             $table->string('tiktok')->nullable();
             $table->string('facebook')->nullable();
@@ -17,7 +17,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::table('profiles', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table->dropColumn(['instagram', 'tiktok', 'facebook']);
         });
     }

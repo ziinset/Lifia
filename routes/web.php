@@ -270,6 +270,70 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/eco-living', [AdminController::class, 'ecoLiving'])
         ->name('admin.eco-living');
     
+    // Admin Article CRUD by Category (API for generic template)
+    Route::get('/admin/{category}/articles', [AdminController::class, 'listArticles'])
+        ->name('admin.articles.index')
+        ->where('category', '[a-z0-9\-]+');
+    Route::post('/admin/{category}/articles', [AdminController::class, 'storeArticle'])
+        ->name('admin.articles.store')
+        ->where('category', '[a-z0-9\-]+');
+    Route::put('/admin/{category}/articles/{id}', [AdminController::class, 'updateArticle'])
+        ->name('admin.articles.update')
+        ->where(['category' => '[a-z0-9\-]+', 'id' => '[0-9]+']);
+    Route::post('/admin/{category}/articles/{id}/primary', [AdminController::class, 'setPrimary'])
+        ->name('admin.articles.set-primary')
+        ->where(['category' => '[a-z0-9\-]+', 'id' => '[0-9]+']);
+    Route::post('/admin/{category}/articles/{id}/primary/clear', [AdminController::class, 'clearPrimary'])
+        ->name('admin.articles.clear-primary')
+        ->where(['category' => '[a-z0-9\-]+', 'id' => '[0-9]+']);
+    Route::delete('/admin/{category}/articles/{id}', [AdminController::class, 'deleteArticle'])
+        ->name('admin.articles.destroy')
+        ->where(['category' => '[a-z0-9\-]+', 'id' => '[0-9]+']);
+
+    // Admin Banner CRUD by Category
+    Route::get('/admin/{category}/banners', [AdminController::class, 'listBanners'])
+        ->name('admin.banners.index')
+        ->where('category', '[a-z0-9\-]+');
+    Route::post('/admin/{category}/banners', [AdminController::class, 'storeBanner'])
+        ->name('admin.banners.store')
+        ->where('category', '[a-z0-9\-]+');
+    Route::put('/admin/{category}/banners/{id}', [AdminController::class, 'updateBanner'])
+        ->name('admin.banners.update')
+        ->where(['category' => '[a-z0-9\-]+', 'id' => '[0-9]+']);
+    Route::delete('/admin/{category}/banners/{id}', [AdminController::class, 'deleteBanner'])
+        ->name('admin.banners.destroy')
+        ->where(['category' => '[a-z0-9\-]+', 'id' => '[0-9]+']);
+
+    // Popular Topics CRUD by Category (JSON API)
+    Route::get('/admin/{category}/popular-topics', [\App\Http\Controllers\PopularTopicController::class, 'index'])
+        ->name('admin.popular-topics.index')
+        ->where('category', '[a-z0-9\-]+');
+    Route::post('/admin/{category}/popular-topics', [\App\Http\Controllers\PopularTopicController::class, 'store'])
+        ->name('admin.popular-topics.store')
+        ->where('category', '[a-z0-9\-]+');
+    Route::post('/admin/{category}/popular-topics/{popularTopic}', [\App\Http\Controllers\PopularTopicController::class, 'update'])
+        ->name('admin.popular-topics.update')
+        ->where(['category' => '[a-z0-9\-]+']);
+    Route::put('/admin/{category}/popular-topics/{popularTopic}', [\App\Http\Controllers\PopularTopicController::class, 'update'])
+        ->where(['category' => '[a-z0-9\-]+']);
+    Route::delete('/admin/{category}/popular-topics/{popularTopic}', [\App\Http\Controllers\PopularTopicController::class, 'destroy'])
+        ->name('admin.popular-topics.destroy')
+        ->where(['category' => '[a-z0-9\-]+']);
+
+    // Panduan CRUD by Category (use Article model with article_type='panduan')
+    Route::get('/admin/{category}/guides', [AdminController::class, 'listGuides'])
+        ->name('admin.guides.index')
+        ->where('category', '[a-z0-9\-]+');
+    Route::post('/admin/{category}/guides', [AdminController::class, 'storeGuide'])
+        ->name('admin.guides.store')
+        ->where('category', '[a-z0-9\-]+');
+    Route::put('/admin/{category}/guides/{id}', [AdminController::class, 'updateGuide'])
+        ->name('admin.guides.update')
+        ->where(['category' => '[a-z0-9\-]+', 'id' => '[0-9]+']);
+    Route::delete('/admin/{category}/guides/{id}', [AdminController::class, 'deleteGuide'])
+        ->name('admin.guides.destroy')
+        ->where(['category' => '[a-z0-9\-]+', 'id' => '[0-9]+']);
+
     // Dynamic Category Routes - untuk kategori baru yang ditambahkan via CRUD
     Route::get('/admin/{category}', [AdminController::class, 'dynamicCategory'])
         ->name('admin.dynamic-category')

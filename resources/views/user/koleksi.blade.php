@@ -491,30 +491,16 @@
                                 <i class="fas fa-th-large"></i>
                                 Tunjukkan Semua
                             </div>
-                            <div class="filter-option" onclick="filterArticles('pola-makan-sehat')">
-                                <i class="fas fa-apple-alt"></i>
-                                Pola Makan Sehat
-                            </div>
-                            <div class="filter-option" onclick="filterArticles('aktivitas-fisik')">
-                                <i class="fas fa-dumbbell"></i>
-                                Aktivitas Fisik
-                            </div>
-                            <div class="filter-option" onclick="filterArticles('kesehatan-mental')">
-                                <i class="fas fa-brain"></i>
-                                Kesehatan Mental
-                            </div>
-                            <div class="filter-option" onclick="filterArticles('perawatan-diri')">
-                                <i class="fas fa-spa"></i>
-                                Perawatan Diri
-                            </div>
-                            <div class="filter-option" onclick="filterArticles('vegan')">
-                                <i class="fas fa-leaf"></i>
-                                Vegan
-                            </div>
-                            <div class="filter-option" onclick="filterArticles('eco-living')">
-                                <i class="fas fa-globe-americas"></i>
-                                Eco Living
-                            </div>
+                            @foreach(($globalCategories ?? collect()) as $gc)
+                                <div class="filter-option" onclick="filterArticles('{{ $gc->slug }}')">
+                                    @if(!empty($gc->icon))
+                                        <i class="{{ $gc->icon }}"></i>
+                                    @else
+                                        <i class="fas fa-tag"></i>
+                                    @endif
+                                    {{ $gc->name }}
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

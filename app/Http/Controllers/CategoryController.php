@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -70,50 +72,60 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
             'icon' => 'nullable|string|max:255',
+            'banner_description' => 'nullable|string',
+            'banner_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:4096',
             // header_type dihapus dari validasi karena field sudah tidak ada di modal
         ]);
 
-        $category->update([
+        $payload = [
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'description' => $request->description,
             'icon' => $request->icon,
-            // header_type & is_active tidak dikirim dari form; biarkan nilai lama tetap
-        ]);
+        ];
+
+        if (Schema::hasColumn('categories', 'banner_description') && $request->filled('banner_description')) {
+            $payload['banner_description'] = $request->banner_description;
+        }
+
+        if (Schema::hasColumn('categories', 'banner_image') && $request->hasFile('banner_image')) {
+            $path = $request->file('banner_image')->store('category_banners', 'public');
+            $payload['banner_image'] = $path;
+        }
+
+        $category->update($payload);
 
         return response()->json([
             'success' => true,
-            'message' => 'Kategori berhasil diperbarui!'
+            'message' => 'Kategori berhasil diperbarui!',
+            'category' => $category->fresh()
         ]);
     }
 
     /**
-     * Remove the specified category
+     * Remove the specified category (cascade delete related articles)
      */
     public function destroy(Category $category)
     {
         try {
-            // Check if category has articles (only if Article model exists)
-            if (class_exists('\App\Models\Article')) {
-                $articleCount = \App\Models\Article::where('category', $category->slug)->count();
-                
-                if ($articleCount > 0) {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'Tidak dapat menghapus kategori yang masih memiliki artikel!'
-                    ]);
-                }
+            DB::beginTransaction();
+
+            $deletedArticles = 0;
+            if (class_exists('\\App\\Models\\Article')) {
+                $deletedArticles = \App\Models\Article::where('category', $category->slug)->delete();
             }
 
-            // Delete the category
             $categoryName = $category->name;
             $category->delete();
 
+            DB::commit();
+
             return response()->json([
                 'success' => true,
-                'message' => "Kategori '{$categoryName}' berhasil dihapus!"
+                'message' => "Kategori '{$categoryName}' berhasil dihapus" . ($deletedArticles ? " (beserta {$deletedArticles} artikel)" : '') . "!"
             ]);
         } catch (\Exception $e) {
+            DB::rollBack();
             return response()->json([
                 'success' => false,
                 'message' => 'Gagal menghapus kategori: ' . $e->getMessage()

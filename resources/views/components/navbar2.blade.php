@@ -1,8 +1,14 @@
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #f6f4ef;
+        }
         .navbar * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
         .navbar {
@@ -458,6 +464,8 @@
             }
         }
     </style>
+    <!-- Google Fonts (Poppins + Montserrat) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -469,7 +477,7 @@
             </div>
 
             <div class="navbar-links" id="navbarLinks">
-                <a href="{{ Auth::check() && Auth::user()->role === 'admin' ? route('admin.dashboard') : route('home') }}" data-nav="beranda">
+                <a href="{{ route('home') }}" data-nav="beranda">
                     Beranda
                 </a>
 
@@ -597,13 +605,15 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Set active state based on current route
+            // Set active state based on current route (support dynamic categories)
             @php
-                $routeName = request()->route()->getName();
+                $routeName = optional(request()->route())->getName() ?? '';
                 $activeNav = 'beranda'; // Default
-                $isArticlePage = false;
+                // Consider any /kategori/* URL as an article page
+                $isArticlePage = request()->is('kategori/*');
+                if ($isArticlePage) { $activeNav = 'artikel'; }
 
-                // Mapping nama route (substring) ke data-nav navbar
+                // Mapping nama route (substring) ke data-nav navbar (kategori statis lama)
                 $articleRoutes = [
                     'pola-makan-sehat' => 'pola-makan',
                     'aktivitas-fisik' => 'aktivitas-fisik',
@@ -647,7 +657,7 @@
             // Check if we're on an article page
             const isArticlePage = {{ $isArticlePage ? 'true' : 'false' }};
             
-            // Set active state for Artikel button if on article page
+            // Set active state for Artikel button if on article page (redundant safety)
             if (isArticlePage && artikelToggle) {
                 artikelToggle.classList.add('navbar-active');
             }
@@ -704,6 +714,14 @@
                             link.classList.add('navbar-active');
                         }
                         console.log("Status navigasi: Beranda");
+                        break;
+                    }
+                    case 'artikel': {
+                        // Aktifkan tombol Artikel tanpa memilih item dropdown tertentu
+                        if (artikelToggle) {
+                            artikelToggle.classList.add('navbar-active');
+                        }
+                        console.log("Status navigasi: Artikel (kategori dinamis)");
                         break;
                     }
                     case 'pola-makan': {

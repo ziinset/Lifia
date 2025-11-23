@@ -79,16 +79,21 @@
 <style>
     .top-header {
         background: white;
-        padding: 20px 32px;
+        padding: 16px 32px; /* slightly slimmer header */
         border-bottom: 1px solid #e5e7eb;
         display: flex;
         justify-content: flex-end;
         align-items: center;
         margin-bottom: 0;
-        position: sticky;
+        position: fixed; /* was sticky */
         top: 0;
-        z-index: 999;
+        left: 260px; /* align with sidebar width */
+        width: calc(100% - 260px);
+        z-index: 1001;
     }
+
+    /* Global spacing below fixed header for all admin pages */
+    .main-content { padding-top: 112px; } /* was 0 or inconsistent per page */
 
     .user-info {
         display: flex;
@@ -339,21 +344,14 @@
     /* Responsive */
     @media (max-width: 768px) {
         .top-header {
-            padding: 16px 20px;
+            left: 0;
+            width: 100%;
+            padding: 12px 16px;
         }
-        
-        .user-details h2 {
-            font-size: 18px;
-        }
-        
-        .user-details p {
-            font-size: 13px;
-        }
-        
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-        }
+        .main-content { padding-top: 88px; }
+        .user-details h2 { font-size: 18px; }
+        .user-details p { font-size: 13px; }
+        .user-avatar { width: 40px; height: 40px; }
     }
 </style>
 

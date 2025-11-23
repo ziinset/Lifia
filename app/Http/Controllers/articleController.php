@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
+use App\Models\PopularTopic;
 
 class ArticleController extends Controller
 {
@@ -225,26 +227,68 @@ class ArticleController extends Controller
             return view($viewPath, ['category' => $slug]);
         }
 
-        // Kategori dinamis (baru ditambahkan): cek DB dan tampilkan Coming Soon jika belum ada artikel
+        // Kategori dinamis (baru ditambahkan): cek DB dan tampilkan sesuai banner/artikel
         $categoryModel = Category::where('slug', $slug)->first();
         if (!$categoryModel) {
             abort(404, 'Kategori tidak ditemukan');
         }
 
-        $hasArticles = class_exists(Article::class)
-            ? Article::where('category', $slug)->exists()
-            : false;
+        // Info banner (jika ada), namun tetap render halaman meskipun tidak ada banner
+        $hasBanner = !empty($categoryModel->banner_image) || !empty($categoryModel->banner_description);
 
-        if (!$hasArticles) {
-            return view('user.kategori.coming-soon', compact('slug', 'categoryModel'));
-        }
-
-        // Jika sudah ada artikel untuk kategori dinamis, arahkan ke halaman generik
+        // Jika sudah ada banner, arahkan ke halaman generik kategori (halaman baru)
         $fallbackView = 'artikel.artikel';
         if (!view()->exists($fallbackView)) {
             abort(404);
         }
-        return view($fallbackView, ['category' => $slug]);
+        $hasArticles = class_exists(Article::class)
+            ? Article::where('category', $slug)->exists()
+            : false;
+        $articles = collect();
+        if ($hasArticles) {
+            $articles = Article::where('category', $slug)
+                ->orderByDesc('created_at')
+                ->take(8)
+                ->get(['id','title','description','author','image','file_path','created_at']);
+        }
+        // Fetch banners for slider from banners table
+        $banners = collect();
+        $categoryRow = Category::where('slug', $slug)->first();
+        if ($categoryRow) {
+            $banners = DB::table('banners')
+                ->where('category_id', $categoryRow->id)
+                ->where('is_active', 1)
+                ->orderBy('display_order', 'asc')
+                ->orderByDesc('created_at')
+                ->limit(8)
+                ->get(['id','title','description','image',DB::raw('`link` as file_path'),'display_order']);
+        }
+        // Categories for navbar dropdown (same behavior as default pages)
+        $globalCategories = \App\Models\Category::orderBy('sort_order','asc')->get();
+        // Popular Topics for this dynamic category
+        $popularTopics = PopularTopic::forCategory($slug)
+            ->where('is_published', 1)
+            ->orderBy('is_featured','desc')
+            ->orderBy('display_order','asc')
+            ->orderByDesc('created_at')
+            ->get();
+
+        // Guides (Panduan) for this dynamic category from 'guides' table
+        $guides = \Illuminate\Support\Facades\DB::table('guides')
+            ->where('category_slug', $slug)
+            ->orderByDesc('created_at')
+            ->paginate(5, ['id','title','description','author','image','file_path','created_at']);
+
+        return view($fallbackView, [
+            'category' => $slug,
+            'categoryModel' => $categoryModel,
+            'hasArticles' => $hasArticles,
+            'articles' => $articles,
+            'banners' => $banners,
+            'globalCategories' => $globalCategories,
+            'popularTopics' => $popularTopics,
+            'guides' => $guides,
+        ]);
     }
 
     public function showArticle($category, $article)

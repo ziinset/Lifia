@@ -441,7 +441,7 @@
             </div>
 
             <div class="navbar-links" id="navbarLinks">
-                <a href="{{ Auth::check() && Auth::user()->role === 'admin' ? route('admin.dashboard') : route('home') }}" data-nav="beranda">
+                <a href="{{ route('home') }}" data-nav="beranda">
                     Beranda
                 </a>
 

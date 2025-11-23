@@ -12,9 +12,73 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function langganan()
+    public function langganan(Request $request)
     {
-        return view('admin.langganan');
+        // Update expired subscriptions
+        \App\Models\Subscription::where('status', 'active')
+            ->where('end_date', '<', now()->toDateString())
+            ->update(['status' => 'expired']);
+
+        // Update users whose subscriptions expired
+        $expiredUserIds = \App\Models\Subscription::where('status', 'expired')
+            ->where('end_date', '<', now()->toDateString())
+            ->pluck('user_id')
+            ->unique();
+
+        // Check if user has any active subscription
+        foreach ($expiredUserIds as $userId) {
+            $hasActiveSubscription = \App\Models\Subscription::where('user_id', $userId)
+                ->where('status', 'active')
+                ->where('end_date', '>=', now()->toDateString())
+                ->exists();
+
+            if (!$hasActiveSubscription) {
+                \App\Models\User::where('id', $userId)->update(['is_premium' => false]);
+            }
+        }
+
+        $query = \App\Models\Subscription::with('user')
+            ->orderBy('created_at', 'desc');
+
+        // Filter by status
+        if ($request->has('status') && $request->status != '') {
+            $query->where('status', $request->status);
+        }
+
+        // Filter by price range
+        if ($request->has('price_min') && $request->price_min != '') {
+            $query->where('price', '>=', $request->price_min);
+        }
+        if ($request->has('price_max') && $request->price_max != '') {
+            $query->where('price', '<=', $request->price_max);
+        }
+
+        // Sort by
+        $sortBy = $request->get('sort_by', 'created_at');
+        $sortOrder = $request->get('sort_order', 'desc');
+
+        if (in_array($sortBy, ['created_at', 'price', 'start_date', 'end_date'])) {
+            $query->orderBy($sortBy, $sortOrder);
+        }
+
+        $subscriptions = $query->paginate(20);
+
+        // Get statistics
+        $stats = [
+            'total' => \App\Models\Subscription::count(),
+            'active' => \App\Models\Subscription::where('status', 'active')
+                ->where('end_date', '>=', now()->toDateString())
+                ->count(),
+            'expired' => \App\Models\Subscription::where('status', 'expired')
+                ->orWhere(function($q) {
+                    $q->where('status', 'active')
+                      ->where('end_date', '<', now()->toDateString());
+                })
+                ->count(),
+            'pending' => \App\Models\Subscription::where('status', 'pending')->count(),
+        ];
+
+        return view('admin.langganan', compact('subscriptions', 'stats'));
     }
 
     public function kategori()
@@ -60,18 +124,18 @@ class AdminController extends Controller
     {
         // Check if category exists in database
         $categoryModel = \App\Models\Category::where('slug', $category)->first();
-        
+
         if (!$categoryModel) {
             abort(404, 'Kategori tidak ditemukan');
         }
-        
+
         // Try to find existing CRUD view for this category
         $viewName = 'admin.crud-' . $category;
-        
+
         if (view()->exists($viewName)) {
             return view($viewName);
         }
-        
+
         // If no specific view exists, use generic CRUD view
         return view('admin.crud-generic', compact('categoryModel'));
     }

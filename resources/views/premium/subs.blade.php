@@ -3,10 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Langganan FitPlan - Lifia</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Midtrans Snap.js -->
+  <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
   <style>
     :root { --brown:#4E342E; --green:#5D7538; --accent:#B4D678; }
     body { font-family: 'Inter',sans-serif; background: #F7F6F3; }
@@ -63,7 +66,7 @@
           <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[#7FB065] mt-1"></i> Pelacakan progres + nutrisi</li>
           <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[#7FB065] mt-1"></i> Dukungan via chat</li>
         </ul>
-        <a href="{{ route('register') }}" class="mt-6 w-full inline-flex items-center justify-center rounded-full py-3 text-white font-semibold btn-primary">Mulai Standar</a>
+        <button onclick="payNow('standar')" class="mt-6 w-full rounded-full py-3 text-white font-semibold btn-primary">Mulai Standar</button>
       </article>
 
       <!-- Pelajar -->
@@ -75,7 +78,7 @@
           <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--brown)] mt-1"></i> Diskon khusus pelajar</li>
           <li class="flex items-start gap-2"><i class="fa-solid fa-check text-[var(--brown)] mt-1"></i> Grup komunitas pelajar</li>
         </ul>
-        <a href="{{ route('register') }}" class="mt-6 w-full inline-flex items-center justify-center rounded-full py-3 text-white font-semibold btn-brown">Mulai Pelajar</a>
+        <button onclick="payNow('pelajar')" class="mt-6 w-full rounded-full py-3 text-white font-semibold btn-brown">Mulai Pelajar</button>
       </article>
     </section>
   </main>
@@ -88,6 +91,7 @@
     const stu = document.getElementById('priceStu');
     const btnW = document.getElementById('btnWeekly');
     const btnM = document.getElementById('btnMonthly');
+    let currentPeriod = 'weekly'; // default period
 
     function setWeekly(){
       btnW.className = 'px-5 py-2 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#70A05A] to-[#6D8A49]';
@@ -95,6 +99,7 @@
       free.textContent = 'Rp 0 / minggu';
       std.textContent = 'Rp 20.000 / minggu';
       stu.textContent = 'Rp 15.000 / minggu';
+      currentPeriod = 'weekly';
     }
     function setMonthly(){
       btnM.className = 'px-5 py-2 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-[#70A05A] to-[#6D8A49]';
@@ -102,9 +107,102 @@
       free.textContent = 'Rp 0 / bulan';
       std.textContent = 'Rp 75.000 / bulan';
       stu.textContent = 'Rp 50.000 / bulan';
+      currentPeriod = 'monthly';
     }
     btnW.addEventListener('click', setWeekly);
     btnM.addEventListener('click', setMonthly);
+
+    // Payment function
+    async function payNow(packageType) {
+      // Check if user is logged in
+      @auth
+        try {
+          // Show loading state
+          const button = event.target;
+          const originalText = button.textContent;
+          button.disabled = true;
+          button.textContent = 'Memproses...';
+
+          // Get CSRF token
+          const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '{{ csrf_token() }}';
+
+          // Call backend to create payment
+          const response = await fetch('{{ route("payment.create") }}', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': csrfToken,
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              package: packageType,
+              period: currentPeriod
+            })
+          });
+
+          // Check if response is ok
+          if (!response.ok) {
+            let errorData;
+            try {
+              errorData = await response.json();
+            } catch (e) {
+              errorData = { error: `HTTP error! status: ${response.status}` };
+            }
+            throw new Error(errorData.error || errorData.message || 'Terjadi kesalahan pada server');
+          }
+
+          let data;
+          try {
+            data = await response.json();
+          } catch (e) {
+            throw new Error('Response dari server tidak valid');
+          }
+
+          if (data.error) {
+            throw new Error(data.error || data.message || 'Terjadi kesalahan');
+          }
+
+          if (!data.snap_token) {
+            throw new Error('Snap token tidak diterima dari server');
+          }
+
+          // Open Snap popup
+          window.snap.pay(data.snap_token, {
+            onSuccess: function(result) {
+              // Payment success - redirect with order_id
+              const orderId = result.order_id || data.order_id;
+              window.location.href = '{{ route("payment.success") }}?order_id=' + encodeURIComponent(orderId);
+            },
+            onPending: function(result) {
+              // Payment pending
+              alert('Pembayaran Anda sedang diproses. Silakan selesaikan pembayaran.');
+            },
+            onError: function(result) {
+              // Payment error
+              window.location.href = '{{ route("payment.failed") }}';
+            },
+            onClose: function() {
+              // User closed popup
+              button.disabled = false;
+              button.textContent = originalText;
+            }
+          });
+        } catch (error) {
+          console.error('Error:', error);
+          const errorMessage = error.message || 'Terjadi kesalahan. Silakan coba lagi.';
+          alert('Error: ' + errorMessage);
+
+          // Reset button
+          const button = event.target;
+          button.disabled = false;
+          const originalText = packageType === 'standar' ? 'Mulai Standar' : 'Mulai Pelajar';
+          button.textContent = originalText;
+        }
+      @else
+        // User not logged in, redirect to login
+        window.location.href = '{{ route("login") }}?redirect_to=' + encodeURIComponent(window.location.pathname);
+      @endauth
+    }
   </script>
 </body>
 </html>

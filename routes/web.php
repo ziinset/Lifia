@@ -14,6 +14,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MealPlanController;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,10 +127,7 @@ Route::get('/cek-bmi', fn() => view('user.cek-bmi'))->name('cek-bmi');
 Route::get('/tentang-kami', fn() => view('tentang-kami'))->name('tentang-kami');
 
 // FitPlan: premium users see content, others see subscription page
-Route::get('/fitplan', function () {
-    $isPremium = Auth::check() && optional(Auth::user())->is_premium;
-    return $isPremium ? view('premium.fitplan') : view('premium.subs');
-})->name('fitplan');
+Route::get('/fitplan', [PaymentController::class, 'showSubscription'])->name('fitplan');
 
 // Meal Plan (alias publik untuk kompatibilitas)
 Route::get('/mealplan', fn() => view('premium.mealplan'))->name('mealplan');
@@ -247,6 +245,11 @@ Route::middleware('auth')->group(function () {
     Route::put('/notes/{id}', [NotesController::class, 'update'])->name('notes.update');
     Route::delete('/notes/{id}', [NotesController::class, 'destroy'])->name('notes.destroy');
     Route::post('/notes/{id}/toggle-pin', [NotesController::class, 'togglePin'])->name('notes.toggle-pin');
+
+    // Payment routes
+    Route::post('/payment/create', [PaymentController::class, 'createPayment'])->name('payment.create');
+    Route::get('/payment/success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
+    Route::get('/payment/failed', [PaymentController::class, 'paymentFailed'])->name('payment.failed');
 });
 
 // ==========================
@@ -288,6 +291,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/profile/update', [AdminController::class, 'updateProfile'])
         ->name('admin.profile.update');
 });
+
+// ==========================
+// Payment Notification (webhook from Midtrans - no auth required)
+// ==========================
+Route::post('/payment/notification', [PaymentController::class, 'handleNotification'])->name('payment.notification');
 
 // ==========================
 // Premium Routes (requires login)

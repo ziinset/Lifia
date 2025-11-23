@@ -38,4 +38,20 @@ class User extends Authenticatable
     {
         return $this->hasOne(Profile::class);
     }
+
+    // Relasi ke Subscriptions
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
+
+    // Get active subscription
+    public function activeSubscription()
+    {
+        return $this->subscriptions()
+            ->where('status', 'active')
+            ->where('end_date', '>=', now()->toDateString())
+            ->latest()
+            ->first();
+    }
 }

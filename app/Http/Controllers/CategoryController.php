@@ -94,9 +94,9 @@ class CategoryController extends Controller
     {
         try {
             // Check if category has articles (only if Article model exists)
-            if (class_exists('\App\Models\Article')) {
+            if (class_exists(\App\Models\Article::class)) {
                 $articleCount = \App\Models\Article::where('category', $category->slug)->count();
-                
+
                 if ($articleCount > 0) {
                     return response()->json([
                         'success' => false,
@@ -127,7 +127,7 @@ class CategoryController extends Controller
     public function toggleStatus(Category $category)
     {
         $category->update(['is_active' => !$category->is_active]);
-        
+
         $status = $category->is_active ? 'diaktifkan' : 'dinonaktifkan';
         return response()->json([
             'success' => true,

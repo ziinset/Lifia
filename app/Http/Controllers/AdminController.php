@@ -17,6 +17,65 @@ class AdminController extends Controller
         return view('admin.langganan');
     }
 
+    public function kategori()
+    {
+        $categories = \App\Models\Category::orderBy('sort_order', 'asc')->get();
+        return view('admin.kategori', compact('categories'));
+    }
+
+    public function polaMakanSehat()
+    {
+        return view('admin.crud-pola-makan');
+    }
+
+    public function aktivitasFisik()
+    {
+        return view('admin.crud-aktivitas-fisik');
+    }
+
+    public function kesehatanMental()
+    {
+        return view('admin.crud-kesehatan-mental');
+    }
+
+    public function perawatanDiri()
+    {
+        return view('admin.crud-perawatan-diri');
+    }
+
+    public function gayaHidupVegan()
+    {
+        return view('admin.crud-gaya-hidup-vegan');
+    }
+
+    public function ecoLiving()
+    {
+        return view('admin.crud-eco-living');
+    }
+
+    /**
+     * Handle dynamic category routes for new categories added via CRUD
+     */
+    public function dynamicCategory($category)
+    {
+        // Check if category exists in database
+        $categoryModel = \App\Models\Category::where('slug', $category)->first();
+        
+        if (!$categoryModel) {
+            abort(404, 'Kategori tidak ditemukan');
+        }
+        
+        // Try to find existing CRUD view for this category
+        $viewName = 'admin.crud-' . $category;
+        
+        if (view()->exists($viewName)) {
+            return view($viewName);
+        }
+        
+        // If no specific view exists, use generic CRUD view
+        return view('admin.crud-generic', compact('categoryModel'));
+    }
+
     // Update admin profile (foto, nama, dan status)
     public function updateProfile(Request $request)
     {

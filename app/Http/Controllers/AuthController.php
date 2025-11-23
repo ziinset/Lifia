@@ -18,12 +18,12 @@ class AuthController extends Controller
     // ======================
     public function showLogin(Request $request)
     {
-        return view('user.login');
+        return view('user.login'); 
     }
 
     public function showRegister()
     {
-        return view('user.register');
+        return view('user.register'); 
     }
 
     // ======================
@@ -77,13 +77,12 @@ class AuthController extends Controller
 
             // Cek role
             if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard')->with('success', 'Selamat datang Admin!');
+                return redirect()->route('admin.dashboard');
             }
 
-            // Tentukan redirect dinamis berdasarkan asal
+            // Tentukan redirect dinamis berdasarkan asal (aman untuk URL internal)
             $redirect = $request->input('redirect_to');
-            $allowed = ['/', '/home'];
-            if ($redirect && in_array($redirect, $allowed, true)) {
+            if ($redirect && preg_match('#^/[A-Za-z0-9_\-/\.?=&%]*$#', $redirect)) {
                 return redirect()->to($redirect)->with('success', 'Login berhasil!');
             }
 
@@ -106,8 +105,7 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         $redirect = $request->input('redirect_to');
-        $allowed = ['/', '/home'];
-        if ($redirect && in_array($redirect, $allowed, true)) {
+        if ($redirect && preg_match('#^/[A-Za-z0-9_\-/\.?=&%]*$#', $redirect)) {
             return redirect()->to($redirect)->with('success', 'Anda berhasil logout.');
         }
         return redirect()->route('home')->with('success', 'Anda berhasil logout.');
@@ -193,7 +191,7 @@ class AuthController extends Controller
 
         // Generate kode verifikasi 6 digit
         $verificationCode = str_pad(random_int(100000, 999999), 6, '0', STR_PAD_LEFT);
-
+        
         // Simpan kode di database sementara (gunakan tabel password_reset_tokens)
         \DB::table('password_reset_tokens')->updateOrInsert(
             ['email' => $request->email],
@@ -244,10 +242,10 @@ class AuthController extends Controller
         if ($user) {
             $user->password = Hash::make($request->password);
             $user->save();
-
+            
             // Hapus kode verifikasi dari database
             \DB::table('password_reset_tokens')->where('email', $request->email)->delete();
-
+            
             return redirect()->route('login')->with('success', 'Password berhasil direset! Silakan login dengan password baru.');
         }
 

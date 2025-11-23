@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Profile;
 
 class ProfileController extends Controller
@@ -12,8 +13,8 @@ class ProfileController extends Controller
     public function show()
     {
         $user = Auth::user();
-        // Data profil tersimpan di tabel users, bukan tabel terpisah
-        return view('user.profil', compact('user'));
+        // Tampilkan profil dengan layout custom milik user
+        return view('user.profil-user.profil', compact('user'));
     }
 
     // Update profil
@@ -23,7 +24,7 @@ class ProfileController extends Controller
 
         $request->validate([
             'lokasi'        => 'nullable|string|max:255',
-            'foto'          => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'foto'          => 'nullable|image|mimes:jpg,jpeg,png,webp|max:5120',
             'nomor'         => 'nullable|string|max:20',
             'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
             'tanggal_lahir' => 'nullable|date',
@@ -40,8 +41,18 @@ class ProfileController extends Controller
         
         // Upload foto profil
         if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('foto_profil', 'public');
-            $user->foto = $path;
+            try {
+                // Hapus foto lama jika ada
+                if (!empty($user->foto) && Storage::disk('public')->exists($user->foto)) {
+                    Storage::disk('public')->delete($user->foto);
+                }
+                // Simpan foto baru
+                $path = $request->file('foto')->store('foto_profil', 'public');
+                $user->foto = $path; // simpan relative path di disk 'public'
+            } catch (\Throwable $e) {
+                // Jika gagal upload, jangan hentikan update field lain
+                // Anda bisa menambahkan logging bila diperlukan
+            }
         }
 
         // Update field lain dengan cara manual (bypass fillable)

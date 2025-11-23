@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         * {
             margin: 0;
@@ -179,6 +180,14 @@
             border-radius: 50%;
             margin-right: 12px;
             flex-shrink: 0;
+            border: 2px solid #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .activity-item:hover .activity-avatar {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         .activity-content {
@@ -256,8 +265,8 @@
             background: white;
             padding: 24px;
             border-radius: 16px;
-            box-shadow: 
-                0 6px 16px rgba(0, 0, 0, 0.15), 
+            box-shadow:
+                0 6px 16px rgba(0, 0, 0, 0.15),
                 0 3px 8px rgba(0, 0, 0, 0.1),
                 inset 0 1px 3px rgba(0, 0, 0, 0.1),
                 inset 0 -1px 2px rgba(0, 0, 0, 0.05);
@@ -388,7 +397,7 @@
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -519,6 +528,282 @@
             }
         }
 
+        /* Notes Section Only - Modal CSS Removed */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+        }
+        /* Show the modal overlay when active */
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f3f4f6;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #6b7280;
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            color: #dc2626;
+            background: #fee2e2;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 6px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4B5C3B;
+            box-shadow: 0 0 0 3px rgba(75, 92, 59, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .color-picker-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .color-option {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
+            border-color: #374151;
+        }
+
+        .color-option.selected {
+            border-color: #4B5C3B;
+            box-shadow: 0 0 0 2px rgba(75, 92, 59, 0.3);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid #f3f4f6;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .btn-primary {
+            background: #4B5C3B;
+            color: white;
+            border: 1px solid #4B5C3B;
+        }
+
+        .btn-primary:hover {
+            background: #3A4A2E;
+        }
+
+        .btn-danger {
+            background: #dc2626;
+            color: white;
+            border: 1px solid #dc2626;
+        }
+
+        .btn-danger:hover {
+            background: #b91c1c;
+        }
+
+        /* Note item enhancements */
+        .note-item {
+            position: relative;
+        }
+
+        .note-actions {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .note-item:hover .note-actions {
+            opacity: 1;
+        }
+
+        .note-action-btn {
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .note-pin-btn {
+            background: rgba(75, 92, 59, 0.1);
+            color: #4B5C3B;
+        }
+
+        .note-pin-btn:hover {
+            background: rgba(75, 92, 59, 0.2);
+        }
+
+        .note-pin-btn.pinned {
+            background: #4B5C3B;
+            color: white;
+        }
+
+        .note-edit-btn {
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .note-edit-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .note-delete-btn {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .note-delete-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .note-pinned {
+            border-color: #f59e0b !important;
+            background: #fef3c7 !important;
+        }
+
+        .note-pinned .note-title::before {
+            content: "📌 ";
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f4f6;
+            border-radius: 50%;
+            border-top-color: #4B5C3B;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .empty-notes {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+        }
+
+        .empty-notes i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            color: #d1d5db;
+        }
+
     </style>
 </head>
 <body>
@@ -562,7 +847,7 @@
                         date_default_timezone_set('Asia/Jakarta');
                         $hour = date('H');
                         $greeting = '';
-                        
+
                         if ($hour >= 5 && $hour < 12) {
                             $greeting = 'Selamat Pagi';
                         } elseif ($hour >= 12 && $hour < 17) {
@@ -576,7 +861,7 @@
                     <h1>Halo {{ Auth::user()->nama_lengkap ?? 'Admin' }}, {{ $greeting }}!</h1>
                     <p>Konsistensi kecil setiap hari membawa perubahan besar</p>
                 </div>
-                
+
                 <div class="dashboard-content">
                     <!-- Statistics Cards -->
                     <div class="stats-grid">
@@ -604,41 +889,41 @@
                         <!-- Activities Section -->
                         <div class="activities-section">
                             <h2 class="section-header">Riwayat Aktivitas</h2>
-                            
+
                             <div class="activity-item">
-                                <img src="https://via.placeholder.com/40x40/556B2F/ffffff?text=G" alt="Avatar" class="activity-avatar">
+                                <img src="{{ asset('images/avatars/graciella.jpg') }}" alt="Graciella Avatar" class="activity-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Graciella+Yeriza&background=7BA05B&color=ffffff&size=40'">
                                 <div class="activity-content">
                                     <div class="activity-title">Graciella Yeriza N</div>
-                                    <div class="activity-time">Menghapus artikel "Mulai Sarapan Seimbang"</div>
+                                    <div class="activity-time">Menambahkan artikel "Tips Sarapan Sehat"</div>
                                 </div>
                                 <div class="activity-timestamp">Baru saja</div>
                             </div>
 
                             <div class="activity-item">
-                                <img src="https://via.placeholder.com/40x40/556B2F/ffffff?text=G" alt="Avatar" class="activity-avatar">
+                                <img src="{{ asset('images/avatars/jojo.jpg') }}" alt="Jojo Avatar" class="activity-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Jojo+Admin&background=8BAC65&color=ffffff&size=40'">
                                 <div class="activity-content">
-                                    <div class="activity-title">Graciella Yeriza N</div>
-                                    <div class="activity-time">Menghapus artikel "Mulai Sarapan Seimbang"</div>
+                                    <div class="activity-title">Jojo Admin</div>
+                                    <div class="activity-time">Memperbarui kategori "Pola Makan Sehat"</div>
                                 </div>
                                 <div class="activity-timestamp">2 Hari Lalu</div>
                             </div>
 
                             <div class="activity-item">
-                                <img src="https://via.placeholder.com/40x40/556B2F/ffffff?text=G" alt="Avatar" class="activity-avatar">
+                                <img src="{{ asset('images/avatars/goldi.jpg') }}" alt="Goldi Avatar" class="activity-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Goldi+Admin&background=9FBD75&color=ffffff&size=40'">
                                 <div class="activity-content">
-                                    <div class="activity-title">Graciella Yeriza N</div>
-                                    <div class="activity-time">Menghapus artikel "Mulai Sarapan Seimbang"</div>
+                                    <div class="activity-title">Goldi Admin</div>
+                                    <div class="activity-time">Menghapus artikel "Menu Diet Ekstrem"</div>
                                 </div>
                                 <div class="activity-timestamp">3 Hari Lalu</div>
                             </div>
 
                             <div class="activity-item">
-                                <img src="https://via.placeholder.com/40x40/556B2F/ffffff?text=G" alt="Avatar" class="activity-avatar">
+                                <img src="{{ asset('images/avatars/grace.jpg') }}" alt="Grace Avatar" class="activity-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Grace+Admin&background=A8C678&color=ffffff&size=40'">
                                 <div class="activity-content">
-                                    <div class="activity-title">Graciella Yeriza N</div>
-                                    <div class="activity-time">Menghapus artikel "Mulai Sarapan Seimbang"</div>
+                                    <div class="activity-title">Grace Admin</div>
+                                    <div class="activity-time">Menambahkan meal plan "Vegetarian Week"</div>
                                 </div>
-                                <div class="activity-timestamp">3 Hari Lalu</div>
+                                <div class="activity-timestamp">4 Hari Lalu</div>
                             </div>
 
                             <div class="pagination">
@@ -652,30 +937,17 @@
                         <div class="notes-section">
                             <div class="notes-header">
                                 <h3 class="notes-title">Notes</h3>
-                                <a href="#" class="view-all">Lihat semua</a>
                             </div>
 
                             <div class="notes-content">
-                                <div class="note-item">
-                                    <div class="note-title">Pola Makan Enak</div>
-                                    <div class="note-content">Jku suka jajabebat wu...</div>
-                                    <div class="note-date">3 - 12</div>
-                                </div>
-
-                                <div class="note-item">
-                                    <div class="note-title">Pola Makan Enak</div>
-                                    <div class="note-content">Alhamdulillahhhhhh...</div>
-                                    <div class="note-date">18 - 09</div>
-                                </div>
-
-                                <div class="note-item">
-                                    <div class="note-title">Pola Makan Enak</div>
-                                    <div class="note-content">bismillah yaayayayay...</div>
-                                    <div class="note-date">8 - 05</div>
+                                <div id="notesList"></div>
+                                <div id="notesEmptyState" class="empty-notes" style="display:none;">
+                                    <i class="fas fa-note-sticky"></i>
+                                    <div>Belum ada catatan. Klik tombol + untuk menambah catatan.</div>
                                 </div>
                             </div>
 
-                            <button class="add-note-btn">
+                            <button class="add-note-btn" id="addNoteBtn" title="Tambah Catatan">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
@@ -691,7 +963,7 @@
             const successMsg = document.querySelector('.alert-success');
             const infoMsg = document.querySelector('.alert-info');
             const errorMsg = document.querySelector('.alert-error');
-            
+
             if (successMsg) {
                 setTimeout(() => {
                     successMsg.style.opacity = '0';
@@ -701,17 +973,17 @@
                     }, 300);
                 }, 5000);
             }
-            
+
             if (infoMsg) {
                 setTimeout(() => {
                     infoMsg.style.opacity = '0';
                     infoMsg.style.transform = 'translateY(-10px)';
                     setTimeout(() => {
                         infoMsg.remove();
-                    }, 300);
+                    }, 5000);
                 }, 5000);
             }
-            
+
             if (errorMsg) {
                 setTimeout(() => {
                     errorMsg.style.opacity = '0';
@@ -721,7 +993,248 @@
                     }, 300);
                 }, 6000); // Error message stays longer (6 seconds)
             }
+
+            // Notes/To-Do functionality (preserve existing styles)
+            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            const notesList = document.getElementById('notesList');
+            const notesEmpty = document.getElementById('notesEmptyState');
+            const addNoteBtn = document.getElementById('addNoteBtn');
+
+            // Modal elements
+            const modal = document.getElementById('noteModal');
+            const modalTitle = document.getElementById('noteModalTitle');
+            const modalClose = document.getElementById('noteModalClose');
+            const inputTitle = document.getElementById('noteTitle');
+            const inputContent = document.getElementById('noteContent');
+            const saveBtn = document.getElementById('noteSaveBtn');
+            const cancelBtn = document.getElementById('noteCancelBtn');
+            const deleteBtn = document.getElementById('noteDeleteBtn');
+            const form = document.getElementById('noteForm');
+
+            let editingId = null;
+
+            function openModal(note = null) {
+                modal.classList.add('active');
+                editingId = note ? note.id : null;
+                modalTitle.textContent = editingId ? 'Edit Catatan' : 'Tambah Catatan';
+                inputTitle.value = note ? note.title : '';
+                inputContent.value = note ? note.content : '';
+                deleteBtn.style.display = editingId ? 'inline-flex' : 'none';
+            }
+
+            function closeModal() {
+                modal.classList.remove('active');
+                form.reset();
+                editingId = null;
+            }
+
+            function setEmptyState(show) {
+                if (!notesEmpty) return;
+                notesEmpty.style.display = show ? 'block' : 'none';
+            }
+
+            function renderNotes(notes) {
+                notesList.innerHTML = '';
+                if (!notes || notes.length === 0) {
+                    setEmptyState(true);
+                    return;
+                }
+                setEmptyState(false);
+                notes.forEach(note => {
+                    const item = document.createElement('div');
+                    item.className = 'note-item' + (note.is_pinned ? ' note-pinned' : '');
+
+                    const title = document.createElement('div');
+                    title.className = 'note-title';
+                    title.textContent = note.title;
+
+                    const content = document.createElement('div');
+                    content.className = 'note-content';
+                    content.textContent = note.content_preview || note.content || '';
+
+                    const date = document.createElement('div');
+                    date.className = 'note-date';
+                    date.textContent = note.time_ago || note.formatted_updated_at || '';
+
+                    const actions = document.createElement('div');
+                    actions.className = 'note-actions';
+
+                    // Pin button
+                    const pinBtn = document.createElement('button');
+                    pinBtn.className = 'note-action-btn note-pin-btn' + (note.is_pinned ? ' pinned' : '');
+                    pinBtn.title = note.is_pinned ? 'Lepas Pin' : 'Sematkan';
+                    pinBtn.innerHTML = '<i class="fas fa-thumbtack"></i>';
+                    pinBtn.addEventListener('click', async (e) => {
+                        e.stopPropagation();
+                        await togglePin(note.id, item, pinBtn);
+                    });
+
+                    // Edit button
+                    const editBtn = document.createElement('button');
+                    editBtn.className = 'note-action-btn note-edit-btn';
+                    editBtn.title = 'Edit';
+                    editBtn.innerHTML = '<i class="fas fa-pen"></i>';
+                    editBtn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openModal(note);
+                    });
+
+                    // Delete button
+                    const delBtn = document.createElement('button');
+                    delBtn.className = 'note-action-btn note-delete-btn';
+                    delBtn.title = 'Hapus';
+                    delBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                    delBtn.addEventListener('click', async (e) => {
+                        e.stopPropagation();
+                        await deleteNote(note.id);
+                    });
+
+                    actions.appendChild(pinBtn);
+                    actions.appendChild(editBtn);
+                    actions.appendChild(delBtn);
+
+                    item.appendChild(actions);
+                    item.appendChild(title);
+                    item.appendChild(content);
+                    item.appendChild(date);
+
+                    // Click to edit
+                    item.addEventListener('click', () => openModal(note));
+
+                    notesList.appendChild(item);
+                });
+            }
+
+            async function fetchNotes() {
+                try {
+                    const res = await fetch('{{ route('notes.index') }}', {
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    const data = await res.json();
+                    if (data.success) {
+                        renderNotes(data.notes || []);
+                    }
+                } catch (err) {
+                    console.error('Failed to fetch notes', err);
+                }
+            }
+
+            async function saveNote(e) {
+                e.preventDefault();
+                const payload = {
+                    title: inputTitle.value.trim(),
+                    content: inputContent.value.trim()
+                };
+                if (!payload.title || !payload.content) return;
+
+                const method = editingId ? 'PUT' : 'POST';
+                const url = editingId
+                    ? '{{ url('/notes') }}/' + editingId
+                    : '{{ route('notes.store') }}';
+
+                try {
+                    const res = await fetch(url, {
+                        method,
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': csrfToken,
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+                    const data = await res.json();
+                    if (data.success) {
+                        closeModal();
+                        await fetchNotes();
+                    }
+                } catch (err) {
+                    console.error('Failed to save note', err);
+                }
+            }
+
+            async function deleteNote(id) {
+                if (!confirm('Hapus catatan ini?')) return;
+                try {
+                    const res = await fetch('{{ url('/notes') }}/' + id, {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken,
+                            'Accept': 'application/json'
+                        }
+                    });
+                    const data = await res.json();
+                    if (data.success) {
+                        await fetchNotes();
+                    }
+                } catch (err) {
+                    console.error('Failed to delete note', err);
+                }
+            }
+
+            async function togglePin(id, itemEl, pinBtn) {
+                try {
+                    const res = await fetch('{{ url('/notes') }}/' + id + '/toggle-pin', {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': csrfToken,
+                            'Accept': 'application/json'
+                        }
+                    });
+                    const data = await res.json();
+                    if (data.success) {
+                        // Re-fetch to reorder by pinned
+                        await fetchNotes();
+                    }
+                } catch (err) {
+                    console.error('Failed to toggle pin', err);
+                }
+            }
+
+            // No color picker (warna dihilangkan sesuai permintaan)
+
+            // Events
+            addNoteBtn && addNoteBtn.addEventListener('click', () => openModal());
+            // X close icon removed; use Batal button or click-outside to close
+            cancelBtn && cancelBtn.addEventListener('click', closeModal);
+            // Delete from modal (only when editing)
+            deleteBtn && deleteBtn.addEventListener('click', async () => {
+                if (!editingId) return;
+                await deleteNote(editingId);
+                closeModal();
+            });
+            // Click outside modal content to close
+            modal && modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            form && form.addEventListener('submit', saveNote);
+
+            // Initial load
+            fetchNotes();
         });
     </script>
+    <!-- Notes Modal -->
+    <div id="noteModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="noteModalTitle">Tambah Catatan</div>
+            </div>
+            <form id="noteForm">
+                <div class="form-group">
+                    <label class="form-label" for="noteTitle">Judul</label>
+                    <input type="text" id="noteTitle" class="form-input" placeholder="Judul catatan" required />
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="noteContent">Isi Catatan</label>
+                    <textarea id="noteContent" class="form-input form-textarea" placeholder="Tulis catatan kamu di sini..." required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" id="noteCancelBtn">Batal</button>
+                    <button type="button" class="btn btn-danger" id="noteDeleteBtn" style="display:none;">Hapus</button>
+                    <button type="submit" class="btn btn-primary" id="noteSaveBtn">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
 </body>
 </html>

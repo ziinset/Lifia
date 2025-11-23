@@ -9,16 +9,30 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('instagram')->nullable();
-            $table->string('tiktok')->nullable();
-            $table->string('facebook')->nullable();
+            if (!Schema::hasColumn('users', 'instagram')) {
+                $table->string('instagram')->nullable();
+            }
+            if (!Schema::hasColumn('users', 'tiktok')) {
+                $table->string('tiktok')->nullable();
+            }
+            if (!Schema::hasColumn('users', 'facebook')) {
+                $table->string('facebook')->nullable();
+            }
         });
     }
 
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['instagram', 'tiktok', 'facebook']);
+            $toDrop = [];
+            foreach (['instagram', 'tiktok', 'facebook'] as $col) {
+                if (Schema::hasColumn('users', $col)) {
+                    $toDrop[] = $col;
+                }
+            }
+            if (!empty($toDrop)) {
+                $table->dropColumn($toDrop);
+            }
         });
     }
 };

@@ -1,12 +1,10 @@
 <!-- Main Header Banner -->
-<div class="mealplan-header" style="background-image: url('{{ asset('images/mealbg.png') }}');">
-    <a href="{{ url()->previous() }}" class="back-link">
-        <svg class="back-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>Keluar</span>
-    </a>
+<div class="mealplan-header" style="background-image: url('{{ asset('images/meal.svg') }}');">
+    <div class="header-overlay"></div>
 
+    <!-- Back Button removed -->
+
+    <!-- Content positioned left -->
     <div class="header-content">
         <h1 class="main-title">Meal Plan</h1>
         <p class="main-description">
@@ -16,123 +14,130 @@
 </div>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@800&family=Montserrat:wght@500&display=swap');
 
+/* Main Header */
 .mealplan-header {
     position: relative;
-    width: 100%;
-    min-height: 100vh;
-    padding: 0 56px;
-    border-radius: 0;
+    height: 500px; /* Lebih panjang dari 400px */
     background-size: cover;
-    background-position: center;
+    background-position: center top; /* Fokus ke bagian atas gambar */
     background-repeat: no-repeat;
+    background-attachment: scroll;
+
+    margin-bottom: 2rem;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-}
-
-.mealplan-header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 55%, rgba(0, 0, 0, 0.1) 100%);
-    z-index: 0;
-}
-
-.back-link {
-    position: absolute;
-    top: 32px;
-    left: 32px;
-    display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 10px;
-    color: #fff;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    z-index: 2;
-    transition: opacity 0.2s ease;
+    /* Untuk kualitas HD */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
 }
 
-.back-link:hover {
-    opacity: 0.85;
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
 }
 
-.back-icon {
-    width: 22px;
-    height: 22px;
-}
-
+/* Content positioned to left */
 .header-content {
     position: relative;
-    z-index: 1;
-    max-width: 520px;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-}
-
-.main-title {
-    margin: 0 0 16px 0;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 1.1;
-    color: #fff;
-    text-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
-}
-
-.main-description {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.95);
+    z-index: 2;
+    padding: 3rem;
+    color: white;
     max-width: 600px;
 }
 
+/* Back Button styles removed */
+
+/* Title and Description */
+.main-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800; /* Extra Bold */
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+}
+
+.main-description {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500; /* Medium */
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
     .mealplan-header {
-        padding: 32px 28px 40px;
-        min-height: 100vh;
+        height: 450px; /* Lebih panjang untuk tablet */
+    }
+
+    .header-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .back-button {
+        top: 1.5rem;
+        left: 1rem;
     }
 
     .back-link {
-        top: 22px;
-        left: 22px;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
     }
 
     .main-title {
-        font-size: 32px;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
     }
 
     .main-description {
-        font-size: 16px;
+        font-size: 1rem;
+        line-height: 1.6;
     }
 }
 
 @media (max-width: 480px) {
     .mealplan-header {
-        padding: 28px 20px 32px;
-        min-height: 100vh;
-    }
-
-    .back-link {
-        top: 18px;
-        left: 18px;
+        height: 400px; /* Tetap panjang untuk mobile */
     }
 
     .main-title {
-        font-size: 26px;
+        font-size: 2rem;
     }
 
     .main-description {
-        font-size: 15px;
+        font-size: 0.9rem;
+    }
+
+    /* Back button styles removed */
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
+
+.header-text {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Back button animation removed */
 </style>

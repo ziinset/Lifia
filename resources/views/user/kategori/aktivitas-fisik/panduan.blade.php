@@ -2,21 +2,14 @@
 <style>
     .panduan-section {
         font-family: 'Montserrat', sans-serif;
-        background-color: #fafafa;
+        background-color: #f5f5f5;
         line-height: 1.6;
-        padding: 40px 0;
     }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
 
         .content-wrapper {
             display: flex;
             gap: 40px;
-            align-items: flex-start;
+            align-items: stretch;
         }
 
         .main-content {
@@ -25,7 +18,7 @@
 
         .sidebar {
             flex: 1;
-            align-self: flex-start;
+            align-self: stretch;
             display: flex;
             flex-direction: column;
         }
@@ -48,33 +41,24 @@
         }
 
         .article-image {
-            width: 200px;
-            height: 150px;
+            width: 180px;
+            height: 140px;
             border-radius: 12px;
             object-fit: cover;
             flex-shrink: 0;
             align-self: flex-start;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .article-item {
             display: flex;
             gap: 24px;
-            margin-bottom: 32px;
-            padding-bottom: 32px;
-            border-bottom: 1px solid #e8e8e8;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
             align-items: flex-start;
-            transition: opacity 0.2s ease;
-        }
-
-        .article-item:hover {
-            opacity: 0.95;
         }
 
         .article-item:last-of-type {
             margin-bottom: 20px;
-            border-bottom: none;
-            padding-bottom: 0;
         }
 
         .article-content {
@@ -82,7 +66,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            min-height: 150px;
+            height: 140px;
             justify-content: space-between;
         }
 
@@ -110,25 +94,23 @@
             font-weight: 600;
             font-size: 20px;
             color: #4E342E;
-            line-height: 1.4;
-            margin-bottom: 8px;
+            line-height: 1.3;
+            margin-bottom: 4px;
         }
 
         .article-description {
             font-family: 'Montserrat', sans-serif;
-            font-weight: 400;
+            font-weight: 500;
             font-size: 15px;
-            color: #666;
-            line-height: 1.6;
+            color: #4E342E;
+            line-height: 1.5;
             flex-grow: 1;
         }
 
         .article-meta {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
+            flex-direction: column;
+            gap: 8px;
             font-size: 13px;
             color: #888;
             margin-top: auto;
@@ -138,7 +120,6 @@
             display: flex;
             align-items: center;
             gap: 16px;
-            flex-wrap: wrap;
         }
 
         .author-info {
@@ -165,14 +146,8 @@
             gap: 8px;
             color: #8BAC65;
             cursor: pointer;
-            padding: 8px 16px;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .bookmark-section:hover {
-            background-color: #f8fbf4;
+            align-self: flex-start;
+            margin-top: 4px;
         }
 
         .bookmark-icon {
@@ -187,12 +162,11 @@
         }
 
         .sidebar-section {
-            background: #f5f5f5;
+            background: white;
             border-radius: 16px;
-            padding: 20px;
+            padding: 24px;
             margin-bottom: 24px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            border: 1px solid #e8e8e8;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         .sidebar-section:last-child {
@@ -203,23 +177,22 @@
         }
 
         .categories-content {
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            gap: 0;
+            justify-content: space-between;
         }
 
         .granola-banner {
             text-align: center;
-            padding: 0;
+            padding: 20px;
             border-radius: 16px;
             overflow: hidden;
-            background: transparent;
         }
 
         .granola-image {
             width: 100%;
-            height: auto;
-            max-height: 480px;
+            height: 480px;
             border-radius: 16px;
             object-fit: cover;
             object-position: center;
@@ -227,64 +200,101 @@
 
         .categories-title {
             font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 22px;
-            color: #2c5530;
-            margin-bottom: 20px;
-            text-align: center;
+            font-weight: 600;
+            font-size: 18px;
+            color: #4E342E;
+            margin-bottom: 24px;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        .categories-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(135deg, #8BAC65, #a4c470);
+            border-radius: 2px;
         }
 
         .category-item {
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 14px;
-            background: white;
+            gap: 20px;
+            padding: 20px 12px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
             cursor: pointer;
-            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .category-item:last-child {
-            margin-bottom: 0;
+        .category-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(135deg, #8BAC65, #a4c470);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .category-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            background: linear-gradient(135deg, #f8fbf4, #f0f7e8);
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(139, 172, 101, 0.15);
+            border-color: transparent;
+        }
+
+        .category-item:hover::before {
+            transform: scaleY(1);
         }
 
         .category-item:active {
-            transform: translateY(0);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transform: translateX(6px) scale(0.98);
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
         }
 
         .category-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 10px;
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
             object-fit: cover;
             flex-shrink: 0;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #f0f7e8, #e8f5dc);
+            padding: 8px;
         }
 
         .category-item:hover .category-icon {
-            transform: scale(1.05);
+            transform: rotate(5deg) scale(1.1);
+            box-shadow: 0 6px 24px rgba(139, 172, 101, 0.3);
+            background: linear-gradient(135deg, #e8f5dc, #daf0c7);
         }
 
         .category-text {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
             color: #4E342E;
-            line-height: 1.5;
-            transition: color 0.3s ease;
+            line-height: 1.4;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .category-item:hover .category-text {
             color: #2c5530;
+            font-weight: 600;
+            transform: translateX(4px);
         }
 
         .pagination {
@@ -293,7 +303,10 @@
             align-items: center;
             gap: 12px;
             margin-top: 40px;
-            padding: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
         .page-btn, .nav-btn {
@@ -322,7 +335,6 @@
             background: #8BAC65;
             border-color: #8BAC65;
             color: white;
-            font-weight: 600;
         }
 
         .page-btn.active:hover {
@@ -357,17 +369,11 @@
             }
 
             .article-content {
-                min-height: auto;
-            }
-
-            .article-meta {
-                flex-direction: column;
-                align-items: flex-start;
+                height: auto;
             }
 
             .pagination {
                 gap: 8px;
-                padding: 16px 0;
             }
 
             .page-btn, .nav-btn {
@@ -387,15 +393,15 @@
                     <img src="{{ asset('img/bumil-nyemil.png') }}" alt="Pregnant woman" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
-                            <img src="{{ asset('image/streamline-plump_dumbell-remix.png') }}" alt="Dumpbell icon" class="tag-fish-icon">
-                            <span class="tag-text">Aktivitas Fisik</span>
+                            <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
+                            <span class="tag-text">Pola Makan Sehat</span>
                         </div>
                         <h2 class="article-title">Panduan Pola Makan Sehat untuk Ibu Hamil</h2>
                         <p class="article-description">Tips memilih makanan bergizi seimbang selama kehamilan, lengkap dengan daftar nutrisi penting.</p>
                         <div class="article-meta">
                             <div class="meta-top">
                                 <div class="author-info">
-                                    <img src="{{ asset('image/uil_pen.png') }}" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                                    <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
                                     <span>Ditinjau: Graciella Yeriza Natalie</span>
                                 </div>
                                 <div class="time-info">
@@ -418,18 +424,18 @@
 
                 <!-- Article 2 -->
                 <article class="article-item">
-                    <img src="{{ asset('img/Rectangle 160.png') }}" alt="Lemon water" class="article-image">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&h=150&fit=crop" alt="Lemon water" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
-                            <img src="{{ asset('image/streamline-plump_dumbell-remix.png') }}" alt="Dumpbell icon" class="tag-fish-icon">
-                            <span class="tag-text">Aktivitas Fisik</span>
+                            <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
+                            <span class="tag-text">Pola Makan Sehat</span>
                         </div>
                         <h2 class="article-title">Apakah Minum Air Lemon di Pagi Hari Efektif?</h2>
                         <p class="article-description">Fakta ilmiah tentang manfaat dan mitos dari kebiasaan minum air lemon untuk detoks dan kesehatan.</p>
                         <div class="article-meta">
                             <div class="meta-top">
                                 <div class="author-info">
-                                    <img src="{{ asset('image/uil_pen.png') }}" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                                    <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
                                     <span>Ditinjau: Graciella Yeriza Natalie</span>
                                 </div>
                                 <div class="time-info">
@@ -452,18 +458,18 @@
 
                 <!-- Article 3 -->
                 <article class="article-item">
-                    <img src="{{ asset('img/Rectangle 161.png') }}" alt="Woman eating" class="article-image">
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=200&h=150&fit=crop" alt="Woman eating" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
-                            <img src="{{ asset('image/streamline-plump_dumbell-remix.png') }}" alt="Dumbell icon" class="tag-fish-icon">
-                            <span class="tag-text">Aktivitas Fisik</span>
+                            <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
+                            <span class="tag-text">Pola Makan Sehat</span>
                         </div>
                         <h2 class="article-title">Cara Mengenali Sinyal Lapar dan Kenyang dari Tubuh</h2>
                         <p class="article-description">Latihan mindful eating: membedakan lapar fisik vs lapar emosional agar tidak makan berlebihan.</p>
                         <div class="article-meta">
                             <div class="meta-top">
                                 <div class="author-info">
-                                    <img src="{{ asset('image/uil_pen.png') }}" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                                    <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
                                     <span>Ditinjau: Graciella Yeriza Natalie</span>
                                 </div>
                                 <div class="time-info">
@@ -486,18 +492,18 @@
 
                 <!-- Article 4 -->
                 <article class="article-item">
-                    <img src="{{ asset('img/Rectangle 163.png') }}" alt="Pregnant woman eating" class="article-image">
+                    <img src="https://images.unsplash.com/photo-1559840244-8a6ec64be3e3?w=200&h=150&fit=crop" alt="Pregnant woman eating" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
-                            <img src="{{ asset('image/streamline-plump_dumbell-remix.png') }}" alt="Dumbell icon" class="tag-fish-icon">
-                            <span class="tag-text">Aktivitas Fisik</span>
+                            <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
+                            <span class="tag-text">Pola Makan Sehat</span>
                         </div>
                         <h2 class="article-title">Makanan yang Harus Dihindari Saat Hamil</h2>
                         <p class="article-description">Daftar makanan berisiko tinggi untuk janin, lengkap dengan alasannya.</p>
                         <div class="article-meta">
                             <div class="meta-top">
                                 <div class="author-info">
-                                    <img src="{{ asset('image/uil_pen.png') }}" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                                    <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
                                     <span>Ditinjau: Graciella Yeriza Natalie</span>
                                 </div>
                             </div>
@@ -513,18 +519,18 @@
 
                 <!-- Article 5 -->
                 <article class="article-item">
-                    <img src="{{ asset('img/Rectangle 164.png') }}" alt="Diet food" class="article-image">
+                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=200&h=150&fit=crop" alt="Diet food" class="article-image">
                     <div class="article-content">
                         <div class="article-tag">
-                            <img src="{{ asset('image/streamline-plump_dumbell-remix.png') }}" alt="Dumbell icon" class="tag-fish-icon">
-                            <span class="tag-text">Aktivitas Fisik</span>
+                            <img src="image/fluent_food-fish-20-filled.png" alt="Fish icon" class="tag-fish-icon">
+                            <span class="tag-text">Pola Makan Sehat</span>
                         </div>
                         <h2 class="article-title">Mitos vs Fakta Tentang Makanan Diet</h2>
                         <p class="article-description">Meluruskan mitos seputar roti gandum, buah malam hari, karbohidrat, dan diet tanpa nasi.</p>
                         <div class="article-meta">
                             <div class="meta-top">
                                 <div class="author-info">
-                                    <img src="{{ asset('image/uil_pen.png') }}" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
+                                    <img src="image/uil_pen.png" alt="Pen icon" class="author-icon" style="width: 16px; height: 16px;">
                                     <span>Ditinjau: Penulis Graciella Yeriza Natalie</span>
                                 </div>
                             </div>

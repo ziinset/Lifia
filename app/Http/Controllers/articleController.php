@@ -197,10 +197,6 @@ class ArticleController extends Controller
     // =============================
     // Navigasi umum (dipanggil rute)
     // =============================
-    public function index()
-    {
-        return view('artikel.artikel');
-    }
 
     public function showCategory($category)
     {

@@ -9,12 +9,38 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 use App\Models\Favorite;
 use Illuminate\Support\Str;
+use App\Models\AdminActivity;
 
 class AdminController extends Controller
 {
     public function dashboard()
     {
         return view('admin.dashboard');
+    }
+
+    /**
+     * Return admin activities as JSON with optional filters
+     */
+    public function activities(Request $request)
+    {
+        $q = AdminActivity::query()->orderByDesc('created_at');
+        if ($request->filled('entity_type')) $q->where('entity_type', $request->get('entity_type'));
+        if ($request->filled('action')) $q->where('action', $request->get('action'));
+        $total = (clone $q)->count();
+        $perPage = (int)($request->get('limit', 5));
+        $perPage = min(max($perPage, 1), 50);
+        $page = (int)($request->get('page', 1));
+        if ($page < 1) $page = 1;
+        $offset = ($page - 1) * $perPage;
+        $items = $q->skip($offset)->take($perPage)->get();
+        return response()->json([
+            'success' => true,
+            'data' => $items,
+            'total' => $total,
+            'page' => $page,
+            'per_page' => $perPage,
+            'total_pages' => (int) ceil($total / max($perPage,1)),
+        ]);
     }
 
     public function langganan()
@@ -242,6 +268,11 @@ class AdminController extends Controller
             }
         }
 
+        AdminActivity::log('create', 'article', $article->id, $article->title, [
+            'category' => $category,
+            'article_type' => $payload['article_type'] ?? null,
+        ]);
+
         return response()->json(['success' => true, 'message' => 'Artikel dibuat', 'data' => $article]);
     }
 
@@ -342,6 +373,11 @@ class AdminController extends Controller
             }
         }
 
+        AdminActivity::log('update', 'article', $article->id, $article->title, [
+            'category' => $category,
+            'article_type' => $payload['article_type'] ?? $article->fresh()->article_type ?? null,
+        ]);
+
         return response()->json(['success' => true, 'message' => 'Artikel diperbarui', 'data' => $article->fresh()]);
     }
 
@@ -354,7 +390,13 @@ class AdminController extends Controller
             return response()->json(['success' => false, 'message' => 'Model Article tidak tersedia'], 500);
         }
         $article = \App\Models\Article::where('id', $id)->where('category', $category)->firstOrFail();
+        $title = $article->title;
         $article->delete();
+
+        AdminActivity::log('delete', 'article', (string)$id, $title, [
+            'category' => $category,
+        ]);
+
         return response()->json(['success' => true, 'message' => 'Artikel dihapus']);
     }
 
@@ -374,6 +416,7 @@ class AdminController extends Controller
             \App\Models\Article::where('category', $category)->update(['is_main_article' => 0]);
             \App\Models\Article::where('id', $id)->where('category', $category)->update(['is_main_article' => 1]);
         });
+        AdminActivity::log('set_primary', 'article', (string)$id, $target->title, [ 'category' => $category ]);
         return response()->json(['success' => true, 'message' => 'Artikel utama diperbarui']);
     }
 
@@ -390,12 +433,9 @@ class AdminController extends Controller
         }
         $target = \App\Models\Article::where('id', $id)->where('category', $category)->firstOrFail();
         $target->update(['is_main_article' => 0]);
+        AdminActivity::log('clear_primary', 'article', (string)$id, $target->title, [ 'category' => $category ]);
         return response()->json(['success' => true, 'message' => 'Artikel tidak lagi menjadi utama']);
     }
-    // Update admin profile (foto, nama, dan status)
-    /**
-     * List banner items (article_type='banner') for a category
-     */
     public function listBanners($category)
     {
         $cat = \App\Models\Category::where('slug',$category)->firstOrFail();
@@ -433,6 +473,7 @@ class AdminController extends Controller
         }
         $id = DB::table('banners')->insertGetId($payload);
         $item = DB::table('banners')->where('id',$id)->first();
+        AdminActivity::log('create', 'banner', (string)$id, $item->title ?? null, ['category' => $category]);
         return response()->json(['success'=>true,'message'=>'Banner ditambahkan','data'=>$item]);
     }
 
@@ -465,6 +506,7 @@ class AdminController extends Controller
             DB::table('banners')->where(['id'=>$id,'category_id'=>$cat->id])->update($payload);
         }
         $item = DB::table('banners')->where('id',$id)->first();
+        AdminActivity::log('update', 'banner', (string)$id, $item->title ?? null, ['category' => $category]);
         return response()->json(['success'=>true,'message'=>'Banner diperbarui','data'=>$item]);
     }
 
@@ -474,6 +516,7 @@ class AdminController extends Controller
         $cat = \App\Models\Category::where('slug',$category)->firstOrFail();
         $deleted = DB::table('banners')->where(['id'=>$id,'category_id'=>$cat->id])->delete();
         if (!$deleted) return response()->json(['success'=>false,'message'=>'Banner tidak ditemukan'],404);
+        AdminActivity::log('delete', 'banner', (string)$id, null, ['category' => $category]);
         return response()->json(['success'=>true,'message'=>'Banner dihapus']);
     }
 
@@ -522,6 +565,7 @@ class AdminController extends Controller
         }
         $id = DB::table('guides')->insertGetId($payload);
         $item = DB::table('guides')->where('id',$id)->first();
+        AdminActivity::log('create', 'guide', (string)$id, $item->title ?? null, ['category' => $category]);
         return response()->json(['success'=>true,'message'=>'Panduan ditambahkan','data'=>$item]);
     }
 
@@ -549,6 +593,7 @@ class AdminController extends Controller
             DB::table('guides')->where(['id'=>$id,'category_slug'=>$category])->update($payload);
         }
         $item = DB::table('guides')->where('id',$id)->first();
+        AdminActivity::log('update', 'guide', (string)$id, $item->title ?? null, ['category' => $category]);
         return response()->json(['success'=>true,'message'=>'Panduan diperbarui','data'=>$item]);
     }
 
@@ -556,6 +601,7 @@ class AdminController extends Controller
     {
         $deleted = DB::table('guides')->where(['id'=>$id,'category_slug'=>$category])->delete();
         if (!$deleted) return response()->json(['success'=>false,'message'=>'Panduan tidak ditemukan'],404);
+        AdminActivity::log('delete', 'guide', (string)$id, null, ['category' => $category]);
         return response()->json(['success'=>true,'message'=>'Panduan dihapus']);
     }
 

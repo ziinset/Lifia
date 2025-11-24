@@ -336,6 +336,9 @@
             font-weight: 500;
             color: #4B5C3B;
             margin-bottom: 4px;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            hyphens: auto;
         }
 
         .note-content {
@@ -344,6 +347,9 @@
             font-weight: 300;
             color: #4B5C3B;
             margin-bottom: 8px;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            hyphens: auto;
         }
 
         .note-date {
@@ -889,48 +895,8 @@
                         <!-- Activities Section -->
                         <div class="activities-section">
                             <h2 class="section-header">Riwayat Aktivitas</h2>
-                            
-                            <div class="activity-item">
-                                <img src="{{ asset('images/avatars/graciella.jpg') }}" alt="Graciella Avatar" class="activity-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Graciella+Yeriza&background=7BA05B&color=ffffff&size=40'">
-                                <div class="activity-content">
-                                    <div class="activity-title">Graciella Yeriza N</div>
-                                    <div class="activity-time">Menambahkan artikel "Tips Sarapan Sehat"</div>
-                                </div>
-                                <div class="activity-timestamp">Baru saja</div>
-                            </div>
-
-                            <div class="activity-item">
-                                <img src="{{ asset('images/avatars/jojo.jpg') }}" alt="Jojo Avatar" class="activity-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Jojo+Admin&background=8BAC65&color=ffffff&size=40'">
-                                <div class="activity-content">
-                                    <div class="activity-title">Jojo Admin</div>
-                                    <div class="activity-time">Memperbarui kategori "Pola Makan Sehat"</div>
-                                </div>
-                                <div class="activity-timestamp">2 Hari Lalu</div>
-                            </div>
-
-                            <div class="activity-item">
-                                <img src="{{ asset('images/avatars/goldi.jpg') }}" alt="Goldi Avatar" class="activity-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Goldi+Admin&background=9FBD75&color=ffffff&size=40'">
-                                <div class="activity-content">
-                                    <div class="activity-title">Goldi Admin</div>
-                                    <div class="activity-time">Menghapus artikel "Menu Diet Ekstrem"</div>
-                                </div>
-                                <div class="activity-timestamp">3 Hari Lalu</div>
-                            </div>
-
-                            <div class="activity-item">
-                                <img src="{{ asset('images/avatars/grace.jpg') }}" alt="Grace Avatar" class="activity-avatar" onerror="this.src='https://ui-avatars.com/api/?name=Grace+Admin&background=A8C678&color=ffffff&size=40'">
-                                <div class="activity-content">
-                                    <div class="activity-title">Grace Admin</div>
-                                    <div class="activity-time">Menambahkan meal plan "Vegetarian Week"</div>
-                                </div>
-                                <div class="activity-timestamp">4 Hari Lalu</div>
-                            </div>
-
-                            <div class="pagination">
-                                <button class="page-btn active">1</button>
-                                <button class="page-btn">2</button>
-                                <button class="page-btn">3</button>
-                            </div>
+                            <div id="activityList"></div>
+                            <div class="pagination" id="activityPagination" style="margin-top:12px;"></div>
                         </div>
 
                         <!-- Notes Section -->
@@ -993,6 +959,100 @@
                     }, 300);
                 }, 6000); // Error message stays longer (6 seconds)
             }
+
+            // Activities
+            const activityList = document.getElementById('activityList');
+
+            function fmtTimeAgo(iso) {
+                const d = new Date(iso);
+                const diff = Math.floor((Date.now() - d.getTime())/1000);
+                if (diff < 60) return 'Baru saja';
+                const m = Math.floor(diff/60); if (m < 60) return m + ' menit lalu';
+                const h = Math.floor(m/60); if (h < 24) return h + ' jam lalu';
+                const day = Math.floor(h/24); if (day < 7) return day + ' hari lalu';
+                return d.toLocaleDateString('id-ID', { day:'2-digit', month:'short', year:'numeric' });
+            }
+
+            function titleFor(act){
+                const map = { create:'Menambahkan', update:'Memperbarui', delete:'Menghapus', toggle_status:'Mengubah status', set_primary:'Menjadikan utama', clear_primary:'Menghapus status utama', update_order:'Memperbarui urutan' };
+                return map[act] || act;
+            }
+            function entityFor(type){
+                const map = { category:'kategori', article:'artikel', guide:'panduan', banner:'banner' };
+                return map[type] || type;
+            }
+
+            function renderActivities(items){
+                activityList.innerHTML = '';
+                if (!items || items.length === 0){
+                    activityList.innerHTML = '<div style="color:#6b7280; padding:8px 0;">Belum ada aktivitas.</div>';
+                    return;
+                }
+                items.forEach(it => {
+                    const div = document.createElement('div');
+                    div.className = 'activity-item';
+                    const name = (window.currentUserName || 'Admin');
+                    const actionText = titleFor(it.action) + ' ' + entityFor(it.entity_type);
+                    const detail = it.title ? '"'+it.title+'"' : (it.meta?.category ? '('+it.meta.category+')' : '');
+                    const avatarBg = '7BA05B';
+                    const img = document.createElement('img');
+                    img.className = 'activity-avatar';
+                    img.alt = 'Avatar';
+                    img.src = 'https://ui-avatars.com/api/?name=' + encodeURIComponent(name) + '&background='+avatarBg+'&color=ffffff&size=40';
+                    div.appendChild(img);
+                    const content = document.createElement('div');
+                    content.className = 'activity-content';
+                    const t = document.createElement('div'); t.className='activity-title'; t.textContent = name; content.appendChild(t);
+                    const sub = document.createElement('div'); sub.className='activity-time'; sub.textContent = actionText + (detail? ' ' + detail : ''); content.appendChild(sub);
+                    div.appendChild(content);
+                    const ts = document.createElement('div'); ts.className='activity-timestamp'; ts.textContent = fmtTimeAgo(it.created_at); div.appendChild(ts);
+                    activityList.appendChild(div);
+                });
+            }
+
+            const activityPagination = document.getElementById('activityPagination');
+            let actPage = 1;
+            let actTotalPages = 1;
+
+            function renderActPagination(){
+                if (!activityPagination) return;
+                activityPagination.innerHTML = '';
+                if (actTotalPages <= 1) return;
+                const makeBtn = (label, page, active=false) => {
+                    const b = document.createElement('button');
+                    b.className = 'page-btn' + (active ? ' active' : '');
+                    b.textContent = label;
+                    b.addEventListener('click', () => { if (!active) { actPage = page; fetchActivities(); } });
+                    return b;
+                };
+                // Prev
+                const prev = makeBtn('<', Math.max(1, actPage-1), false);
+                prev.disabled = actPage === 1;
+                activityPagination.appendChild(prev);
+                // Pages (simple window)
+                const start = Math.max(1, actPage - 2);
+                const end = Math.min(actTotalPages, start + 4);
+                for (let p = start; p <= end; p++) {
+                    activityPagination.appendChild(makeBtn(String(p), p, p === actPage));
+                }
+                // Next
+                const next = makeBtn('>', Math.min(actTotalPages, actPage+1), false);
+                next.disabled = actPage === actTotalPages;
+                activityPagination.appendChild(next);
+            }
+
+            async function fetchActivities(){
+                try{
+                    const res = await fetch('{{ route('admin.activities') }}?limit=5&page=' + actPage, { headers: { 'Accept':'application/json' } });
+                    const data = await res.json();
+                    if (data.success){
+                        renderActivities(data.data);
+                        actTotalPages = data.total_pages || 1;
+                        renderActPagination();
+                    }
+                } catch(e){ console.error('Failed to load activities', e); }
+            }
+
 
             // Notes/To-Do functionality (preserve existing styles)
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -1209,6 +1269,7 @@
             form && form.addEventListener('submit', saveNote);
 
             // Initial load
+            fetchActivities();
             fetchNotes();
         });
     </script>

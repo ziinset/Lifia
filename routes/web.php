@@ -247,6 +247,8 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.dashboard');
     Route::get('/admin/langganan', [AdminController::class, 'langganan'])
         ->name('admin.langganan');
+    Route::get('/admin/activities', [AdminController::class, 'activities'])
+        ->name('admin.activities');
     Route::get('/admin/kategori', [AdminController::class, 'kategori'])
         ->name('admin.kategori');
     

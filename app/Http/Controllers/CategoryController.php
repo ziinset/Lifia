@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use App\Models\AdminActivity;
 
 class CategoryController extends Controller
 {
@@ -48,6 +49,9 @@ class CategoryController extends Controller
             'sort_order' => 0, // Default sort order
             'is_active' => true
         ]);
+
+        // Log activity: create category
+        AdminActivity::log('create', 'category', (string)$category->id, $category->name, [ 'slug' => $category->slug ]);
 
         return response()->json([
             'success' => true,
@@ -95,6 +99,9 @@ class CategoryController extends Controller
 
         $category->update($payload);
 
+        // Log activity: update category
+        AdminActivity::log('update', 'category', (string)$category->id, $category->name, [ 'slug' => $category->slug ]);
+
         return response()->json([
             'success' => true,
             'message' => 'Kategori berhasil diperbarui!',
@@ -120,6 +127,9 @@ class CategoryController extends Controller
 
             DB::commit();
 
+            // Log activity: delete category
+            AdminActivity::log('delete', 'category', (string)$category->id, $categoryName, [ 'deleted_articles' => $deletedArticles ]);
+
             return response()->json([
                 'success' => true,
                 'message' => "Kategori '{$categoryName}' berhasil dihapus" . ($deletedArticles ? " (beserta {$deletedArticles} artikel)" : '') . "!"
@@ -141,6 +151,9 @@ class CategoryController extends Controller
         $category->update(['is_active' => !$category->is_active]);
         
         $status = $category->is_active ? 'diaktifkan' : 'dinonaktifkan';
+
+        // Log activity: toggle status category
+        AdminActivity::log('toggle_status', 'category', (string)$category->id, $category->name, [ 'is_active' => $category->is_active ]);
         return response()->json([
             'success' => true,
             'message' => "Kategori berhasil {$status}!",
@@ -163,6 +176,9 @@ class CategoryController extends Controller
             Category::where('id', $categoryData['id'])
                 ->update(['sort_order' => $categoryData['sort_order']]);
         }
+
+        // Log activity: update order
+        AdminActivity::log('update_order', 'category', null, 'Update urutan kategori', [ 'count' => count($request->categories) ]);
 
         return response()->json([
             'success' => true,

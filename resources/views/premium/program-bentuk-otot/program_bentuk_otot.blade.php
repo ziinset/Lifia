@@ -10,17 +10,17 @@
 </div>
 
 <div style="margin-bottom: 40px;">
-    @includeIf('user.kategori.vegan.bagianartikel')
+    @includeIf('premium.program-bentuk-otot.bagianartikel')
 </div>
 
 {{-- Halaman Banner --}}
 <div style="margin-top: 40px; margin-bottom: 60px;">
-    @includeIf('user.kategori.vegan.banner')
+    @includeIf('premium.program-bentuk-otot.banner')
 </div>
 
 {{-- Halaman Topik --}}
 <div style="margin-top: 50px;">
-    @includeIf('user.kategori.vegan.topik')
+    @includeIf('premium.program-bentuk-otot.topik')
 </div>
 
 {{-- Halaman image --}}
@@ -32,7 +32,7 @@
 
 {{-- Halaman Panduan --}}
 <div style="margin-top: 50px;">
-    @includeIf('user.kategori.vegan.panduan')
+    @includeIf('premium.program-bentuk-otot.panduan')
 </div>
 @include('components.footer')
 {{-- @endsection --}}

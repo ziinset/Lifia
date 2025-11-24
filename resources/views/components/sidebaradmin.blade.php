@@ -41,19 +41,19 @@
         @php
             // Get categories for dynamic routing
             $adminCategories = isset($globalCategories) ? $globalCategories : collect();
-            
+
             // Debug: Check if categories exist
             // dd('Categories count: ' . $adminCategories->count(), $adminCategories->toArray());
-            
+
             // Create dynamic route checking for all categories
             $isOnArticlePage = false;
-            
-            
+
+
             if ($adminCategories->count() > 0) {
                 foreach ($adminCategories as $category) {
                     $specificRouteName = 'admin.' . $category->slug;
                     $routeExists = \Illuminate\Support\Facades\Route::has($specificRouteName);
-                    
+
                     if ($routeExists && request()->routeIs($specificRouteName)) {
                         $isOnArticlePage = true;
                         break;
@@ -64,14 +64,14 @@
                 }
             } else {
                 // Fallback for backward compatibility
-                $isOnArticlePage = request()->routeIs('admin.pola-makan-sehat') || 
-                                  request()->routeIs('admin.aktivitas-fisik') || 
-                                  request()->routeIs('admin.kesehatan-mental') || 
-                                  request()->routeIs('admin.perawatan-diri') || 
-                                  request()->routeIs('admin.gaya-hidup-vegan') || 
+                $isOnArticlePage = request()->routeIs('admin.pola-makan-sehat') ||
+                                  request()->routeIs('admin.aktivitas-fisik') ||
+                                  request()->routeIs('admin.kesehatan-mental') ||
+                                  request()->routeIs('admin.perawatan-diri') ||
+                                  request()->routeIs('admin.gaya-hidup-vegan') ||
                                   request()->routeIs('admin.eco-living');
             }
-            
+
             // Also check for category management pages
             $isOnArticlePage = $isOnArticlePage || request()->is('admin/kategori/*');
         @endphp
@@ -92,7 +92,7 @@
                     <div class="menu-item-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 25px; transform: scale(0); transition: transform 0.3s ease; opacity: 0;"></div>
                 @endif
             </a>
-            
+
             <!-- Dynamic Dropdown Submenu -->
             <div id="artikel-submenu" style="display: none; margin-left: 20px; margin-top: 8px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); border-radius: 16px; padding: 8px 0; border-left: 3px solid #556B2F; box-shadow: 0 4px 20px rgba(0,0,0,0.08); backdrop-filter: blur(10px);">
                 @if($adminCategories && $adminCategories->count() > 0)
@@ -101,7 +101,7 @@
                             // Check if specific route exists, otherwise use dynamic route
                             $specificRouteName = 'admin.' . $category->slug;
                             $routeExists = \Illuminate\Support\Facades\Route::has($specificRouteName);
-                            
+
                             if ($routeExists) {
                                 $routeName = $specificRouteName;
                                 $routeUrl = route($specificRouteName);
@@ -150,21 +150,58 @@
                     </a>
                 @endif
             </div>
-            
+
         </div>
 
-        <!-- Fitplan Menu Item -->
-        <a href="#" class="menu-item" style="display: flex; align-items: center; padding: 14px 20px; text-decoration: none; color: #6b7280; border-radius: 25px; margin-bottom: 12px; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-weight: 500; position: relative; overflow: hidden;">
-            <div class="icon-container" style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;">
-                <svg style="width: 24px; height: 24px; margin-right: 16px; fill: currentColor; transition: transform 0.3s ease; flex-shrink: 0;" viewBox="0 0 24 24">
-                    <rect x="1" y="7" width="5" height="10" rx="2"/>
-                    <rect x="6" y="10" width="12" height="4" rx="1"/>
-                    <rect x="18" y="7" width="5" height="10" rx="2"/>
+        <!-- Fitplan Menu Item with Dropdown -->
+        @php
+            // Check if on any FitPlan page
+            $isOnFitplanPage = request()->routeIs('admin.fitplan') ||
+                              request()->routeIs('admin.fitplan.turun-berat-badan') ||
+                              request()->routeIs('admin.fitplan.bentuk-otot') ||
+                              request()->routeIs('admin.fitplan.stamina-energi') ||
+                              request()->routeIs('admin.fitplan.tubuh-lentur');
+        @endphp
+        <div class="fitplan-dropdown" style="margin-bottom: 12px;">
+            <a href="#" class="menu-item fitplan-toggle {{ $isOnFitplanPage ? 'page-active' : '' }}" onclick="toggleFitplanDropdown()" style="display: flex; align-items: center; padding: 14px 20px; text-decoration: none; color: {{ $isOnFitplanPage ? 'white' : '#6b7280' }}; background-color: {{ $isOnFitplanPage ? '#556B2F' : 'transparent' }}; border-radius: 25px; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-weight: 500; position: relative; overflow: hidden;">
+                <div class="icon-container" style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;">
+                    <svg style="width: 24px; height: 24px; margin-right: 16px; fill: currentColor; transition: transform 0.3s ease; flex-shrink: 0;" viewBox="0 0 24 24">
+                        <rect x="1" y="7" width="5" height="10" rx="2"/>
+                        <rect x="6" y="10" width="12" height="4" rx="1"/>
+                        <rect x="18" y="7" width="5" height="10" rx="2"/>
+                    </svg>
+                </div>
+                <span style="font-size: 14px; font-family: 'Poppins', sans-serif; font-weight: 500; letter-spacing: -0.01em; position: relative; z-index: 2; line-height: 1; display: flex; align-items: center;">Fitplan</span>
+                <svg id="fitplan-arrow" style="width: 16px; height: 16px; margin-left: auto; fill: currentColor; stroke: currentColor; stroke-width: 2; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; z-index: 2; flex-shrink: 0;" viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                 </svg>
+                @if($isOnFitplanPage)
+                    <div class="menu-item-shine" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.6s ease;"></div>
+                @else
+                    <div class="menu-item-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 25px; transform: scale(0); transition: transform 0.3s ease; opacity: 0;"></div>
+                @endif
+            </a>
+
+            <!-- FitPlan Dropdown Submenu -->
+            <div id="fitplan-submenu" style="display: none; margin-left: 20px; margin-top: 8px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); border-radius: 16px; padding: 8px 0; border-left: 3px solid #556B2F; box-shadow: 0 4px 20px rgba(0,0,0,0.08); backdrop-filter: blur(10px);">
+                <a href="{{ route('admin.fitplan.turun-berat-badan') }}" class="submenu-item {{ request()->routeIs('admin.fitplan.turun-berat-badan') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.fitplan.turun-berat-badan') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.fitplan.turun-berat-badan') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.fitplan.turun-berat-badan') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Turun Berat Badan</span>
+                </a>
+                <a href="{{ route('admin.fitplan.bentuk-otot') }}" class="submenu-item {{ request()->routeIs('admin.fitplan.bentuk-otot') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.fitplan.bentuk-otot') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.fitplan.bentuk-otot') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.fitplan.bentuk-otot') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Bentuk Otot</span>
+                </a>
+                <a href="{{ route('admin.fitplan.stamina-energi') }}" class="submenu-item {{ request()->routeIs('admin.fitplan.stamina-energi') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.fitplan.stamina-energi') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.fitplan.stamina-energi') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.fitplan.stamina-energi') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Stamina & Energi</span>
+                </a>
+                <a href="{{ route('admin.fitplan.tubuh-lentur') }}" class="submenu-item {{ request()->routeIs('admin.fitplan.tubuh-lentur') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.fitplan.tubuh-lentur') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.fitplan.tubuh-lentur') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.fitplan.tubuh-lentur') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Tubuh Lebih Lentur</span>
+                </a>
             </div>
-            <span style="font-size: 14px; font-family: 'Poppins', sans-serif; font-weight: 500; letter-spacing: -0.01em; position: relative; z-index: 2; line-height: 1; display: flex; align-items: center;">Fitplan</span>
-            <div class="menu-item-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 25px; transform: scale(0); transition: transform 0.3s ease; opacity: 0;"></div>
-        </a>
+        </div>
 
         <!-- Langganan Menu Item -->
         <a href="{{ route('admin.langganan') }}" class="menu-item {{ request()->routeIs('admin.langganan') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 14px 20px; text-decoration: none; color: {{ request()->routeIs('admin.langganan') ? 'white' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.langganan') ? '#556B2F' : 'transparent' }}; border-radius: 25px; margin-bottom: 12px; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-weight: 500; position: relative; overflow: hidden;">
@@ -199,13 +236,13 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
-    
+
     /* Enhanced logo animation */
     .logo-section {
         transition: all 0.3s ease;
         position: relative;
     }
-    
+
     .logo-section::before {
         content: '';
         position: absolute;
@@ -219,22 +256,22 @@
         transition: all 0.3s ease;
         z-index: 0;
     }
-    
+
     .logo-section:hover::before {
         width: 120px;
         height: 120px;
     }
-    
+
     .logo-section img {
         transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         position: relative;
         z-index: 1;
     }
-    
+
     .logo-section:hover img {
         transform: scale(1.05);
     }
-    
+
     /* Enhanced sidebar effects */
     .sidebar-admin {
         box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08);
@@ -242,7 +279,7 @@
         backdrop-filter: blur(10px);
         position: relative;
     }
-    
+
     .sidebar-admin::before {
         content: '';
         position: absolute;
@@ -254,36 +291,36 @@
         background-size: 200% 100%;
         animation: shimmer 3s ease-in-out infinite;
     }
-    
+
     @keyframes shimmer {
         0%, 100% { background-position: 200% 0; }
         50% { background-position: -200% 0; }
     }
-    
+
     .sidebar-admin.scrollable {
         overflow-y: auto !important;
     }
-    
+
     .sidebar-admin.scrollable::-webkit-scrollbar {
         width: 6px;
     }
-    
+
     .sidebar-admin.scrollable::-webkit-scrollbar-track {
         background: rgba(241, 241, 241, 0.5);
         border-radius: 3px;
     }
-    
+
     .sidebar-admin.scrollable::-webkit-scrollbar-thumb {
         background: linear-gradient(to bottom, #556B2F, #7d9c3b);
         border-radius: 3px;
         transition: all 0.3s ease;
     }
-    
+
     .sidebar-admin.scrollable::-webkit-scrollbar-thumb:hover {
         background: linear-gradient(to bottom, #7d9c3b, #556B2F);
         transform: scale(1.2);
     }
-    
+
     /* Enhanced menu item animations */
     .sidebar-admin .menu-item:hover:not(.active):not(.page-active) {
         color: #374151 !important;
@@ -303,7 +340,7 @@
         transform: scale(1.02) !important;
         box-shadow: 0 10px 30px rgba(85,107,47,0.3) !important;
     }
-    
+
     /* Active menu item enhancements */
     .sidebar-admin .menu-item.active {
         background: linear-gradient(135deg, #556B2F 0%, #7d9c3b 100%) !important;
@@ -311,26 +348,26 @@
         box-shadow: 0 10px 30px rgba(85,107,47,0.3);
         transform: scale(1.02);
     }
-    
+
     .sidebar-admin .menu-item.active:hover .menu-item-shine {
         left: 100%;
     }
-    
+
     .sidebar-admin .menu-item.active .icon-container svg {
         animation: activeIconPulse 2s ease-in-out infinite;
     }
-    
+
     @keyframes activeIconPulse {
         0%, 100% { transform: scale(1); }
         50% { transform: scale(1.1); }
     }
-    
+
     /* Floating effect for menu items */
     .sidebar-admin .menu-item {
         position: relative;
         transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    
+
     .sidebar-admin .menu-item::after {
         content: '';
         position: absolute;
@@ -343,12 +380,12 @@
         transition: all 0.3s ease;
         border-radius: 0 4px 4px 0;
     }
-    
+
     .sidebar-admin .menu-item:hover::after {
         width: 4px;
         transform: translateY(-50%) scaleX(1);
     }
-    
+
     /* Enhanced dropdown styles */
     .artikel-dropdown .artikel-toggle:hover:not(.page-active) {
         color: #374151 !important;
@@ -374,7 +411,59 @@
         color: #374151 !important;
         transform: scale(1.02);
         box-shadow: 0 2px 8px rgba(85,107,47,0.08);
-    }  
+    }
+
+    /* FitPlan Dropdown Styles - same as Artikel */
+    .fitplan-dropdown .fitplan-toggle:hover:not(.page-active) {
+        color: #374151 !important;
+        transform: scale(1.02);
+        box-shadow: 0 2px 8px rgba(85,107,47,0.08);
+    }
+
+    .fitplan-dropdown .fitplan-toggle.page-active {
+        background: linear-gradient(135deg, #556B2F 0%, #7d9c3b 100%) !important;
+        color: white !important;
+        box-shadow: 0 10px 30px rgba(85,107,47,0.3);
+        transform: scale(1.02);
+    }
+
+    .fitplan-dropdown .fitplan-toggle.page-active:hover {
+        color: white !important;
+        background: linear-gradient(135deg, #556B2F 0%, #7d9c3b 100%) !important;
+        transform: scale(1.02) !important;
+    }
+
+    .fitplan-dropdown .fitplan-toggle.dropdown-open:not(.page-active) {
+        color: #374151 !important;
+        transform: scale(1.02);
+        box-shadow: 0 2px 8px rgba(85,107,47,0.08);
+    }
+
+    /* FitPlan Submenu Styles */
+    #fitplan-submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    #fitplan-submenu.show {
+        max-height: 400px;
+        display: block !important;
+        transform: translateY(0);
+        opacity: 1;
+        animation: submenuSlideIn 0.5s ease-out;
+    }
+
+    #fitplan-arrow {
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    #fitplan-arrow.rotated {
+        transform: rotate(180deg) scale(1.1);
+        color: #556B2F;
+    }
     /* Enhanced submenu animations */
     #artikel-submenu {
         max-height: 0;
@@ -383,7 +472,7 @@
         transform: translateY(-10px);
         opacity: 0;
     }
-    
+
     #artikel-submenu.show {
         max-height: 400px;
         display: block !important;
@@ -391,7 +480,7 @@
         opacity: 1;
         animation: submenuSlideIn 0.5s ease-out;
     }
-    
+
     @keyframes submenuSlideIn {
         from {
             transform: translateY(-20px);
@@ -402,7 +491,7 @@
             opacity: 1;
         }
     }
-    
+
     /* Enhanced submenu items */
     .artikel-dropdown .submenu-item:hover {
         background: rgba(85,107,47,0.08) !important;
@@ -410,58 +499,58 @@
         border-radius: 12px !important;
         transform: scale(1.02);
     }
-    
+
     .artikel-dropdown .submenu-item:hover .submenu-indicator {
         transform: scale(1.2);
         background: linear-gradient(45deg, #556B2F, #7d9c3b);
         box-shadow: 0 0 10px rgba(85,107,47,0.5);
         animation: indicatorPulse 1s ease-in-out infinite;
     }
-    
+
     @keyframes indicatorPulse {
         0%, 100% { box-shadow: 0 0 10px rgba(85,107,47,0.5); }
         50% { box-shadow: 0 0 20px rgba(85,107,47,0.8); }
     }
-    
+
     .artikel-dropdown .submenu-item:hover span {
         transform: scale(1.02);
         color: #556B2F;
         font-weight: 500;
     }
-    
+
     /* Arrow rotation enhancement */
     #artikel-arrow {
         filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
     }
-    
+
     #artikel-arrow.rotated {
         transform: rotate(180deg) scale(1.1);
         color: #556B2F;
     }
-    
+
     /* Logout button special effects */
     .logout-btn:hover {
         color: #dc2626 !important;
         transform: scale(1.02);
         box-shadow: 0 2px 8px rgba(220,38,38,0.08);
     }
-    
+
     .logout-btn:hover .icon-container i {
         transform: scale(1.1);
         color: #dc2626;
     }
-    
+
     /* Stagger animation for menu items on initial load only */
     .sidebar-admin.initial-load .menu-item {
         animation: menuItemFadeIn 0.6s ease-out both;
     }
-    
+
     .sidebar-admin.initial-load .menu-item:nth-child(1) { animation-delay: 0.1s; }
     .sidebar-admin.initial-load .menu-item:nth-child(2) { animation-delay: 0.2s; }
     .sidebar-admin.initial-load .menu-item:nth-child(3) { animation-delay: 0.3s; }
     .sidebar-admin.initial-load .menu-item:nth-child(4) { animation-delay: 0.4s; }
     .sidebar-admin.initial-load .menu-item:nth-child(5) { animation-delay: 0.5s; }
-    
+
     @keyframes menuItemFadeIn {
         from {
             opacity: 0;
@@ -472,49 +561,49 @@
             transform: translateX(0);
         }
     }
-    
+
     /* Enhanced focus states */
     .sidebar-admin .menu-item:focus {
         outline: none;
         box-shadow: 0 0 0 3px rgba(85,107,47,0.3);
         transform: scale(1.02);
     }
-    
+
     /* Menu item base styles */
     .menu-item {
         position: relative;
         overflow: hidden;
     }
-    
+
     /* Magnetic hover effect */
     .sidebar-admin .menu-item {
         transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
     }
-    
+
     /* Breathing animation for active items */
     .sidebar-admin .menu-item.active {
         animation: activeBreathing 3s ease-in-out infinite;
     }
-    
+
     @keyframes activeBreathing {
         0%, 100% { box-shadow: 0 10px 30px rgba(85,107,47,0.3); }
         50% { box-shadow: 0 15px 40px rgba(85,107,47,0.4); }
     }
-    
+
     /* Glow effect on hover */
     .sidebar-admin .menu-item:hover {
         position: relative;
     }
-    
+
     .sidebar-admin .menu-item:hover::before {
         box-shadow: 0 0 20px rgba(85,107,47,0.3);
     }
-    
+
     /* Enhanced transitions with spring effect */
     .sidebar-admin .menu-item {
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    
+
     /* Particle effect simulation */
     .sidebar-admin::after {
         content: '';
@@ -523,7 +612,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-image: 
+        background-image:
             radial-gradient(2px 2px at 20px 30px, rgba(85,107,47,0.1), transparent),
             radial-gradient(2px 2px at 40px 70px, rgba(125,156,59,0.1), transparent),
             radial-gradient(1px 1px at 90px 40px, rgba(85,107,47,0.1), transparent),
@@ -535,23 +624,23 @@
         pointer-events: none;
         z-index: 0;
     }
-    
+
     @keyframes particleFloat {
         0% { transform: translateY(0px); }
         100% { transform: translateY(-200px); }
     }
-    
+
     /* Menu item content z-index fix */
     .sidebar-admin .menu-item > * {
         position: relative;
         z-index: 2;
     }
-    
+
     /* Enhanced submenu indicator animation */
     .submenu-indicator {
         position: relative;
     }
-    
+
     .submenu-indicator::after {
         content: '';
         position: absolute;
@@ -564,26 +653,26 @@
         transform: scale(0);
         transition: transform 0.3s ease;
     }
-    
+
     .submenu-item:hover .submenu-indicator::after {
         transform: scale(1.8);
         opacity: 0.3;
     }
-    
+
     /* Loading animation on initial page load only */
     .sidebar-admin.initial-load {
         animation: sidebarSlideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    
+
     /* Enhanced welcome animation when coming from login */
     .sidebar-admin.initial-load.from-login {
         animation: sidebarWelcomeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    
+
     .sidebar-admin.initial-load.from-login .logo-section img {
         animation: logoWelcomeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
     }
-    
+
     @keyframes sidebarSlideIn {
         from {
             transform: translateX(-100%);
@@ -594,7 +683,7 @@
             opacity: 1;
         }
     }
-    
+
     @keyframes sidebarWelcomeIn {
         0% {
             transform: translateX(-100%) scale(0.9);
@@ -609,7 +698,7 @@
             opacity: 1;
         }
     }
-    
+
     @keyframes logoWelcomeIn {
         0% {
             opacity: 0;
@@ -624,12 +713,12 @@
             transform: scale(1);
         }
     }
-    
+
     /* Smooth logo entrance on initial load only */
     .sidebar-admin.initial-load .logo-section img {
         animation: logoFadeIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
     }
-    
+
     @keyframes logoFadeIn {
         from {
             opacity: 0;
@@ -640,25 +729,25 @@
             transform: scale(1);
         }
     }
-    
+
     /* Enhanced dropdown arrow physics */
     #artikel-arrow {
         transform-origin: center;
         transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
-    
+
     /* Micro-interactions for better UX */
     .menu-item:hover .icon-container svg {
         transition: transform 0.3s ease;
     }
-    
+
     /* Glass morphism effect for submenu */
     #artikel-submenu {
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255,255,255,0.2);
         position: relative;
     }
-    
+
     #artikel-submenu::before {
         content: '';
         position: absolute;
@@ -666,32 +755,32 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(135deg, 
-            rgba(255,255,255,0.1) 0%, 
-            rgba(255,255,255,0.05) 50%, 
+        background: linear-gradient(135deg,
+            rgba(255,255,255,0.1) 0%,
+            rgba(255,255,255,0.05) 50%,
             rgba(255,255,255,0.1) 100%);
         border-radius: 16px;
         pointer-events: none;
     }
-    
+
     /* Smooth scroll behavior */
     .sidebar-admin.scrollable {
         scroll-behavior: smooth;
     }
-    
+
     /* Enhanced focus accessibility */
     .menu-item:focus-visible {
         outline: 2px solid #556B2F;
         outline-offset: 2px;
         border-radius: 25px;
     }
-    
+
     /* Final touch: subtle gradient overlay */
     .sidebar-admin::before {
-        background: linear-gradient(180deg, 
-            rgba(85,107,47,0.05) 0%, 
-            transparent 20%, 
-            transparent 80%, 
+        background: linear-gradient(180deg,
+            rgba(85,107,47,0.05) 0%,
+            transparent 20%,
+            transparent 80%,
             rgba(85,107,47,0.03) 100%);
     }
 </style>
@@ -702,8 +791,8 @@ function toggleArtikelDropdown() {
     const arrow = document.getElementById('artikel-arrow');
     const toggle = document.querySelector('.artikel-toggle');
     const sidebar = document.getElementById('sidebar-admin');
-    
-    
+
+
     if (submenu.style.display === 'block') {
         // Close dropdown
         submenu.style.display = 'none';
@@ -729,19 +818,34 @@ function toggleArtikelDropdown() {
 
 // Close dropdown when clicking outside
 document.addEventListener('click', function(event) {
-    const dropdown = document.querySelector('.artikel-dropdown');
-    const submenu = document.getElementById('artikel-submenu');
-    const arrow = document.getElementById('artikel-arrow');
-    const toggle = document.querySelector('.artikel-toggle');
+    const artikelDropdown = document.querySelector('.artikel-dropdown');
+    const artikelSubmenu = document.getElementById('artikel-submenu');
+    const artikelArrow = document.getElementById('artikel-arrow');
+    const artikelToggle = document.querySelector('.artikel-toggle');
+    const fitplanDropdown = document.querySelector('.fitplan-dropdown');
+    const fitplanSubmenu = document.getElementById('fitplan-submenu');
+    const fitplanArrow = document.getElementById('fitplan-arrow');
+    const fitplanToggle = document.querySelector('.fitplan-toggle');
     const sidebar = document.getElementById('sidebar-admin');
-    
-    if (!dropdown.contains(event.target)) {
-        submenu.style.display = 'none';
-        submenu.classList.remove('show');
-        arrow.classList.remove('rotated');
-        // Only remove dropdown-open, preserve page-active if it exists
-        if (!toggle.classList.contains('page-active')) {
-            toggle.classList.remove('dropdown-open');
+
+    // Close Artikel dropdown if clicking outside
+    if (artikelDropdown && !artikelDropdown.contains(event.target)) {
+        artikelSubmenu.style.display = 'none';
+        artikelSubmenu.classList.remove('show');
+        artikelArrow.classList.remove('rotated');
+        if (!artikelToggle.classList.contains('page-active')) {
+            artikelToggle.classList.remove('dropdown-open');
+        }
+        sidebar.classList.remove('scrollable');
+    }
+
+    // Close FitPlan dropdown if clicking outside
+    if (fitplanDropdown && !fitplanDropdown.contains(event.target)) {
+        fitplanSubmenu.style.display = 'none';
+        fitplanSubmenu.classList.remove('show');
+        fitplanArrow.classList.remove('rotated');
+        if (!fitplanToggle.classList.contains('page-active')) {
+            fitplanToggle.classList.remove('dropdown-open');
         }
         sidebar.classList.remove('scrollable');
     }
@@ -753,18 +857,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const submenu = document.getElementById('artikel-submenu');
     const arrow = document.getElementById('artikel-arrow');
     const toggle = document.querySelector('.artikel-toggle');
-    
+
     // Check if this is coming from outside admin area
     const referrer = document.referrer;
     const currentUrl = window.location.href;
-    
+
     // More specific detection for admin navigation
     const isFromLogin = referrer.includes('/login') || referrer.includes('/masuk') || referrer.includes('/auth/');
     const isFromAdminArea = referrer.includes('/admin/');
     const isFromUserPages = referrer !== '' && !isFromAdminArea && !isFromLogin;
     const isDirectAccess = !referrer || referrer === '';
     const isFirstAdminVisit = !sessionStorage.getItem('adminVisited');
-    
+
     // Show animations ONLY if:
     // 1. Coming from login/auth pages (successful login)
     // 2. Coming from user/front-end pages (switching to admin)
@@ -772,7 +876,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 4. First time visiting admin area in this session
     // DO NOT show if navigating within admin area
     const shouldShowAnimations = (isFromLogin || isFromUserPages || isDirectAccess || isFirstAdminVisit) && !isFromAdminArea;
-    
+
     // Debug information (remove in production)
     console.log('Sidebar Animation Debug:', {
         referrer: referrer,
@@ -783,29 +887,29 @@ document.addEventListener('DOMContentLoaded', function() {
         isDirectAccess: isDirectAccess,
         shouldShowAnimations: shouldShowAnimations
     });
-    
+
     if (!shouldShowAnimations) {
         // Remove initial-load class if navigating within admin area
         sidebar.classList.remove('initial-load');
     } else {
         // Mark that admin area has been visited
         sessionStorage.setItem('adminVisited', 'true');
-        
+
         // Add special class if coming from login for enhanced welcome animation
         if (isFromLogin) {
             sidebar.classList.add('from-login');
         }
-        
+
         // Remove initial-load class after animations complete
         setTimeout(() => {
             sidebar.classList.remove('initial-load');
             sidebar.classList.remove('from-login');
         }, 2000); // After all animations finish
     }
-    
+
     // Initial state - no scrolling
     sidebar.style.overflowY = 'hidden';
-    
+
     // Auto-open dropdown if we're on an article page
     if (toggle && toggle.classList.contains('page-active')) {
         submenu.style.display = 'block';
@@ -813,41 +917,85 @@ document.addEventListener('DOMContentLoaded', function() {
         arrow.classList.add('rotated');
         sidebar.classList.add('scrollable');
     }
-    
+});
+
+// FitPlan Dropdown Toggle Function
+function toggleFitplanDropdown() {
+    const submenu = document.getElementById('fitplan-submenu');
+    const arrow = document.getElementById('fitplan-arrow');
+    const toggle = document.querySelector('.fitplan-toggle');
+    const sidebar = document.getElementById('sidebar-admin');
+
+    if (submenu.style.display === 'block') {
+        // Close dropdown
+        submenu.style.display = 'none';
+        submenu.classList.remove('show');
+        arrow.classList.remove('rotated');
+        if (!toggle.classList.contains('page-active')) {
+            toggle.classList.remove('dropdown-open');
+        }
+        sidebar.classList.remove('scrollable');
+    } else {
+        // Open dropdown
+        submenu.style.display = 'block';
+        submenu.classList.add('show');
+        arrow.classList.add('rotated');
+        if (!toggle.classList.contains('page-active')) {
+            toggle.classList.add('dropdown-open');
+        }
+        sidebar.classList.add('scrollable');
+    }
+}
+
+// Enhanced initialization with animations for FitPlan
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('sidebar-admin');
+    const fitplanSubmenu = document.getElementById('fitplan-submenu');
+    const fitplanArrow = document.getElementById('fitplan-arrow');
+    const fitplanToggle = document.querySelector('.fitplan-toggle');
+
+    // Auto-open dropdown if we're on a FitPlan page
+    if (fitplanToggle && fitplanToggle.classList.contains('page-active')) {
+        fitplanSubmenu.style.display = 'block';
+        fitplanSubmenu.classList.add('show');
+        fitplanArrow.classList.add('rotated');
+        sidebar.classList.add('scrollable');
+    }
+
     // Add wheel event listener to prevent scrolling when dropdown is closed
     sidebar.addEventListener('wheel', function(e) {
         if (!sidebar.classList.contains('scrollable')) {
             e.preventDefault();
         }
     });
-    
+
     // Get menu items for other effects
     const menuItems = document.querySelectorAll('.menu-item');
-    
+
     // Add magnetic effect for menu items
     menuItems.forEach(item => {
         item.addEventListener('mousemove', function(e) {
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            
+
             const distance = Math.sqrt(x * x + y * y);
             const maxDistance = Math.max(rect.width, rect.height);
-            
+
             if (distance < maxDistance * 0.8) {
                 const strength = (maxDistance * 0.8 - distance) / (maxDistance * 0.8);
                 const moveX = (x / maxDistance) * 10 * strength;
                 const moveY = (y / maxDistance) * 5 * strength;
-                
+
                 this.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.02)`;
             }
         });
-        
+
         item.addEventListener('mouseleave', function() {
             this.style.transform = '';
         });
     });
-    
+
     // Stagger animation for menu items
     menuItems.forEach((item, index) => {
         item.style.animationDelay = `${index * 0.1}s`;

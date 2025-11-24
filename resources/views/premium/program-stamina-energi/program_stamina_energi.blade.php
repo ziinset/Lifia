@@ -10,17 +10,17 @@
 </div>
 
 <div style="margin-bottom: 40px;">
-    @includeIf('user.kategori.vegan.bagianartikel')
+    @includeIf('premium.program-stamina-energi.bagianartikel')
 </div>
 
 {{-- Halaman Banner --}}
 <div style="margin-top: 40px; margin-bottom: 60px;">
-    @includeIf('user.kategori.vegan.banner')
+    @includeIf('premium.program-stamina-energi.banner')
 </div>
 
 {{-- Halaman Topik --}}
 <div style="margin-top: 50px;">
-    @includeIf('user.kategori.vegan.topik')
+    @includeIf('premium.program-stamina-energi.topik')
 </div>
 
 {{-- Halaman image --}}
@@ -32,7 +32,7 @@
 
 {{-- Halaman Panduan --}}
 <div style="margin-top: 50px;">
-    @includeIf('user.kategori.vegan.panduan')
+    @includeIf('premium.program-stamina-energi.panduan')
 </div>
 @include('components.footer')
 {{-- @endsection --}}

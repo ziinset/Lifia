@@ -15,6 +15,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MealPlanController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\FitplanArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,18 +129,6 @@ Route::get('/tentang-kami', fn() => view('tentang-kami'))->name('tentang-kami');
 
 // FitPlan: premium users see content, others see subscription page
 Route::get('/fitplan', [PaymentController::class, 'showSubscription'])->name('fitplan');
-
-// Meal Plan (alias publik untuk kompatibilitas)
-Route::get('/mealplan', fn() => view('premium.mealplan'))->name('mealplan');
-
-// Program Turun Berat Badan (alias publik)
-Route::get('/program-turun-berat-badan', fn() => view('premium.program-turun-berat-badan.program-turunbb'))->name('program-turun-berat-badan');
-// Program Bentuk Otot (alias publik)
-Route::get('/program-bentuk-otot', fn() => view('premium.program-bentuk-otot.program_bentuk_otot'))->name('program-bentuk-otot');
-// Program Stamina & Energi (alias publik)
-Route::get('/program-stamina-energi', fn() => view('premium.program-stamina-energi.program_stamina_energi'))->name('program-stamina-energi');
-// Program Tubuh Lebih Lentur (alias publik)
-Route::get('/program-tubuh-lentur', fn() => view('premium.program-tubuh-lentur.program_tubuh_lentar'))->name('program-tubuh-lentur');
 
 // ==========================
 // Auth Routes
@@ -262,6 +251,38 @@ Route::middleware(['auth'])->group(function () {
         ->name('admin.langganan');
     Route::get('/admin/kategori', [AdminController::class, 'kategori'])
         ->name('admin.kategori');
+    Route::get('/admin/fitplan', function () {
+        return view('admin.crud-fitplan');
+    })->name('admin.fitplan');
+
+    // FitPlan Category Routes
+    Route::get('/admin/fitplan/turun-berat-badan', function () {
+        return view('admin.crud-fitplan', ['category' => 'turun-berat-badan']);
+    })->name('admin.fitplan.turun-berat-badan');
+
+    Route::get('/admin/fitplan/bentuk-otot', function () {
+        return view('admin.crud-fitplan', ['category' => 'bentuk-otot']);
+    })->name('admin.fitplan.bentuk-otot');
+
+    Route::get('/admin/fitplan/stamina-energi', function () {
+        return view('admin.crud-fitplan', ['category' => 'stamina-energi']);
+    })->name('admin.fitplan.stamina-energi');
+
+    Route::get('/admin/fitplan/tubuh-lentur', function () {
+        return view('admin.crud-fitplan', ['category' => 'tubuh-lentur']);
+    })->name('admin.fitplan.tubuh-lentur');
+
+    // FitPlan Article CRUD Routes
+    Route::prefix('admin/fitplan/articles')->group(function () {
+        Route::get('/', [FitplanArticleController::class, 'index'])->name('admin.fitplan.articles.index');
+        Route::post('/', [FitplanArticleController::class, 'store'])->name('admin.fitplan.articles.store');
+        Route::put('/{id}', [FitplanArticleController::class, 'update'])->name('admin.fitplan.articles.update');
+        Route::delete('/{id}', [FitplanArticleController::class, 'destroy'])->name('admin.fitplan.articles.destroy');
+        Route::post('/{id}/toggle-featured', [FitplanArticleController::class, 'toggleFeatured'])->name('admin.fitplan.articles.toggle-featured');
+    });
+
+    // Get latest articles for display
+    Route::get('/api/fitplan/articles/{category}', [FitplanArticleController::class, 'getLatestArticles'])->name('api.fitplan.articles.latest');
 
     // Category CRUD Routes
     Route::resource('admin/categories', CategoryController::class)->except(['show']);
@@ -298,10 +319,51 @@ Route::middleware(['auth'])->group(function () {
 Route::post('/payment/notification', [PaymentController::class, 'handleNotification'])->name('payment.notification');
 
 // ==========================
-// Premium Routes (requires login)
+// Premium Routes (requires login + premium status)
 // ==========================
 Route::middleware(['auth'])->group(function () {
+    // Meal Plan
     Route::get('/premium/mealplan', [MealPlanController::class, 'index'])->name('premium.mealplan');
     Route::get('/premium/mealplan/day/{day}', [MealPlanController::class, 'getMealPlan'])->name('premium.mealplan.day');
     Route::get('/premium/mealplan/weekly', [MealPlanController::class, 'getWeeklyOverview'])->name('premium.mealplan.weekly');
+
+    // Meal Plan alias (untuk kompatibilitas)
+    Route::get('/mealplan', function() {
+        if (!Auth::check() || !Auth::user()->is_premium) {
+            return redirect()->route('fitplan')->with('error', 'Anda harus berlangganan premium untuk mengakses fitur ini.');
+        }
+        return redirect()->route('premium.mealplan');
+    })->name('mealplan');
+
+    // Program Turun Berat Badan
+    Route::get('/program-turun-berat-badan', function() {
+        if (!Auth::check() || !Auth::user()->is_premium) {
+            return redirect()->route('fitplan')->with('error', 'Anda harus berlangganan premium untuk mengakses fitur ini.');
+        }
+        return view('premium.program-turun-berat-badan.program_turunbb');
+    })->name('program-turun-berat-badan');
+
+    // Program Bentuk Otot
+    Route::get('/program-bentuk-otot', function() {
+        if (!Auth::check() || !Auth::user()->is_premium) {
+            return redirect()->route('fitplan')->with('error', 'Anda harus berlangganan premium untuk mengakses fitur ini.');
+        }
+        return view('premium.program-bentuk-otot.program_bentuk_otot');
+    })->name('program-bentuk-otot');
+
+    // Program Stamina & Energi
+    Route::get('/program-stamina-energi', function() {
+        if (!Auth::check() || !Auth::user()->is_premium) {
+            return redirect()->route('fitplan')->with('error', 'Anda harus berlangganan premium untuk mengakses fitur ini.');
+        }
+        return view('premium.program-stamina-energi.program_stamina_energi');
+    })->name('program-stamina-energi');
+
+    // Program Tubuh Lebih Lentur
+    Route::get('/program-tubuh-lentur', function() {
+        if (!Auth::check() || !Auth::user()->is_premium) {
+            return redirect()->route('fitplan')->with('error', 'Anda harus berlangganan premium untuk mengakses fitur ini.');
+        }
+        return view('premium.program-tubuh-lentur.program_tubuh_lentar');
+    })->name('program-tubuh-lentur');
 });

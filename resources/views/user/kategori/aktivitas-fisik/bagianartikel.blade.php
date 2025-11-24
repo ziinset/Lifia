@@ -1,12 +1,3 @@
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-{{-- Artikel Section --}}
-<style>
-    .artikel-section {
-        background-color: #f8f9fa;
-        padding: 40px 20px;
-        font-family: 'Poppins', sans-serif;
-    }
-=======
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -40,7 +31,6 @@
                 transform: translateY(0);
             }
         }
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
 
         .container {
             max-width: 1200px;
@@ -51,10 +41,6 @@
             color: #4E342E;
             font-family: 'Poppins', sans-serif;
             font-size: 32px;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-            font-weight: 600;
-            margin-bottom: 30px;
-=======
             font-weight: 700;
             margin-bottom: 30px;
             opacity: 0;
@@ -70,7 +56,6 @@
                 opacity: 1;
                 transform: translateX(0);
             }
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .articles-layout {
@@ -85,8 +70,6 @@
             display: flex;
             flex-direction: column;
             height: auto;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-=======
             opacity: 0;
             animation: slideInFromBottom 0.8s ease-out 0.5s forwards;
         }
@@ -100,7 +83,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .main-article-image {
@@ -111,25 +93,18 @@
             margin-bottom: 16px;
             position: relative;
             flex-shrink: 0;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-=======
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .main-article-image:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .main-article-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-        }
-
-=======
             transition: transform 0.3s ease;
         }
 
@@ -137,7 +112,6 @@
             transform: scale(1.05);
         }
 
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         .main-article-content {
             display: flex;
             flex-direction: column;
@@ -148,29 +122,14 @@
             display: inline-flex;
             align-items: center;
             background-color: #e8f5e8;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             color: #4a7c59;
-=======
-            color: #8BAC65;
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             padding: 6px 14px;
             border-radius: 20px;
             font-family: 'Poppins', sans-serif;
             font-size: 13px;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-weight: 500;
-=======
-            font-weight: 700;
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             margin-bottom: 12px;
             width: fit-content;
-            transition: all 0.3s ease;
-        }
-
-        .main-category-tag:hover {
-            background-color: #8BAC65;
-            color: white;
-            transform: translateY(-2px);
         }
 
         .main-category-icon {
@@ -186,7 +145,6 @@
         .main-article-content h2 {
             font-family: 'Poppins', sans-serif;
             font-size: 22px;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-weight: 600;
             line-height: 1.3;
             margin-bottom: 12px;
@@ -198,25 +156,6 @@
             font-size: 15px;
             line-height: 1.5;
             color: #666;
-=======
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 12px;
-            color: #4E342E;
-            transition: color 0.3s ease;
-        }
-
-        .main-article-content h2:hover {
-            color: #8BAC65;
-        }
-
-        .main-article-desc {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 15px;
-            line-height: 1.5;
-            color: #4E342E;
-            font-weight: 500;
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             margin-bottom: 20px;
         }
 
@@ -224,16 +163,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-family: 'Poppins', sans-serif;
             font-size: 12px;
             color: #999;
-=======
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            color: #999;
-            font-weight: 600;
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .main-article-meta .author {
@@ -271,36 +203,11 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-=======
-            position: relative;
-            overflow: hidden;
-        }
-
-        .main-action-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .main-action-btn:hover::before {
-            left: 100%;
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .main-action-btn:hover {
             background-color: #A5C866;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             transform: translateY(-1px);
-=======
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(180, 214, 120, 0.4);
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .main-bookmark-btn {
@@ -322,10 +229,6 @@
         .main-bookmark-btn:hover {
             background: rgba(180, 214, 120, 0.1);
             color: #B4D678;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-=======
-            transform: scale(1.1);
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .main-bookmark-btn svg {
@@ -347,38 +250,6 @@
             align-items: flex-start;
             height: 158px;
             flex-shrink: 0;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-=======
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-article:nth-child(1) {
-            animation: slideInFromRight 0.8s ease-out 0.7s forwards;
-        }
-
-        .sidebar-article:nth-child(2) {
-            animation: slideInFromRight 0.8s ease-out 0.9s forwards;
-        }
-
-        .sidebar-article:nth-child(3) {
-            animation: slideInFromRight 0.8s ease-out 1.1s forwards;
-        }
-
-        @keyframes slideInFromRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .sidebar-article:hover {
-            transform: translateX(10px);
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .sidebar-article-image {
@@ -389,28 +260,12 @@
             overflow: hidden;
             background-color: #f0f0f0;
             margin-top: 2px;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-=======
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar-article:hover .sidebar-article-image {
-            transform: scale(1.05);
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .sidebar-article-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-=======
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar-article:hover .sidebar-article-image img {
-            transform: scale(1.1);
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .sidebar-article-content {
@@ -430,26 +285,15 @@
             display: inline-flex;
             align-items: center;
             background-color: transparent;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
+            color: #8BAC65;
             color: #4a7c59;
             padding: 0;
             font-family: 'Poppins', sans-serif;
             font-size: 12px;
             font-weight: 500;
-=======
-            color: #8BAC65;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            font-size: 12px;
             font-weight: 700;
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             margin-bottom: 8px;
             width: fit-content;
-            transition: color 0.3s ease;
-        }
-
-        .sidebar-category-tag:hover {
-            color: #4E342E;
         }
 
         .sidebar-category-icon {
@@ -465,33 +309,16 @@
         .sidebar-article h3 {
             font-family: 'Poppins', sans-serif;
             font-size: 15px;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-weight: 600;
             color: #333;
-=======
-            font-weight: 700;
-            color: #4E342E;
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             line-height: 1.2;
             margin-bottom: 6px;
-            transition: color 0.3s ease;
-        }
-
-        .sidebar-article:hover h3 {
-            color: #8BAC65;
         }
 
         .sidebar-article-desc {
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-family: 'Poppins', sans-serif;
             font-size: 12px;
             color: #666;
-=======
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            color: #4E342E;
-            font-weight: 500;
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             line-height: 1.3;
             margin-bottom: 6px;
             flex-grow: 1;
@@ -510,14 +337,9 @@
         }
 
         .sidebar-author-info {
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
             font-family: 'Poppins', sans-serif;
-=======
-            font-family: 'Montserrat', sans-serif;
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             font-size: 12px;
             color: #999;
-            font-weight: 600;
             flex: 1;
         }
 
@@ -543,35 +365,11 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.3s ease;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-=======
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sidebar-action-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .sidebar-action-btn:hover::before {
-            left: 100%;
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .sidebar-action-btn:hover {
             background-color: #A5C866;
             transform: translateY(-1px);
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-=======
-            box-shadow: 0 5px 15px rgba(180, 214, 120, 0.4);
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         .sidebar-bookmark-btn {
@@ -597,10 +395,6 @@
         .sidebar-bookmark-btn:hover {
             background: rgba(180, 214, 120, 0.1);
             color: #B4D678;
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
-=======
-            transform: scale(1.1);
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
         }
 
         @media (max-width: 768px) {
@@ -613,7 +407,16 @@
                 font-size: 24px;
                 margin-bottom: 20px;
             }
-<<<<<<< HEAD:resources/views/user/kategori/aktivitas-fisik/bagianartikel.blade.php
+<<<<<<<<< Temporary merge branch 1:resources/views/artikel/bagianartikel.blade.php
+
+            .main-article-container {
+                height: auto;
+            }
+
+
+            .main-article-image {
+                height: 250px;
+            }
 
             .main-article-container {
                 height: auto;
@@ -623,17 +426,6 @@
                 height: 250px;
             }
 
-=======
-            
-            .main-article-container {
-                height: auto;
-            }
-            
-            .main-article-image {
-                height: 250px;
-            }
-            
->>>>>>> jonathan:resources/views/artikel/bagianartikel.blade.php
             .main-article-content h2 {
                 font-size: 20px;
             }
@@ -677,21 +469,23 @@
             <!-- Left Side - Main Article -->
             <div class="main-article-container">
                 <div class="main-article-image">
-                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2053&q=80" alt="Mulai Hari dengan Sarapan Seimbang">
+                    <img src="{{asset('image/kategori-aktivitas-fisik/Rectangle 171.png')}}" alt="Mulai Hari dengan Sarapan Seimbang">
                 </div>
                 <div class="main-article-content">
                     <div class="main-category-tag">
-                        <div class="main-category-icon"></div>
-                        Pola Makan Sehat
+                        <div class="main-category-icon" style="background-image: url('{{ asset('image/streamline-plump_dumbell-remix.png') }}');"></div>
+                        Olahraga & Aktivitas Fisik
                     </div>
-                    <h2>Mulai Hari dengan Sarapan Seimbang</h2>
-                    <p class="main-article-desc">Sarapan bukan cuma soal kenyang. Artikel ini membahas kombinasi karbohidrat kompleks, protein, dan serat untuk energi maksimal seharian.</p>
+                    <h2>Senam Ringan di Rumah untuk Pemula</h2>
+                    <p class="main-article-desc">Ingin mulai olahraga tapi nggak punya
+                        banyak waktu atau alat? Artikel ini pandu kamu melakukan senam
+                        sederhana selama 15 menit di rumah.</p>
                     <div class="main-article-meta">
                         <span>Ditinjau: <span class="author">Graciella Yeriza Natalie</span> <span class="time-info">
                             <i class="fas fa-clock clock-icon"></i>
                             12 jam lalu</span></span>
                         <div class="main-article-actions">
-                            <button class="main-action-btn" onclick="window.location.href='{{ route('artikel.sarapan-seimbang') }}'">Selengkapnya</button>
+                            <button class="main-action-btn" onclick="window.location.href='{{ route('kategori.aktivitas-fisik.artikel.artikel') }}'">Selengkapnya</button>
                             <button class="main-bookmark-btn">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
@@ -712,8 +506,8 @@
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
-                                <div class="sidebar-category-icon"></div>
-                                Pola Makan Sehat
+                                <div class="sidebar-category-icon" style="background-image: url('{{ asset('image/streamline-plump_dumbell-remix.png') }}');"></div>
+                                Aktivitas Fisik
                             </div>
                             <h3>Buah Lokal, Gizi Maksimal</h3>
                             <p class="sidebar-article-desc">Mengapa apel malang atau pisang kepok lebih baik dari buah impor? Kenali manfaat buah lokal yang sering diremehan.</p>
@@ -742,8 +536,8 @@
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
-                                <div class="sidebar-category-icon"></div>
-                                Pola Makan Sehat
+                                <div class="sidebar-category-icon" style="background-image: url('{{ asset('image/streamline-plump_dumbell-remix.png') }}');"></div>
+                                Aktivitas Fisik
                             </div>
                             <h3>Sayuran Hijau: Sumber Serat dan Antioksidan</h3>
                             <p class="sidebar-article-desc">Tak suka sayur? Coba trik mudah ini agar sayuran jadi lebih nikmat dan tetap kaya nutrisi.</p>
@@ -772,8 +566,8 @@
                     <div class="sidebar-article-content">
                         <div class="sidebar-content-top">
                             <div class="sidebar-category-tag">
-                                <div class="sidebar-category-icon"></div>
-                                Pola Makan Sehat
+                                <div class="sidebar-category-icon" style="background-image: url('{{ asset('image/streamline-plump_dumbell-remix.png') }}');"></div>
+                                Aktivitas Fisik
                             </div>
                             <h3>Hidrasi: Minum Air dengan Cara yang Benar</h3>
                             <p class="sidebar-article-desc">Ternyata minum air terlalu cepat juga bisa berdampak kurang baik. Simak tips minum air dengan benar di sini.</p>

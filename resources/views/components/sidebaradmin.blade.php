@@ -1,5 +1,5 @@
 <!-- Sidebar Admin Component -->
-<div class="sidebar-admin initial-load" id="sidebar-admin" style="width: 260px; height: 100vh; background-color: #ffffff; border-right: 1px solid #e5e7eb; font-family: 'Poppins', sans-serif; font-weight: 500; position: fixed; left: 0; top: 0; z-index: 1000; overflow-y: hidden;">
+<div class="sidebar-admin initial-load" id="sidebar-admin" style="width: 260px; height: 100vh; background-color: #ffffff; border-right: 1px solid #e5e7eb; font-family: 'Poppins', sans-serif; font-weight: 500; position: fixed; left: 0; top: 0; z-index: 1001; overflow-y: hidden;">
     <!-- Logo Section -->
     <div class="logo-section" style="padding: 32px 24px 48px 24px; text-align: center;">
         <img src="{{ asset('images/logo2-lifia.svg') }}" alt="Lifia" style="height: 40px; width: auto;">
@@ -23,19 +23,64 @@
         </a>
 
         <!-- Kategori Menu Item -->
+<<<<<<< HEAD
         <a href="{{ route('admin.kategori') }}" class="menu-item" style="display: flex; align-items: center; padding: 14px 20px; text-decoration: none; color: #6b7280; border-radius: 25px; margin-bottom: 12px; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-weight: 500; position: relative; overflow: hidden;">
+=======
+        <a href="{{ route('admin.kategori') }}" class="menu-item {{ request()->routeIs('admin.kategori') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 14px 20px; text-decoration: none; color: {{ request()->routeIs('admin.kategori') ? 'white' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.kategori') ? '#556B2F' : 'transparent' }}; border-radius: 25px; margin-bottom: 12px; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-weight: 500; position: relative; overflow: hidden;">
+>>>>>>> combinerev
             <div class="icon-container" style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;">
                 <svg style="width: 24px; height: 24px; margin-right: 16px; fill: currentColor; transition: transform 0.3s ease; flex-shrink: 0;" viewBox="0 0 24 24">
                     <path d="M10 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2h-8l-2-2z"/>
                 </svg>
             </div>
             <span style="font-size: 14px; font-family: 'Poppins', sans-serif; font-weight: 500; letter-spacing: -0.01em; position: relative; z-index: 2; line-height: 1; display: flex; align-items: center;">Kategori</span>
-            <div class="menu-item-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #f8f9fa; border-radius: 25px; transform: scale(0); transition: transform 0.3s ease; opacity: 0;"></div>
+            @if(request()->routeIs('admin.kategori'))
+                <div class="menu-item-shine" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.6s ease;"></div>
+            @else
+                <div class="menu-item-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 25px; transform: scale(0); transition: transform 0.3s ease; opacity: 0;"></div>
+            @endif
         </a>
 
         <!-- Artikel Menu Item with Dropdown -->
+        @php
+            // Get categories for dynamic routing
+            $adminCategories = isset($globalCategories) ? $globalCategories : collect();
+
+            // Debug: Check if categories exist
+            // dd('Categories count: ' . $adminCategories->count(), $adminCategories->toArray());
+
+            // Create dynamic route checking for all categories
+            $isOnArticlePage = false;
+
+
+            if ($adminCategories->count() > 0) {
+                foreach ($adminCategories as $category) {
+                    $specificRouteName = 'admin.' . $category->slug;
+                    $routeExists = \Illuminate\Support\Facades\Route::has($specificRouteName);
+
+                    if ($routeExists && request()->routeIs($specificRouteName)) {
+                        $isOnArticlePage = true;
+                        break;
+                    } elseif (!$routeExists && request()->is('admin/' . $category->slug)) {
+                        $isOnArticlePage = true;
+                        break;
+                    }
+                }
+            } else {
+                // Fallback for backward compatibility
+                $isOnArticlePage = request()->routeIs('admin.pola-makan-sehat') ||
+                                  request()->routeIs('admin.aktivitas-fisik') ||
+                                  request()->routeIs('admin.kesehatan-mental') ||
+                                  request()->routeIs('admin.perawatan-diri') ||
+                                  request()->routeIs('admin.gaya-hidup-vegan') ||
+                                  request()->routeIs('admin.eco-living');
+            }
+
+            // Also check for category management pages
+            $isOnArticlePage = $isOnArticlePage || request()->is('admin/kategori/*');
+        @endphp
         <div class="artikel-dropdown" style="margin-bottom: 12px;">
-            <a href="#" class="menu-item artikel-toggle" onclick="toggleArtikelDropdown()" style="display: flex; align-items: center; padding: 14px 20px; text-decoration: none; color: #6b7280; background-color: transparent; border-radius: 25px; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-weight: 500; position: relative; overflow: hidden;">
+            <a href="#" class="menu-item artikel-toggle {{ $isOnArticlePage ? 'page-active' : '' }}" onclick="toggleArtikelDropdown()" style="display: flex; align-items: center; padding: 14px 20px; text-decoration: none; color: {{ $isOnArticlePage ? 'white' : '#6b7280' }}; background-color: {{ $isOnArticlePage ? '#556B2F' : 'transparent' }}; border-radius: 25px; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-weight: 500; position: relative; overflow: hidden;">
                 <div class="icon-container" style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;">
                     <svg style="width: 24px; height: 24px; margin-right: 16px; fill: currentColor; transition: transform 0.3s ease; flex-shrink: 0;" viewBox="0 0 24 24">
                         <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
@@ -45,9 +90,14 @@
                 <svg id="artikel-arrow" style="width: 16px; height: 16px; margin-left: auto; fill: currentColor; stroke: currentColor; stroke-width: 2; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; z-index: 2; flex-shrink: 0;" viewBox="0 0 24 24">
                     <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                 </svg>
-                <div class="menu-item-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 25px; transform: scale(0); transition: transform 0.3s ease; opacity: 0;"></div>
+                @if($isOnArticlePage)
+                    <div class="menu-item-shine" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.6s ease;"></div>
+                @else
+                    <div class="menu-item-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 25px; transform: scale(0); transition: transform 0.3s ease; opacity: 0;"></div>
+                @endif
             </a>
 
+<<<<<<< HEAD
             <!-- Dropdown Submenu -->
             <div id="artikel-submenu" style="display: none; margin-left: 20px; margin-top: 8px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); border-radius: 16px; padding: 8px 0; border-left: 3px solid #556B2F; box-shadow: 0 4px 20px rgba(0,0,0,0.08); backdrop-filter: blur(10px);">
                 <a href="{{ route('admin.pola-makan-sehat') }}" class="submenu-item" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: #6b7280; background-color: transparent; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
@@ -73,22 +123,117 @@
                 <a href="{{ route('admin.eco-living') }}" class="submenu-item" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: #6b7280; background-color: transparent; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
                     <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: scale(0); transition: transform 0.3s ease;"></div>
                     <span style="margin-left: 8px; transition: transform 0.3s ease;">Eco Living</span>
+=======
+            <!-- Dynamic Dropdown Submenu -->
+            <div id="artikel-submenu" style="display: none; margin-left: 20px; margin-top: 8px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); border-radius: 16px; padding: 8px 0; border-left: 3px solid #556B2F; box-shadow: 0 4px 20px rgba(0,0,0,0.08); backdrop-filter: blur(10px);">
+                @if($adminCategories && $adminCategories->count() > 0)
+                    @foreach($adminCategories as $category)
+                        @php
+                            // Check if specific route exists, otherwise use dynamic route
+                            $specificRouteName = 'admin.' . $category->slug;
+                            $routeExists = \Illuminate\Support\Facades\Route::has($specificRouteName);
+
+                            if ($routeExists) {
+                                $routeName = $specificRouteName;
+                                $routeUrl = route($specificRouteName);
+                                $isActive = request()->routeIs($specificRouteName);
+                            } else {
+                                // Use dynamic route for new categories
+                                $routeName = 'admin.dynamic-category';
+                                $routeUrl = route('admin.dynamic-category', $category->slug);
+                                $isActive = request()->is('admin/' . $category->slug);
+                            }
+                        @endphp
+                        <a href="{{ $routeUrl }}" class="submenu-item {{ $isActive ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ $isActive ? '#556B2F' : '#6b7280' }}; background-color: {{ $isActive ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                            @if($category->icon)
+                                <i class="{{ $category->icon }}" style="width: 6px; height: 6px; margin-right: 12px; font-size: 10px; color: #556B2F; transform: {{ $isActive ? 'scale(1)' : 'scale(0.8)' }}; transition: transform 0.3s ease;"></i>
+                            @else
+                                <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ $isActive ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                            @endif
+                            <span style="margin-left: 8px; transition: transform 0.3s ease;">{{ $category->name }}</span>
+                        </a>
+                    @endforeach
+                @else
+                    <!-- Fallback untuk kategori default -->
+                    <a href="{{ route('admin.pola-makan-sehat') }}" class="submenu-item {{ request()->routeIs('admin.pola-makan-sehat') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.pola-makan-sehat') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.pola-makan-sehat') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                        <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.pola-makan-sehat') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                        <span style="margin-left: 8px; transition: transform 0.3s ease;">Pola Makan Sehat</span>
+                    </a>
+                <a href="{{ route('admin.aktivitas-fisik') }}" class="submenu-item {{ request()->routeIs('admin.aktivitas-fisik') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.aktivitas-fisik') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.aktivitas-fisik') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.aktivitas-fisik') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Aktivitas Fisik</span>
+                </a>
+                <a href="{{ route('admin.kesehatan-mental') }}" class="submenu-item {{ request()->routeIs('admin.kesehatan-mental') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.kesehatan-mental') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.kesehatan-mental') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.kesehatan-mental') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Kesehatan Mental</span>
+                </a>
+                <a href="{{ route('admin.perawatan-diri') }}" class="submenu-item {{ request()->routeIs('admin.perawatan-diri') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.perawatan-diri') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.perawatan-diri') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.perawatan-diri') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                        <span style="margin-left: 8px; transition: transform 0.3s ease;">Perawatan Diri</span>
+                    </a>
+                    <a href="{{ route('admin.gaya-hidup-vegan') }}" class="submenu-item {{ request()->routeIs('admin.gaya-hidup-vegan') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.gaya-hidup-vegan') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.gaya-hidup-vegan') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                        <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.gaya-hidup-vegan') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                        <span style="margin-left: 8px; transition: transform 0.3s ease;">Gaya Hidup Vegan</span>
+                    </a>
+                    <a href="{{ route('admin.eco-living') }}" class="submenu-item {{ request()->routeIs('admin.eco-living') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.eco-living') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.eco-living') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                        <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.eco-living') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                        <span style="margin-left: 8px; transition: transform 0.3s ease;">Eco Living</span>
+                    </a>
+                @endif
+            </div>
+
+        </div>
+
+        <!-- Fitplan Menu Item with Dropdown -->
+        @php
+            // Check if on any FitPlan page
+            $isOnFitplanPage = request()->routeIs('admin.fitplan') ||
+                              request()->routeIs('admin.fitplan.turun-berat-badan') ||
+                              request()->routeIs('admin.fitplan.bentuk-otot') ||
+                              request()->routeIs('admin.fitplan.stamina-energi') ||
+                              request()->routeIs('admin.fitplan.tubuh-lentur');
+        @endphp
+        <div class="fitplan-dropdown" style="margin-bottom: 12px;">
+            <a href="#" class="menu-item fitplan-toggle {{ $isOnFitplanPage ? 'page-active' : '' }}" onclick="toggleFitplanDropdown()" style="display: flex; align-items: center; padding: 14px 20px; text-decoration: none; color: {{ $isOnFitplanPage ? 'white' : '#6b7280' }}; background-color: {{ $isOnFitplanPage ? '#556B2F' : 'transparent' }}; border-radius: 25px; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-weight: 500; position: relative; overflow: hidden;">
+                <div class="icon-container" style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;">
+                    <svg style="width: 24px; height: 24px; margin-right: 16px; fill: currentColor; transition: transform 0.3s ease; flex-shrink: 0;" viewBox="0 0 24 24">
+                        <rect x="1" y="7" width="5" height="10" rx="2"/>
+                        <rect x="6" y="10" width="12" height="4" rx="1"/>
+                        <rect x="18" y="7" width="5" height="10" rx="2"/>
+                    </svg>
+                </div>
+                <span style="font-size: 14px; font-family: 'Poppins', sans-serif; font-weight: 500; letter-spacing: -0.01em; position: relative; z-index: 2; line-height: 1; display: flex; align-items: center;">Fitplan</span>
+                <svg id="fitplan-arrow" style="width: 16px; height: 16px; margin-left: auto; fill: currentColor; stroke: currentColor; stroke-width: 2; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); position: relative; z-index: 2; flex-shrink: 0;" viewBox="0 0 24 24">
+                    <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+                @if($isOnFitplanPage)
+                    <div class="menu-item-shine" style="position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.6s ease;"></div>
+                @else
+                    <div class="menu-item-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 25px; transform: scale(0); transition: transform 0.3s ease; opacity: 0;"></div>
+                @endif
+            </a>
+
+            <!-- FitPlan Dropdown Submenu -->
+            <div id="fitplan-submenu" style="display: none; margin-left: 20px; margin-top: 8px; background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); border-radius: 16px; padding: 8px 0; border-left: 3px solid #556B2F; box-shadow: 0 4px 20px rgba(0,0,0,0.08); backdrop-filter: blur(10px);">
+                <a href="{{ route('admin.fitplan.turun-berat-badan') }}" class="submenu-item {{ request()->routeIs('admin.fitplan.turun-berat-badan') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.fitplan.turun-berat-badan') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.fitplan.turun-berat-badan') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.fitplan.turun-berat-badan') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Turun Berat Badan</span>
+                </a>
+                <a href="{{ route('admin.fitplan.bentuk-otot') }}" class="submenu-item {{ request()->routeIs('admin.fitplan.bentuk-otot') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.fitplan.bentuk-otot') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.fitplan.bentuk-otot') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.fitplan.bentuk-otot') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Bentuk Otot</span>
+                </a>
+                <a href="{{ route('admin.fitplan.stamina-energi') }}" class="submenu-item {{ request()->routeIs('admin.fitplan.stamina-energi') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.fitplan.stamina-energi') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.fitplan.stamina-energi') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.fitplan.stamina-energi') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Stamina & Energi</span>
+                </a>
+                <a href="{{ route('admin.fitplan.tubuh-lentur') }}" class="submenu-item {{ request()->routeIs('admin.fitplan.tubuh-lentur') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 12px 20px; text-decoration: none; color: {{ request()->routeIs('admin.fitplan.tubuh-lentur') ? '#556B2F' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.fitplan.tubuh-lentur') ? 'rgba(85, 107, 47, 0.1)' : 'transparent' }}; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-size: 13px; font-family: 'Poppins', sans-serif; font-weight: 400; position: relative; border-radius: 12px; margin: 2px 8px;">
+                    <div class="submenu-indicator" style="width: 6px; height: 6px; border-radius: 50%; background: #556B2F; margin-right: 12px; transform: {{ request()->routeIs('admin.fitplan.tubuh-lentur') ? 'scale(1)' : 'scale(0)' }}; transition: transform 0.3s ease;"></div>
+                    <span style="margin-left: 8px; transition: transform 0.3s ease;">Tubuh Lebih Lentur</span>
+>>>>>>> combinerev
                 </a>
             </div>
         </div>
-
-        <!-- Fitplan Menu Item -->
-        <a href="#" class="menu-item" style="display: flex; align-items: center; padding: 14px 20px; text-decoration: none; color: #6b7280; border-radius: 25px; margin-bottom: 12px; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-weight: 500; position: relative; overflow: hidden;">
-            <div class="icon-container" style="position: relative; z-index: 2; display: flex; align-items: center; justify-content: center;">
-                <svg style="width: 24px; height: 24px; margin-right: 16px; fill: currentColor; transition: transform 0.3s ease; flex-shrink: 0;" viewBox="0 0 24 24">
-                    <rect x="1" y="7" width="5" height="10" rx="2"/>
-                    <rect x="6" y="10" width="12" height="4" rx="1"/>
-                    <rect x="18" y="7" width="5" height="10" rx="2"/>
-                </svg>
-            </div>
-            <span style="font-size: 14px; font-family: 'Poppins', sans-serif; font-weight: 500; letter-spacing: -0.01em; position: relative; z-index: 2; line-height: 1; display: flex; align-items: center;">Fitplan</span>
-            <div class="menu-item-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #f3f4f6, #e5e7eb); border-radius: 25px; transform: scale(0); transition: transform 0.3s ease; opacity: 0;"></div>
-        </a>
 
         <!-- Langganan Menu Item -->
         <a href="{{ route('admin.langganan') }}" class="menu-item {{ request()->routeIs('admin.langganan') ? 'active' : '' }}" style="display: flex; align-items: center; padding: 14px 20px; text-decoration: none; color: {{ request()->routeIs('admin.langganan') ? 'white' : '#6b7280' }}; background-color: {{ request()->routeIs('admin.langganan') ? '#556B2F' : 'transparent' }}; border-radius: 25px; margin-bottom: 12px; transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); font-weight: 500; position: relative; overflow: hidden;">
@@ -209,17 +354,32 @@
     }
 
     /* Enhanced menu item animations */
-    .sidebar-admin .menu-item:hover:not(.active) {
+    .sidebar-admin .menu-item:hover:not(.active):not(.page-active) {
         color: #374151 !important;
-        transform: translateX(4px);
+        transform: scale(1.02);
         box-shadow: 0 2px 8px rgba(85,107,47,0.08);
     }
 
+<<<<<<< HEAD
     .sidebar-admin .menu-item:hover:not(.active) .icon-container svg {
+=======
+    .sidebar-admin .menu-item:hover:not(.active):not(.page-active) .icon-container svg {
+>>>>>>> combinerev
         transform: scale(1.1);
         color: #556B2F;
     }
 
+<<<<<<< HEAD
+=======
+    /* Disable hover effects for active menu items */
+    .sidebar-admin .menu-item.active:hover {
+        color: white !important;
+        background: linear-gradient(135deg, #556B2F 0%, #7d9c3b 100%) !important;
+        transform: scale(1.02) !important;
+        box-shadow: 0 10px 30px rgba(85,107,47,0.3) !important;
+    }
+
+>>>>>>> combinerev
     /* Active menu item enhancements */
     .sidebar-admin .menu-item.active {
         background: linear-gradient(135deg, #556B2F 0%, #7d9c3b 100%) !important;
@@ -268,7 +428,8 @@
     /* Enhanced dropdown styles */
     .artikel-dropdown .artikel-toggle:hover:not(.page-active) {
         color: #374151 !important;
-        transform: translateX(4px);
+        transform: scale(1.02);
+        box-shadow: 0 2px 8px rgba(85,107,47,0.08);
     }
 
     .artikel-dropdown .artikel-toggle.page-active {
@@ -278,11 +439,78 @@
         transform: scale(1.02);
     }
 
+<<<<<<< HEAD
     .artikel-dropdown .artikel-toggle.dropdown-open {
         color: #374151 !important;
         transform: translateX(4px);
     }
 
+=======
+    /* Disable hover effects when page is active */
+    .artikel-dropdown .artikel-toggle.page-active:hover {
+        color: white !important;
+        background: linear-gradient(135deg, #556B2F 0%, #7d9c3b 100%) !important;
+        transform: scale(1.02) !important;
+    }
+
+    .artikel-dropdown .artikel-toggle.dropdown-open:not(.page-active) {
+        color: #374151 !important;
+        transform: scale(1.02);
+        box-shadow: 0 2px 8px rgba(85,107,47,0.08);
+    }
+
+    /* FitPlan Dropdown Styles - same as Artikel */
+    .fitplan-dropdown .fitplan-toggle:hover:not(.page-active) {
+        color: #374151 !important;
+        transform: scale(1.02);
+        box-shadow: 0 2px 8px rgba(85,107,47,0.08);
+    }
+
+    .fitplan-dropdown .fitplan-toggle.page-active {
+        background: linear-gradient(135deg, #556B2F 0%, #7d9c3b 100%) !important;
+        color: white !important;
+        box-shadow: 0 10px 30px rgba(85,107,47,0.3);
+        transform: scale(1.02);
+    }
+
+    .fitplan-dropdown .fitplan-toggle.page-active:hover {
+        color: white !important;
+        background: linear-gradient(135deg, #556B2F 0%, #7d9c3b 100%) !important;
+        transform: scale(1.02) !important;
+    }
+
+    .fitplan-dropdown .fitplan-toggle.dropdown-open:not(.page-active) {
+        color: #374151 !important;
+        transform: scale(1.02);
+        box-shadow: 0 2px 8px rgba(85,107,47,0.08);
+    }
+
+    /* FitPlan Submenu Styles */
+    #fitplan-submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    #fitplan-submenu.show {
+        max-height: 400px;
+        display: block !important;
+        transform: translateY(0);
+        opacity: 1;
+        animation: submenuSlideIn 0.5s ease-out;
+    }
+
+    #fitplan-arrow {
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    }
+
+    #fitplan-arrow.rotated {
+        transform: rotate(180deg) scale(1.1);
+        color: #556B2F;
+    }
+>>>>>>> combinerev
     /* Enhanced submenu animations */
     #artikel-submenu {
         max-height: 0;
@@ -316,7 +544,7 @@
         background: rgba(85,107,47,0.08) !important;
         color: #556B2F !important;
         border-radius: 12px !important;
-        transform: translateX(4px);
+        transform: scale(1.02);
     }
 
     .artikel-dropdown .submenu-item:hover .submenu-indicator {
@@ -332,7 +560,7 @@
     }
 
     .artikel-dropdown .submenu-item:hover span {
-        transform: translateX(4px);
+        transform: scale(1.02);
         color: #556B2F;
         font-weight: 500;
     }
@@ -350,7 +578,7 @@
     /* Logout button special effects */
     .logout-btn:hover {
         color: #dc2626 !important;
-        transform: translateX(4px);
+        transform: scale(1.02);
         box-shadow: 0 2px 8px rgba(220,38,38,0.08);
     }
 
@@ -611,8 +839,14 @@ function toggleArtikelDropdown() {
     const toggle = document.querySelector('.artikel-toggle');
     const sidebar = document.getElementById('sidebar-admin');
 
+<<<<<<< HEAD
     if (submenu.classList.contains('show')) {
+=======
+
+    if (submenu.style.display === 'block') {
+>>>>>>> combinerev
         // Close dropdown
+        submenu.style.display = 'none';
         submenu.classList.remove('show');
         arrow.classList.remove('rotated');
         // Only remove dropdown-open, preserve page-active if it exists
@@ -621,9 +855,11 @@ function toggleArtikelDropdown() {
         }
         sidebar.classList.remove('scrollable');
     } else {
-        // Open dropdown - add dropdown-open only if not already page-active
+        // Open dropdown
+        submenu.style.display = 'block';
         submenu.classList.add('show');
         arrow.classList.add('rotated');
+        // Add dropdown-open only if not already page-active
         if (!toggle.classList.contains('page-active')) {
             toggle.classList.add('dropdown-open');
         }
@@ -633,18 +869,43 @@ function toggleArtikelDropdown() {
 
 // Close dropdown when clicking outside
 document.addEventListener('click', function(event) {
-    const dropdown = document.querySelector('.artikel-dropdown');
-    const submenu = document.getElementById('artikel-submenu');
-    const arrow = document.getElementById('artikel-arrow');
-    const toggle = document.querySelector('.artikel-toggle');
+    const artikelDropdown = document.querySelector('.artikel-dropdown');
+    const artikelSubmenu = document.getElementById('artikel-submenu');
+    const artikelArrow = document.getElementById('artikel-arrow');
+    const artikelToggle = document.querySelector('.artikel-toggle');
+    const fitplanDropdown = document.querySelector('.fitplan-dropdown');
+    const fitplanSubmenu = document.getElementById('fitplan-submenu');
+    const fitplanArrow = document.getElementById('fitplan-arrow');
+    const fitplanToggle = document.querySelector('.fitplan-toggle');
     const sidebar = document.getElementById('sidebar-admin');
 
+<<<<<<< HEAD
     if (!dropdown.contains(event.target)) {
         submenu.classList.remove('show');
         arrow.classList.remove('rotated');
         // Only remove dropdown-open, preserve page-active if it exists
         if (!toggle.classList.contains('page-active')) {
             toggle.classList.remove('dropdown-open');
+=======
+    // Close Artikel dropdown if clicking outside
+    if (artikelDropdown && !artikelDropdown.contains(event.target)) {
+        artikelSubmenu.style.display = 'none';
+        artikelSubmenu.classList.remove('show');
+        artikelArrow.classList.remove('rotated');
+        if (!artikelToggle.classList.contains('page-active')) {
+            artikelToggle.classList.remove('dropdown-open');
+        }
+        sidebar.classList.remove('scrollable');
+    }
+
+    // Close FitPlan dropdown if clicking outside
+    if (fitplanDropdown && !fitplanDropdown.contains(event.target)) {
+        fitplanSubmenu.style.display = 'none';
+        fitplanSubmenu.classList.remove('show');
+        fitplanArrow.classList.remove('rotated');
+        if (!fitplanToggle.classList.contains('page-active')) {
+            fitplanToggle.classList.remove('dropdown-open');
+>>>>>>> combinerev
         }
         sidebar.classList.remove('scrollable');
     }
@@ -711,10 +972,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Auto-open dropdown if we're on an article page
     if (toggle && toggle.classList.contains('page-active')) {
+        submenu.style.display = 'block';
         submenu.classList.add('show');
         arrow.classList.add('rotated');
         sidebar.classList.add('scrollable');
     }
+<<<<<<< HEAD
+=======
+});
+
+// FitPlan Dropdown Toggle Function
+function toggleFitplanDropdown() {
+    const submenu = document.getElementById('fitplan-submenu');
+    const arrow = document.getElementById('fitplan-arrow');
+    const toggle = document.querySelector('.fitplan-toggle');
+    const sidebar = document.getElementById('sidebar-admin');
+
+    if (submenu.style.display === 'block') {
+        // Close dropdown
+        submenu.style.display = 'none';
+        submenu.classList.remove('show');
+        arrow.classList.remove('rotated');
+        if (!toggle.classList.contains('page-active')) {
+            toggle.classList.remove('dropdown-open');
+        }
+        sidebar.classList.remove('scrollable');
+    } else {
+        // Open dropdown
+        submenu.style.display = 'block';
+        submenu.classList.add('show');
+        arrow.classList.add('rotated');
+        if (!toggle.classList.contains('page-active')) {
+            toggle.classList.add('dropdown-open');
+        }
+        sidebar.classList.add('scrollable');
+    }
+}
+
+// Enhanced initialization with animations for FitPlan
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.getElementById('sidebar-admin');
+    const fitplanSubmenu = document.getElementById('fitplan-submenu');
+    const fitplanArrow = document.getElementById('fitplan-arrow');
+    const fitplanToggle = document.querySelector('.fitplan-toggle');
+
+    // Auto-open dropdown if we're on a FitPlan page
+    if (fitplanToggle && fitplanToggle.classList.contains('page-active')) {
+        fitplanSubmenu.style.display = 'block';
+        fitplanSubmenu.classList.add('show');
+        fitplanArrow.classList.add('rotated');
+        sidebar.classList.add('scrollable');
+    }
+>>>>>>> combinerev
 
     // Add wheel event listener to prevent scrolling when dropdown is closed
     sidebar.addEventListener('wheel', function(e) {

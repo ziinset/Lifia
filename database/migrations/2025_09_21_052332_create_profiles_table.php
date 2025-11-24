@@ -22,6 +22,16 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('profiles');
+        Schema::table('users', function (Blueprint $table) {
+            $toDrop = [];
+            foreach (['instagram', 'tiktok', 'facebook'] as $col) {
+                if (Schema::hasColumn('users', $col)) {
+                    $toDrop[] = $col;
+                }
+            }
+            if (!empty($toDrop)) {
+                $table->dropColumn($toDrop);
+            }
+        });
     }
 };

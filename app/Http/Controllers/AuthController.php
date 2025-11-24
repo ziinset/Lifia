@@ -80,10 +80,9 @@ class AuthController extends Controller
                 return redirect()->route('admin.dashboard');
             }
 
-            // Tentukan redirect dinamis berdasarkan asal
+            // Tentukan redirect dinamis berdasarkan asal (aman untuk URL internal)
             $redirect = $request->input('redirect_to');
-            $allowed = ['/', '/home'];
-            if ($redirect && in_array($redirect, $allowed, true)) {
+            if ($redirect && preg_match('#^/[A-Za-z0-9_\-/\.?=&%]*$#', $redirect)) {
                 return redirect()->to($redirect)->with('success', 'Login berhasil!');
             }
 
@@ -106,8 +105,7 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         $redirect = $request->input('redirect_to');
-        $allowed = ['/', '/home'];
-        if ($redirect && in_array($redirect, $allowed, true)) {
+        if ($redirect && preg_match('#^/[A-Za-z0-9_\-/\.?=&%]*$#', $redirect)) {
             return redirect()->to($redirect)->with('success', 'Anda berhasil logout.');
         }
         return redirect()->route('home')->with('success', 'Anda berhasil logout.');

@@ -54,7 +54,11 @@
 
     <!-- Right Image -->
     <div class="lg:w-1/2 flex justify-center">
+<<<<<<< HEAD
       <img src="images/skin.svg" alt="Self Care"
+=======
+      <img src="{{asset('images/skin.svg')}}" alt="Self Care"
+>>>>>>> combinerev
            class="object-contain w-full max-w-xl">
     </div>
   </section>

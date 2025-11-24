@@ -55,7 +55,11 @@
 
     <!-- Right Image -->
     <div class="lg:w-1/2 flex justify-center">
+<<<<<<< HEAD
       <img src="images/vegan.svg" alt="Vegan Lifestyle"
+=======
+      <img src="{{asset('images/vegan.svg')}}" alt="Vegan Lifestyle"
+>>>>>>> combinerev
            class="object-contain w-full max-w-lg">
     </div>
   </section>

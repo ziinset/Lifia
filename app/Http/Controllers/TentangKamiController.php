@@ -12,3 +12,4 @@ class TentangKamiController extends Controller
         return view('tentang-kami');
     }
 }
+

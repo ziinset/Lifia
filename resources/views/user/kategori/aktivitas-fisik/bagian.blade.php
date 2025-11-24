@@ -405,7 +405,7 @@
                     <div class="main-article-meta">
                         <span>Ditinjau: <span class="author">Graciella Yeriza Natalie</span> • 12 jam lalu</span>
                         <div class="main-article-actions">
-                            <button class="main-action-btn">Selengkapnya</button>
+                            <button class="main-action-btn" onclick="window.location.href='{{ route('kategori.aktivitas-fisik.artikel.artikel') }}'">Selengkapnya</button>
                             <button class="main-bookmark-btn">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>
@@ -437,7 +437,7 @@
                                 <span>Penulis: <span class="author">Graciella Yeriza N</span></span>
                             </div>
                             <div class="sidebar-article-actions">
-                                <button class="sidebar-action-btn">selengkapnya</button>
+                                <button class="sidebar-action-btn" onclick="window.location.href='{{ route('kategori.aktivitas-fisik.artikel.artikel') }}'">selengkapnya</button>
                                 <button class="sidebar-bookmark-btn">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                         <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>

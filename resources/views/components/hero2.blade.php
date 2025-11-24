@@ -238,6 +238,10 @@
     <!-- Floating vegetables removed -->
 
     <div class="hero2-container">
+<<<<<<< HEAD
+=======
+
+>>>>>>> combinerev
         <!-- Main Hero Section -->
         <section class="hero2-section">
             <div>

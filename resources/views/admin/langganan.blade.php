@@ -147,6 +147,33 @@
             transform: translateY(30px);
             animation: fadeInUp 0.8s ease 0.4s forwards;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            overflow-y: visible;
+            position: relative;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .table-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #556B2F;
+            border-radius: 4px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #4a5a28;
         }
 
         .subscription-table:hover {
@@ -160,7 +187,10 @@
             padding: 16px 24px;
             border-bottom: 1px solid #e5e7eb;
             border-top: 3px solid #556B2F;
-            position: relative;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            min-width: fit-content;
         }
 
         .table-header::before {
@@ -181,9 +211,10 @@
 
         .table-header-row {
             display: grid;
-            grid-template-columns: 85px 150px 95px 100px 105px 120px 125px;
+            grid-template-columns: 90px 160px 100px 180px 120px 130px 160px;
             gap: 18px;
             align-items: center;
+            min-width: fit-content;
         }
 
         .table-header-cell {
@@ -193,11 +224,13 @@
             color: #4E342E;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            white-space: normal;
+            word-wrap: break-word;
+            overflow: visible;
+            text-overflow: clip;
             transition: all 0.3s ease;
             position: relative;
+            line-height: 1.4;
         }
 
         .table-header-cell:hover {
@@ -224,11 +257,13 @@
         .table-body {
             max-height: 600px;
             overflow-y: auto;
+            overflow-x: visible;
+            min-width: fit-content;
         }
 
         .table-row {
             display: grid;
-            grid-template-columns: 85px 150px 95px 100px 105px 120px 125px;
+            grid-template-columns: 90px 160px 100px 180px 120px 130px 160px;
             gap: 18px;
             align-items: center;
             padding: 16px 24px;
@@ -239,6 +274,7 @@
             animation: slideInLeft 0.5s ease forwards;
             border-left: 4px solid transparent;
             border-right: 2px solid transparent;
+            min-width: fit-content;
         }
 
         .table-row:nth-child(1) { animation-delay: 0.6s; }
@@ -382,8 +418,10 @@
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
             color: #4E342E;
-            white-space: nowrap;
+            white-space: normal;
+            word-wrap: break-word;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            line-height: 1.4;
         }
 
         .table-row:hover .package-cell {
@@ -466,10 +504,10 @@
         @media (max-width: 1200px) {
             .table-header-row,
             .table-row {
-                grid-template-columns: 70px 120px 85px 90px 95px 105px 110px;
+                grid-template-columns: 80px 140px 90px 160px 110px 120px 150px;
                 gap: 12px;
             }
-            
+
             .table-header-cell,
             .subscription-id,
             .user-name,
@@ -560,110 +598,103 @@
 
                 <!-- Subscription Table -->
                 <div class="subscription-table">
-                    <div class="table-header">
-                        <div class="table-header-row">
-                            <div class="table-header-cell">ID Langganan</div>
-                            <div class="table-header-cell">Nama Pengguna</div>
-                            <div class="table-header-cell">Status</div>
-                            <div class="table-header-cell">Paket</div>
-                            <div class="table-header-cell">Harga</div>
-                            <div class="table-header-cell">Tanggal Aktif</div>
-                            <div class="table-header-cell">Tanggal Kedaluwarsa</div>
-                        </div>
-                    </div>
-                    <div class="table-body">
-                        <!-- Sample Data Row 1 -->
-                        <div class="table-row">
-                            <div class="subscription-id">#10234</div>
-                            <div class="user-info-cell">
-                                <img src="https://via.placeholder.com/32x32/556B2F/ffffff?text=G" alt="Graciella" class="user-avatar-small">
-                                <span class="user-name">Graciella Y.N</span>
+                    <div class="table-wrapper">
+                        <div class="table-header">
+                            <div class="table-header-row">
+                                <div class="table-header-cell">ID Langganan</div>
+                                <div class="table-header-cell">Nama Pengguna</div>
+                                <div class="table-header-cell">Status</div>
+                                <div class="table-header-cell">Paket</div>
+                                <div class="table-header-cell">Harga</div>
+                                <div class="table-header-cell">Tanggal Aktif</div>
+                                <div class="table-header-cell">Tanggal Kedaluwarsa</div>
                             </div>
-                            <div><span class="status-badge status-aktif">Aktif</span></div>
-                            <div class="package-cell">1 Bulan</div>
-                            <div class="price-cell">Rp50.000</div>
-                            <div class="date-cell">1 Sept 2025</div>
-                            <div class="date-cell">1 Okt 2025</div>
                         </div>
+                        <div class="table-body">
+                        @forelse($subscriptions as $subscription)
+                            @php
+                                $user = $subscription->user;
+                                $userInitial = strtoupper(substr($user->nama_lengkap ?? 'U', 0, 1));
+                                $statusClass = match($subscription->status) {
+                                    'active' => 'status-aktif',
+                                    'expired' => 'status-kedaluwarsa',
+                                    'trial' => 'status-trial',
+                                    'cancelled', 'failed' => 'status-dibatalkan',
+                                    default => 'status-kedaluwarsa'
+                                };
+                                $statusText = match($subscription->status) {
+                                    'active' => 'Aktif',
+                                    'expired' => 'Kedaluwarsa',
+                                    'trial' => 'Trial',
+                                    'cancelled' => 'Dibatalkan',
+                                    'failed' => 'Gagal',
+                                    'pending' => 'Menunggu',
+                                    default => $subscription->status
+                                };
 
-                        <!-- Sample Data Row 2 -->
-                        <div class="table-row">
-                            <div class="subscription-id">#10235</div>
-                            <div class="user-info-cell">
-                                <img src="https://via.placeholder.com/32x32/556B2F/ffffff?text=B" alt="Budi" class="user-avatar-small">
-                                <span class="user-name">Budi S.</span>
+                                // Check if expired
+                                if ($subscription->status === 'active' && $subscription->end_date < now()->toDateString()) {
+                                    $statusClass = 'status-kedaluwarsa';
+                                    $statusText = 'Kedaluwarsa';
+                                }
+                            @endphp
+                            <div class="table-row">
+                                <div class="subscription-id">{{ $subscription->subscription_id }}</div>
+                                <div class="user-info-cell">
+                                    @if($user->foto)
+                                        <img src="{{ asset('storage/' . $user->foto) }}" alt="{{ $user->nama_lengkap }}" class="user-avatar-small">
+                                    @else
+                                        <div style="width: 32px; height: 32px; border-radius: 50%; background: #556B2F; color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px;">
+                                            {{ $userInitial }}
+                                        </div>
+                                    @endif
+                                    <span class="user-name">{{ $user->nama_lengkap ?? 'N/A' }}</span>
+                                </div>
+                                <div><span class="status-badge {{ $statusClass }}">{{ $statusText }}</span></div>
+                                <div class="package-cell">{{ $subscription->package_name }}</div>
+                                <div class="price-cell">Rp{{ number_format($subscription->price, 0, ',', '.') }}</div>
+                                <div class="date-cell">{{ \Carbon\Carbon::parse($subscription->start_date)->format('d M Y') }}</div>
+                                <div class="date-cell">
+                                    @if($subscription->end_date)
+                                        {{ \Carbon\Carbon::parse($subscription->end_date)->format('d M Y') }}
+                                    @else
+                                        -
+                                    @endif
+                                </div>
                             </div>
-                            <div><span class="status-badge status-kedaluwarsa">Kedaluwarsa</span></div>
-                            <div class="package-cell">3 Bulan</div>
-                            <div class="price-cell">Rp120.000</div>
-                            <div class="date-cell">1 Jun 2025</div>
-                            <div class="date-cell">1 Sept 2025</div>
-                        </div>
-
-                        <!-- Sample Data Row 3 -->
-                        <div class="table-row">
-                            <div class="subscription-id">#10236</div>
-                            <div class="user-info-cell">
-                                <img src="https://via.placeholder.com/32x32/556B2F/ffffff?text=C" alt="Clara" class="user-avatar-small">
-                                <span class="user-name">Clara W.</span>
+                        @empty
+                            <div class="table-row" style="grid-template-columns: 1fr; text-align: center; padding: 40px;">
+                                <div style="color: #4E342E; font-size: 16px;">Belum ada data langganan</div>
                             </div>
-                            <div><span class="status-badge status-aktif">Aktif</span></div>
-                            <div class="package-cell">6 Bulan</div>
-                            <div class="price-cell">Rp250.000</div>
-                            <div class="date-cell">10 Jul 2025</div>
-                            <div class="date-cell">10 Jan 2026</div>
-                        </div>
-
-                        <!-- Sample Data Row 4 -->
-                        <div class="table-row">
-                            <div class="subscription-id">#10237</div>
-                            <div class="user-info-cell">
-                                <img src="https://via.placeholder.com/32x32/556B2F/ffffff?text=D" alt="Diana" class="user-avatar-small">
-                                <span class="user-name">Diana P.</span>
-                            </div>
-                            <div><span class="status-badge status-trial">Trial</span></div>
-                            <div class="package-cell">7 Hari</div>
-                            <div class="price-cell">Rp0</div>
-                            <div class="date-cell">15 Sept 2025</div>
-                            <div class="date-cell">22 Sept 2025</div>
-                        </div>
-
-                        <!-- Sample Data Row 5 -->
-                        <div class="table-row">
-                            <div class="subscription-id">#10238</div>
-                            <div class="user-info-cell">
-                                <img src="https://via.placeholder.com/32x32/556B2F/ffffff?text=E" alt="Eka" class="user-avatar-small">
-                                <span class="user-name">Eka S.</span>
-                            </div>
-                            <div><span class="status-badge status-dibatalkan">Dibatalkan</span></div>
-                            <div class="package-cell">1 Tahun</div>
-                            <div class="price-cell">Rp480.000</div>
-                            <div class="date-cell">1 Jan 2025</div>
-                            <div class="date-cell">-</div>
-                        </div>
-
-                        <!-- Sample Data Row 6 -->
-                        <div class="table-row">
-                            <div class="subscription-id">#10239</div>
-                            <div class="user-info-cell">
-                                <img src="https://via.placeholder.com/32x32/556B2F/ffffff?text=M" alt="Marcello" class="user-avatar-small">
-                                <span class="user-name">Marcello G.</span>
-                            </div>
-                            <div><span class="status-badge status-aktif">Aktif</span></div>
-                            <div class="package-cell">1 Bulan</div>
-                            <div class="price-cell">Rp50.000</div>
-                            <div class="date-cell">1 Sept 2025</div>
-                            <div class="date-cell">1 Okt 2025</div>
+                        @endforelse
                         </div>
                     </div>
                 </div>
 
                 <!-- Pagination -->
-                <div class="pagination">
-                    <button class="page-btn active">1</button>
-                    <button class="page-btn">2</button>
-                    <button class="page-btn">3</button>
-                </div>
+                @if($subscriptions->hasPages())
+                    <div class="pagination">
+                        @if($subscriptions->onFirstPage())
+                            <button class="page-btn" disabled>«</button>
+                        @else
+                            <a href="{{ $subscriptions->previousPageUrl() }}" class="page-btn">«</a>
+                        @endif
+
+                        @foreach(range(1, $subscriptions->lastPage()) as $page)
+                            @if($page == $subscriptions->currentPage())
+                                <button class="page-btn active">{{ $page }}</button>
+                            @else
+                                <a href="{{ $subscriptions->url($page) }}" class="page-btn">{{ $page }}</a>
+                            @endif
+                        @endforeach
+
+                        @if($subscriptions->hasMorePages())
+                            <a href="{{ $subscriptions->nextPageUrl() }}" class="page-btn">»</a>
+                        @else
+                            <button class="page-btn" disabled>»</button>
+                        @endif
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -692,6 +723,30 @@
                 // Add row click functionality here
             });
         });
+
+        // Synchronize horizontal scroll - wrapper controls both header and body
+        const tableWrapper = document.querySelector('.table-wrapper');
+        const tableHeader = document.querySelector('.table-header');
+        const tableBody = document.querySelector('.table-body');
+
+        if (tableWrapper && tableHeader && tableBody) {
+            // Ensure header and body have same width
+            function syncWidths() {
+                const headerRow = tableHeader.querySelector('.table-header-row');
+                const firstBodyRow = tableBody.querySelector('.table-row');
+                if (headerRow && firstBodyRow) {
+                    const bodyWidth = firstBodyRow.offsetWidth;
+                    headerRow.style.minWidth = bodyWidth + 'px';
+                }
+            }
+
+            // Sync on load and resize
+            syncWidths();
+            window.addEventListener('resize', syncWidths);
+
+            // The wrapper scroll will automatically move both header and body together
+            // since they're both inside the same scrollable container
+        }
     </script>
 </body>
 </html>

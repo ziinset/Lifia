@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
+=======
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+>>>>>>> combinerev
     <title>Kategori - Admin Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -28,7 +32,11 @@
                             <i class="fas fa-search search-icon"></i>
                             <input type="text" class="search-input" placeholder="Cari Kategori Disini">
                         </div>
+<<<<<<< HEAD
                         <button class="add-btn">
+=======
+                        <button class="add-btn" onclick="openAddModal()">
+>>>>>>> combinerev
                             <i class="fas fa-plus"></i>
                             Tambah Kategori
                         </button>
@@ -43,11 +51,18 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Kategori</th>
+<<<<<<< HEAD
                                     <th>Timestamp</th>
+=======
+                                    <th>Slug</th>
+                                    <th>Status</th>
+                                    <th>Dibuat</th>
+>>>>>>> combinerev
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+<<<<<<< HEAD
                                 <tr>
                                     <td>1</td>
                                     <td class="category-name">Pola Makan Sehat</td>
@@ -59,12 +74,42 @@
                                                 Edit
                                             </button>
                                             <button class="btn btn-delete">
+=======
+                                @forelse($categories ?? [] as $index => $category)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td class="category-name">
+                                        @if($category->icon)
+                                            <i class="{{ $category->icon }}" style="margin-right: 8px;"></i>
+                                        @endif
+                                        {{ $category->name }}
+                                    </td>
+                                    <td class="slug">{{ $category->slug }}</td>
+                                    <td>
+                                        <span class="status-badge {{ $category->is_active ? 'active' : 'inactive' }}">
+                                            {{ $category->is_active ? 'Aktif' : 'Nonaktif' }}
+                                        </span>
+                                    </td>
+                                    <td class="timestamp">{{ $category->created_at->format('d/m/Y H:i') }}</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-edit" onclick="editCategory({{ $category->id }})">
+                                                <i class="fas fa-edit"></i>
+                                                Edit
+                                            </button>
+                                            <button class="btn btn-toggle" onclick="toggleStatus({{ $category->id }})">
+                                                <i class="fas fa-{{ $category->is_active ? 'eye-slash' : 'eye' }}"></i>
+                                                {{ $category->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
+                                            </button>
+                                            <button class="btn btn-delete" onclick="deleteCategory({{ $category->id }})">
+>>>>>>> combinerev
                                                 <i class="fas fa-trash"></i>
                                                 Hapus
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
+<<<<<<< HEAD
                                 <tr>
                                     <td>2</td>
                                     <td class="category-name">Aktivitas Fisik</td>
@@ -150,6 +195,18 @@
                                         </div>
                                     </td>
                                 </tr>
+=======
+                                @empty
+                                <tr>
+                                    <td colspan="8" class="text-center">
+                                        <div class="empty-state">
+                                            <i class="fas fa-folder-open" style="font-size: 48px; color: #ccc; margin-bottom: 16px;"></i>
+                                            <p>Belum ada kategori. <a href="#" onclick="openAddModal()">Tambah kategori pertama</a></p>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforelse
+>>>>>>> combinerev
                             </tbody>
                         </table>
                     </div>
@@ -167,6 +224,80 @@
         </div>
     </div>
 
+<<<<<<< HEAD
+=======
+    <!-- Modal untuk Tambah/Edit Kategori -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Tambah Kategori</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <form id="categoryForm">
+                @csrf
+                <input type="hidden" id="categoryId" name="id">
+                
+                <div class="form-group">
+                    <label for="name">Nama Kategori *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Deskripsi</label>
+                    <textarea id="description" name="description" rows="2"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="icon">Icon (Font Awesome)</label>
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <input type="text" id="icon" name="icon" placeholder="fas fa-heart" list="iconSuggestions" oninput="updateIconPreview()" style="flex:1;">
+                        <span id="iconPreviewWrap" title="Preview" style="width:36px; height:36px; display:flex; align-items:center; justify-content:center; border:1px solid #e5e7eb; border-radius:8px;">
+                            <i id="iconPreview" class="fas fa-heart" style="font-size:16px; color:#4B5C3B;"></i>
+                        </span>
+                    </div>
+                    <small style="display:block; color:#6b7280; margin-top:6px;">Contoh: <code>fas fa-leaf</code>, <code>fas fa-utensils</code>, <code>fas fa-dumbbell</code></small>
+                    <datalist id="iconSuggestions">
+                        <option value="fas fa-heart"></option>
+                        <option value="fas fa-leaf"></option>
+                        <option value="fas fa-utensils"></option>
+                        <option value="fas fa-dumbbell"></option>
+                        <option value="fas fa-brain"></option>
+                        <option value="fas fa-spa"></option>
+                        <option value="fas fa-recycle"></option>
+                        <option value="fas fa-apple-alt"></option>
+                        <option value="fas fa-carrot"></option>
+                        <option value="fas fa-seedling"></option>
+                        <option value="fas fa-bicycle"></option>
+                        <option value="fas fa-running"></option>
+                        <option value="fas fa-walking"></option>
+                        <option value="fas fa-swimmer"></option>
+                        <option value="fas fa-fish"></option>
+                        <option value="fas fa-bread-slice"></option>
+                        <option value="fas fa-cheese"></option>
+                        <option value="fas fa-egg"></option>
+                        <option value="fas fa-apple-whole"></option>
+                        <option value="fas fa-mug-hot"></option>
+                        <option value="fas fa-lemon"></option>
+                        <option value="fas fa-water"></option>
+                        <option value="fas fa-seedling"></option>
+                        <option value="fas fa-sun"></option>
+                        <option value="fas fa-cloud"></option>
+                    </datalist>
+                    <div id="iconQuickGrid" style="margin-top:10px; display:grid; grid-template-columns: repeat(8, 36px); gap:8px;">
+                        <!-- populated by JS -->
+                    </div>
+                </div>
+                
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-cancel" onclick="closeModal()">Batal</button>
+                    <button type="submit" class="btn btn-save">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+>>>>>>> combinerev
     <style>
         * {
             margin: 0;
@@ -187,6 +318,7 @@
 
         .main-content {
             flex: 1;
+<<<<<<< HEAD
             margin-left: 280px;
             display: flex;
             flex-direction: column;
@@ -194,14 +326,29 @@
 
         .content-wrapper {
             padding: 2rem;
+=======
+            margin-left: 260px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            padding: 1.5rem;
+>>>>>>> combinerev
             flex: 1;
         }
 
         /* Page Header */
         .page-header {
             background: transparent;
+<<<<<<< HEAD
             padding: 2rem 0;
             margin-bottom: 2rem;
+=======
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+>>>>>>> combinerev
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -319,12 +466,21 @@
         }
 
         .table-wrapper {
+<<<<<<< HEAD
             overflow-x: auto;
+=======
+            overflow: visible;
+            width: 100%;
+>>>>>>> combinerev
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
+<<<<<<< HEAD
+=======
+            table-layout: fixed;
+>>>>>>> combinerev
         }
 
         thead {
@@ -332,16 +488,35 @@
         }
 
         th {
+<<<<<<< HEAD
             padding: 16px 20px;
             text-align: left;
             font-weight: 500;
             color: #4E342E;
             font-size: 12px;
+=======
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 500;
+            color: #4E342E;
+            font-size: 11px;
+>>>>>>> combinerev
             text-transform: uppercase;
             letter-spacing: 0.05em;
             border-bottom: 1px solid #e2e8f0;
             font-family: 'Poppins', sans-serif;
         }
+<<<<<<< HEAD
+=======
+        
+        /* Specific column widths (after removing Header Type) */
+        th:nth-child(1) { width: 6%; }   /* No */
+        th:nth-child(2) { width: 26%; }  /* Nama Kategori */
+        th:nth-child(3) { width: 18%; }  /* Slug */
+        th:nth-child(4) { width: 10%; }  /* Status */
+        th:nth-child(5) { width: 12%; }  /* Dibuat */
+        th:nth-child(6) { width: 28%; }  /* Aksi */
+>>>>>>> combinerev
 
         tbody tr {
             border-bottom: 1px solid #e2e8f0;
@@ -363,11 +538,20 @@
         }
 
         td {
+<<<<<<< HEAD
             padding: 16px 20px;
             font-size: 14px;
             font-weight: 500;
             color: #4B5C3B;
             font-family: 'Poppins', sans-serif;
+=======
+            padding: 12px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #4B5C3B;
+            font-family: 'Poppins', sans-serif;
+            vertical-align: middle;
+>>>>>>> combinerev
         }
 
         .category-name {
@@ -386,6 +570,7 @@
         /* Action Buttons */
         .action-buttons {
             display: flex;
+<<<<<<< HEAD
             gap: 8px;
         }
 
@@ -394,16 +579,37 @@
             border: none;
             border-radius: 8px;
             font-size: 13px;
+=======
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+>>>>>>> combinerev
             font-weight: 500;
             cursor: pointer;
             display: flex;
             align-items: center;
+<<<<<<< HEAD
             gap: 6px;
             transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             min-width: 80px;
             justify-content: center;
             position: relative;
             overflow: hidden;
+=======
+            gap: 4px;
+            transition: all 0.3s ease;
+            min-width: 70px;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+>>>>>>> combinerev
         }
 
         .btn-edit {
@@ -490,6 +696,209 @@
             }
         }
 
+<<<<<<< HEAD
+=======
+        /* Status Badges */
+        .status-badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .status-badge.active {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-badge.inactive {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+        
+        .badge {
+            padding: 2px 6px;
+            border-radius: 8px;
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        
+        .badge-header { background: #dbeafe; color: #1e40af; }
+        .badge-header1 { background: #fef3c7; color: #d97706; }
+        .badge-hero-mental { background: #e0e7ff; color: #5b21b6; }
+        .badge-hero-olga { background: #dcfce7; color: #166534; }
+        
+        .btn-toggle {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .btn-toggle:hover {
+            background: #4b5563;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #6b7280;
+        }
+        
+        .empty-state a {
+            color: #4B5C3B;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 3000; /* above sidebar (1001) */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            /* center content */
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            border-radius: 12px;
+            width: 95%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            animation: modalSlideIn 0.3s ease;
+            z-index: 3100; /* ensure content also above */
+        }
+        
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .modal-header {
+            padding: 20px 24px 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+        
+        .modal-header h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .close {
+            color: #9ca3af;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: #374151;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+            padding: 0 24px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 0 24px;
+            margin-bottom: 16px;
+        }
+        
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: #374151;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4B5C3B;
+            box-shadow: 0 0 0 3px rgba(75, 92, 59, 0.1);
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            color: #374151;
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            width: auto;
+            margin-right: 8px;
+        }
+        
+        .modal-actions {
+            padding: 20px 24px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+        
+        .btn-cancel {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+        
+        .btn-cancel:hover {
+            background: #e5e7eb;
+        }
+        
+        .btn-save {
+            background: #4B5C3B;
+            color: white;
+        }
+        
+        .btn-save:hover {
+            background: #3a4a2b;
+        }
+
+>>>>>>> combinerev
         /* Responsive */
         @media (max-width: 768px) {
             .main-content {
@@ -512,7 +921,19 @@
             }
             
             .table-wrapper {
+<<<<<<< HEAD
                 overflow-x: scroll;
+=======
+                overflow-x: auto;
+            }
+            
+            .table-container {
+                overflow-x: auto;
+            }
+            
+            table {
+                min-width: 800px;
+>>>>>>> combinerev
             }
             
             .action-buttons {
@@ -522,10 +943,247 @@
             
             .btn {
                 min-width: 60px;
+<<<<<<< HEAD
                 font-size: 12px;
                 padding: 8px 12px;
             }
         }
     </style>
+=======
+                font-size: 11px;
+                padding: 6px 10px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                margin: 5% auto;
+                width: 98%;
+                max-width: none;
+            }
+            
+            /* Hide less important columns on mobile */
+            th:nth-child(3), td:nth-child(3), /* Slug */
+            th:nth-child(6), td:nth-child(6)  /* Dibuat */ {
+                display: none;
+            }
+            
+            /* Adjust remaining column widths for mobile */
+            th:nth-child(1) { width: 8%; }   /* No */
+            th:nth-child(2) { width: 30%; }  /* Nama Kategori */
+            th:nth-child(4) { width: 15%; }  /* Header Type */
+            th:nth-child(5) { width: 12%; }  /* Status */
+            th:nth-child(7) { width: 35%; }  /* Aksi */
+        }
+    </style>
+
+    <script>
+        // CSRF Token
+        const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '{{ csrf_token() }}';
+
+        // Icon picker quick list
+        const POPULAR_ICONS = [
+            'fas fa-heart','fas fa-leaf','fas fa-utensils','fas fa-dumbbell','fas fa-brain','fas fa-spa','fas fa-recycle',
+            'fas fa-apple-alt','fas fa-carrot','fas fa-seedling','fas fa-bicycle','fas fa-running','fas fa-walking',
+            'fas fa-swimmer','fas fa-fish','fas fa-bread-slice','fas fa-cheese','fas fa-egg','fas fa-apple-whole',
+            'fas fa-mug-hot','fas fa-lemon','fas fa-water','fas fa-sun','fas fa-cloud'
+        ];
+
+        function renderIconQuickGrid() {
+            const grid = document.getElementById('iconQuickGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            POPULAR_ICONS.forEach(cls => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.title = cls;
+                btn.style.cssText = 'width:36px;height:36px;border:1px solid #e5e7eb;border-radius:8px;display:flex;align-items:center;justify-content:center;background:#fff;cursor:pointer;transition:all .2s;';
+                btn.innerHTML = `<i class="${cls}" style="color:#4B5C3B;"></i>`;
+                btn.addEventListener('click', () => {
+                    const input = document.getElementById('icon');
+                    input.value = cls;
+                    updateIconPreview();
+                });
+                btn.addEventListener('mouseenter', ()=> btn.style.boxShadow='0 2px 8px rgba(0,0,0,0.08)');
+                btn.addEventListener('mouseleave', ()=> btn.style.boxShadow='none');
+                grid.appendChild(btn);
+            });
+        }
+
+        function updateIconPreview() {
+            const v = (document.getElementById('icon')?.value || '').trim();
+            const el = document.getElementById('iconPreview');
+            if (!el) return;
+            el.className = v || 'fas fa-heart';
+        }
+        
+        // Modal Functions
+        function openAddModal() {
+            document.getElementById('modalTitle').textContent = 'Tambah Kategori';
+            document.getElementById('categoryForm').reset();
+            document.getElementById('categoryId').value = '';
+            document.getElementById('categoryModal').style.display = 'flex';
+            // reset preview
+            renderIconQuickGrid();
+            updateIconPreview();
+        }
+        
+        function closeModal() {
+            document.getElementById('categoryModal').style.display = 'none';
+        }
+        
+        // Edit Category
+        async function editCategory(id) {
+            try {
+                const response = await fetch(`/admin/categories/${id}/edit`);
+                const category = await response.json();
+                
+                document.getElementById('modalTitle').textContent = 'Edit Kategori';
+                document.getElementById('categoryId').value = category.id;
+                document.getElementById('name').value = category.name;
+                document.getElementById('description').value = category.description || '';
+                document.getElementById('icon').value = category.icon || '';
+
+                // init icon picker UI
+                renderIconQuickGrid();
+                updateIconPreview();
+                
+                document.getElementById('categoryModal').style.display = 'flex';
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Gagal memuat data kategori');
+            }
+        }
+        
+        // Toggle Status
+        async function toggleStatus(id) {
+            try {
+                const response = await fetch(`/admin/categories/${id}/toggle`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken
+                    }
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    location.reload();
+                } else {
+                    alert('Gagal mengubah status kategori');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Gagal mengubah status kategori');
+            }
+        }
+        
+        // Delete Category
+        async function deleteCategory(id) {
+            if (!confirm('Apakah Anda yakin ingin menghapus kategori ini?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/admin/categories/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken,
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert(result.message || 'Kategori berhasil dihapus!');
+                    location.reload();
+                } else {
+                    alert(result.message || 'Gagal menghapus kategori');
+                }
+            } catch (error) {
+                console.error('Error deleting category:', error);
+                alert('Gagal menghapus kategori: ' + error.message);
+            }
+        }
+        
+        // Form Submit
+        document.getElementById('categoryForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const categoryId = document.getElementById('categoryId').value;
+            
+            // Convert FormData to JSON (tanpa is_active karena checkbox dihapus)
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            try {
+                const url = categoryId ? `/admin/categories/${categoryId}` : '/admin/categories';
+                const method = categoryId ? 'PUT' : 'POST';
+                
+                const response = await fetch(url, {
+                    method: method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (!response.ok) {
+                    const text = await response.text();
+                    throw new Error(`HTTP ${response.status}: ${text}`);
+                }
+                
+                const result = await response.json().catch(() => ({ success: false, message: 'Invalid JSON response' }));
+                
+                if (result.success) {
+                    closeModal();
+                    location.reload();
+                } else {
+                    alert(result.message || 'Gagal menyimpan kategori');
+                }
+            } catch (error) {
+                console.error('Error menyimpan kategori:', error);
+                alert('Gagal menyimpan kategori: ' + (error.message || 'Unknown error'));
+            }
+        });
+        
+        // Search functionality
+        document.querySelector('.search-input').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                const categoryName = row.querySelector('.category-name')?.textContent.toLowerCase();
+                if (categoryName && categoryName.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('categoryModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+>>>>>>> combinerev
 </body>
 </html>

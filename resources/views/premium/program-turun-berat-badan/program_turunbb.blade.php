@@ -1,0 +1,39 @@
+{{-- @extends('layouts.app') --}}
+@include('components.navbar')
+@section('title', 'Program Turun Berat Badan')
+
+@section('content')
+
+{{-- header/hero --}}
+<div style="margin-bottom: 40px;">
+    @include('components.program-turun-berat-badan')
+</div>
+
+<div style="margin-bottom: 40px;">
+    @includeIf('premium.program-turun-berat-badan.bagianartikel')
+</div>
+
+{{-- Halaman Banner --}}
+<div style="margin-top: 40px; margin-bottom: 60px;">
+    @includeIf('premium.program-turun-berat-badan.banner')
+</div>
+
+{{-- Halaman Topik --}}
+<div style="margin-top: 50px;">
+    @includeIf('premium.program-turun-berat-badan.topik')
+</div>
+
+{{-- Halaman image --}}
+<div style="margin-top: 100px;">
+    <img src="{{ asset('image/Rectangle 159.png') }}"
+        alt="Eat Organic"
+        style="width: 100%; height: auto; display: block;">
+</div>
+
+{{-- Halaman Panduan --}}
+<div style="margin-top: 50px;">
+    @includeIf('premium.program-turun-berat-badan.panduan')
+</div>
+@include('components.footer')
+{{-- @endsection --}}
+

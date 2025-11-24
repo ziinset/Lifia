@@ -722,7 +722,72 @@
     <div class="hero-section">
         <div class="hero-container">
             <!-- Navigation -->
+<<<<<<< HEAD
             @include('components.navbar')
+=======
+            <nav class="hero-navbar">
+                <div class="hero-logo">
+                    <img src="{{asset('images/logo-lifia.svg')}}" alt="Lifia Logo">
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="hero-menu-toggle" id="heroMenuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="hero-nav-links" id="heroNavLinks">
+                    <a href="{{ Auth::check() && Auth::user()->role === 'admin' ? route('admin.dashboard') : route('home') }}" class="hero-active">
+                        Beranda
+                    </a>
+
+                    <!-- Artikel with dropdown -->
+                    <div class="hero-dropdown">
+                        <a href="#" class="hero-artikel" id="heroArtikelToggle">
+                            Artikel
+                            <iconify-icon icon="mingcute:down-line" style="vertical-align: middle; margin-left: 4px;"></iconify-icon>
+                        </a>
+                        <div class="hero-dropdown-menu" id="heroArtikelMenu">
+                            <a href="{{ route('kategori.pola-makan-sehat') }}">Pola Makan Sehat</a>
+                            <a href="{{ route('kategori.aktivitas-fisik') }}">Aktivitas Fisik</a>
+                            <a href="{{ route('kategori.kesehatan-mental') }}">Kesehatan Mental</a>
+                            <a href="{{ route('kategori.perawatan-diri') }}">Perawatan Diri</a>
+                            <a href="{{ route('kategori.vegan') }}">Vegan</a>
+                            <a href="{{ route('kategori.eco') }}">Eco Living</a>
+                        </div>
+                    </div>
+
+                    <a href="{{ route('cek-bmi') }}">
+                        Cek Sehat
+                    </a>
+
+                    <a href="{{ route('tentang-kami') }}">
+                        Tentang Kami
+                    </a>
+
+                    <a href="{{ route('fitplan') }}" class="hero-fitplan">
+                        FitPlan
+                    </a>
+
+                    @auth
+                    @php
+                        $u = Auth::user();
+                        $avatar = $u->foto ? asset('storage/' . $u->foto) : 'https://placehold.co/28x28/8BAC65/ffffff?text=' . urlencode(substr($u->nama_lengkap ?? 'U', 0, 1));
+                    @endphp
+                    <a href="{{ Auth::check() && Auth::user()->role === 'admin' ? route('admin.dashboard') : route('profil') }}" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:#fff; border:1.4px solid #fff; border-radius:30px; padding:7px 14px; background:transparent;">
+                        <img src="{{ $avatar }}" alt="{{ $u->nama_lengkap ?? 'User' }}" style="width:28px; height:28px; border-radius:50%; border:2px solid rgba(255,255,255,0.7); object-fit:cover; box-shadow:0 2px 6px rgba(0,0,0,0.15);">
+                        <span style="font-weight:600; font-size:13px; white-space:nowrap;">{{ $u->nama_lengkap ?? ($u->email ?? 'Akun') }}</span>
+                    </a>
+                    @else
+                    <a href="{{ route('login', ['redirect_to' => request()->getRequestUri()]) }}" class="hero-login">
+                        Login
+                    </a>
+                    @endauth
+                </div>
+            </nav>
+
+>>>>>>> combinerev
             <!-- Hero Section -->
             <section class="hero-content">
                 <div class="hero-text">
